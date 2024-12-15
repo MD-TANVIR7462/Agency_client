@@ -1,12 +1,9 @@
-
 import { Banner } from "@/components/banner";
 import { Services } from "@/components/services";
 import { Features } from "@/components/features";
 import { Gallery } from "@/components/gallery";
-import { Team } from "@/components/team";
 import { Testimonials } from "@/components/testimonials";
-
-
+import { TeamSection } from "@/components/About/team-section";
 
 export default function Home() {
   return (
@@ -16,7 +13,7 @@ export default function Home() {
         <Services />
         <Features />
         <Gallery />
-        <Team />
+        <TeamSection />
         <Testimonials />
       </main>
     </>
