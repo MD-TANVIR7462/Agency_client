@@ -15,7 +15,7 @@ export function TeamSection() {
   );
 
   return (
-    <section className="py-20">
+    <section className="py-20 max-w-7xl mx-auto">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
           Our Expert Team
@@ -47,7 +47,7 @@ export function TeamSection() {
               className={cn(
                 "group relative p-6 rounded-xl backdrop-blur-sm border transition-all duration-500",
                 activeTab === "All Teams" || member.team.includes(activeTab)
-                  ? "bg-gray-800/50 border-gray-700 hover:border-blue-500"
+                  ? "bg-gray-800/50 border-gray-700  hover:inset-x-0 hover:-top-px   hover:bg-gradient-to-r    "
                   : "bg-gray-800/20 border-gray-800 opacity-50"
               )}
             >
@@ -68,10 +68,10 @@ export function TeamSection() {
 
                 {/* Info */}
                 <div className="text-center">
-                  <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors duration-300">
+                  <h3 className="text-xl font-semibold mb-2 text-white  transition-colors duration-300">
                     {member.name}
                   </h3>
-                  <p className="text-blue-400 font-medium mb-2">{member.role}</p>
+                  <p className="text-purple-300 font-medium mb-2">{member.role}</p>
                   <p className="text-gray-400 text-sm mb-4">{member.bio}</p>
                   
                   {/* Skills */}
@@ -90,23 +90,15 @@ export function TeamSection() {
                   <div className="flex justify-center space-x-4">
                     <a
                       href={member.social.linkedin}
-                      className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
+                      className="text-gray-400 hover:text-purple-300 transition-colors duration-300"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       <Linkedin className="w-5 h-5" />
                     </a>
                     <a
-                      href={member.social.twitter}
-                      className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Twitter className="w-5 h-5" />
-                    </a>
-                    <a
                       href={member.social.facebook}
-                      className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
+                      className="text-gray-400 hover:text-purple-300 transition-colors duration-300"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -114,7 +106,7 @@ export function TeamSection() {
                     </a>
                     <a
                       href={member.social.github}
-                      className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
+                      className="text-gray-400 hover:text-purple-300 transition-colors duration-300"
                       target="_blank"
                       rel="noopener noreferrer"
                     >

@@ -4,22 +4,22 @@ import { Award, Users2, Gem, Globe2 } from "lucide-react";
 
 const achievements = [
   {
-    icon: <Award className="w-12 h-12 text-blue-500" />,
+    icon: <Award className="w-12 h-12 text-purple-400" />,
     title: "Industry Recognition",
     description: "Named Top Software Agency 2023",
   },
   {
-    icon: <Users2 className="w-12 h-12 text-blue-500" />,
+    icon: <Users2 className="w-12 h-12 text-purple-400" />,
     title: "Global Reach",
     description: "Serving clients in 30+ countries",
   },
   {
-    icon: <Gem className="w-12 h-12 text-blue-500" />,
+    icon: <Gem className="w-12 h-12 text-purple-400" />,
     title: "Project Success",
     description: "500+ successful project deliveries",
   },
   {
-    icon: <Globe2 className="w-12 h-12 text-blue-500" />,
+    icon: <Globe2 className="w-12 h-12 text-purple-400" />,
     title: "Industry Coverage",
     description: "Expertise across 12+ industries",
   },
@@ -27,7 +27,7 @@ const achievements = [
 
 export function Achievements() {
   return (
-    <section className="py-20 bg-gray-900">
+    <section className="py-20 bg-gray-900 max-w-7xl mx-auto">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
           Our Achievements
@@ -36,7 +36,7 @@ export function Achievements() {
           {achievements.map((achievement, index) => (
             <div
               key={index}
-              className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-blue-500 transition-all duration-300 text-center group"
+              className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-purple-500 transition-all duration-300 text-center group"
             >
               <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
                 {achievement.icon}
