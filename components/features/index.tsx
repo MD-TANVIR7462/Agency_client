@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FeaturesGrid } from "./features-grid";
 import { FeatureShowcase } from "./feature-showcase";
+import Tittle from "../Shared/Tittle";
 
 export const Features = () => {
   return (
@@ -16,9 +17,7 @@ export const Features = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h2 className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-3xl font-bold text-transparent sm:text-4xl md:text-5xl">
-            Why Choose DigiForge?
-          </h2>
+       <Tittle tittle={"Why Choose DigiForge?"} />
           <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
             Experience the perfect blend of innovation, expertise, and dedication to your success.
           </p>

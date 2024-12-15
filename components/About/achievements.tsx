@@ -1,6 +1,7 @@
 "use client";
 
 import { Award, Users2, Gem, Globe2 } from "lucide-react";
+import Tittle from "../Shared/Tittle";
 
 const achievements = [
   {
@@ -29,10 +30,10 @@ export function Achievements() {
   return (
     <section className="py-20 bg-gray-900 max-w-7xl mx-auto">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-          Our Achievements
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+   <span className="text-center ">
+   <Tittle tittle={" Our Achievements"}  />
+   </span>
+        <div className="grid mt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {achievements.map((achievement, index) => (
             <div
               key={index}

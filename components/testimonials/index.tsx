@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { TestimonialSlider } from "./testimonial-slider";
+import Tittle from "../Shared/Tittle";
 
 export const Testimonials = () => {
   return (
@@ -15,9 +16,7 @@ export const Testimonials = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h2 className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-3xl font-bold text-transparent sm:text-4xl md:text-5xl">
-            Client Success Stories
-          </h2>
+      <Tittle tittle={"Client Success Stories"} />
           <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
             Hear from our clients about their transformative experiences working with us.
           </p>

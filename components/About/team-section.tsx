@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Facebook, Linkedin, Twitter, Github } from "lucide-react";
 import { TeamMember, teamMembers } from "./team-data";
 import { cn } from "@/lib/utils";
+import Tittle from "../Shared/Tittle";
 
 const teamCategories = ["All Teams", "Web Team", "SEO Team", "Networking", "Graphics Design"];
 
@@ -17,12 +18,10 @@ export function TeamSection() {
   return (
     <section className="py-20 max-w-7xl mx-auto">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-          Our Expert Team
-        </h2>
+      <span className="text-center"><Tittle tittle={"Our Expert Team"} /></span>
         
         {/* Team Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-4 mb-12 mt-4">
           {teamCategories.map((category) => (
             <button
               key={category}

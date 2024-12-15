@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ServicesGrid } from "./services-grid";
+import Tittle from "../Shared/Tittle";
 
 export const Services = () => {
   return (
@@ -9,7 +10,7 @@ export const Services = () => {
       {/* Background Elements */}
       <div className="absolute left-1/2 top-0 -z-10 h-[800px] w-[800px] -translate-x-1/2 rounded-full bg-purple-500/20 blur-[120px]" />
       <div className="absolute right-0 top-1/2 -z-10 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-blue-500/20 blur-[100px]" />
-      
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <motion.div
@@ -18,12 +19,10 @@ export const Services = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-3xl font-bold text-transparent sm:text-4xl md:text-5xl">
-              Transformative Digital Services
-            </h2>
+            <Tittle tittle={"Transformation Digital Services"} />
             <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
-              Elevate your business with our comprehensive suite of digital solutions, 
-              designed to drive innovation and accelerate growth.
+              Elevate your business with our comprehensive suite of digital
+              solutions, designed to drive innovation and accelerate growth.
             </p>
           </motion.div>
 

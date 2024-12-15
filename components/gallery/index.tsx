@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { GalleryGrid } from "./gallery-grid";
+import Tittle from "../Shared/Tittle";
 
 export const Gallery = () => {
   return (
@@ -15,9 +16,7 @@ export const Gallery = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h2 className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-3xl font-bold text-transparent sm:text-4xl md:text-5xl">
-            Our Latest Projects
-          </h2>
+        <Tittle tittle={"Our Latest Projects"} />
           <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
             Explore our portfolio of successful digital transformations and innovative solutions.
           </p>

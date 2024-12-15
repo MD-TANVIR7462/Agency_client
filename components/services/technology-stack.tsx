@@ -6,6 +6,7 @@ import {
   Code2, Database, Cloud,  Lock, Cpu,
   BarChart, Globe, Palette, Layers, Server, Zap
 } from "lucide-react";
+import Tittle from "../Shared/Tittle";
 
 const technologies = [
   {
@@ -70,9 +71,7 @@ export const TechnologyStack = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h2 className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-3xl font-bold text-transparent sm:text-4xl">
-            Technology Stack
-          </h2>
+         <Tittle tittle="Technology Stack"/>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
             Cutting-edge technologies powering your digital success
           </p>
