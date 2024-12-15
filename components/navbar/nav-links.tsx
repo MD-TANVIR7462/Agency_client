@@ -14,8 +14,8 @@ export const NavLinks = ({ className = "", vertical = false }: NavLinksProps) =>
   const links = [
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
+    { href: "/About", label: "About Us" },
     { href: "/Portfolio", label: "Portfolio" },
-    { href: "#team", label: "Team" },
     { href: "#testimonials", label: "Testimonials" },
   ];
 
