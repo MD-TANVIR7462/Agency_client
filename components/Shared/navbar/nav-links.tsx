@@ -19,7 +19,7 @@ export const NavLinks = ({
     { href: "/services", label: "Services" },
     { href: "/About", label: "About Us" },
     { href: "/Portfolio", label: "Portfolio" },
-    { href: "#testimonials", label: "Testimonials" },
+    { href: "/Career", label: "Career" },
   ];
 
   const handleScroll = (id: string) => {

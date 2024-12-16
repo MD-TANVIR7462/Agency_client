@@ -1,7 +1,6 @@
 
 import IndustryExpertise from "@/components/Porfolio/IndustryExpertise";
 import ProcessSection2 from "@/components/Porfolio/ProcessSection";
-import ProjectsTS from "@/components/Porfolio/Projects2";
 import ProjectsSection from "@/components/Porfolio/ProjectsSection";
 import FAQSection from "@/components/Shared/Faq/FAQSection";
 import SubHero from "@/components/Shared/SubHero";
@@ -17,7 +16,6 @@ const Portfolio = () => {
       />
       <span>
         <ProjectsSection />
-  
         <ProcessSection2 />
         <IndustryExpertise />
         <FAQSection />
