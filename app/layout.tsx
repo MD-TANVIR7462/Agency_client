@@ -7,9 +7,6 @@ import { Navbar } from "@/components/Shared/navbar";
 import { Footer } from "@/components/Shared/footer";
 
 
-
-
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -29,7 +26,7 @@ export default function RootLayout({
         <MouseFollower />
         <BackgroundEffects />
         <Navbar />
-        <div className="bg-gray-900">{children}</div>
+        <div className="bg-gray-900"> {children}</div>
         <Footer />
       </body>
     </html>

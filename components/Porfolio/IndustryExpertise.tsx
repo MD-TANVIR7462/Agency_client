@@ -1,4 +1,5 @@
 import React from "react";
+import Tittle from "../Shared/Tittle";
 
 const IndustryExpertise = () => {
   const industries = [
@@ -42,12 +43,10 @@ const IndustryExpertise = () => {
   ];
 
   return (
-    <section className="py-24">
+    <section className="py-24 max-w-[90rem] mx-auto">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">
-            Industry Expertise
-          </h2>
+          <Tittle tittle='Industry Expertise'/>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Delivering innovative solutions across diverse industry verticals
           </p>

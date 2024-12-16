@@ -1,7 +1,8 @@
+"use client"
 import React from "react";
 import Tittle from "../Shared/Tittle";
 
-const ProcessSection = () => {
+const ProcessSection2 = () => {
   const processData = [
     {
       step: "01",
@@ -52,4 +53,4 @@ const ProcessSection = () => {
   );
 };
 
-export default ProcessSection;
+export default ProcessSection2;
