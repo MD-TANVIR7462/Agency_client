@@ -11,7 +11,7 @@ export const Services = () => {
       <div className="absolute left-1/2 top-0 -z-10 h-[800px] w-[800px] -translate-x-1/2 rounded-full bg-purple-500/20 blur-[120px]" />
       <div className="absolute right-0 top-1/2 -z-10 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-blue-500/20 blur-[100px]" />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto  px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -33,7 +33,9 @@ export const Services = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mt-16"
           >
+            <span className="text-start">
             <ServicesGrid />
+            </span>
           </motion.div>
         </div>
       </div>

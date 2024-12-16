@@ -6,20 +6,28 @@ import { TeamMember, teamMembers } from "./team-data";
 import { cn } from "@/lib/utils";
 import Tittle from "../Shared/Tittle";
 
-const teamCategories = ["All Teams", "Web Team", "SEO Team", "Networking", "Graphics Design"];
+const teamCategories = [
+  "All Teams",
+  "Web Team",
+  "SEO Team",
+  "Networking",
+  "Graphics Design",
+];
 
 export function TeamSection() {
   const [activeTab, setActiveTab] = useState("All Teams");
 
-  const filteredTeam = teamMembers.filter(member => 
+  const filteredTeam = teamMembers.filter((member) =>
     activeTab === "All Teams" ? true : member.team.includes(activeTab)
   );
 
   return (
-    <section className="py-20 max-w-7xl mx-auto">
+    <section className="py-20 max-w-[90rem] mx-auto">
       <div className="container mx-auto px-4">
-      <span className="text-center"><Tittle tittle={"Our Expert Team"} /></span>
-        
+        <span className="text-center">
+          <Tittle tittle={"Our Expert Team"} />
+        </span>
+
         {/* Team Category Tabs */}
         <div className="flex flex-wrap justify-center gap-4 mb-12 mt-4">
           {teamCategories.map((category) => (
@@ -52,7 +60,7 @@ export function TeamSection() {
             >
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
-              
+
               {/* Content */}
               <div className="relative">
                 {/* Image */}
@@ -70,9 +78,11 @@ export function TeamSection() {
                   <h3 className="text-xl font-semibold mb-2 text-white  transition-colors duration-300">
                     {member.name}
                   </h3>
-                  <p className="text-purple-300 font-medium mb-2">{member.role}</p>
+                  <p className="text-purple-300 font-medium mb-2">
+                    {member.role}
+                  </p>
                   <p className="text-gray-400 text-sm mb-4">{member.bio}</p>
-                  
+
                   {/* Skills */}
                   <div className="flex flex-wrap justify-center gap-2 mb-4">
                     {member.skills.map((skill, idx) => (

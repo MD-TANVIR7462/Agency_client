@@ -7,7 +7,6 @@ import Link from "next/link";
 import { NavLinks } from "./nav-links";
 import { MobileMenu } from "./mobile-menu";
 
-
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -19,20 +18,22 @@ export const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-console.log(isScrolled);
+
   return (
     <motion.nav
       className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-gray-950 md:bg-gray-900/80 md:backdrop-blur-lg" : "bg-transparent "
+        isScrolled
+          ? "bg-gray-950 md:bg-gray-900/80 md:backdrop-blur-lg"
+          : "bg-transparent "
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="mx-auto max-w-7xl px-[1%] sm:px-[2%] lg:px-[2.5%] ">
+      <div className="mx-auto max-w-[90rem] px-[1%] sm:px-[2%] lg:px-[2.5%] ">
         <div className="flex h-20 items-center justify-between">
           <div className="flex items-center">
-            <Link href="/"  className="text-2xl font-bold text-white">
+            <Link href="/" className="text-2xl font-bold text-white">
               DigiForge
             </Link>
           </div>
@@ -46,7 +47,7 @@ console.log(isScrolled);
             >
               Contact Us
             </Link>
-            
+
             <button
               className="rounded-full p-2 text-white transition-colors hover:bg-white/10 md:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -58,7 +59,9 @@ console.log(isScrolled);
       </div>
 
       <AnimatePresence>
-        {isMobileMenuOpen && <MobileMenu onClose={() => setIsMobileMenuOpen(false)} />}
+        {isMobileMenuOpen && (
+          <MobileMenu onClose={() => setIsMobileMenuOpen(false)} />
+        )}
       </AnimatePresence>
     </motion.nav>
   );

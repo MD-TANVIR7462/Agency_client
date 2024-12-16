@@ -16,13 +16,13 @@ export const ServicesCTA = () => {
   return (
     <section className="relative overflow-hidden bg-gray-900 py-24">
       <div className="absolute right-1/4 top-1/2 -z-10 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-purple-500/20 blur-[100px]" />
-      
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-2xl bg-white/5 backdrop-blur-lg">
           <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10" />
           <div className="absolute inset-x-0 -top-px mx-auto h-px w-3/4 bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
           <div className="absolute inset-x-0 -bottom-px mx-auto h-px w-3/4 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-          
+
           <div className="relative grid gap-12 px-6 py-12 lg:grid-cols-2 lg:px-12">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -33,9 +33,10 @@ export const ServicesCTA = () => {
                 Ready to Transform Your Business?
               </h2>
               <p className="mt-4 text-lg text-gray-400">
-                Let's discuss how our services can help you achieve your digital goals. Schedule a free consultation with our experts today.
+                Let's discuss how our services can help you achieve your digital
+                goals. Schedule a free consultation with our experts today.
               </p>
-              
+
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 {benefits.map((benefit, index) => (
                   <motion.div
@@ -61,7 +62,10 @@ export const ServicesCTA = () => {
             >
               <form className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-300"
+                  >
                     Name
                   </label>
                   <input
@@ -72,7 +76,10 @@ export const ServicesCTA = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-300"
+                  >
                     Email
                   </label>
                   <input
@@ -83,7 +90,10 @@ export const ServicesCTA = () => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-300">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-300"
+                  >
                     Message
                   </label>
                   <textarea

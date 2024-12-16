@@ -27,19 +27,19 @@ const values = [
     title: "Innovation First",
     description:
       "We stay ahead of technology trends to deliver cutting-edge solutions.",
-  }
+  },
 ];
 
 export function Values() {
   return (
-    <section className="py-20 bg-gray-900 max-w-7xl mx-auto">
+    <section className="py-20 bg-gray-900 max-w-[90rem]  mx-auto">
       <div className="container mx-auto px-4">
         <span className="text-center">
           <Tittle tittle="Our Values" />
         </span>
-        <div className="grid mt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid  mt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {values.map((value, index) => (
-            <div key={index} className="bg-gray-800 p-8 rounded-lg text-center">
+            <div key={index} className="bg-gray-800 p-8 rounded-lg ">
               {value.icon}
               <h3 className="text-xl font-semibold mb-4 text-white">
                 {value.title}

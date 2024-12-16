@@ -28,16 +28,16 @@ const achievements = [
 
 export function Achievements() {
   return (
-    <section className="py-20 bg-gray-900 max-w-7xl mx-auto">
+    <section className="py-20 bg-gray-900 max-w-[90rem]  mx-auto">
       <div className="container mx-auto px-4">
-   <span className="text-center ">
-   <Tittle tittle={" Our Achievements"}  />
-   </span>
+        <span className="text-center ">
+          <Tittle tittle={" Our Achievements"} />
+        </span>
         <div className="grid mt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {achievements.map((achievement, index) => (
             <div
               key={index}
-              className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-purple-500 transition-all duration-300 text-center group"
+              className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-purple-500 transition-all duration-300  group"
             >
               <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
                 {achievement.icon}

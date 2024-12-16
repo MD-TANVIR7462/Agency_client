@@ -1,10 +1,11 @@
-import { Footer } from "@/components/footer";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { BackgroundEffects } from "@/components/ui/background-effects";
 import { MouseFollower } from "@/components/ui/mouse-follower";
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/Shared/navbar";
+import { Footer } from "@/components/Shared/footer";
+
 
 
 

@@ -7,9 +7,7 @@ import { StatsSection } from "@/components/ui/stats-section";
 export const Banner = () => {
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900">
-
-      
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <div className="flex min-h-screen items-center py-20">
           <div className="grid gap-12 lg:grid-cols-2">
             {/* Left Column - Content */}
@@ -17,7 +15,7 @@ export const Banner = () => {
               <div className="relative">
                 <div className="absolute -left-4 -top-4 h-20 w-20 rounded-full bg-purple-500/10 blur-xl" />
                 <div className="absolute -right-4 -bottom-4 h-20 w-20 rounded-full bg-blue-500/10 blur-xl" />
-                
+
                 <h1 className="relative text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
                   Transform Your
                   <span className="block bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
@@ -27,9 +25,9 @@ export const Banner = () => {
               </div>
 
               <p className="mt-6 text-lg leading-relaxed text-gray-300">
-                We're not just developers; we're digital architects crafting the future. 
-                Our team transforms complex challenges into elegant solutions that drive 
-                your business forward.
+                We're not just developers; we're digital architects crafting the
+                future. Our team transforms complex challenges into elegant
+                solutions that drive your business forward.
               </p>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">

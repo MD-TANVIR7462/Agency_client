@@ -39,6 +39,7 @@ export const TestimonialSlider = () => {
 
   return (
     <div className="relative mx-auto max-w-4xl">
+      
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -48,6 +49,7 @@ export const TestimonialSlider = () => {
           transition={{ duration: 0.3 }}
           className="relative rounded-2xl bg-white/5 p-8 backdrop-blur-lg md:p-12"
         >
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50" />
           <Quote className="absolute right-8 top-8 h-12 w-12 text-purple-500/20" />
           
           <div className="flex flex-col items-center text-center">

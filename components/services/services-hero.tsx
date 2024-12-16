@@ -21,7 +21,8 @@ export const ServicesHero = () => {
             Our Services
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-300">
-            Comprehensive digital solutions tailored to transform your business and drive growth in the modern digital landscape.
+            Comprehensive digital solutions tailored to transform your business
+            and drive growth in the modern digital landscape.
           </p>
           <div className="mt-8">
             <button className="group inline-flex items-center gap-2 rounded-full bg-white/10 px-8 py-3 text-white backdrop-blur-lg transition-all hover:bg-white/20">
