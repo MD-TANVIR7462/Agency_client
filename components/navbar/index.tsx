@@ -19,17 +19,17 @@ export const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
+console.log(isScrolled);
   return (
     <motion.nav
       className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-gray-900/80 backdrop-blur-lg" : "bg-transparent"
+        isScrolled ? "bg-gray-950 md:bg-gray-900/80 md:backdrop-blur-lg" : "bg-transparent "
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-[1%] sm:px-[2%] lg:px-[2.5%] ">
         <div className="flex h-20 items-center justify-between">
           <div className="flex items-center">
             <Link href="/"  className="text-2xl font-bold text-white">
