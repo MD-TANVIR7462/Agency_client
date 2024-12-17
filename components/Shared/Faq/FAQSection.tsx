@@ -63,7 +63,7 @@ const FAQSection = ({ path }: any) => {
             <div className="text-center mt-12">
               <p className="text-gray-400 mb-4">Still have questions?</p>
               <Link href={"/Contact"}>
-                <button className="bg-purple-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-purple-500 transition-colors">
+                <button className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-3 rounded-lg hover:opacity-90 transition-all duration-300">
                   Contact Us
                 </button>
               </Link>

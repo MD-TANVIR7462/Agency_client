@@ -7,7 +7,7 @@ import { StatsSection } from "@/components/ui/stats-section";
 export const Banner = () => {
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900">
-      <div className="relative z-10 mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
         <div className="flex min-h-screen items-center py-20">
           <div className="grid gap-12 lg:grid-cols-2">
             {/* Left Column - Content */}

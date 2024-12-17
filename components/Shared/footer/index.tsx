@@ -24,7 +24,7 @@ export const Footer = () => {
         <div className="absolute left-1/2 top-0 h-[1px] -[600px] -translate-x-1/2 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent blur-sm" />
       </div>
 
-      <div className="mx-auto max-w-[90rem] px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[85rem] px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-4">
           {/* Company Info */}
           <div className="lg:col-span-1">

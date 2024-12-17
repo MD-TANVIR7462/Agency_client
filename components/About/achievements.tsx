@@ -28,7 +28,7 @@ const achievements = [
 
 export function Achievements() {
   return (
-    <section className="py-20 bg-gray-900 max-w-[90rem]  mx-auto">
+    <section className="py-20 bg-gray-900 max-w-[85rem]  mx-auto">
       <div className="container mx-auto px-4">
         <span className="text-center ">
           <Tittle tittle={" Our Achievements"} />

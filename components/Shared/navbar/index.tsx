@@ -30,7 +30,7 @@ export const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="mx-auto max-w-[90rem] px-[1%] sm:px-[2%] lg:px-[2.5%] ">
+      <div className="mx-auto max-w-[85rem] px-[1%] sm:px-[2%] lg:px-[2.5%] ">
         <div className="flex h-20 items-center justify-between">
           <div className="flex items-center">
             <Link href="/" className="text-2xl font-bold text-white">

@@ -4,7 +4,7 @@ import { Rocket, Eye } from "lucide-react";
 
 export function MissionVision() {
   return (
-    <section className="py-20 bg-gray-900 max-w-[90rem] mx-auto">
+    <section className="py-20 bg-gray-900 max-w-[85rem] mx-auto">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12">
           <div className="bg-gray-800/50 p-8 rounded-xl border border-gray-700 hover:border-purple-400 transition-all duration-300">
