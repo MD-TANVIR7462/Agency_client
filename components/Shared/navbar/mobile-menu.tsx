@@ -47,7 +47,7 @@ export const MobileMenu = ({ onClose }: MobileMenuProps) => {
 
         {/* Contact Us */}
         <Link
-          href="/contact"
+          href="/Contact"
           className="w-full rounded-full bg-white/10 px-6 py-2 text-center text-sm font-medium text-white backdrop-blur-lg transition-all hover:bg-white/20"
           onClick={onClose}
         >

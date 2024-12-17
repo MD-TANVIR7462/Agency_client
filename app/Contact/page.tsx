@@ -8,7 +8,7 @@ import React from "react";
 const ContactPage = () => {
   return (
     <div>
-      <SubHero heroTittle="Contact Us" />
+      <SubHero heroTittle="Contact Us" subHeroTittle="Your questions and ideas matter — let's start a conversation" />
       <Stats />
       <ContactInfo/>
        <ServicesCTA />

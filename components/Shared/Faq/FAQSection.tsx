@@ -1,6 +1,7 @@
 import React from "react";
 import FAQItem from "./FAQItem";
 import Tittle from "../Tittle";
+import Link from "next/link";
 
 const FAQSection = ({ path }: any) => {
   console.log(path);
@@ -61,9 +62,11 @@ const FAQSection = ({ path }: any) => {
           {path != "/Contact" && (
             <div className="text-center mt-12">
               <p className="text-gray-400 mb-4">Still have questions?</p>
-              <button className="bg-purple-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-purple-500 transition-colors">
-                Contact Our Team
-              </button>
+              <Link href={"/Contact"}>
+                <button className="bg-purple-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-purple-500 transition-colors">
+                  Contact Us
+                </button>
+              </Link>
             </div>
           )}
         </div>

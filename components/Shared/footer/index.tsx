@@ -1,7 +1,3 @@
-"use client";
-
-import { useToast } from "@/hooks/use-toast";
-import { motion } from "framer-motion";
 import {
   Facebook,
   Twitter,
@@ -25,7 +21,7 @@ export const Footer = () => {
 
       <div className="absolute inset-0 -z-10">
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-20" />
-        <div className="absolute left-1/2 top-0 h-[1px] w-[600px] -translate-x-1/2 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent blur-sm" />
+        <div className="absolute left-1/2 top-0 h-[1px] -[600px] -translate-x-1/2 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent blur-sm" />
       </div>
 
       <div className="mx-auto max-w-[90rem] px-4 py-16 sm:px-6 lg:px-8">

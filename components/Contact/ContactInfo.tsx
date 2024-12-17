@@ -1,13 +1,11 @@
 import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
   Mail,
   Phone,
   MapPin,
 } from "lucide-react";
 import Tittle from "../Shared/Tittle";
+
+
 
 const contactInfo = [
   {
@@ -29,7 +27,8 @@ const contactInfo = [
 
 const ContactInfo = () => {
   return (
-    <section className="py-20 bg-gray-900 max-w-[80rem]  mx-auto ">
+    <section className="py-20 bg-gray-900 max-w-[80rem]  mx-auto px-3">
+
       <span className="text-center ">
         <Tittle tittle={"Get in Touch"} />
       </span>
@@ -49,44 +48,7 @@ const ContactInfo = () => {
           </div>
         ))}
       </div>
-
-      <div className="mt-16 text-center">
-        <h3 className="text-4xl font-semibold text-white mb-6">Follow Us</h3>
-        <div className="flex justify-center space-x-8">
-          <a
-            href="https://www.facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white hover:text-purple-400 transition duration-300 transform hover:scale-110"
-          >
-            <Facebook className="text-3xl" />
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white hover:text-purple-400 transition duration-300 transform hover:scale-110"
-          >
-            <Twitter className="text-3xl" />
-          </a>
-          <a
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white hover:text-purple-400 transition duration-300 transform hover:scale-110"
-          >
-            <Instagram className="text-3xl" />
-          </a>
-          <a
-            href="https://www.linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white hover:text-purple-400 transition duration-300 transform hover:scale-110"
-          >
-            <Linkedin className="text-3xl" />
-          </a>
-        </div>
-      </div>
+      
     </section>
   );
 };
