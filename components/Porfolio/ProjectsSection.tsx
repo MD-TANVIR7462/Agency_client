@@ -61,7 +61,7 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section className="py-16">
+    <section className="py-16 max-w-[90rem] mx-auto">
       <div className="container mx-auto px-4">
         <TabList activeTab={activeTab} onTabChange={setActiveTab} />
         <AnimatePresence mode="wait">

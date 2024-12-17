@@ -1,4 +1,4 @@
-"use client";
+
 
 import { Award, Users2, Gem, Globe2 } from "lucide-react";
 import Tittle from "../Shared/Tittle";

@@ -42,7 +42,7 @@ export const Navbar = () => {
 
           <div className="flex items-center gap-4">
             <Link
-              href="/contact"
+              href="/Contact"
               className="hidden rounded-full bg-white/10 px-6 py-2 text-sm font-medium text-white backdrop-blur-lg transition-all hover:bg-white/20 md:block"
             >
               Contact Us

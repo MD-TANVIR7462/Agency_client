@@ -2,7 +2,8 @@ import { CareerHero } from '@/components/Career/CareerHero';
 import { GallerySection } from '@/components/Career/Gallery/GallerySection';
 import { OpenPositions } from '@/components/Career/OpenPositions';
 import { WhyJoinUs } from '@/components/Career/WhyJoinUs';
-import FAQSection from '@/components/Shared/Faq/FAQSection';
+import FAQ from '@/components/Shared/Faq/FAQ';
+
 import React from 'react';
 
 const CareerPage = () => {
@@ -12,7 +13,7 @@ const CareerPage = () => {
       <OpenPositions />
       <WhyJoinUs />
       <GallerySection />
-      <FAQSection/>
+      <FAQ/>
     </div>
    );
 };
