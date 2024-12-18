@@ -38,7 +38,10 @@ export const Navbar = () => {
             </Link>
           </div>
 
-          <NavLinks className="hidden md:flex" />
+          <NavLinks
+            onClose={() => setIsMobileMenuOpen(false)}
+            className="hidden md:flex"
+          />
 
           <div className="flex items-center gap-4">
             <Link

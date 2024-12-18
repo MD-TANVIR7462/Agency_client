@@ -8,9 +8,14 @@ import { useState } from "react";
 interface NavLinksProps {
   className?: string;
   vertical?: boolean;
+  onClose?: () => void;
 }
 
-export const NavLinks = ({ className = "", vertical = false }: NavLinksProps) => {
+export const NavLinks = ({
+  className = "",
+  vertical = false,
+  onClose,
+}: NavLinksProps) => {
   const pathname = usePathname();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -41,10 +46,19 @@ export const NavLinks = ({ className = "", vertical = false }: NavLinksProps) =>
   };
 
   return (
-    <div className={`gap-8 ${vertical ? "flex flex-col" : "flex"} ${className}`}>
+    <div
+      className={`gap-8 ${vertical ? "flex flex-col" : "flex"} ${className}`}
+    >
       {links.map((link) => {
         const isActive = pathname.startsWith(link.href);
-
+        // Handle navigation link click
+        const handleLinkClick = (e: React.MouseEvent) => {
+          if (onClose) onClose(); // Close mobile menu
+          if (link.href.startsWith("#")) {
+            e.preventDefault();
+            handleScroll(link.href);
+          }
+        };
         // Render dropdown for "Services"
         if (link.isDropdown) {
           return (
@@ -57,6 +71,7 @@ export const NavLinks = ({ className = "", vertical = false }: NavLinksProps) =>
               >
                 <Link
                   href={link.href}
+                  onClick={handleLinkClick}
                   className={`text-sm font-medium transition-colors hover:text-white ${
                     isActive ? "text-white" : "text-gray-300"
                   }`}
@@ -80,6 +95,7 @@ export const NavLinks = ({ className = "", vertical = false }: NavLinksProps) =>
                         key={dropdownLink.label}
                         href={dropdownLink.href}
                         className="block px-4 py-2 text-sm text-gray-300 transition-colors hover:bg-gray-800 hover:text-white"
+                        onClick={handleLinkClick}
                       >
                         {dropdownLink.label}
                       </Link>
@@ -95,12 +111,7 @@ export const NavLinks = ({ className = "", vertical = false }: NavLinksProps) =>
           <Link
             key={link.label}
             href={link.href}
-            onClick={(e) => {
-              if (link.href.startsWith("#")) {
-                e.preventDefault();
-                handleScroll(link.href);
-              }
-            }}
+            onClick={handleLinkClick}
             className={`text-sm font-medium transition-colors hover:text-white ${
               isActive ? "text-white" : "text-gray-300"
             }`}

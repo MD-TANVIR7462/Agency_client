@@ -42,7 +42,7 @@ export const MobileMenu = ({ onClose }: MobileMenuProps) => {
 
         {/* Navigation Links */}
         <div className="flex-1 flex flex-col justify-center gap-6">
-          <NavLinks vertical />
+          <NavLinks onClose={onClose} vertical />
         </div>
 
         {/* Contact Us */}

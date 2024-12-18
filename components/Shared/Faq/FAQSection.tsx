@@ -4,7 +4,6 @@ import Tittle from "../Tittle";
 import Link from "next/link";
 
 const FAQSection = ({ path }: any) => {
-  console.log(path);
 
   const faqs = [
     {
