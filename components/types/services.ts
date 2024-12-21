@@ -5,7 +5,7 @@ export interface Service {
     title: string;
     shortDescription: string;
     fullDescription: string;
-    icon: LucideIcon;
+    icon?: LucideIcon;
     features?: string[];
     technologies?: string[];
   }

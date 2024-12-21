@@ -22,9 +22,7 @@ export const Navbar = () => {
   return (
     <motion.nav
       className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-gray-900/80 md:backdrop-blur-lg"
-          : "bg-transparent "
+        isScrolled ? "bg-gray-900/80 md:backdrop-blur-lg" : "bg-transparent "
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -42,7 +40,6 @@ export const Navbar = () => {
             onClose={() => setIsMobileMenuOpen(false)}
             className="hidden md:flex"
           />
-
           <div className="flex items-center gap-4">
             <Link
               href="/Contact"
@@ -50,7 +47,6 @@ export const Navbar = () => {
             >
               Contact Us
             </Link>
-
             <button
               className="rounded-full p-2 text-white transition-colors hover:bg-white/10 md:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -60,7 +56,6 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
-
       <AnimatePresence>
         {isMobileMenuOpen && (
           <MobileMenu onClose={() => setIsMobileMenuOpen(false)} />

@@ -3,8 +3,12 @@
 import { motion } from "framer-motion";
 import { ServicesGrid } from "./services-grid";
 import Tittle from "../Shared/Tittle";
+import { useState } from "react";
+import { Service } from "../types/services";
+import { ServiceModal } from "./ServiceModal";
 
 export const Services = () => {
+   const [selectedService, setSelectedService] = useState<Service | null>(null);
   return (
     <section className="relative overflow-hidden bg-gray-900 py-24">
       {/* Background Elements */}
@@ -34,7 +38,7 @@ export const Services = () => {
             className="mt-16"
           >
             <span className="text-start">
-            <ServicesGrid />
+            <ServicesGrid onServiceClick={setSelectedService}/>
             </span>
           </motion.div>
         </div>
@@ -45,6 +49,7 @@ export const Services = () => {
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div className="h-[500px] w-[500px] rounded-full bg-purple-500/5 blur-3xl" />
       </div>
+      <ServiceModal service={selectedService} onClose={() => setSelectedService(null)} />
     </section>
   );
 };
