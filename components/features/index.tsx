@@ -17,7 +17,7 @@ export const Features = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <Tittle tittle={"Why Choose DigiForge?"} />
+          <Tittle tittle={"Why Choose SiSCOTEK?"} />
           <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
             Experience the perfect blend of innovation, expertise, and
             dedication to your success.

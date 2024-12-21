@@ -38,7 +38,7 @@ export const WhyJoinUs = () => {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#1A1A2E]">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-4 text-white">Why Join DigiForge?</h2>
+        <h2 className="text-3xl font-bold text-center mb-4 text-white">Why Join SiSCOTEK?</h2>
         <p className="text-gray-400 text-center mb-12">Experience a workplace that values innovation, growth, and well-being</p>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

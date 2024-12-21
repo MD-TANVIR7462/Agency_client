@@ -32,7 +32,7 @@ export const Navbar = () => {
         <div className="flex h-20 items-center justify-between">
           <div className="flex items-center ">
             <Link href="/" className="text-2xl font-bold text-white ms-2">
-              DigiForge
+              SiSCOTEK
             </Link>
           </div>
 

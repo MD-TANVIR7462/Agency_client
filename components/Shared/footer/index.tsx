@@ -28,7 +28,7 @@ export const Footer = () => {
         <div className="grid gap-8 lg:grid-cols-4">
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <h2 className="text-2xl font-bold text-white">DigiForge</h2>
+            <h2 className="text-2xl font-bold text-white">SiSCOTEK</h2>
             <p className="mt-4 text-gray-400">
               Transforming businesses through innovative digital solutions.
             </p>
@@ -111,7 +111,7 @@ export const Footer = () => {
             <ul className="mt-4 space-y-4">
               <li className="flex items-center gap-3 text-gray-400">
                 <Mail className="h-5 w-5" />
-                <span>contact@digiforge.com</span>
+                <span>contact@SiSCOTEK.com</span>
               </li>
               <li className="flex items-center gap-3 text-gray-400">
                 <Phone className="h-5 w-5" />
@@ -127,7 +127,7 @@ export const Footer = () => {
 
         <div className="mt-12 border-t border-white/10 pt-8">
           <p className="text-center text-sm text-gray-400">
-            © {new Date().getFullYear()} DigiForge. All rights reserved.
+            © {new Date().getFullYear()} SiSCOTEK. All rights reserved.
           </p>
         </div>
       </div>

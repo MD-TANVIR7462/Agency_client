@@ -11,7 +11,7 @@ const contactInfo = [
   {
     icon: <Mail className="w-8 h-8 text-purple-400" />,
     title: "Email",
-    description: "contact@digiforge.com",
+    description: "contact@SiSCOTEK.com",
   },
   {
     icon: <Phone className="w-8 h-8 text-purple-400" />,

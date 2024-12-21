@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const testimonials = [
   {
-    content: "Working with DigiForge transformed our business. Their innovative solutions helped us achieve a 200% increase in online engagement.",
+    content: "Working with SiSCOTEK transformed our business. Their innovative solutions helped us achieve a 200% increase in online engagement.",
     author: "Jessica Lee",
     role: "CEO, TechStart Inc.",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150",

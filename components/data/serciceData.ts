@@ -10,47 +10,6 @@ import {
   } from "lucide-react";
 
 
-  // const services = [
-  //   {
-
-  //     gradient: "bg-gradient-to-r from-purple-500 via-purple-400 to-blue-500",
-  //   },
-  //   {
-  //     icon: Palette,
-  //     title: "UI/UX Design",
-  //     description:
-  //       "Create intuitive and engaging user experiences that delight your customers and drive conversions.",
-  //     gradient: "bg-gradient-to-r from-blue-500 via-indigo-400 to-purple-500",
-  //   },
-  //   {
-  //     icon: Globe2,
-  //     title: "Digital Strategy",
-  //     description:
-  //       "Develop comprehensive digital strategies that align with your business goals and market demands.",
-  //     gradient: "bg-gradient-to-r from-indigo-500 via-purple-400 to-pink-500",
-  //   },
-  //   {
-  //     icon: Cpu,
-  //     title: "AI Solutions",
-  //     description:
-  //       "Leverage artificial intelligence to automate processes and gain valuable business insights.",
-  //     gradient: "bg-gradient-to-r from-pink-500 via-rose-400 to-purple-500",
-  //   },
-  //   {
-  //     icon: BarChart3,
-  //     title: "Data Analytics",
-  //     description:
-  //       "Transform raw data into actionable insights that drive informed business decisions.",
-  //     gradient: "bg-gradient-to-r from-purple-500 via-violet-400 to-indigo-500",
-  //   },
-  //   {
-  //     icon: Shield,
-  //     title: "Cyber Security",
-  //     description:
-  //       "Protect your digital assets with enterprise-grade security solutions and best practices.",
-  //     gradient: "bg-gradient-to-r from-indigo-500 via-blue-400 to-purple-500",
-  //   },
-  // ];
   
   export const services: Service[] = [
     {
@@ -77,7 +36,6 @@ import {
         "PostgreSQL",
         "GraphQL",
       ],
-      // gradient: "bg-gradient-to-r from-purple-500 via-purple-400 to-blue-500",
     },
     {
       id: "mobile-development",

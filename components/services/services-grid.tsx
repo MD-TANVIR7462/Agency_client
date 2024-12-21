@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { ServiceCard } from "./service-card";
 import Tittle from "../Shared/Tittle";
 import { Service } from "../types/services";
-import { services } from "@/app/(mainLayout)/Datas/serciceData";
+import { services } from "../data/serciceData";
+
 
 
 interface ServiceGridProps {

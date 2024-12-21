@@ -83,8 +83,10 @@ const menuItems = [
     submenu: [
       { title: "Navbar", path: "/dashboard/settings/navbar" },
       { title: "Footer", path: "/dashboard/settings/footer" },
+      { title: "Logo & Name", path: "/dashboard/settings/footer" },
     ],
   },
+
 ];
 
 export default function Sidebar() {
@@ -113,12 +115,12 @@ export default function Sidebar() {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-4 left-4 z-50 p-2 bg-purple-400 rounded-md lg:hidden"
+        className="fixed top-4 left-4 z-50 p-2 bg-purple-400/80 text-white rounded-md lg:hidden"
       >
         {isOpen ? (
-          <X className="w-6 h-6 text-white" />
+          <X className="w-6 h-6 " />
         ) : (
-          <MenuIcon className="w-6 h-6 text-white" />
+          <MenuIcon className="w-6 h-6 " />
         )}
       </button>
 
@@ -129,9 +131,9 @@ export default function Sidebar() {
         className="fixed left-0 top-0 h-screen bg-gray-950 text-white z-40 overflow-y-auto"
       >
         <div className="p-4">
-          <div className="flex items-center gap-2 mb-8 pt-4">
-            <Layout className="w-8 h-8 text-purple-400" />
-            <span className="text-xl font-bold">Dashboard</span>
+          <div className="flex justify-center lg:justify-start items-center gap-2 mb-8 pt-4 ">
+            <Layout className=":w-8 :h-8 text-purple-400 hidden lg:block" />
+            <span className=" text-base lg:text-xl font-bold ">Dashboard</span>
           </div>
 
           <nav>

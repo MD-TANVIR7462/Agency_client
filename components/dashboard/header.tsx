@@ -8,16 +8,16 @@ export default function Header() {
     <motion.header 
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="bg-gray-950 text-white p-4 flex justify-between items-center border-b border-gray-800"
+      className="bg-gray-950 text-white p-4 flex justify-between items-center border-b border-gray-800 sticky  top-0 z-10"
     >
       <div className="flex-1 max-w-xl">
         <div className="relative">
           <input
             type="text"
             placeholder="Search..."
-            className="w-full bg-gray-800 rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-purple-400"
+            className="ms-[30%] sm:ms-[10%] lg:ms-0   w-[60%] sm:w-[80%] lg:w-full bg-gray-800 rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-purple-400"
           />
-          <Search className="absolute left-3 top-2.5 text-gray-400 w-5 h-5" />
+          <Search className="absolute left-[32%] sm:left-[12%]  lg:left-3 top-2.5 text-gray-400 w-5 h-5" />
         </div>
       </div>
 
