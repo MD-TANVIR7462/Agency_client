@@ -23,7 +23,7 @@ export const Navbar = () => {
     <motion.nav
       className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-gray-950 md:bg-gray-900/80 md:backdrop-blur-lg"
+          ? "bg-gray-900/80 md:backdrop-blur-lg"
           : "bg-transparent "
       }`}
       initial={{ y: -100 }}
@@ -32,8 +32,8 @@ export const Navbar = () => {
     >
       <div className="mx-auto max-w-[85rem] px-[1%] sm:px-[2%] lg:px-[2.5%] ">
         <div className="flex h-20 items-center justify-between">
-          <div className="flex items-center">
-            <Link href="/" className="text-2xl font-bold text-white">
+          <div className="flex items-center ">
+            <Link href="/" className="text-2xl font-bold text-white ms-2">
               DigiForge
             </Link>
           </div>
