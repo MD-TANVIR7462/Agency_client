@@ -17,7 +17,7 @@ export const ServiceCard = ({ title, shortDescription, icon: Icon,onClick }: Ser
 
   return (
     <motion.div
-      className="group relative rounded-2xl bg-white/5 p-8 backdrop-blur-lg"
+      className="group relative rounded-2xl bg-white/5 p-8 backdrop-blur-lg cursor-pointer"
       whileHover={{ y: -5 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}

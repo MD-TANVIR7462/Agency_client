@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
-import { MenuItem } from "@/types/menu";
+import { MenuItem } from "@/components/types/menu";
+
 
 interface SubmenuItemProps {
   item: MenuItem;

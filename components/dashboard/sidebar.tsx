@@ -26,55 +26,55 @@ const menuItems = [
     icon: <Home className="w-5 h-5" />,
     path: "/dashboard",
     submenu: [
-      { title: "Submenu 1", path: "/dashboard/submenu-1" },
-      { title: "Submenu 2", path: "/dashboard/submenu-2" },
-      { title: "Submenu 3", path: "/dashboard/submenu-3" },
+      { title: "Banner", path: "/dashboard/EditBanner" },
+      { title: "Technology", path: "/dashboard/EditEnterprice" },
     ],
   },
   {
     title: "Services",
     icon: <Wrench className="w-5 h-5" />,
     path: "/dashboard/services",
-    submenu: Array.from({ length: 7 }, (_, i) => ({
-      title: `Service ${i + 1}`,
-      path: `/dashboard/services/service-${i + 1}`,
-    })),
+    submenu: [
+      { title: "Services", path: "/dashboard/EditServices" },
+      { title: "Technology", path: "/dashboard/EditTechnology" },
+    ],
   },
   {
     title: "About Us",
     icon: <Info className="w-5 h-5" />,
     path: "/dashboard/about",
-    submenu: Array.from({ length: 4 }, (_, i) => ({
-      title: `About ${i + 1}`,
-      path: `/dashboard/about/about-${i + 1}`,
-    })),
+    submenu: [
+      { title: "Story", path: "/dashboard/EditStory" },
+      { title: "Team", path: "/dashboard/EditTeam" },
+      { title: "Testimonials", path: "/dashboard/EditTestimonial" },
+    ],
   },
   {
     title: "Portfolio",
     icon: <Briefcase className="w-5 h-5" />,
     path: "/dashboard/portfolio",
-    submenu: Array.from({ length: 4 }, (_, i) => ({
-      title: `Portfolio ${i + 1}`,
-      path: `/dashboard/portfolio/portfolio-${i + 1}`,
-    })),
+    submenu: [
+      { title: "Projects", path: "/dashboard/EditProjects" },
+      { title: "FAQ", path: "/dashboard/EditFAQ" },
+    ],
   },
   {
     title: "Career",
     icon: <UserPlus className="w-5 h-5" />,
     path: "/dashboard/career",
-    submenu: Array.from({ length: 5 }, (_, i) => ({
-      title: `Career ${i + 1}`,
-      path: `/dashboard/career/career-${i + 1}`,
-    })),
+    submenu: [
+      { title: "Open Position", path: "/dashboard/EditPosition" },
+      { title: "Add Position", path: "/dashboard/AddPosition" },
+      { title: "Gallery", path: "/dashboard/EditGallery" },
+    ],
   },
   {
     title: "Contact",
     icon: <Phone className="w-5 h-5" />,
     path: "/dashboard/contact",
-    submenu: Array.from({ length: 5 }, (_, i) => ({
-      title: `Contact ${i + 1}`,
-      path: `/dashboard/contact/contact-${i + 1}`,
-    })),
+    submenu: [
+      { title: "Contact Info ", path: "/dashboard/EditContact" }
+    ],
   },
   {
     title: "Website Settings",
@@ -83,9 +83,9 @@ const menuItems = [
     submenu: [
       { title: "Navbar", path: "/dashboard/settings/navbar" },
       { title: "Footer", path: "/dashboard/settings/footer" },
-      { title: "Logo & Name", path: "/dashboard/settings/footer" },
     ],
   },
+
 
 ];
 
