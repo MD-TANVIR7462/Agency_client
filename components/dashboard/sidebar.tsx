@@ -4,20 +4,22 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { 
-  ChevronDown, 
-  Home, 
-  Settings, 
-  Users, 
-  Briefcase, 
-  Phone, 
+import {
+  ChevronDown,
+  Home,
+  Settings,
+  Users,
+  Briefcase,
+  Phone,
   Menu as MenuIcon,
   X,
   Layout,
   Wrench,
   Info,
   FileText,
-  UserPlus
+  UserPlus,
+  ArrowUpRight,
+  LogOut,
 } from "lucide-react";
 
 const menuItems = [
@@ -72,9 +74,7 @@ const menuItems = [
     title: "Contact",
     icon: <Phone className="w-5 h-5" />,
     path: "/dashboard/contact",
-    submenu: [
-      { title: "Contact Info ", path: "/dashboard/EditContact" }
-    ],
+    submenu: [{ title: "Contact Info ", path: "/dashboard/EditContact" }],
   },
   {
     title: "Website Settings",
@@ -85,8 +85,6 @@ const menuItems = [
       { title: "Footer", path: "/dashboard/settings/footer" },
     ],
   },
-
-
 ];
 
 export default function Sidebar() {
@@ -143,7 +141,7 @@ export default function Sidebar() {
                   onClick={() => toggleSubmenu(item.title)}
                   className={`w-full flex items-center justify-between p-2 rounded-md transition-colors ${
                     pathname.startsWith(item.path)
-                      ? "bg-purple-400 text-white"
+                      ? "bg-purple-400/20 text-white"
                       : "hover:bg-gray-800"
                   }`}
                 >
@@ -185,7 +183,22 @@ export default function Sidebar() {
                 </AnimatePresence>
               </div>
             ))}
+
           </nav>
+          <div className="relative top-8">
+              <Link href={"/"}>
+                <button className="w-full flex items-center gap-2 px-2 py-2 ring-1 ring-purple-400 bg-purple-400/20 text-white rounded-md hover:bg-purple-400/30 transition-colors">
+                  <ArrowUpRight className="w-4 h-4" />
+                  <span className="text-sm font-medium">Exit</span>
+                </button>
+              </Link>
+              <Link href={"/"}>
+                <button className="mt-[5%] w-full flex items-center gap-2 px-2 py-2 ring-2 text-white rounded-md hover:bg-red-500 transition-colors">
+                  <LogOut  className="w-4 h-4" />
+                  <span className="text-sm font-medium">Log Out</span>
+                </button>
+              </Link>
+            </div>
         </div>
       </motion.div>
     </>

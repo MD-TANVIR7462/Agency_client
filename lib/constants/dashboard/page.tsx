@@ -11,7 +11,7 @@ export default function DashboardPage() {
     <div className="space-y-6 max-w-[1600px] mx-auto">
       <div>
         <h1 className="text-2xl font-bold mb-2 text-white text-center">
-          SISCOTEK
+          SiSCOTEK
         </h1>
       </div>
 
