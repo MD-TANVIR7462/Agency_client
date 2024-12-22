@@ -24,16 +24,7 @@ export const NavLinks = ({
     {
       href: "/services",
       label: "Services",
-      isDropdown: true,
-      dropdownLinks: [
-        { href: "/services", label: "All" },
-        { href: "/services/web-development", label: "Web Development" },
-        { href: "/services/mobile-apps", label: "Mobile Apps" },
-        { href: "/services/ui-ux-design", label: "UI/UX Design" },
-        { href: "/services/cloud-solutions", label: "Cloud Solutions" },
-        { href: "/services/ai-ml", label: "AI & ML" },
-        { href: "/services/cybersecurity", label: "Cybersecurity" },
-      ],
+      isDropdown: true
     },
     { href: "/About", label: "About Us" },
     { href: "/Portfolio", label: "Portfolio" },
@@ -79,29 +70,7 @@ export const NavLinks = ({
                   {link.label}
                 </Link>
 
-                {/* Dropdown Menu */}
-                {isDropdownOpen && (
-                  <motion.div
-                    className="absolute top-full left-0 mt-1 w-48 rounded-md bg-gray-900 p-2 shadow-lg"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                    onMouseEnter={() => setIsDropdownOpen(true)} // Keep dropdown open when hovering over the menu
-                    onMouseLeave={() => setIsDropdownOpen(false)} // Close dropdown when leaving the menu
-                  >
-                    {link.dropdownLinks?.map((dropdownLink) => (
-                      <Link
-                        key={dropdownLink.label}
-                        href={dropdownLink.href}
-                        className="block px-4 py-2 text-sm text-gray-300 transition-colors hover:bg-gray-800 hover:text-white"
-                        onClick={handleLinkClick}
-                      >
-                        {dropdownLink.label}
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
+   
               </div>
             </div>
           );
