@@ -8,11 +8,13 @@ import { Service } from "../types/services";
 
 interface ServiceModalProps {
   service: Service | null;
+  isOpen?: true | false;
   onClose: () => void;
 }
 
-export function ServiceModal({ service, onClose }: ServiceModalProps) {
+export function ServiceModal({ service, onClose, isOpen }: ServiceModalProps) {
   if (!service) return null;
+  if (!isOpen) return null;
 
   const Icon = service.icon;
 
@@ -31,20 +33,26 @@ export function ServiceModal({ service, onClose }: ServiceModalProps) {
           {/* Header */}
           <div className="flex items-start gap-6 mb-8">
             <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl bg-purple-400/10 text-purple-400">
-             {
-                Icon? <Icon className="h-8 w-8" />:<ShieldCheck className="h-8 w-8" />
-             }
+              {Icon ? (
+                <Icon className="h-8 w-8" />
+              ) : (
+                <ShieldCheck className="h-8 w-8" />
+              )}
             </div>
             <div>
               <h2 className="text-3xl font-bold text-white">{service.title}</h2>
-              <p className="mt-2 text-lg text-purple-300">{service.shortDescription}</p>
+              <p className="mt-2 text-lg text-purple-300">
+                {service.shortDescription}
+              </p>
             </div>
           </div>
 
           {/* Content */}
           <div className="space-y-8">
             <div className="prose prose-invert max-w-none">
-              <p className="text-gray-300 leading-relaxed">{service.fullDescription}</p>
+              <p className="text-gray-300 leading-relaxed">
+                {service.fullDescription}
+              </p>
             </div>
 
             {/* Features */}

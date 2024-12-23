@@ -16,10 +16,10 @@ interface EditBannerFormProps {
   onSubmit: (data: BannerData) => void;
 }
 
-export const EditBannerForm= ({
+export const EditBannerForm = ({
   initialData,
   onSubmit,
-}:EditBannerFormProps) => {
+}: EditBannerFormProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState<BannerData>(
     initialData || {

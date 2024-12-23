@@ -37,7 +37,7 @@ const menuItems = [
     icon: <Wrench className="w-5 h-5" />,
     path: "/dashboard/services",
     submenu: [
-      { title: "Services", path: "/dashboard/editServices" },
+      { title: "Services", path: "/dashboard/services/editServices" },
       { title: "Technology", path: "/dashboard/editTechnology" },
     ],
   },
