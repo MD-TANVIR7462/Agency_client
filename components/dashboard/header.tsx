@@ -8,7 +8,7 @@ export default function Header() {
     <motion.header 
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="bg-gray-950 text-white p-4 flex justify-between items-center border-b border-gray-800 sticky  top-0 z-10"
+      className="bg-gray-950  text-white p-4 flex justify-between items-center border-b border-gray-800 sticky  top-0 z-20"
     >
       <div className="flex-1 max-w-xl">
         <div className="relative">

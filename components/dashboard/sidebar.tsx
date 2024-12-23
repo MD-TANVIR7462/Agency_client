@@ -20,16 +20,16 @@ import {
   UserPlus,
   ArrowUpRight,
   LogOut,
+  LayoutDashboard,
 } from "lucide-react";
 
 const menuItems = [
   {
     title: "Home",
     icon: <Home className="w-5 h-5" />,
-    path: "/dashboard",
+    path: "/dashboard/home",
     submenu: [
-      { title: "Banner", path: "/dashboard/EditBanner" },
-      { title: "Technology", path: "/dashboard/EditEnterprice" },
+      { title: "Banner", path: "/dashboard/home/editBanner" },
     ],
   },
   {
@@ -37,8 +37,8 @@ const menuItems = [
     icon: <Wrench className="w-5 h-5" />,
     path: "/dashboard/services",
     submenu: [
-      { title: "Services", path: "/dashboard/EditServices" },
-      { title: "Technology", path: "/dashboard/EditTechnology" },
+      { title: "Services", path: "/dashboard/editServices" },
+      { title: "Technology", path: "/dashboard/editTechnology" },
     ],
   },
   {
@@ -46,9 +46,9 @@ const menuItems = [
     icon: <Info className="w-5 h-5" />,
     path: "/dashboard/about",
     submenu: [
-      { title: "Story", path: "/dashboard/EditStory" },
-      { title: "Team", path: "/dashboard/EditTeam" },
-      { title: "Testimonials", path: "/dashboard/EditTestimonial" },
+      { title: "Story", path: "/dashboard/editStory" },
+      { title: "Team", path: "/dashboard/editTeam" },
+      { title: "Testimonials", path: "/dashboard/editTestimonial" },
     ],
   },
   {
@@ -56,8 +56,8 @@ const menuItems = [
     icon: <Briefcase className="w-5 h-5" />,
     path: "/dashboard/portfolio",
     submenu: [
-      { title: "Projects", path: "/dashboard/EditProjects" },
-      { title: "FAQ", path: "/dashboard/EditFAQ" },
+      { title: "Projects", path: "/dashboard/editProjects" },
+      { title: "FAQ", path: "/dashboard/editFAQ" },
     ],
   },
   {
@@ -65,16 +65,16 @@ const menuItems = [
     icon: <UserPlus className="w-5 h-5" />,
     path: "/dashboard/career",
     submenu: [
-      { title: "Open Position", path: "/dashboard/EditPosition" },
-      { title: "Add Position", path: "/dashboard/AddPosition" },
-      { title: "Gallery", path: "/dashboard/EditGallery" },
+      { title: "Open Position", path: "/dashboard/editPosition" },
+      { title: "Add Position", path: "/dashboard/addPosition" },
+      { title: "Gallery", path: "/dashboard/editGallery" },
     ],
   },
   {
     title: "Contact",
     icon: <Phone className="w-5 h-5" />,
     path: "/dashboard/contact",
-    submenu: [{ title: "Contact Info ", path: "/dashboard/EditContact" }],
+    submenu: [{ title: "Contact Info ", path: "/dashboard/editContact" }],
   },
   {
     title: "Website Settings",
@@ -131,10 +131,21 @@ export default function Sidebar() {
         <div className="p-4">
           <div className="flex justify-center lg:justify-start items-center gap-2 mb-8 pt-4 ">
             <Layout className=":w-8 :h-8 text-purple-400 hidden lg:block" />
-            <span className=" text-base lg:text-xl font-bold ">Dashboard</span>
+            <span className=" text-base lg:text-xl font-bold ">SiSCOTEK</span>
           </div>
 
           <nav>
+            <Link href={"/dashboard"}>
+              <button
+                className={`w-full mb-5 flex items-center justify-between p-2 rounded-md transition-colors hover:text-purple-400
+                `}
+              >
+                <div className="flex items-center gap-2">
+                  <LayoutDashboard className="h-5 w-5" />
+                  <span>Dashboard</span>
+                </div>
+              </button>
+            </Link>
             {menuItems.map((item) => (
               <div key={item.title} className="mb-2">
                 <button
@@ -171,8 +182,8 @@ export default function Sidebar() {
                           href={subItem.path}
                           className={`block pl-10 py-2 text-sm rounded-md transition-colors ${
                             pathname === subItem.path
-                              ? "bg-purple-400 text-white"
-                              : "hover:bg-gray-800"
+                              ? " text-purple-400"
+                              : "hover:text-purple-400"
                           }`}
                         >
                           {subItem.title}
@@ -183,22 +194,21 @@ export default function Sidebar() {
                 </AnimatePresence>
               </div>
             ))}
-
           </nav>
           <div className="relative top-8">
-              <Link href={"/"}>
-                <button className="w-full flex items-center gap-2 px-2 py-2 ring-1 ring-purple-400 bg-purple-400/20 text-white rounded-md hover:bg-purple-400/30 transition-colors">
-                  <ArrowUpRight className="w-4 h-4" />
-                  <span className="text-sm font-medium">Exit</span>
-                </button>
-              </Link>
-              <Link href={"/"}>
-                <button className="mt-[5%] w-full flex items-center gap-2 px-2 py-2 ring-2 text-white rounded-md hover:bg-red-500 transition-colors">
-                  <LogOut  className="w-4 h-4" />
-                  <span className="text-sm font-medium">Log Out</span>
-                </button>
-              </Link>
-            </div>
+            <Link href={"/"}>
+              <button className="w-full flex items-center gap-2 px-2 py-2 ring-1 ring-purple-400 bg-purple-400/20 text-white rounded-md hover:bg-purple-400/30 transition-colors">
+                <ArrowUpRight className="w-4 h-4" />
+                <span className="text-sm font-medium">Exit</span>
+              </button>
+            </Link>
+            <Link href={"/"}>
+              <button className="mt-[5%] w-full flex items-center gap-2 px-2 py-2 ring-2 text-white rounded-md hover:bg-red-500 transition-colors">
+                <LogOut className="w-4 h-4" />
+                <span className="text-sm font-medium">Log Out</span>
+              </button>
+            </Link>
+          </div>
         </div>
       </motion.div>
     </>
