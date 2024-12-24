@@ -12,7 +12,8 @@ interface ServiceModalProps {
   onClose: () => void;
 }
 
-export function ServiceModal({ service, onClose, isOpen }: ServiceModalProps) {
+export function ServiceModal({ service, onClose, isOpen=true }: ServiceModalProps) {
+  console.log(service,isOpen)
   if (!service) return null;
   if (!isOpen) return null;
 

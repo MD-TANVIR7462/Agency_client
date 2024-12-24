@@ -1,5 +1,6 @@
-import React from 'react';
-import { X } from 'lucide-react';
+"use client";
+import React, { useEffect } from "react";
+import { X } from "lucide-react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -8,7 +9,26 @@ interface ModalProps {
   title: string;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }) => {
+export const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  children,
+  title,
+}) => {
+  useEffect(() => {
+    // Disable scroll when the modal is open
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    // Cleanup the scroll behavior when modal closes
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
