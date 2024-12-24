@@ -21,7 +21,7 @@ export function ServiceModal({ service, onClose, isOpen=true }: ServiceModalProp
 
   return (
     <Dialog open={!!service} onOpenChange={() => onClose()}>
-      <DialogContent className="max-w-3xl m-3 max-h-[90vh] overflow-y-auto border-purple-400/20 bg-gradient-to-b from-gray-900 to-gray-950 p-0">
+      <DialogContent className="max-w-3xl m-5 rounded-lg md:m-3 max-h-[90vh] overflow-y-auto border-purple-400/20 bg-gradient-to-b from-gray-900 to-gray-950 p-0">
         <div className="relative p-6 sm:p-8">
           {/* Close Button */}
           <button
