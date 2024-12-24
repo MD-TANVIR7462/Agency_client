@@ -5,6 +5,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShieldCheck, X } from "lucide-react";
 import { Service } from "../types/services";
+import { div } from "framer-motion/client";
 
 interface ServiceModalProps {
   service: Service | null;
@@ -20,13 +21,14 @@ export function ServiceModal({ service, onClose, isOpen=true }: ServiceModalProp
   const Icon = service.icon;
 
   return (
-    <Dialog open={!!service} onOpenChange={() => onClose()}>
-      <DialogContent className="max-w-3xl m-5 rounded-lg md:m-3 max-h-[90vh] overflow-y-auto border-purple-400/20 bg-gradient-to-b from-gray-900 to-gray-950 p-0">
+<Dialog open={!!service} onOpenChange={() => onClose()} >
+
+      <DialogContent   className="w-[94%] max-w-3xl   rounded-lg  max-h-[90vh] overflow-y-auto border-purple-400/20 bg-gradient-to-b from-gray-900 to-gray-950 p-0 mx-auto">
         <div className="relative p-6 sm:p-8">
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute right-4 outline-none top-4 rounded-full p-2 text-gray-400 transition-colors hover:bg-purple-400/10 hover:text-purple-400"
+            className="absolute  right-4 outline-none top-4 rounded-full p-2 text-gray-400 transition-colors hover:bg-purple-400/10 hover:text-purple-400"
           >
             <X className="h-5 w-5" />
           </button>
@@ -103,6 +105,7 @@ export function ServiceModal({ service, onClose, isOpen=true }: ServiceModalProp
           </div>
         </div>
       </DialogContent>
+
     </Dialog>
   );
 }
