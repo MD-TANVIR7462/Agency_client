@@ -2,71 +2,10 @@
 
 import { motion } from "framer-motion";
 import { TechCard } from "./tech-card";
-import {
-  Code2,
-  Database,
-  Cloud,
-  Lock,
-  Cpu,
-  BarChart,
-  Globe,
-  Palette,
-  Layers,
-  Server,
-  Zap,
-} from "lucide-react";
 import Tittle from "../Shared/Tittle";
+import { initialTechnologies } from "../data/TechnologyData";
 
-const technologies = [
-  {
-    icon: Code2,
-    name: "Frontend Development",
-    tech: ["React", "Next.js", "Vue", "Angular"],
-    gradient: "from-blue-500 to-cyan-500",
-  },
-  {
-    icon: Server,
-    name: "Backend Development",
-    tech: ["Node.js", "Python", "Java", "Go"],
-    gradient: "from-green-500 to-emerald-500",
-  },
-  {
-    icon: Palette,
-    name: "Mobile Development",
-    tech: ["React Native", "Flutter", "iOS", "Android"],
-    gradient: "from-purple-500 to-pink-500",
-  },
-  {
-    icon: Database,
-    name: "Databases",
-    tech: ["PostgreSQL", "MongoDB", "Redis", "MySQL"],
-    gradient: "from-orange-500 to-red-500",
-  },
-  {
-    icon: Cloud,
-    name: "Cloud Services",
-    tech: ["AWS", "Azure", "GCP", "Digital Ocean"],
-    gradient: "from-cyan-500 to-blue-500",
-  },
-  {
-    icon: Lock,
-    name: "Security",
-    tech: ["OAuth", "JWT", "SSL", "Encryption"],
-    gradient: "from-red-500 to-pink-500",
-  },
-  {
-    icon: Cpu,
-    name: "AI & ML",
-    tech: ["TensorFlow", "PyTorch", "OpenAI", "Scikit-learn"],
-    gradient: "from-violet-500 to-purple-500",
-  },
-  {
-    icon: Globe,
-    name: "DevOps",
-    tech: ["Docker", "Kubernetes", "CI/CD", "Jenkins"],
-    gradient: "from-indigo-500 to-blue-500",
-  },
-];
+
 
 export const TechnologyStack = () => {
   return (
@@ -87,7 +26,7 @@ export const TechnologyStack = () => {
         </motion.div>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {technologies.map((tech, index) => (
+          {initialTechnologies?.map((tech, index) => (
             <TechCard key={index} {...tech} index={index} />
           ))}
         </div>

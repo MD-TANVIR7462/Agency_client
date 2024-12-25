@@ -1,17 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { LucideIcon } from "lucide-react";
+import { TechCardProps } from "../types/TechnoloGyCardProps";
 
-interface TechCardProps {
-  icon: LucideIcon;
-  name: string;
-  tech: string[];
-  gradient: string;
-  index: number;
-}
 
-export const TechCard = ({ icon: Icon, name, tech, gradient, index }: TechCardProps) => {
+
+
+export const TechCard = ({
+  icon: Icon,
+  name,
+  tech,
+  gradient,
+  index,
+}: TechCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -20,15 +21,21 @@ export const TechCard = ({ icon: Icon, name, tech, gradient, index }: TechCardPr
       transition={{ delay: index * 0.1 }}
       className="group relative overflow-hidden rounded-2xl bg-white/5 p-6 backdrop-blur-lg"
     >
-      <div className={`absolute inset-x-0 -top-px mx-auto h-px w-3/4 bg-gradient-to-r ${gradient} opacity-50`} />
-      <div className={`absolute -bottom-px inset-x-0 mx-auto h-px w-3/4 bg-gradient-to-r ${gradient} opacity-50`} />
-      
-      <div className={`mb-4 inline-flex rounded-xl bg-gradient-to-r ${gradient} p-3`}>
-        <Icon className="h-6 w-6 text-white" />
+      <div
+        className={`absolute inset-x-0 -top-px mx-auto h-px w-3/4 bg-gradient-to-r ${gradient} opacity-50`}
+      />
+      <div
+        className={`absolute -bottom-px inset-x-0 mx-auto h-px w-3/4 bg-gradient-to-r ${gradient} opacity-50`}
+      />
+
+      <div
+        className={`mb-4 inline-flex rounded-xl bg-gradient-to-r ${gradient} p-3`}
+      >
+        {Icon ? <Icon className="h-6 w-6 text-white" /> : ""}
       </div>
-      
+
       <h3 className="mb-3 text-lg font-semibold text-white">{name}</h3>
-      
+
       <div className="flex flex-wrap gap-2">
         {tech.map((item, i) => (
           <span

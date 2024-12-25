@@ -28,9 +28,7 @@ const menuItems = [
     title: "Home",
     icon: <Home className="w-5 h-5" />,
     path: "/dashboard/home",
-    submenu: [
-      { title: "Banner", path: "/dashboard/home/editBanner" },
-    ],
+    submenu: [{ title: "Banner", path: "/dashboard/home/editBanner" }],
   },
   {
     title: "Services",
@@ -38,7 +36,7 @@ const menuItems = [
     path: "/dashboard/services",
     submenu: [
       { title: "Services", path: "/dashboard/services/editServices" },
-      { title: "Technology", path: "/dashboard/editTechnology" },
+      { title: "Technology", path: "/dashboard/services/editTechnology" },
     ],
   },
   {

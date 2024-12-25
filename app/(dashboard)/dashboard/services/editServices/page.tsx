@@ -64,7 +64,7 @@ export default function EditServicesPage() {
     <div className="min-h-screen bg-gray-950 p-8">
       <div className="">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-300">
+          <h1 className="text-2xl font-bold text-gray-300">
             Services Management
           </h1>
           <motion.button

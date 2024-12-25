@@ -1,0 +1,106 @@
+"use client";
+
+import { FC } from "react";
+import { motion } from "framer-motion";
+import { Modal } from "@/components/Career/Modal";
+import { Technology } from "@/components/types/TechnologyDashboard";
+
+interface TechnologyFormProps {
+  technology?: Technology | null;
+  isOpen: boolean;
+  onClose: () => void;
+  onSubmit: (data: Partial<Technology>) => void;
+}
+
+export const TechnologyForm: FC<TechnologyFormProps> = ({
+  technology,
+  isOpen,
+  onClose,
+  onSubmit,
+}) => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data: Partial<Technology> = {
+      name: formData.get("name") as string,
+      gradient: formData.get("gradient") as string,
+      tech: (formData.get("technologies") as string)
+        .split("\n")
+        .filter(Boolean),
+    };
+    onSubmit(data);
+  };
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title={technology ? "Edit Technology" : "Add Technology"}
+    >
+      <motion.form
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="space-y-4"
+        onSubmit={handleSubmit}
+      >
+        <div>
+          <label className="block text-sm font-medium text-purple-400 mb-1">
+            Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            defaultValue={technology?.name}
+            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-purple-400 mb-1">
+            Gradient
+          </label>
+          <input
+            type="text"
+            name="gradient"
+            defaultValue={technology?.gradient}
+            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-purple-400 mb-1">
+            Technologies (one per line)
+          </label>
+          <textarea
+            name="technologies"
+            defaultValue={technology?.tech?.join("\n")}
+            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+            rows={4}
+            required
+          />
+        </div>
+
+        <div className="flex justify-end gap-3 pt-4">
+          <motion.button
+            type="button"
+            onClick={onClose}
+            className="px-4 py-2 text-gray-300 hover:text-white"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Cancel
+          </motion.button>
+          <motion.button
+            type="submit"
+            className="px-4 py-2 bg-purple-400 text-gray-900 rounded-md hover:bg-purple-300"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            {technology ? "Update Technology" : "Add Technology"}
+          </motion.button>
+        </div>
+      </motion.form>
+    </Modal>
+  );
+};
