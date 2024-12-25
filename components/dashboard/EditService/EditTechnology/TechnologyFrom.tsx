@@ -85,7 +85,7 @@ export const TechnologyForm: FC<TechnologyFormProps> = ({
           <motion.button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 text-gray-300 hover:text-white"
+            className="secondaryButton"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -93,7 +93,7 @@ export const TechnologyForm: FC<TechnologyFormProps> = ({
           </motion.button>
           <motion.button
             type="submit"
-            className="px-4 py-2 bg-purple-400 text-gray-900 rounded-md hover:bg-purple-300"
+            className="primaryButton"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >

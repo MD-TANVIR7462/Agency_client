@@ -66,7 +66,7 @@ const TechnologyPage: FC = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={handleAdd}
-            className="px-4 py-2 bg-purple-400 text-gray-900 rounded-md hover:bg-purple-300 flex items-center gap-2"
+            className="primaryButton flex items-center gap-2"
           >
             <Plus size={20} />
             Add Technology

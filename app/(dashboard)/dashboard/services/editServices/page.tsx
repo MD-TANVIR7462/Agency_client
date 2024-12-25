@@ -69,7 +69,7 @@ export default function EditServicesPage() {
           </h1>
           <motion.button
             onClick={handleAddNew}
-            className="flex items-center gap-2 px-4 py-2 bg-purple-400 text-gray-900 rounded-md hover:bg-purple-300"
+            className="flex gap-1 items-center  primaryButton"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
