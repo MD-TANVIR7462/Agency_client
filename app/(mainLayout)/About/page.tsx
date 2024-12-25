@@ -10,7 +10,7 @@ import { Testimonials } from "@/components/testimonials";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen ">
       <SubHero heroTittle="About Us" subHeroTittle="Discover our journey, mission, and the passion driving us forward."/>
       <Stats />
       <OurStory />

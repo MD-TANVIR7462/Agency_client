@@ -44,9 +44,9 @@ const menuItems = [
     icon: <Info className="w-5 h-5" />,
     path: "/dashboard/about",
     submenu: [
-      { title: "Story", path: "/dashboard/editStory" },
-      { title: "Team", path: "/dashboard/editTeam" },
-      { title: "Testimonials", path: "/dashboard/editTestimonial" },
+      { title: "Story", path: "/dashboard/about/editStory" },
+      { title: "Team", path: "/dashboard/about/editTeam" },
+      { title: "Testimonials", path: "/dashboard/about/editTestimonial" },
     ],
   },
   {

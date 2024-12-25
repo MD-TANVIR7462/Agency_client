@@ -7,6 +7,7 @@ interface ModalProps {
   onClose: () => void;
   children: React.ReactNode;
   title: string;
+  width?:string
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -14,6 +15,7 @@ export const Modal: React.FC<ModalProps> = ({
   onClose,
   children,
   title,
+  width
 }) => {
   useEffect(() => {
     // Disable scroll when the modal is open
@@ -35,7 +37,7 @@ export const Modal: React.FC<ModalProps> = ({
     <div className="fixed inset-0 z-50 overflow-y-auto">
       <div className="fixed inset-0 bg-black/70" onClick={onClose} />
       <div className="relative min-h-screen flex items-center justify-center p-4">
-        <div className="relative bg-[#1E1E30] rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className={`relative bg-[#1E1E30] rounded-xl ${width?width:"max-w-2xl"} w-full max-h-[90vh] overflow-y-auto`}>
           <div className="sticky top-0 bg-[#1E1E30] p-4 border-b border-purple-900/30 flex justify-between items-center">
             <h2 className="text-xl font-semibold text-white">{title}</h2>
             <button
