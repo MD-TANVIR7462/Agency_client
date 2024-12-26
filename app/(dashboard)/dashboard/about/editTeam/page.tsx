@@ -4,10 +4,11 @@ import { useState } from "react";
 
 import { Plus } from "lucide-react";
 import { TeamMember } from "@/components/types/TeamMember";
-import { TeamMembersTable } from "@/components/dashboard/EditTeam/TeamMembersTable";
-import { TeamMemberDetails } from "@/components/dashboard/EditTeam/TeamMemberDetails";
-import { TeamMemberForm } from "@/components/dashboard/EditTeam/TeamMemberForm";
+
 import { teamMembers } from "@/components/data/team-data";
+import { TeamMemberDetails } from "@/components/dashboard/EditAbout/EditTeam/TeamMemberDetails";
+import { TeamMembersTable } from "@/components/dashboard/EditAbout/EditTeam/TeamMembersTable";
+import { TeamMemberForm } from "@/components/dashboard/EditAbout/EditTeam/TeamMemberForm";
 
 export default function EditTeamPage() {
   const [members, setMembers] = useState<TeamMember[]>(teamMembers);
@@ -78,6 +79,7 @@ export default function EditTeamPage() {
           onClose={() => setIsDetailsOpen(false)}
         />
         <TeamMembersTable
+
           members={members}
           onEdit={handleEdit}
           onViewDetails={handleViewDetails}

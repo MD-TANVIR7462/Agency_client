@@ -5,10 +5,11 @@ import { Pencil } from "lucide-react";
 
 import { CompanyInfo } from "@/components/types/ConpanyStroy";
 import { initialCompanyInfo } from "@/components/data/ConpanyStroy";
-import { StoryFrom } from "@/components/dashboard/EditStory/EditStoryFrom";
+
 import { Stats } from "@/components/About/stats";
 import { OurStory } from "@/components/About/our-story";
 import { MissionVision } from "@/components/About/mission-vision";
+import { StoryFrom } from "@/components/dashboard/EditAbout/EditStory/EditStoryFrom";
 
 const EditStoryPage: FC = () => {
   const [companyInfo, setCompanyInfo] =
