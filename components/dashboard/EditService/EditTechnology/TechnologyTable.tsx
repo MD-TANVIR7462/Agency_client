@@ -18,7 +18,7 @@ export const TechnologyTable: FC<TechnologyTableProps> = ({
   onStatusChange,
 }) => {
   return (
-    <div className="w-full overflow-x-auto">
+    <div className="w-full overflow-x-auto bg-gray-900/50 rounded-lg shadow-xl">
       <table className="w-full border-collapse">
         <thead>
           <tr className="border-b border-purple-400/20">
@@ -34,7 +34,7 @@ export const TechnologyTable: FC<TechnologyTableProps> = ({
               key={technology.id}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="border-b border-purple-400/20"
+              className="border-b border-purple-400/20 hover:bg-purple-400/5 transition-colors duration-150"
             >
               <td className="p-4 text-white">
                 <div className="flex items-center gap-2">{technology.name}</div>
@@ -53,7 +53,7 @@ export const TechnologyTable: FC<TechnologyTableProps> = ({
               </td>
               <td className="p-4">
                 <select
-                  className="bg-gray-900 text-white border border-purple-400/40 rounded px-2 py-1"
+                  className="bg-gray-900 cursor-pointer text-white border border-purple-400/40 rounded px-2 py-1"
                   onChange={(e) =>
                     onStatusChange(
                       technology.id,

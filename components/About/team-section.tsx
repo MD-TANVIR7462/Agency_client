@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Facebook, Linkedin, Twitter, Github } from "lucide-react";
-import { TeamMember, teamMembers } from "./team-data";
+import { TeamMember, teamMembers } from "../data/team-data";
 import { cn } from "@/lib/utils";
 import Tittle from "../Shared/Tittle";
 

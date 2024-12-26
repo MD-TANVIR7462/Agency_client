@@ -1,19 +1,4 @@
-import { Facebook, Linkedin, Twitter, Github } from "lucide-react";
-
-export type TeamMember = {
-  name: string;
-  role: string;
-  team: string[];
-  image: string;
-  bio: string;
-  social: {
-    linkedin: string;
-    twitter: string;
-    facebook: string;
-    github: string;
-  };
-  skills: string[];
-};
+import { TeamMember } from "../types/TeamMember";
 
 export const teamMembers: TeamMember[] = [
   {
