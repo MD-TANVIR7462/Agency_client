@@ -18,7 +18,7 @@ export default function DashboardLayout({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="p-6"
+          className="p-3 md:p-6"
         >
           {children}
         </motion.main>

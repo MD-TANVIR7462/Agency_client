@@ -58,11 +58,11 @@ export default function EditTeamPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gray-950 p-0  md:p-8">
+      <div className="max-w-[1900px] mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-2xl font-bold text-gray-300">
-            Team Members Management
+            Team Management
           </h1>
           <button
             onClick={handleAddNew}

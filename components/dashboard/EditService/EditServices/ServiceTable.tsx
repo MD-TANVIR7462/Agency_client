@@ -34,13 +34,13 @@ export const ServiceTable: FC<ServiceTableProps> = ({
             <th className="p-4 text-left text-purple-400">Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="divide-y divide-purple-400/10">
           {services.map((service) => (
             <motion.tr
               key={service.id}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="border-b border-purple-400/20 hover:bg-purple-400/5 transition-colors duration-150"
+              className=" hover:bg-purple-400/5 transition-colors duration-150"
             >
               <td className="p-4 text-white">
                 <div className="flex items-center gap-2">

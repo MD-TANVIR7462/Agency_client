@@ -148,7 +148,7 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
             className="w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white"
             rows={4}
             required
-            placeholder="React&#10;Node.js&#10;TypeScript"
+
           />
         </div>
 

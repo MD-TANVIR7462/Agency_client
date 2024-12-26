@@ -61,7 +61,7 @@ export default function EditServicesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 p-8">
+    <div className="min-h-screen bg-gray-950 p-0  md:p-8 max-w-[1900px] mx-auto">
       <div className="">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-2xl font-bold text-gray-300">
