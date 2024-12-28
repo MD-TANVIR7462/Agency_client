@@ -63,26 +63,11 @@ const menuItems = [
     icon: <UserPlus className="w-5 h-5" />,
     path: "/dashboard/career",
     submenu: [
-      { title: "Open Position", path: "/dashboard/editPosition" },
-      { title: "Add Position", path: "/dashboard/addPosition" },
-      { title: "Gallery", path: "/dashboard/editGallery" },
+      { title: "Open Position", path: "/dashboard/career/editPosition" },
+      { title: "Gallery", path: "/dashboard/career/editGallery" },
     ],
   },
-  {
-    title: "Contact",
-    icon: <Phone className="w-5 h-5" />,
-    path: "/dashboard/contact",
-    submenu: [{ title: "Contact Info ", path: "/dashboard/editContact" }],
-  },
-  {
-    title: "Website Settings",
-    icon: <Settings className="w-5 h-5" />,
-    path: "/dashboard/settings",
-    submenu: [
-      { title: "Navbar", path: "/dashboard/settings/navbar" },
-      { title: "Footer", path: "/dashboard/settings/footer" },
-    ],
-  },
+
 ];
 
 export default function Sidebar() {
@@ -134,15 +119,14 @@ export default function Sidebar() {
 
           <nav>
             <Link href={"/dashboard"}>
-              <button
-                className={`w-full mb-5 flex items-center justify-between p-2 rounded-md transition-colors hover:text-purple-400
-                `}
-              >
-                <div className="flex items-center gap-2">
-                  <LayoutDashboard className="h-5 w-5" />
-                  <span>Dashboard</span>
-                </div>
-              </button>
+            <button
+              className={`w-full flex items-center justify-between p-2 rounded-md transition-colors mb-2`}
+            >
+              <div className="flex items-center gap-2">
+              <LayoutDashboard className="w-5 h-5" />
+                <span>Dashboard</span>
+              </div>
+            </button>
             </Link>
             {menuItems.map((item) => (
               <div key={item.title} className="mb-2">
@@ -192,6 +176,30 @@ export default function Sidebar() {
                 </AnimatePresence>
               </div>
             ))}
+            <button
+              className={`w-full flex items-center justify-between p-2 rounded-md transition-colors mb-2 ${
+                pathname.startsWith("contact")
+                  ? "bg-purple-400/20 text-white"
+                  : "hover:bg-gray-800"
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <Phone className="w-5 h-5" />
+                <span>Contact</span>
+              </div>
+            </button>
+            <button
+              className={`w-full flex items-center justify-between p-2 rounded-md transition-colors ${
+                pathname.startsWith("siteSettings")
+                  ? "bg-purple-400/20 text-white"
+                  : "hover:bg-gray-800"
+              }`}
+            >
+              <div className="flex items-center gap-2">
+              <Settings className="w-5 h-5" />
+                <span>Website Settings</span>
+              </div>
+            </button>
           </nav>
           <div className="relative top-8">
             <Link href={"/"}>
