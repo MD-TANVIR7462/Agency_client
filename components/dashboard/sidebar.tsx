@@ -67,7 +67,6 @@ const menuItems = [
       { title: "Gallery", path: "/dashboard/career/editGallery" },
     ],
   },
-
 ];
 
 export default function Sidebar() {
@@ -119,14 +118,14 @@ export default function Sidebar() {
 
           <nav>
             <Link href={"/dashboard"}>
-            <button
-              className={`w-full flex items-center justify-between p-2 rounded-md transition-colors mb-2`}
-            >
-              <div className="flex items-center gap-2">
-              <LayoutDashboard className="w-5 h-5" />
-                <span>Dashboard</span>
-              </div>
-            </button>
+              <button
+                className={`w-full flex items-center justify-between p-2 rounded-md transition-colors mb-2`}
+              >
+                <div className="flex items-center gap-2">
+                  <LayoutDashboard className="w-5 h-5" />
+                  <span>Dashboard</span>
+                </div>
+              </button>
             </Link>
             {menuItems.map((item) => (
               <div key={item.title} className="mb-2">
@@ -176,18 +175,20 @@ export default function Sidebar() {
                 </AnimatePresence>
               </div>
             ))}
-            <button
-              className={`w-full flex items-center justify-between p-2 rounded-md transition-colors mb-2 ${
-                pathname.startsWith("contact")
-                  ? "bg-purple-400/20 text-white"
-                  : "hover:bg-gray-800"
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <Phone className="w-5 h-5" />
-                <span>Contact</span>
-              </div>
-            </button>
+            <Link href={"/dashboard/contact"}>
+              <button
+                className={`w-full flex items-center justify-between p-2 rounded-md transition-colors mb-2 ${
+                  pathname.startsWith("contact")
+                    ? "bg-purple-400/20 text-white"
+                    : "hover:bg-gray-800"
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <Phone className="w-5 h-5" />
+                  <span>Contact</span>
+                </div>
+              </button>
+            </Link>
             <button
               className={`w-full flex items-center justify-between p-2 rounded-md transition-colors ${
                 pathname.startsWith("siteSettings")
@@ -196,7 +197,7 @@ export default function Sidebar() {
               }`}
             >
               <div className="flex items-center gap-2">
-              <Settings className="w-5 h-5" />
+                <Settings className="w-5 h-5" />
                 <span>Website Settings</span>
               </div>
             </button>
