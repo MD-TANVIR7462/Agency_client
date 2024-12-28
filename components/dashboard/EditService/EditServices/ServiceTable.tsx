@@ -3,7 +3,7 @@
 import { FC } from "react";
 import { Service } from "@/components/types/services";
 import { motion } from "framer-motion";
-import { MoreHorizontal, Edit } from "lucide-react";
+import { MoreHorizontal, Edit, Eye } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
 interface ServiceTableProps {
@@ -24,7 +24,7 @@ export const ServiceTable: FC<ServiceTableProps> = ({
   onStatusChange,
 }) => {
   return (
-    <div className="w-full overflow-x-auto bg-gray-900/50 rounded-lg shadow-xl">
+    <div className="w-full overflow-x-auto bg-gray-900/50 rounded-lg shadow-xl text-sm">
       <table className="w-full border-collapse">
         <thead>
           <tr className="border-b border-purple-400/20">
@@ -44,7 +44,6 @@ export const ServiceTable: FC<ServiceTableProps> = ({
             >
               <td className="p-4 text-white">
                 <div className="flex items-center gap-2">
-                  {/* <service.icon className="w-5 h-5 text-purple-400" /> */}
                   {service.title}
                 </div>
               </td>
@@ -67,7 +66,7 @@ export const ServiceTable: FC<ServiceTableProps> = ({
                     onClick={() => onViewDetails(service)}
                     className="p-2 text-purple-400 hover:bg-purple-400/10 rounded-full"
                   >
-                    <MoreHorizontal className="w-4 h-4" />
+                     <Eye className="w-4 h-4" />
                   </motion.button>
                   <motion.button
                     whileHover={{ scale: 1.05 }}

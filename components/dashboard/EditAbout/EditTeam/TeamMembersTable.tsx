@@ -1,7 +1,7 @@
 "use client";
 
 import { FC } from "react";
-import { MoreHorizontal, Edit } from "lucide-react";
+import { MoreHorizontal, Edit, Eye } from "lucide-react";
 import { TeamMember } from "@/components/types/TeamMember";
 
 
@@ -19,7 +19,7 @@ export const TeamMembersTable: FC<TeamMembersTableProps> = ({
   onStatusChange,
 }) => {
   return (
-    <div className="w-full overflow-x-auto bg-gray-900/50 rounded-lg shadow-xl">
+    <div className="w-full overflow-x-auto bg-gray-900/50 rounded-lg shadow-xl text-sm">
       <table className="w-full border-collapse">
         <thead>
           <tr className="border-b border-purple-400/20">
@@ -75,7 +75,7 @@ export const TeamMembersTable: FC<TeamMembersTableProps> = ({
                     onClick={() => onViewDetails(member)}
                     className="p-2 text-purple-400 hover:bg-purple-400/10 rounded-full transition-colors"
                   >
-                    <MoreHorizontal className="w-4 h-4" />
+                     <Eye className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => onEdit(member)}

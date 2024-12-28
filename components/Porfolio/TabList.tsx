@@ -1,14 +1,14 @@
 "use client"
 import { useRef } from "react";
 import { motion } from "framer-motion";
-import { Code2, Palette, Search, Share2 } from "lucide-react";
+import { Code, Code2, Palette, Share2 } from "lucide-react";
 import TabButton from "./TabButton";
 
 const tabs = [
   { id: "all", label: "All", icon: Share2 },
-  { id: "web", label: "Web", icon: Code2 },
-  { id: "seo", label: "SEO", icon: Search },
-  { id: "graphics", label: "Graphics", icon: Palette },
+  { id: "Web Development", label: "Web Sites", icon: Code2 },
+  { id: "Web Apps", label: "Web Apps", icon: Code },
+  { id: "Graphics", label: "Graphics", icon: Palette },
 ];
 
 interface TabListProps {

@@ -2,44 +2,14 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { projectsData } from "../data/projectData";
 
-const projects = [
-  {
-    title: "E-Commerce Platform",
-    category: "Web Development",
-    image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80&w=800&h=600",
-  },
-  {
-    title: "Mobile Banking App",
-    category: "App Development",
-    image: "https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&q=80&w=800&h=600",
-  },
-  {
-    title: "AI-Powered Analytics",
-    category: "Artificial Intelligence",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=800&h=600",
-  },
-  {
-    title: "Smart Home System",
-    category: "IoT Solutions",
-    image: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=800&h=600",
-  },
-  {
-    title: "Healthcare Platform",
-    category: "Web Development",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800&h=600",
-  },
-  {
-    title: "Fintech Dashboard",
-    category: "UI/UX Design",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800&h=600",
-  },
-];
+
 
 export const GalleryGrid = () => {
   return (
     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {projects.map((project, index) => (
+      {projectsData?.map((project, index) => (
         <motion.div
           key={index}
           className="group relative overflow-hidden rounded-2xl"

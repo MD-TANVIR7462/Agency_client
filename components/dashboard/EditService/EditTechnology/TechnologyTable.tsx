@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { motion } from "framer-motion";
-import { MoreHorizontal, Edit } from "lucide-react";
+import { MoreHorizontal, Edit, Eye } from "lucide-react";
 import { Technology } from "@/components/types/TechnologyDashboard";
 
 interface TechnologyTableProps {
@@ -18,7 +18,7 @@ export const TechnologyTable: FC<TechnologyTableProps> = ({
   onStatusChange,
 }) => {
   return (
-    <div className="w-full overflow-x-auto bg-gray-900/50 rounded-lg shadow-xl">
+    <div className="w-full overflow-x-auto bg-gray-900/50 rounded-lg shadow-xl text-sm">
       <table className="w-full border-collapse">
         <thead>
           <tr className="border-b border-purple-400/20">
@@ -68,15 +68,15 @@ export const TechnologyTable: FC<TechnologyTableProps> = ({
               </td>
               <td className="p-4">
                 <div className="flex gap-2">
-                  <motion.button
+                  {/* <motion.button
                     disabled={true}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => onViewDetails(technology)}
                     className="p-2 text-purple-400 hover:bg-purple-400/10 rounded-full"
                   >
-                    <MoreHorizontal className="w-4 h-4" />
-                  </motion.button>
+                     <Eye className="w-4 h-4" />
+                  </motion.button> */}
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}

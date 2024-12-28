@@ -3,61 +3,18 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 import TabList from "./TabList";
-import Tittle from "../Shared/Tittle";
+import { projectsData } from "../data/projectData";
 
-const projects = {
-  web: [
-    {
-      title: "E-Commerce Platform",
-      category: "Web Development",
-      image:
-        "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80&w=800&h=600",
-    },
-    {
-      title: "Healthcare Platform",
-      category: "Web Development",
-      image:
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800&h=600",
-    },
-  ],
-  seo: [
-    {
-      title: "AI-Powered Analytics",
-      category: "SEO Optimization",
-      image:
-        "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=800&h=600",
-    },
-    {
-      title: "Content Strategy",
-      category: "SEO Optimization",
-      image:
-        "https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&q=80&w=800&h=600",
-    },
-  ],
-  graphics: [
-    {
-      title: "Fintech Dashboard",
-      category: "UI/UX Design",
-      image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800&h=600",
-    },
-    {
-      title: "Smart Home System",
-      category: "IoT Solutions",
-      image:
-        "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=800&h=600",
-    },
-  ],
-};
+
 
 export default function ProjectsSection() {
   const [activeTab, setActiveTab] = useState("all");
 
   const getFilteredProjects = () => {
     if (activeTab === "all") {
-      return Object.values(projects).flat();
+      return projectsData; // Return all projectsData if the "all" tab is active
     }
-    return projects[activeTab as keyof typeof projects] || [];
+    return projectsData.filter((project) => project.category === activeTab); // Filter projects based on the active tab
   };
 
   return (

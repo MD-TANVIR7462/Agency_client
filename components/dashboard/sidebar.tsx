@@ -54,8 +54,8 @@ const menuItems = [
     icon: <Briefcase className="w-5 h-5" />,
     path: "/dashboard/portfolio",
     submenu: [
-      { title: "Projects", path: "/dashboard/editProjects" },
-      { title: "FAQ", path: "/dashboard/editFAQ" },
+      { title: "Projects", path: "/dashboard/protfolio/editProjects" },
+      { title: "FAQ", path: "/dashboard/protfolio/editFAQ" },
     ],
   },
   {

@@ -24,7 +24,7 @@ export const NavLinks = ({
     {
       href: "/services",
       label: "Services",
-      isDropdown: true
+      isDropdown: true,
     },
     { href: "/About", label: "About Us" },
     { href: "/Portfolio", label: "Portfolio" },
@@ -69,8 +69,6 @@ export const NavLinks = ({
                 >
                   {link.label}
                 </Link>
-
-   
               </div>
             </div>
           );

@@ -2,7 +2,6 @@
 
 import { Eye, Trash2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { Testimonial } from '@/components/types/Testimonial';
 
 
@@ -20,13 +19,13 @@ export function TestimonialsTable({
   onDelete
 }: TestimonialsTableProps) {
   return (
-    <div className="w-full overflow-x-auto bg-gray-900/50 rounded-lg shadow-xl ">
+    <div className="w-full overflow-x-auto bg-gray-900/50 rounded-lg shadow-xl text-sm">
       <table className="w-full border-collapse">
         <thead>
           <tr className="border-b border-purple-400/20">
             <th className="p-4 text-left text-purple-400">Author</th>
             <th className="p-4 text-left text-purple-400">Role</th>
-            <th className="p-4 text-left text-purple-400">Content</th>
+            <th className="p-4 text-left text-purple-400 hidden lg:block">Content</th>
             <th className="p-4 text-left text-purple-400">Status</th>
             <th className="p-4 text-left text-purple-400">Actions</th>
           </tr>
@@ -42,13 +41,13 @@ export function TestimonialsTable({
                   <img
                     src={testimonial.image}
                     alt={testimonial.author}
-                    className="w-10 h-10 rounded-full object-cover ring-2 ring-purple-400/20"
+                    className="w-10 h-10 rounded-full object-cover ring-2 ring-purple-400/20 "
                   />
-                  <span className="font-medium text-white">{testimonial.author}</span>
+                  <span className="font-medium text-white text-sm">{testimonial.author}</span>
                 </div>
               </td>
               <td className="p-4 text-gray-300">{testimonial.role}</td>
-              <td className="p-4 text-gray-300">
+              <td className="p-4 text-gray-300 hidden lg:block">
                 <p className="truncate max-w-md">{testimonial.content}</p>
               </td>
               <td className="p-4">
