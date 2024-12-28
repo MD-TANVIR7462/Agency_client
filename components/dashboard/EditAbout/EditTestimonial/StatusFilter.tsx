@@ -30,16 +30,16 @@ export function StatusFilter({ currentFilter, onFilterChange }: StatusFilterProp
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button 
-          variant="outline" 
-          className="border-purple-400/20 text-purple-400 hover:bg-purple-400/10"
+
+          className="primaryButton"
         >
           <Filter className="mr-2 h-4 w-4" />
           {getFilterLabel()}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-gray-900 border-purple-400/20">
+      <DropdownMenuContent className="bg-gray-900 border-purple-400/20 text-sm md:text-base ">
         <DropdownMenuItem
-          className={`text-white hover:bg-purple-400/10 ${
+          className={`text-white hover:bg-purple-400/10 cursor-pointer ${
             currentFilter === 'all' ? 'bg-purple-400/20' : ''
           }`}
           onClick={() => onFilterChange('all')}
@@ -47,7 +47,7 @@ export function StatusFilter({ currentFilter, onFilterChange }: StatusFilterProp
           All Testimonials
         </DropdownMenuItem>
         <DropdownMenuItem
-          className={`text-white hover:bg-purple-400/10 ${
+          className={`text-white hover:bg-purple-400/10 text-sm md:text-base cursor-pointer ${
             currentFilter === 'active' ? 'bg-purple-400/20' : ''
           }`}
           onClick={() => onFilterChange('active')}
@@ -55,7 +55,7 @@ export function StatusFilter({ currentFilter, onFilterChange }: StatusFilterProp
           Active Testimonials
         </DropdownMenuItem>
         <DropdownMenuItem
-          className={`text-white hover:bg-purple-400/10 ${
+          className={`text-white hover:bg-purple-400/10 text-sm md:text-base cursor-pointer ${
             currentFilter === 'inactive' ? 'bg-purple-400/20' : ''
           }`}
           onClick={() => onFilterChange('inactive')}
