@@ -1,6 +1,6 @@
 "use client";
 
-import { Modal } from "@/components/Career/Modal";
+import { Modal } from "@/components/Shared/Modal";
 import { FAQ } from "@/components/types/Faq";
 import { useState, useEffect } from "react";
 import { FAQForm } from "./FAQFrom";

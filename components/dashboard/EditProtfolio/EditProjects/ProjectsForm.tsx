@@ -1,6 +1,6 @@
 "use client";
 
-import { Modal } from "@/components/Career/Modal";
+import { Modal } from "@/components/Shared/Modal";
 import { Project } from "@/components/types/Projects";
 
 import { FC } from "react";

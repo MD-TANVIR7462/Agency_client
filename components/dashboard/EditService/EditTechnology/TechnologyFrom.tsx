@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import { motion } from "framer-motion";
-import { Modal } from "@/components/Career/Modal";
+import { Modal } from "@/components/Shared/Modal";
 import { Technology } from "@/components/types/TechnologyDashboard";
 
 interface TechnologyFormProps {

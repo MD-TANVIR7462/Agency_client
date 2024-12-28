@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from './Modal';
+import { Modal } from '../Shared/Modal';
 import { Position } from '../types/career';
 
 interface JobDetailsModalProps {

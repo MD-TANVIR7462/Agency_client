@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import { TeamMember } from "@/components/types/TeamMember";
-import { Modal } from "@/components/Career/Modal";
+import { Modal } from "@/components/Shared/Modal";
 
 interface TeamMemberFormProps {
   member?: TeamMember | null;

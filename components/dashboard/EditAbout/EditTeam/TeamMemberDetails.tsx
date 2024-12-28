@@ -5,7 +5,7 @@ import { FC } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Github, Linkedin, Twitter, Facebook } from "lucide-react";
 import { TeamMember } from "@/components/types/TeamMember";
-import { Modal } from "@/components/Career/Modal";
+import { Modal } from "@/components/Shared/Modal";
 
 interface TeamMemberDetailsProps {
   member: TeamMember | null;

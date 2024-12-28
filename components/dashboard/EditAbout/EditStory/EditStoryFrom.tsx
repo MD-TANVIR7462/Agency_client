@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { motion } from 'framer-motion';
 import { CompanyInfo } from '@/components/types/ConpanyStroy';
-import { Modal } from '@/components/Career/Modal';
+import { Modal } from '@/components/Shared/Modal';
 
 
 

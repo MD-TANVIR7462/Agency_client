@@ -2,7 +2,7 @@
 import { FC, useState } from "react";
 import { motion } from "framer-motion";
 import { Pencil } from "lucide-react";
-import { Modal } from "@/components/Career/Modal";
+import { Modal } from "@/components/Shared/Modal";
 
 interface BannerData {
   title1: string;

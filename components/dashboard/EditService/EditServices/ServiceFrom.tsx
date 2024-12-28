@@ -3,7 +3,7 @@
 import { FC } from "react";
 import { Service } from "@/components/types/services";
 import { motion } from "framer-motion";
-import { Modal } from "@/components/Career/Modal";
+import { Modal } from "@/components/Shared/Modal";
 
 interface ServiceFormProps {
   service?: Service | null;

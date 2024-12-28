@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal } from './Modal';
+import { Modal } from '../Shared/Modal';
 import { Position } from '../types/career';
 import { ApplicationForm } from '../types/career';
 
