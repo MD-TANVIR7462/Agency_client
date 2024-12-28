@@ -91,6 +91,8 @@ export default function Sidebar() {
     },
   };
 
+
+
   return (
     <>
       <button
@@ -178,7 +180,7 @@ export default function Sidebar() {
             <Link href={"/dashboard/contact"}>
               <button
                 className={`w-full flex items-center justify-between p-2 rounded-md transition-colors mb-2 ${
-                  pathname.startsWith("contact")
+                  pathname.startsWith("/dashboard/contact")
                     ? "bg-purple-400/20 text-white"
                     : "hover:bg-gray-800"
                 }`}
