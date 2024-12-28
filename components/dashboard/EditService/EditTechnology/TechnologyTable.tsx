@@ -37,10 +37,12 @@ export const TechnologyTable: FC<TechnologyTableProps> = ({
               className=" hover:bg-purple-400/5 transition-colors duration-150"
             >
               <td className="p-4 text-white">
-                <div className="flex items-center gap-2">{technology.name}</div>
+                <div className="flex items-center gap-2 truncate">
+                  {technology.name}
+                </div>
               </td>
-              <td className="p-4">
-                <div className="flex flex-wrap gap-2">
+              <td className="p-4 truncate">
+                <div className="flex gap-2 truncate">
                   {technology.tech.map((item: any, index) => (
                     <span
                       key={index}

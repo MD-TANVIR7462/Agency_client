@@ -30,7 +30,7 @@ export function TestimonialsTable({
             <th className="p-4 text-left text-purple-400">Actions</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-purple-400/10">
+        <tbody className="divide-y divide-purple-400/10 ">
           {testimonials.map((testimonial) => (
             <tr 
               key={testimonial.id} 
@@ -41,13 +41,13 @@ export function TestimonialsTable({
                   <img
                     src={testimonial.image}
                     alt={testimonial.author}
-                    className="w-10 h-10 rounded-full object-cover ring-2 ring-purple-400/20 "
+                    className="w-10 h-10 rounded-full object-cover ring-2 ring-purple-400/20 hidden sm:block"
                   />
-                  <span className="font-medium text-white text-sm">{testimonial.author}</span>
+                  <span className="font-medium text-white text-sm truncate">{testimonial.author}</span>
                 </div>
               </td>
-              <td className="p-4 text-gray-300">{testimonial.role}</td>
-              <td className="p-4 text-gray-300 hidden lg:block">
+              <td className="p-4 text-gray-300 truncate">{testimonial.role}</td>
+              <td className="p-4 text-gray-300 hidden md:block">
                 <p className="truncate max-w-md">{testimonial.content}</p>
               </td>
               <td className="p-4">

@@ -55,7 +55,7 @@ const menuItems = [
     path: "/dashboard/portfolio",
     submenu: [
       { title: "Projects", path: "/dashboard/protfolio/editProjects" },
-      { title: "FAQ", path: "/dashboard/protfolio/editFAQ" },
+      { title: "FAQ", path: "/dashboard/protfolio/editFaq" },
     ],
   },
   {

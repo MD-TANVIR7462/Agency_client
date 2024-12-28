@@ -51,7 +51,7 @@ export const ServiceForm: FC<ServiceFormProps> = ({
             type="text"
             name="title"
             defaultValue={service?.title}
-            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             required
           />
         </div>
@@ -64,7 +64,7 @@ export const ServiceForm: FC<ServiceFormProps> = ({
             type="text"
             name="shortDescription"
             defaultValue={service?.shortDescription}
-            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             required
           />
         </div>
@@ -76,7 +76,7 @@ export const ServiceForm: FC<ServiceFormProps> = ({
           <textarea
             name="fullDescription"
             defaultValue={service?.fullDescription}
-            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             rows={4}
             required
           />
@@ -89,7 +89,7 @@ export const ServiceForm: FC<ServiceFormProps> = ({
           <textarea
             name="features"
             defaultValue={service?.features?.join("\n")}
-            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             rows={4}
             required
           />
@@ -102,7 +102,7 @@ export const ServiceForm: FC<ServiceFormProps> = ({
           <textarea
             name="technologies"
             defaultValue={service?.technologies?.join("\n")}
-            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             rows={4}
             required
           />

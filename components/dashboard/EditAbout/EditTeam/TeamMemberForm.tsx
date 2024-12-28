@@ -57,7 +57,7 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
               type="text"
               name="name"
               defaultValue={member?.name}
-              className="w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white"
+              className="customInput"
               required
             />
           </div>
@@ -70,7 +70,7 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
               type="text"
               name="role"
               defaultValue={member?.role}
-              className="w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white"
+              className="customInput"
               required
             />
           </div>
@@ -84,7 +84,7 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
             <select
               name="team"
               defaultValue={member?.team[0] || ""}
-              className="w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white hover:cursor-pointer"
+              className="customInput hover:cursor-pointer"
               required
             >
               <option value="" disabled>
@@ -104,7 +104,7 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
             <select
               name="status"
               defaultValue={member?.status || "active"}
-              className="w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white"
+              className="customInput"
               required
             >
               <option value="active">Active</option>
@@ -120,7 +120,7 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
           <input
             type="file"
             name="image"
-            className="hover:cursor-pointer w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white"
+            className="hover:cursor-pointer customInput"
             required
           />
         </div>
@@ -132,7 +132,7 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
           <textarea
             name="bio"
             defaultValue={member?.bio}
-            className="w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             rows={3}
             required
           />
@@ -145,7 +145,7 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
           <textarea
             name="skills"
             defaultValue={member?.skills.join("\n")}
-            className="w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             rows={4}
             required
 
@@ -162,28 +162,28 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
               name="linkedin"
               placeholder="LinkedIn URL"
               defaultValue={member?.social.linkedin}
-              className="w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white"
+              className="customInput"
             />
             <input
               type="url"
               name="twitter"
               placeholder="Twitter URL"
               defaultValue={member?.social.twitter}
-              className="w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white"
+              className="customInput"
             />
             <input
               type="url"
               name="facebook"
               placeholder="Facebook URL"
               defaultValue={member?.social.facebook}
-              className="w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white"
+              className="customInput"
             />
             <input
               type="url"
               name="github"
               placeholder="GitHub URL"
               defaultValue={member?.social.github}
-              className="w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white"
+              className="customInput"
             />
           </div>
         </div>

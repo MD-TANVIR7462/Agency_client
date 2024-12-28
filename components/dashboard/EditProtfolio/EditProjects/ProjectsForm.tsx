@@ -5,9 +5,8 @@ import { Project } from "@/components/types/Projects";
 
 import { FC } from "react";
 
-
 interface ProjectFormProps {
-  project?: Project|null;
+  project?: Project | null;
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (data: Partial<Project>) => void;
@@ -48,7 +47,7 @@ export const ProjectForm: FC<ProjectFormProps> = ({
               type="text"
               name="title"
               defaultValue={project?.title}
-              className="w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white"
+              className="customInput"
               required
             />
           </div>
@@ -60,10 +59,12 @@ export const ProjectForm: FC<ProjectFormProps> = ({
             <select
               name="category"
               defaultValue={project?.category || ""}
-              className="w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white hover:cursor-pointer"
+              className="customInput hover:cursor-pointer"
               required
             >
-              <option value="" disabled>Select category</option>
+              <option value="" disabled>
+                Select category
+              </option>
               <option value="Web Development">Web Development</option>
               <option value="Web Apps">Web Apps</option>
               <option value="Graphics">Graphics</option>
@@ -71,20 +72,7 @@ export const ProjectForm: FC<ProjectFormProps> = ({
           </div>
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Status
-          </label>
-          <select
-            name="status"
-            defaultValue={project?.status || "active"}
-            className="w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white"
-            required
-          >
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </select>
-        </div>
+
 
         <div>
           <label className="block text-sm font-medium text-purple-400 mb-1">
@@ -94,7 +82,7 @@ export const ProjectForm: FC<ProjectFormProps> = ({
             type="url"
             name="image"
             defaultValue={project?.image}
-            className="w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             required
           />
         </div>
@@ -107,23 +95,26 @@ export const ProjectForm: FC<ProjectFormProps> = ({
             type="url"
             name="link"
             defaultValue={project?.link}
-            className="w-full bg-gray-800 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             required
           />
         </div>
+        <div className="flex items-center space-x-2">
+          <label className="text-sm font-medium text-purple-400">Status</label>
+          <select
+          
+            className="bg-gray-800 border border-gray-700 rounded-md text-white px-3 py-2 focus:outline-none focus:ring-1 focus:ring-purple-500/50"
+          >
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
 
         <div className="flex justify-end gap-3 pt-4">
-          <button
-            type="button"
-            onClick={onClose}
-            className="px-4 py-2 border border-purple-400/30 text-purple-400 rounded-md hover:bg-purple-400/10"
-          >
+          <button type="button" onClick={onClose} className="secondaryButton">
             Cancel
           </button>
-          <button
-            type="submit"
-            className="px-4 py-2 bg-purple-400 text-gray-900 rounded-md hover:bg-purple-500"
-          >
+          <button type="submit" className="primaryButton">
             {project ? "Update Project" : "Add Project"}
           </button>
         </div>

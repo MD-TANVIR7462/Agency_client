@@ -51,7 +51,7 @@ export const TechnologyForm: FC<TechnologyFormProps> = ({
             type="text"
             name="name"
             defaultValue={technology?.name}
-            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             required
           />
         </div>
@@ -64,7 +64,7 @@ export const TechnologyForm: FC<TechnologyFormProps> = ({
             type="text"
             name="gradient"
             defaultValue={technology?.gradient}
-            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
           />
         </div>
 
@@ -75,7 +75,7 @@ export const TechnologyForm: FC<TechnologyFormProps> = ({
           <textarea
             name="technologies"
             defaultValue={technology?.tech?.join("\n")}
-            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             rows={4}
             required
           />

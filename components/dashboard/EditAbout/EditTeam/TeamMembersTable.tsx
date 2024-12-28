@@ -34,14 +34,14 @@ export const TeamMembersTable: FC<TeamMembersTableProps> = ({
           {members.map((member) => (
             <tr 
               key={member.name} 
-              className="hover:bg-purple-400/5 transition-colors duration-150"
+              className="hover:bg-purple-400/5 transition-colors duration-150 truncate"
             >
               <td className="p-4">
                 <div className="flex items-center gap-3">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-10 h-10 rounded-full object-cover ring-2 ring-purple-400/20"
+                    className="w-10 h-10 rounded-full object-cover ring-2 ring-purple-400/20  hidden sm:block"
                   />
                   <span className="font-medium text-white">{member.name}</span>
                 </div>

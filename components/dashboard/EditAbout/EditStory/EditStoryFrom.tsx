@@ -65,7 +65,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
               type="text"
               name="years"
               defaultValue={initialData.stats.years}
-              className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+              className="customInput"
               required
             />
           </div>
@@ -77,7 +77,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
               type="text"
               name="projects"
               defaultValue={initialData.stats.projects}
-              className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+              className="customInput"
               required
             />
           </div>
@@ -89,7 +89,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
               type="text"
               name="teamSize"
               defaultValue={initialData.stats.teamSize}
-              className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+              className="customInput"
               required
             />
           </div>
@@ -101,7 +101,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
               type="text"
               name="satisfaction"
               defaultValue={initialData.stats.satisfaction}
-              className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+              className="customInput"
               required
             />
           </div>
@@ -115,7 +115,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
             type="text"
             name="storyTitle"
             defaultValue={initialData.story.title}
-            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             required
           />
         </div>
@@ -127,7 +127,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
           <textarea
             name="storyContent"
             defaultValue={initialData.story.content}
-            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             rows={4}
             required
           />
@@ -141,7 +141,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
             type="text"
             name="missionTitle"
             defaultValue={initialData.mission.title}
-            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             required
           />
         </div>
@@ -153,7 +153,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
           <textarea
             name="missionContent"
             defaultValue={initialData.mission.content}
-            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             rows={4}
             required
           />
@@ -167,7 +167,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
             type="text"
             name="visionTitle"
             defaultValue={initialData.vision.title}
-            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             required
           />
         </div>
@@ -179,7 +179,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
           <textarea
             name="visionContent"
             defaultValue={initialData.vision.content}
-            className="w-full bg-gray-900 border border-purple-400/30 rounded-md p-2 text-white"
+            className="customInput"
             rows={4}
             required
           />

@@ -1,41 +1,50 @@
 "use client";
 
-import { useState, useRef, useEffect } from 'react';
-import { Filter, ChevronDown } from 'lucide-react';
+import { useState, useRef, useEffect } from "react";
+import { Filter, ChevronDown } from "lucide-react";
 
 interface DropdownOption {
-  value: 'all' | 'active' | 'inactive';
+  value: "all" | "active" | "inactive";
   label: string;
 }
 
 interface CustomDropdownProps {
-  currentFilter: 'all' | 'active' | 'inactive';
-  onFilterChange: (status: 'all' | 'active' | 'inactive') => void;
+  currentFilter: "all" | "active" | "inactive";
+  onFilterChange: (status: "all" | "active" | "inactive") => void;
 }
 
 const options: DropdownOption[] = [
-  { value: 'all', label: 'All Projects' },
-  { value: 'active', label: 'Active Projects' },
-  { value: 'inactive', label: 'Inactive Projects' },
+  { value: "all", label: "All Projects" },
+  { value: "active", label: "Active Projects" },
+  { value: "inactive", label: "Inactive Projects" },
 ];
 
-export function CustomDropdown({ currentFilter, onFilterChange }: CustomDropdownProps) {
+export function CustomDropdown({
+  currentFilter,
+  onFilterChange,
+}: CustomDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     }
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const getCurrentLabel = () => {
-    return options.find(option => option.value === currentFilter)?.label || 'All Projects';
+    return (
+      options.find((option) => option.value === currentFilter)?.label ||
+      "All Projects"
+    );
   };
 
   return (
@@ -46,7 +55,11 @@ export function CustomDropdown({ currentFilter, onFilterChange }: CustomDropdown
       >
         <Filter className="w-4 h-4" />
         <span>{getCurrentLabel()}</span>
-        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown
+          className={`w-4 h-4 transition-transform duration-200 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
       </button>
 
       {isOpen && (
@@ -59,7 +72,7 @@ export function CustomDropdown({ currentFilter, onFilterChange }: CustomDropdown
                 setIsOpen(false);
               }}
               className={`w-full px-4 py-2 text-left text-white hover:bg-purple-400/10 transition-colors ${
-                currentFilter === option.value ? 'bg-purple-400/20' : ''
+                currentFilter === option.value ? "bg-purple-400/20" : ""
               }`}
             >
               {option.label}

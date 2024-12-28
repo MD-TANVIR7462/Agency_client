@@ -37,14 +37,14 @@ export function ProjectsTable({
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-10 h-10 rounded-full object-cover ring-2 ring-purple-400/20"
+                    className="w-10 h-10 rounded-full object-cover ring-2 ring-purple-400/20 hidden sm:block"
                   />
-                  <span className="font-medium text-white text-sm">
+                  <span className="font-medium text-white text-sm truncate" >
                     {project.title}
                   </span>
                 </div>
               </td>
-              <td className="p-4 text-gray-300">{project.category}</td>
+              <td className="p-4 text-gray-300 truncate ">{project.category}</td>
               <td className="p-4">
                 <select className="bg-gray-900 text-white border border-purple-400/40 rounded px-2 py-1">
                   <option value="active">Active</option>
