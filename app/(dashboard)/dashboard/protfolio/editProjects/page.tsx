@@ -8,6 +8,7 @@ import { Project } from "@/components/types/Projects";
 import { CustomDropdown } from "@/components/dashboard/EditProtfolio/EditProjects/CustomDropdown";
 import { ProjectsTable } from "@/components/dashboard/EditProtfolio/EditProjects/ProjectTable";
 import { ProjectForm } from "@/components/dashboard/EditProtfolio/EditProjects/ProjectsForm";
+import DashSubTitle from "@/components/Shared/DashSubTitle";
 
 const ProjectsPage = () => {
   const [projects, setProjects] = useState<Project[]>(projectsData);
@@ -58,7 +59,7 @@ const ProjectsPage = () => {
   return (
     <div className=" p-0 md:p-4 lg:p-6 max-w-[1900px] mx-auto">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-white">Projects</h1>
+        <DashSubTitle text="Projects"/>
         <div className="flex gap-3">
           <CustomDropdown currentFilter={filter} onFilterChange={setFilter} />
           <Button onClick={handleAddNew} className="primaryButton">

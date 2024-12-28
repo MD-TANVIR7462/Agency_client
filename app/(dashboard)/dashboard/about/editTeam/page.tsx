@@ -9,6 +9,7 @@ import { teamMembers } from "@/components/data/team-data";
 import { TeamMemberDetails } from "@/components/dashboard/EditAbout/EditTeam/TeamMemberDetails";
 import { TeamMembersTable } from "@/components/dashboard/EditAbout/EditTeam/TeamMembersTable";
 import { TeamMemberForm } from "@/components/dashboard/EditAbout/EditTeam/TeamMemberForm";
+import DashSubTitle from "@/components/Shared/DashSubTitle";
 
 export default function EditTeamPage() {
   const [members, setMembers] = useState<TeamMember[]>(teamMembers);
@@ -59,12 +60,10 @@ export default function EditTeamPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 p-0 md:p-4 lg:p-8">
+    <div className="bg-gray-950 p-0 md:p-4 lg:p-8">
       <div className="max-w-[1900px] mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-300">
-            Team Management
-          </h1>
+          <DashSubTitle text="Team"/>
           <button
             onClick={handleAddNew}
             className="flex items-center gap-2 px-4 py-2 bg-purple-400/10 text-purple-400 rounded-md hover:bg-purple-400/20 transition-colors"

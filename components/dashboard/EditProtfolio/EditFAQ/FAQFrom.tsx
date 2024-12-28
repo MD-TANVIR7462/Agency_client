@@ -39,6 +39,7 @@ export function FAQForm({ formData, onChange, onSubmit, onCancel, isEditing }: F
           className="customInput min-h-[100px]"
           placeholder="Enter the answer"
           required
+          rows={6}
         />
       </div>
 

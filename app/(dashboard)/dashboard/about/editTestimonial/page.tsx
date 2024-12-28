@@ -4,6 +4,7 @@ import { StatusFilter } from '@/components/dashboard/EditAbout/EditTestimonial/S
 import { TestimonialModal } from '@/components/dashboard/EditAbout/EditTestimonial/TestimonialModal';
 import { TestimonialsTable } from '@/components/dashboard/EditAbout/EditTestimonial/TestimonialsTable';
 import { testimonialsData } from '@/components/data/testimonials2';
+import DashSubTitle from '@/components/Shared/DashSubTitle';
 import { Testimonial } from '@/components/types/Testimonial';
 import { useState } from 'react';
 
@@ -30,10 +31,10 @@ export default function TestimonialsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-950 p-0 md:p-4 lg:p-8">
+    <div className="bg-gray-950 p-0 md:p-4 lg:p-8">
       <div className="max-w-[1900px] mx-auto space-y-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-white">Testimonials Dashboard</h1>
+          <DashSubTitle text="Testimonials"/>
           <StatusFilter 
             currentFilter={filterStatus} 
             onFilterChange={setFilterStatus} 

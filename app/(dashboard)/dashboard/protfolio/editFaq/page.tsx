@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 
-import { FAQTable } from "./components/FAQTable";
-import { FAQModal } from "./components/FAQModal";
+import { FAQTable } from "../../../../../components/dashboard/EditProtfolio/EditFAQ/FAQTable";
+import { FAQModal } from "../../../../../components/dashboard/EditProtfolio/EditFAQ/FAQModal";
 import { Plus, PlusCircle } from "lucide-react";
 import { FAQ } from "@/components/types/Faq";
+import DashSubTitle from "@/components/Shared/DashSubTitle";
 
 const initialFaqs: FAQ[] = [
   {
@@ -81,10 +82,10 @@ export default function FAQPage() {
   };
 
   return (
-    <div className="min-h-screen  p-0  md:p-4 lg:p-8">
+    <div className=" p-0  md:p-4 lg:p-8">
       <div className="max-w-[1900px] mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-white">FAQ Management</h1>
+          <DashSubTitle text="FAQ"/>
           <button
             onClick={handleAdd}
             className="primaryButton flex justify-center items-center"

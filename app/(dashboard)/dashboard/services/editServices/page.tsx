@@ -8,6 +8,7 @@ import { services } from "@/components/data/serciceData";
 import { ServiceTable } from "@/components/dashboard/EditService/EditServices/ServiceTable";
 import { ServiceForm } from "@/components/dashboard/EditService/EditServices/ServiceFrom";
 import { ServiceModal } from "@/components/services/ServiceModal";
+import DashSubTitle from "@/components/Shared/DashSubTitle";
 
 
 export default function EditServicesPage() {
@@ -61,12 +62,10 @@ export default function EditServicesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 p-0 md:p-4 lg:p-8 max-w-[1900px] mx-auto">
+    <div className=" bg-gray-950 p-0 md:p-4 lg:p-8 max-w-[1900px] mx-auto">
       <div className="">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-300">
-            Services Management
-          </h1>
+          <DashSubTitle text="Services"/>
           <motion.button
             onClick={handleAddNew}
             className="flex gap-1 items-center  primaryButton"
