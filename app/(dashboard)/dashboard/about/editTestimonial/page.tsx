@@ -30,7 +30,7 @@ export default function TestimonialsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-950 p-8">
+    <div className="min-h-screen bg-gray-950 p-0 md:p-4 lg:p-8">
       <div className="max-w-[1900px] mx-auto space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold text-white">Testimonials Dashboard</h1>

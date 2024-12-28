@@ -56,7 +56,7 @@ const TechnologyPage: FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 p-0  md:p-8 max-w-[1900px] mx-auto">
+    <div className="min-h-screen bg-gray-950  p-0 md:p-4 lg:p-8 max-w-[1900px] mx-auto">
  
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-2xl font-bold text-white">
