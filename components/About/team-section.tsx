@@ -29,13 +29,13 @@ export function TeamSection() {
         </span>
 
         {/* Team Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12 mt-4">
+        <div className="flex  overflow-x-auto  md:justify-center gap-4 mb-12 mt-4  mx-auto ">
           {teamCategories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveTab(category)}
               className={cn(
-                "px-6 py-2 rounded-full transition-all duration-300",
+                "px-6 py-2 rounded-lg transition-all duration-300 whitespace-nowrap",
                 activeTab === category
                   ? "bg-gray-700 text-white shadow-lg shadow-gray-600/30"
                   : "bg-gray-800/75 text-gray-400 hover:bg-gray-700"
