@@ -18,9 +18,9 @@ export function StatusFilter({ currentFilter, onFilterChange }: StatusFilterProp
   const getFilterLabel = () => {
     switch (currentFilter) {
       case 'active':
-        return 'Active Testimonials';
+        return 'Active';
       case 'inactive':
-        return 'Inactive Testimonials';
+        return 'Inactive';
       default:
         return 'All Testimonials';
     }
@@ -33,7 +33,7 @@ export function StatusFilter({ currentFilter, onFilterChange }: StatusFilterProp
 
           className="primaryButton"
         >
-          <Filter className="mr-2 h-4 w-4" />
+          <Filter className="md:mr-2 h-4 w-4 " />
           {getFilterLabel()}
         </Button>
       </DropdownMenuTrigger>

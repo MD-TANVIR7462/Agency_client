@@ -60,7 +60,7 @@ export default function EditGalleryPage() {
             onClick={handleAdd}
             className="primaryButton flex items-center"
           >
-            <Plus className="w-5 h-5" />
+            <Plus className="md:w-5 md:h-5  w-4 h-4" />
             Add Image
           </button>
         </div>

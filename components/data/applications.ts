@@ -7,9 +7,9 @@ export const applications: Application[] = [
     fullName: "John Doe",
     email: "john@example.com",
     phone: "+1234567890",
-    linkedIn: "https://linkedin.com/in/johndoe",
-    portfolio: "https://johndoe.dev",
-    resumeUrl: "https://example.com/resume.pdf",
+    linkedIn: "https://www.linkedin.com/in/md-tajul-islam-tanvir-531682278/",
+    portfolio: "https://tanvir3.vercel.app/",
+    resumeUrl: "https://drive.google.com/file/d/1f8eXEB7NzP9-uXosEdq_yUnbS49pBCjj/view",
     submittedAt: "2024-03-20T10:00:00Z",
     status: 'pending'
   },
@@ -19,9 +19,9 @@ export const applications: Application[] = [
     fullName: "John Doe",
     email: "john@example.com",
     phone: "+1234567890",
-    linkedIn: "https://linkedin.com/in/johndoe",
-    portfolio: "https://johndoe.dev",
-    resumeUrl: "https://example.com/resume.pdf",
+    linkedIn: "https://www.linkedin.com/in/md-tajul-islam-tanvir-531682278/",
+    portfolio: "https://tanvir3.vercel.app/",
+    resumeUrl: "https://drive.google.com/file/d/1f8eXEB7NzP9-uXosEdq_yUnbS49pBCjj/view",
     submittedAt: "2024-03-20T10:00:00Z",
     status: 'pending'
   },
@@ -31,9 +31,9 @@ export const applications: Application[] = [
     fullName: "John Doe",
     email: "john@example.com",
     phone: "+1234567890",
-    linkedIn: "https://linkedin.com/in/johndoe",
-    portfolio: "https://johndoe.dev",
-    resumeUrl: "https://example.com/resume.pdf",
+    linkedIn: "https://www.linkedin.com/in/md-tajul-islam-tanvir-531682278/",
+    portfolio: "https://tanvir3.vercel.app/",
+    resumeUrl: "https://drive.google.com/file/d/1f8eXEB7NzP9-uXosEdq_yUnbS49pBCjj/view",
     submittedAt: "2024-03-20T10:00:00Z",
     status: 'pending'
   }
