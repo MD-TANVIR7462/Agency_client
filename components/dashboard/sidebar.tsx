@@ -191,7 +191,8 @@ export default function Sidebar() {
                 </div>
               </button>
             </Link>
-            <button
+           <Link href={'/dashboard/settings'}>
+           <button
               className={`w-full flex items-center justify-between p-2 rounded-md transition-colors ${
                 pathname.startsWith("siteSettings")
                   ? "bg-purple-400/20 text-white"
@@ -202,7 +203,7 @@ export default function Sidebar() {
                 <Settings className="w-5 h-5" />
                 <span>Website Settings</span>
               </div>
-            </button>
+            </button></Link>
           </nav>
           <div className="relative top-8">
             <Link href={"/"}>
