@@ -7,7 +7,7 @@ export const projectsData: Project[] = [
     status: "active",
     category: "Web Development",
     image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80&w=800&h=600",
-    link: "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80&w=800&h=600",
+    link: "https://tanvir3.netlify.app",
   },
   {
     title: "Mobile Banking App",
