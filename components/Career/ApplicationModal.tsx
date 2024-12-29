@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Modal } from '../Shared/Modal';
-import { Position } from '../types/career';
-import { ApplicationForm } from '../types/career';
+import React, { useState } from "react";
+import { Modal } from "../Shared/Modal";
+import { Position } from "../types/career";
+import { ApplicationForm } from "../types/career";
 
 interface ApplicationModalProps {
   isOpen: boolean;
@@ -15,19 +15,19 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
   position,
 }) => {
   const [form, setForm] = useState<ApplicationForm>({
-    fullName: '',
-    email: '',
-    phone: '',
-    linkedIn: '',
-    portfolio: '',
-    coverLetter: '',
+    fullName: "",
+    email: "",
+    phone: "",
+    linkedIn: "",
+    portfolio: "",
+
     resume: null,
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission here
-    console.log('Form submitted:', form);
+    console.log("Form submitted:", form);
     onClose();
   };
 
@@ -38,7 +38,11 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title={`Apply for ${position.title}`}>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title={`Apply for ${position.title}`}
+    >
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -102,20 +106,6 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
             onChange={(e) => setForm({ ...form, portfolio: e.target.value })}
           />
         </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
-            Cover Letter *
-          </label>
-          <textarea
-            required
-            rows={4}
-            className="w-full bg-[#252540] border border-purple-900/30 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-            value={form.coverLetter}
-            onChange={(e) => setForm({ ...form, coverLetter: e.target.value })}
-          />
-        </div>
-
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
             Resume *
