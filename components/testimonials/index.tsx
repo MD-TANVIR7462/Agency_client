@@ -6,7 +6,7 @@ import Tittle from "../Shared/Tittle";
 
 export const Testimonials = () => {
   return (
-    <section className="relative overflow-hidden bg-gray-900 py-24">
+    <section className="relative overflow-hidden bg-gray-900 py-20">
       <div className="absolute left-1/4 top-1/2 -z-10 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-purple-500/20 blur-[100px]" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -1,4 +1,5 @@
 import { Achievements } from "@/components/About/achievements";
+import { FeedBack } from "@/components/About/FeedBack";
 import { MissionVision } from "@/components/About/mission-vision";
 import { OurStory } from "@/components/About/our-story";
 import { Stats } from "@/components/About/stats";
@@ -19,6 +20,7 @@ export default function AboutPage() {
       <Achievements />
       <TeamSection />
       <Testimonials />
+      <FeedBack/>
     </div>
 
   );
