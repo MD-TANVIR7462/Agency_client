@@ -34,8 +34,8 @@ export const positions: Position[] = [
     status: "active"
   },
     {
-      id: "senior-fullstack",
-      title: "Senior Full Stack Developer",
+      id: "Intern-fullstack",
+      title: "Intern Full Stack Developer",
       department: "Engineering",
       location: "Remote / Global",
       type: "Full-time",
