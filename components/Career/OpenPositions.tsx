@@ -6,7 +6,8 @@ import { JobDetailsModal } from "./JobDetailsModal";
 import { ApplicationModal } from "./ApplicationModal";
 import { Position } from "../types/career";
 import { positions } from "../data/positions";
-import EmptyState from "@/app/(dashboard)/dashboard/positions/components/EmptyState";
+import EmptyState from "./EditPositons/EmptyState";
+
 
 export const OpenPositions = () => {
   const [selectedPosition, setSelectedPosition] = useState<Position | null>(
