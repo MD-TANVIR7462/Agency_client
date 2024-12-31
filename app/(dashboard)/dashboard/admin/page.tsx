@@ -16,9 +16,9 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     setIsClient(true);
-    if (!isAuthenticated()) {
-      router.push("/login");
-    }
+    // if (!isAuthenticated()) {
+    //   router.push("/login");
+    // }
   }, [router]);
 
   const handleCreateAdmin = (data: any) => {
