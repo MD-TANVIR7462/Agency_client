@@ -19,7 +19,6 @@ export default function AdminList() {
   };
 
   const handleDeleteAdmin = (admin: Admin) => {
-    // Implement view details logic
     console.log("Viewing details for:", admin);
   };
 
