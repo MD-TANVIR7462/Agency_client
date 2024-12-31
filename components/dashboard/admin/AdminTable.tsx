@@ -76,14 +76,16 @@ const AdminTable: FC<AdminTableProps> = ({
                     className={`p-2 text-purple-400 hover:bg-purple-400/10 rounded-full transition-colors ${
                       role === "admin" ? "opacity-50 cursor-not-allowed" : ""
                     }`}
-                    disabled={role === "admin"||role===null}
+                    disabled={role === "admin"||!role}
                   >
                     <Edit className="w-4 h-4" />
                   </button>
                   <button
-                  disabled={role === "admin"||role===null}
+                  disabled={role === "admin"||!role}
                     onClick={() => onDelete(admin)}
-                    className="p-2 text-red-400 hover:bg-red-400/10 rounded-full transition-colors"
+                    className={`p-2 text-red-400 hover:bg-red-400/10 rounded-full transition-colors ${
+                      role === "admin" ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
