@@ -11,26 +11,32 @@ import {
   UserCheck,
   UserRoundX,
   Linkedin,
+  PencilLine,
+  Calendar,
 } from "lucide-react";
 
-
-import { positions as initialPositions } from "@/components/data/positions"; 
-import { applications as initialApplications } from "@/components/data/applications"; 
-
-
+import { positions as initialPositions } from "@/components/data/positions";
+import { applications as initialApplications } from "@/components/data/applications";
 
 import Link from "next/link";
 import DashSubTitle from "@/components/Shared/DashSubTitle";
 import EmptyState from "@/components/Career/EditPositons/EmptyState";
 import { StatusBadge } from "@/components/Career/EditPositons/StatusBadge";
 import { AddPositionModal } from "@/components/Career/EditPositons/AddPositionModal";
-import { Application, ApplicationStatus, Position } from "@/components/types/career";
+
+import {
+  Application,
+  ApplicationStatus,
+  Position,
+} from "@/components/types/career";
+import { EditPositionModal } from "@/components/Career/EditPositons/EditPositionModal";
 
 export default function AdminDashboard() {
   const [positions, setPositions] = useState<Position[]>(initialPositions);
   const [applications, setApplications] =
     useState<Application[]>(initialApplications);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [editingPosition, setEditingPosition] = useState<Position | null>(null);
 
   const handleAddPosition = (newPosition: Omit<Position, "id">) => {
     const position: Position = {
@@ -38,6 +44,15 @@ export default function AdminDashboard() {
       id: `position-${Date.now()}`,
     };
     setPositions([...positions, position]);
+  };
+
+  const handleEditPosition = (updatedPosition: Position) => {
+    setPositions(
+      positions.map((pos) =>
+        pos.id === updatedPosition.id ? updatedPosition : pos
+      )
+    );
+    setEditingPosition(null);
   };
 
   const handleDeletePosition = (id: string) => {
@@ -69,6 +84,7 @@ export default function AdminDashboard() {
       )
     );
   };
+
   const handleRejectCandidate = (applicationId: string) => {
     setApplications(
       applications.map((app) =>
@@ -85,17 +101,28 @@ export default function AdminDashboard() {
     );
   };
 
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(date);
+  };
+
   const getApplicationsForPosition = (positionId: string) => {
     return applications.filter((app) => app.positionId === positionId);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 text-white p-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen text-white px-0 py-2  md:p-4 lg:p-6">
+      <div className="max-w-[1400px] mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div>
             <DashSubTitle text="Position" />
-            <p className="text-gray-400 mt-2">
+            <p className="text-gray-400 mt-2 hidden md:block">
               Manage job positions and track applications
             </p>
           </div>
@@ -103,7 +130,7 @@ export default function AdminDashboard() {
             onClick={() => setIsAddModalOpen(true)}
             className="primaryButton flex items-center"
           >
-            <Plus className="w-5 h-5" />
+            <Plus className="md:w-5 md:h-5  w-4 h-4" />
             Add Position
           </button>
         </div>
@@ -115,7 +142,7 @@ export default function AdminDashboard() {
             {positions.map((position) => (
               <div
                 key={position.id}
-                className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-800/50 shadow-xl hover:border-purple-500/30 transition-all duration-300"
+                className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 md:p-8 border border-gray-800/50 shadow-xl hover:border-purple-500/30 transition-all duration-300"
               >
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
                   <div>
@@ -150,6 +177,12 @@ export default function AdminDashboard() {
                   </div>
                   <div className="flex gap-3">
                     <button
+                      onClick={() => setEditingPosition(position)}
+                      className="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-lg hover:bg-blue-500/30 transition-all duration-300"
+                    >
+                      <PencilLine className="w-5 h-5" />
+                    </button>
+                    <button
                       onClick={() => handleToggleStatus(position.id)}
                       className={`px-4 py-2 rounded-lg transition-all duration-300 ${
                         position.status === "active"
@@ -180,13 +213,14 @@ export default function AdminDashboard() {
                   </h4>
                   <div className="overflow-x-auto">
                     {getApplicationsForPosition(position.id).length > 0 ? (
-                      <table className="w-full">
+                      <table className="w-full ">
                         <thead>
                           <tr className="text-left border-b border-gray-800">
                             <th className="pb-4 px-4">Name</th>
                             <th className="pb-4 px-4">Email</th>
                             <th className="pb-4 px-4">Phone</th>
                             <th className="pb-4 px-4">Status</th>
+                            <th className="pb-4 px-4">Submitted</th>
                             <th className="pb-4 px-4">Resume</th>
                             <th className="pb-4 px-4">Portfolio</th>
                             <th className="pb-4 px-4">Actions</th>
@@ -199,13 +233,25 @@ export default function AdminDashboard() {
                                 key={app.id}
                                 className="border-b border-gray-800 hover:bg-gray-800/30 transition-colors"
                               >
-                                <td className="py-4 px-4 font-medium">
+                                <td className="py-4 px-4 font-medium truncate">
                                   {app.fullName}
                                 </td>
-                                <td className="py-4 px-4">{app.email}</td>
-                                <td className="py-4 px-4">{app.phone}</td>
+                                <td className="py-4 px-4 truncate">
+                                  {app.email}
+                                </td>
+                                <td className="py-4 px-4 truncate">
+                                  {app.phone}
+                                </td>
                                 <td className="py-4 px-4">
-                                  <StatusBadge status={app.status as ApplicationStatus} />
+                                  <StatusBadge
+                                    status={app.status as ApplicationStatus}
+                                  />
+                                </td>
+                                <td className="py-4 px-4">
+                                  <div className="flex items-center gap-2 text-gray-400 truncate">
+                                    <Calendar className="w-4 h-4" />
+                                    <span>{formatDate(app.submittedAt)}</span>
+                                  </div>
                                 </td>
                                 <td className="py-4 px-4">
                                   <Link
@@ -231,7 +277,6 @@ export default function AdminDashboard() {
                                 </td>
                                 <td className="py-4 px-4">
                                   <div className="flex items-center gap-2">
-                                    {/* Linkedin */}
                                     <Link href={app.linkedIn} target="_blank">
                                       <button
                                         className={
@@ -241,7 +286,6 @@ export default function AdminDashboard() {
                                         <Linkedin className="w-5 h-5" />
                                       </button>
                                     </Link>
-                                    {/* Selected */}
                                     <button
                                       onClick={() =>
                                         handleSelectCandidate(app.id)
@@ -259,7 +303,6 @@ export default function AdminDashboard() {
                                     >
                                       <UserCheck className="w-5 h-5" />
                                     </button>
-                                    {/* Rejected */}
                                     <button
                                       onClick={() =>
                                         handleRejectCandidate(app.id)
@@ -277,7 +320,6 @@ export default function AdminDashboard() {
                                     >
                                       <UserRoundX className="w-5 h-5" />
                                     </button>
-
                                     <button
                                       onClick={() => {
                                         // Handle delete application
@@ -314,6 +356,15 @@ export default function AdminDashboard() {
         onClose={() => setIsAddModalOpen(false)}
         onAdd={handleAddPosition}
       />
+
+      {editingPosition && (
+        <EditPositionModal
+          isOpen={true}
+          onClose={() => setEditingPosition(null)}
+          onEdit={handleEditPosition}
+          position={editingPosition}
+        />
+      )}
     </div>
   );
 }

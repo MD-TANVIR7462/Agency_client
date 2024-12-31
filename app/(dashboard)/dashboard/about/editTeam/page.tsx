@@ -63,12 +63,12 @@ export default function EditTeamPage() {
     <div className="bg-gray-950 p-0 md:p-4 lg:p-8">
       <div className="max-w-[1900px] mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <DashSubTitle text="Team"/>
+          <DashSubTitle text="Team" />
           <button
             onClick={handleAddNew}
-            className="flex items-center gap-2 px-4 py-2 bg-purple-400/10 text-purple-400 rounded-md hover:bg-purple-400/20 transition-colors"
+            className="flex primaryButton items-center"
           >
-            <Plus className="w-5 h-5" />
+            <Plus className="md:w-5 md:h-5  w-4 h-4" />
             Add Member
           </button>
         </div>
@@ -78,7 +78,6 @@ export default function EditTeamPage() {
           onClose={() => setIsDetailsOpen(false)}
         />
         <TeamMembersTable
-
           members={members}
           onEdit={handleEdit}
           onViewDetails={handleViewDetails}

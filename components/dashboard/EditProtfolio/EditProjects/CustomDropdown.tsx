@@ -14,9 +14,9 @@ interface CustomDropdownProps {
 }
 
 const options: DropdownOption[] = [
-  { value: "all", label: "All Projects" },
-  { value: "active", label: "Active Projects" },
-  { value: "inactive", label: "Inactive Projects" },
+  { value: "all", label: "All" },
+  { value: "active", label: "Active" },
+  { value: "inactive", label: "Inactive" },
 ];
 
 export function CustomDropdown({
@@ -51,7 +51,7 @@ export function CustomDropdown({
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-2 border border-purple-400/30 rounded-md text-purple-400 hover:bg-purple-400/10 transition-colors"
+        className="flex items-center gap-1 px-2 py-2  md:gap-2 md:px-4 md:py-2 border border-purple-400/30 rounded-md text-purple-400 hover:bg-purple-400/10 transition-colors"
       >
         <Filter className="w-4 h-4" />
         <span>{getCurrentLabel()}</span>
@@ -71,7 +71,7 @@ export function CustomDropdown({
                 onFilterChange(option.value);
                 setIsOpen(false);
               }}
-              className={`w-full px-4 py-2 text-left text-white hover:bg-purple-400/10 transition-colors ${
+              className={`w-full px-2 md:px-4 py-1 md:py-2 text-left text-white hover:bg-purple-400/10 transition-colors text-sm md:text-base ${
                 currentFilter === option.value ? "bg-purple-400/20" : ""
               }`}
             >
