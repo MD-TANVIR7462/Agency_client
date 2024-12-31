@@ -45,7 +45,7 @@ export default function Profile() {
   };
 
   return (
-    <div className="bg-gray-900 rounded-xl p-6 shadow-lg">
+    <div className="bg-gray-900/50 rounded-xl  p-4 md:p-6 shadow-lg ring-1 ring-purple-500/20">
       <div className="flex items-start justify-between">
         <div className="flex items-center space-x-6">
           <div className="relative">
@@ -64,25 +64,25 @@ export default function Profile() {
             </button>
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-white">
+            <h2 className="text-lg sm:text-2xl font-bold text-white">
               {profileData.name}
             </h2>
-            <p className="text-gray-400">{profileData.role}</p>
-            <p className="text-gray-400 mt-1">{profileData.email}</p>
+            <p className="text-sm sm:text-base text-gray-400">{profileData.role}</p>
+            <p className="text-sm sm:text-base text-gray-400 mt-1">{profileData.email}</p>
           </div>
         </div>
       </div>
 
       <div className="mt-8 grid grid-cols-2 gap-4">
-        <div className="bg-gray-800 p-4 rounded-lg">
+        <div className="bg-gray-800 p-3 md:p-4 rounded-lg">
           <h3 className="text-sm font-medium text-gray-400">Location</h3>
-          <p className="mt-1 text-lg font-semibold text-white">
+          <p className="mt-1 text-sm sm:text-lg font-semibold text-white">
             {profileData.location}
           </p>
         </div>
-        <div className="bg-gray-800 p-4 rounded-lg">
+        <div className="bg-gray-800 p-3 md:p-4 rounded-lg">
           <h3 className="text-sm font-medium text-gray-400">Phone</h3>
-          <p className="mt-1 text-lg font-semibold text-white">
+          <p className="mt-1 text-xs sm:text-lg font-semibold text-white">
             {profileData.phone}
           </p>
         </div>

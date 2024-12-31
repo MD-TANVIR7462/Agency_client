@@ -8,7 +8,6 @@ import {
   ChevronDown,
   Home,
   Settings,
-  Users,
   Briefcase,
   Phone,
   Menu as MenuIcon,
@@ -16,11 +15,11 @@ import {
   Layout,
   Wrench,
   Info,
-  FileText,
   UserPlus,
   ArrowUpRight,
   LogOut,
   LayoutDashboard,
+  User,
 } from "lucide-react";
 
 const menuItems = [
@@ -126,6 +125,16 @@ export default function Sidebar() {
                 <div className="flex items-center gap-2">
                   <LayoutDashboard className="w-5 h-5" />
                   <span>Dashboard</span>
+                </div>
+              </button>
+            </Link>
+            <Link href={"/dashboard/admin"}>
+              <button
+                className={`w-full flex items-center justify-between p-2 rounded-md transition-colors mb-2`}
+              >
+                <div className="flex items-center gap-2">
+                  <User className="w-5 h-5" />
+                  <span>Profile</span>
                 </div>
               </button>
             </Link>

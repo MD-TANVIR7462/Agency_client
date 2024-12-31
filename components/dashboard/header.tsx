@@ -2,10 +2,11 @@
 
 import { Bell, User, Search } from "lucide-react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Header() {
   return (
-    <motion.header 
+    <motion.header
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       className="bg-gray-950  text-white p-4 flex justify-between items-center border-b border-gray-800 sticky  top-0 z-20"
@@ -26,11 +27,19 @@ export default function Header() {
           <Bell className="w-6 h-6" />
           <span className="absolute top-0 right-0 w-2 h-2 bg-purple-400 rounded-full"></span>
         </button>
-        
+
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-purple-400 rounded-full flex items-center justify-center">
+        <Link href={"/dashboard/admin"}>
+        <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            title="Edit Banner"
+            className="w-10 h-10 bg-purple-400 rounded-full flex items-center justify-center hover:bg-purple-500"
+          >
             <User className="w-6 h-6" />
-          </div>
+          </motion.button></Link>
           <div className="hidden md:block">
             <p className="font-medium">Admin User</p>
             <p className="text-sm text-gray-400">admin@example.com</p>

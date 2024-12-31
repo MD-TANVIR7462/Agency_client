@@ -19,7 +19,7 @@ export function TestimonialsTable({
   onDelete
 }: TestimonialsTableProps) {
   return (
-    <div className="w-full overflow-x-auto bg-gray-900/50 rounded-lg shadow-xl text-sm">
+    <div className="w-full overflow-x-auto bg-gray-900/50 rounded-lg shadow-xl text-sm ring-1 ring-purple-500/20">
       <table className="w-full border-collapse">
         <thead>
           <tr className="border-b border-purple-400/20">

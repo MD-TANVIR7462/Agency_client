@@ -30,10 +30,10 @@ export default function AdminDashboard() {
   if (!isClient) return null; // Prevent hydration mismatch
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white p-8">
+    <div className="min-h-screen bg-gray-950 text-white p-0 md:p-4 lg:p-8">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Admin Dashboard</h1>
+          <h1 className="text-2xl md:text-3xl font-bold">Admin Profile</h1>
           <CreateAdminButton onClick={() => setIsCreateModalOpen(true)} />
         </div>
 
