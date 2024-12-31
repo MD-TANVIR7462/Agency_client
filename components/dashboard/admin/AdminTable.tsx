@@ -1,9 +1,9 @@
 "use client";
 import { FC } from "react";
 import { Edit, Trash2 } from "lucide-react";
-
 import Image from "next/image";
 import { Admin } from "@/components/types/Admin";
+import { getRole } from "@/lib/logIn_admin_superAdmin_utils/auth";
 
 interface AdminTableProps {
   admins: Admin[];
@@ -11,6 +11,8 @@ interface AdminTableProps {
   onDelete: (admin: Admin) => void;
   onStatusChange: (admin: Admin) => void;
 }
+
+const role = getRole();
 
 const AdminTable: FC<AdminTableProps> = ({
   admins,
@@ -52,7 +54,6 @@ const AdminTable: FC<AdminTableProps> = ({
                 </div>
               </td>
               <td className="p-4 text-gray-300">{admin.role}</td>
-
               <td className="p-4">
                 <select
                   className="bg-gray-900 text-white border border-purple-400/40 rounded px-2 py-1"
@@ -72,7 +73,10 @@ const AdminTable: FC<AdminTableProps> = ({
                 <div className="flex gap-2">
                   <button
                     onClick={() => onEdit(admin)}
-                    className="p-2 text-purple-400 hover:bg-purple-400/10 rounded-full transition-colors"
+                    className={`p-2 text-purple-400 hover:bg-purple-400/10 rounded-full transition-colors ${
+                      role === "admin" ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
+                    disabled={role === "admin"}
                   >
                     <Edit className="w-4 h-4" />
                   </button>

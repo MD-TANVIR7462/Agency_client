@@ -32,7 +32,6 @@ export default function LoginForm() {
             required
             className="customInput"
             placeholder="Email address"
-            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -47,7 +46,7 @@ export default function LoginForm() {
             required
             className="customInput"
             placeholder="Password"
-            value={password}
+
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>

@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+// import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import {
   ChevronDown,
   Home,
@@ -21,6 +22,7 @@ import {
   LayoutDashboard,
   User,
 } from "lucide-react";
+
 
 const menuItems = [
   {
@@ -72,6 +74,7 @@ export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const pathname = usePathname();
+  const router = useRouter()
 
   const toggleSubmenu = (title: string) => {
     setOpenSubmenu(openSubmenu === title ? null : title);
@@ -91,6 +94,12 @@ export default function Sidebar() {
   };
 
 
+  const handleLogout = ()=>{
+
+    localStorage.removeItem("user")
+    router.replace("/")
+  
+  }
 
   return (
     <>
@@ -200,19 +209,20 @@ export default function Sidebar() {
                 </div>
               </button>
             </Link>
-           <Link href={'/dashboard/settings'}>
-           <button
-              className={`w-full flex items-center justify-between p-2 rounded-md transition-colors ${
-                pathname.startsWith("siteSettings")
-                  ? "bg-purple-400/20 text-white"
-                  : "hover:bg-gray-800"
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <Settings className="w-5 h-5" />
-                <span>Website Settings</span>
-              </div>
-            </button></Link>
+            <Link href={"/dashboard/settings"}>
+              <button
+                className={`w-full flex items-center justify-between p-2 rounded-md transition-colors ${
+                  pathname.startsWith("siteSettings")
+                    ? "bg-purple-400/20 text-white"
+                    : "hover:bg-gray-800"
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <Settings className="w-5 h-5" />
+                  <span>Website Settings</span>
+                </div>
+              </button>
+            </Link>
           </nav>
           <div className="relative top-8">
             <Link href={"/"}>
@@ -221,12 +231,11 @@ export default function Sidebar() {
                 <span className="text-sm font-medium">Exit</span>
               </button>
             </Link>
-            <Link href={"/"}>
-              <button className="mt-[5%] w-full flex items-center gap-2 px-2 py-2 ring-2 text-white rounded-md hover:bg-red-500 transition-colors">
-                <LogOut className="w-4 h-4" />
-                <span className="text-sm font-medium">Log Out</span>
-              </button>
-            </Link>
+
+            <button onClick={handleLogout} className="mt-[5%] w-full flex items-center gap-2 px-2 py-2 ring-2 text-white rounded-md hover:bg-red-500 transition-colors">
+              <LogOut className="w-4 h-4" />
+              <span className="text-sm font-medium">Log Out</span>
+            </button>
           </div>
         </div>
       </motion.div>

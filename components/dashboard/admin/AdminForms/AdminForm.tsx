@@ -19,7 +19,6 @@ const AdminForm: FC<AdminFormProps> = ({ admin, onSubmit, onClose }) => {
       name: formData.get("name") as string,
       email: formData.get("email") as string,
       role: formData.get("role") as "admin" | "super_admin",
-      department: formData.get("department") as string,
       status: formData.get("status") as "active" | "inactive",
       location: formData.get("location") as string,
       phone: formData.get("phone") as string,
@@ -91,18 +90,6 @@ const AdminForm: FC<AdminFormProps> = ({ admin, onSubmit, onClose }) => {
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-purple-400 mb-1">
-            Department
-          </label>
-          <input
-            type="text"
-            name="department"
-            defaultValue={admin?.department}
-            className="customInput"
-            required
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
             Location
           </label>
           <input
@@ -113,8 +100,6 @@ const AdminForm: FC<AdminFormProps> = ({ admin, onSubmit, onClose }) => {
             required
           />
         </div>
-      </div>
-
       <div>
         <label className="block text-sm font-medium text-purple-400 mb-1">
           Phone
@@ -127,6 +112,8 @@ const AdminForm: FC<AdminFormProps> = ({ admin, onSubmit, onClose }) => {
           required
         />
       </div>
+      </div>
+
 
       <div className="flex justify-end gap-3 pt-4">
         <button
