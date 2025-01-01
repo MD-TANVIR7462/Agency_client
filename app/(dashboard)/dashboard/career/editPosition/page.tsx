@@ -30,6 +30,7 @@ import {
   Position,
 } from "@/components/types/career";
 import { EditPositionModal } from "@/components/Career/EditPositons/EditPositionModal";
+import { div } from "framer-motion/client";
 
 export default function AdminDashboard() {
   const [positions, setPositions] = useState<Position[]>(initialPositions);
@@ -37,7 +38,6 @@ export default function AdminDashboard() {
     useState<Application[]>(initialApplications);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingPosition, setEditingPosition] = useState<Position | null>(null);
-
   const handleAddPosition = (newPosition: Omit<Position, "id">) => {
     const position: Position = {
       ...newPosition,
@@ -113,7 +113,15 @@ export default function AdminDashboard() {
   };
 
   const getApplicationsForPosition = (positionId: string) => {
-    return applications.filter((app) => app.positionId === positionId);
+    const allApplications = applications.filter(
+      (app) => app.positionId === positionId
+    );
+    const sliceApplication = allApplications.slice(0, 2);
+    const applicationData = {
+      allApplications,
+      sliceApplication,
+    };
+    return applicationData;
   };
 
   return (
@@ -208,11 +216,17 @@ export default function AdminDashboard() {
                       Applications
                     </span>
                     <span className="text-sm bg-gray-800 px-2 py-1 rounded-full">
-                      {getApplicationsForPosition(position.id).length}
+                      {
+                        getApplicationsForPosition(position.id).allApplications
+                          .length
+                      }
                     </span>
                   </h4>
                   <div className="overflow-x-auto">
-                    {getApplicationsForPosition(position.id).length > 0 ? (
+                    {getApplicationsForPosition(position.id).sliceApplication
+                      .length > 0 &&
+                    getApplicationsForPosition(position.id).sliceApplication
+                      .length < 3 ? (
                       <table className="w-full ">
                         <thead>
                           <tr className="text-left border-b border-gray-800">
@@ -227,114 +241,124 @@ export default function AdminDashboard() {
                           </tr>
                         </thead>
                         <tbody>
-                          {getApplicationsForPosition(position.id).map(
-                            (app) => (
-                              <tr
-                                key={app.id}
-                                className="border-b border-gray-800 hover:bg-gray-800/30 transition-colors"
-                              >
-                                <td className="py-4 px-4 font-medium truncate">
-                                  {app.fullName}
-                                </td>
-                                <td className="py-4 px-4 truncate">
-                                  {app.email}
-                                </td>
-                                <td className="py-4 px-4 truncate">
-                                  {app.phone}
-                                </td>
-                                <td className="py-4 px-4">
-                                  <StatusBadge
-                                    status={app.status as ApplicationStatus}
-                                  />
-                                </td>
-                                <td className="py-4 px-4">
-                                  <div className="flex items-center gap-2 text-gray-400 truncate">
-                                    <Calendar className="w-4 h-4" />
-                                    <span>{formatDate(app.submittedAt)}</span>
-                                  </div>
-                                </td>
-                                <td className="py-4 px-4">
-                                  <Link
-                                    href={app.resumeUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-purple-400 hover:text-purple-300 flex items-center gap-2 group"
-                                  >
-                                    Resume
-                                    <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          {getApplicationsForPosition(
+                            position.id
+                          ).sliceApplication.map((app) => (
+                            <tr
+                              key={app.id}
+                              className="border-b border-gray-800 hover:bg-gray-800/30 transition-colors"
+                            >
+                              <td className="py-4 px-4 font-medium truncate">
+                                {app.fullName}
+                              </td>
+                              <td className="py-4 px-4 truncate">
+                                {app.email}
+                              </td>
+                              <td className="py-4 px-4 truncate">
+                                {app.phone}
+                              </td>
+                              <td className="py-4 px-4">
+                                <StatusBadge
+                                  status={app.status as ApplicationStatus}
+                                />
+                              </td>
+                              <td className="py-4 px-4">
+                                <div className="flex items-center gap-2 text-gray-400 truncate">
+                                  <Calendar className="w-4 h-4" />
+                                  <span>{formatDate(app.submittedAt)}</span>
+                                </div>
+                              </td>
+                              <td className="py-4 px-4">
+                                <Link
+                                  href={app.resumeUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-purple-400 hover:text-purple-300 flex items-center gap-2 group"
+                                >
+                                  Resume
+                                  <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                              </td>
+                              <td className="py-4 px-4">
+                                <Link
+                                  href={app.portfolio}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-purple-400 hover:text-purple-300 flex items-center gap-2 group"
+                                >
+                                  Portfolio
+                                  <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                              </td>
+                              <td className="py-4 px-4">
+                                <div className="flex items-center gap-2">
+                                  <Link href={app.linkedIn} target="_blank">
+                                    <button
+                                      className={
+                                        "p-2 rounded-lg transition-all duration-300 bg-blue-500/20 text-blue-400 hover:bg-blue-500/30"
+                                      }
+                                    >
+                                      <Linkedin className="w-5 h-5" />
+                                    </button>
                                   </Link>
-                                </td>
-                                <td className="py-4 px-4">
-                                  <Link
-                                    href={app.portfolio}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-purple-400 hover:text-purple-300 flex items-center gap-2 group"
+                                  <button
+                                    onClick={() =>
+                                      handleSelectCandidate(app.id)
+                                    }
+                                    className={`p-2 rounded-lg transition-all duration-300 ${
+                                      app.status === "selected"
+                                        ? "bg-green-500/20 text-green-400 hover:bg-green-500/30"
+                                        : "bg-gray-800 text-gray-400 hover:bg-gray-700"
+                                    }`}
+                                    title={
+                                      app.status === "selected"
+                                        ? "Unselect Candidate"
+                                        : "Select Candidate"
+                                    }
                                   >
-                                    Portfolio
-                                    <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                  </Link>
-                                </td>
-                                <td className="py-4 px-4">
-                                  <div className="flex items-center gap-2">
-                                    <Link href={app.linkedIn} target="_blank">
-                                      <button
-                                        className={
-                                          "p-2 rounded-lg transition-all duration-300 bg-blue-500/20 text-blue-400 hover:bg-blue-500/30"
-                                        }
-                                      >
-                                        <Linkedin className="w-5 h-5" />
-                                      </button>
-                                    </Link>
-                                    <button
-                                      onClick={() =>
-                                        handleSelectCandidate(app.id)
-                                      }
-                                      className={`p-2 rounded-lg transition-all duration-300 ${
-                                        app.status === "selected"
-                                          ? "bg-green-500/20 text-green-400 hover:bg-green-500/30"
-                                          : "bg-gray-800 text-gray-400 hover:bg-gray-700"
-                                      }`}
-                                      title={
-                                        app.status === "selected"
-                                          ? "Unselect Candidate"
-                                          : "Select Candidate"
-                                      }
-                                    >
-                                      <UserCheck className="w-5 h-5" />
-                                    </button>
-                                    <button
-                                      onClick={() =>
-                                        handleRejectCandidate(app.id)
-                                      }
-                                      className={`p-2 rounded-lg transition-all duration-300 ${
-                                        app.status === "rejected"
-                                          ? "bg-red-500/20 text-red-400 hover:bg-red-500/30"
-                                          : "bg-gray-800 text-gray-400 hover:bg-gray-700"
-                                      }`}
-                                      title={
-                                        app.status === "rejected"
-                                          ? "UnReject Candidate"
-                                          : "Reject Candidate"
-                                      }
-                                    >
-                                      <UserRoundX className="w-5 h-5" />
-                                    </button>
-                                    <button
-                                      onClick={() => {
-                                        // Handle delete application
-                                      }}
-                                      className="p-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-all duration-300"
-                                      title="Delete Application"
-                                    >
-                                      <Trash2 className="w-5 h-5" />
-                                    </button>
-                                  </div>
-                                </td>
-                              </tr>
-                            )
-                          )}
+                                    <UserCheck className="w-5 h-5" />
+                                  </button>
+                                  <button
+                                    onClick={() =>
+                                      handleRejectCandidate(app.id)
+                                    }
+                                    className={`p-2 rounded-lg transition-all duration-300 ${
+                                      app.status === "rejected"
+                                        ? "bg-red-500/20 text-red-400 hover:bg-red-500/30"
+                                        : "bg-gray-800 text-gray-400 hover:bg-gray-700"
+                                    }`}
+                                    title={
+                                      app.status === "rejected"
+                                        ? "UnReject Candidate"
+                                        : "Reject Candidate"
+                                    }
+                                  >
+                                    <UserRoundX className="w-5 h-5" />
+                                  </button>
+                                  <button
+                                    onClick={() => {
+                                      // Handle delete application
+                                    }}
+                                    className="p-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-all duration-300"
+                                    title="Delete Application"
+                                  >
+                                    <Trash2 className="w-5 h-5" />
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                          ))}
                         </tbody>
+                        {/* <div className="mt-2 flex w-full items-end"> */}
+                          {getApplicationsForPosition(position.id)
+                            .sliceApplication.length > 0 &&
+                            getApplicationsForPosition(position.id)
+                              .sliceApplication.length < 3 && (
+                              <button className="primaryButton">
+                                Show All
+                              </button>
+                            )}
+                        {/* </div> */}
                       </table>
                     ) : (
                       <div className="text-center py-8 bg-gray-900/30 rounded-lg border border-gray-800/50">
