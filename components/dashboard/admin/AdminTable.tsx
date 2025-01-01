@@ -74,7 +74,9 @@ const AdminTable: FC<AdminTableProps> = ({
                   <button
                     onClick={() => onEdit(admin)}
                     className={`p-2 text-purple-400 hover:bg-purple-400/10 rounded-full transition-colors ${
-                     role != "super_admin" ? "opacity-50 cursor-not-allowed" : ""
+                      role != "super_admin"
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
                     }`}
                     disabled={role != "super_admin"}
                   >
@@ -84,7 +86,9 @@ const AdminTable: FC<AdminTableProps> = ({
                     disabled={role != "super_admin"}
                     onClick={() => onDelete(admin)}
                     className={`p-2 text-red-400 hover:bg-red-400/10 rounded-full transition-colors ${
-                     role != "super_admin" ? "opacity-50 cursor-not-allowed" : ""
+                      role != "super_admin"
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
                     }`}
                   >
                     <Trash2 className="w-4 h-4" />
