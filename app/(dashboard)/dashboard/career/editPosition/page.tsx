@@ -349,16 +349,6 @@ export default function AdminDashboard() {
                             </tr>
                           ))}
                         </tbody>
-                        {/* <div className="mt-2 flex w-full items-end"> */}
-                          {getApplicationsForPosition(position.id)
-                            .sliceApplication.length > 0 &&
-                            getApplicationsForPosition(position.id)
-                              .sliceApplication.length < 3 && (
-                              <button className="primaryButton">
-                                Show All
-                              </button>
-                            )}
-                        {/* </div> */}
                       </table>
                     ) : (
                       <div className="text-center py-8 bg-gray-900/30 rounded-lg border border-gray-800/50">
@@ -368,6 +358,16 @@ export default function AdminDashboard() {
                       </div>
                     )}
                   </div>
+                </div>
+                <div className="utilityEnd">
+                  {getApplicationsForPosition(position.id).allApplications
+                    .length > 2 && (
+                    <Link
+                      href={`/dashboard/career/editPosition/${position.id}`}
+                    >
+                      <button className="primaryButton">See All</button>
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}

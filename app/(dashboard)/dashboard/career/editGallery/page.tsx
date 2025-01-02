@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { Plus } from "lucide-react";
 import { GalleryImage } from "@/components/types/Gallery";
 import { galleryImages } from "@/components/data/gallery";
@@ -9,6 +9,7 @@ import { Modal } from "@/components/Shared/Modal";
 import { GalleryForm } from "@/components/dashboard/EditCareer/EditGallery/GalleryForm";
 import { GalleryModal } from "@/components/Career/Gallery/GalleryModal";
 import DashSubTitle from "@/components/Shared/DashSubTitle";
+import LoadingState from "@/components/dashboard/EditCareer/AllApplications/LoadingState";
 
 export default function EditGalleryPage() {
   const [images, setImages] = useState<GalleryImage[]>(galleryImages);
@@ -53,52 +54,54 @@ export default function EditGalleryPage() {
 
   return (
     <div className="p-0 md:p-4 lg:p-6 ">
-      <div className=" max-w-[1900px] mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <DashSubTitle text="Gallery" />
-          <button
-            onClick={handleAdd}
-            className="primaryButton flex items-center"
+      <Suspense fallback={<LoadingState />}>
+        <div className=" max-w-[1900px] mx-auto">
+          <div className="flex justify-between items-center mb-8">
+            <DashSubTitle text="Gallery" />
+            <button
+              onClick={handleAdd}
+              className="primaryButton flex items-center"
+            >
+              <Plus className="md:w-5 md:h-5  w-4 h-4" />
+              Add Image
+            </button>
+          </div>
+
+          <GalleryTable
+            images={images}
+            onView={handleView}
+            onEdit={handleEdit}
+            onStatusChange={handleStatusChange}
+          />
+
+          <Modal
+            isOpen={isFormModalOpen}
+            onClose={() => setIsFormModalOpen(false)}
+            title={editingImage ? "Edit Image" : "Add New Image"}
           >
-            <Plus className="md:w-5 md:h-5  w-4 h-4" />
-            Add Image
-          </button>
+            <GalleryForm
+              formData={editingImage || {}}
+              onChange={setEditingImage}
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (editingImage?.url && editingImage.caption) {
+                  handleSave(editingImage as GalleryImage);
+                }
+              }}
+              onCancel={() => setIsFormModalOpen(false)}
+              isEditing={!!editingImage}
+            />
+          </Modal>
+
+          {selectedImage && (
+            <GalleryModal
+              isOpen={isViewModalOpen}
+              onClose={() => setIsViewModalOpen(false)}
+              imageUrl={selectedImage.url}
+            />
+          )}
         </div>
-
-        <GalleryTable
-          images={images}
-          onView={handleView}
-          onEdit={handleEdit}
-          onStatusChange={handleStatusChange}
-        />
-
-        <Modal
-          isOpen={isFormModalOpen}
-          onClose={() => setIsFormModalOpen(false)}
-          title={editingImage ? "Edit Image" : "Add New Image"}
-        >
-          <GalleryForm
-            formData={editingImage || {}}
-            onChange={setEditingImage}
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (editingImage?.url && editingImage.caption) {
-                handleSave(editingImage as GalleryImage);
-              }
-            }}
-            onCancel={() => setIsFormModalOpen(false)}
-            isEditing={!!editingImage}
-          />
-        </Modal>
-
-        {selectedImage && (
-          <GalleryModal
-            isOpen={isViewModalOpen}
-            onClose={() => setIsViewModalOpen(false)}
-            imageUrl={selectedImage.url}
-          />
-        )}
-      </div>
+      </Suspense>
     </div>
   );
 }

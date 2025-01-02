@@ -10,6 +10,7 @@ interface PageProps {
 }
 
 export default async function ApplicationPage({ params }: PageProps) {
+  
   return (
     <div className="min-h-screen text-white px-0 py-2 md:p-4 lg:p-6">
       <div className="max-w-[1400px] mx-auto">

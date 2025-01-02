@@ -47,7 +47,7 @@ export default async function ApplicationDetails({
         </div>
 
       </div>
-      {/* <ApplicationsTable positionId={id} /> */}
+     
     </div>
   );
 }
