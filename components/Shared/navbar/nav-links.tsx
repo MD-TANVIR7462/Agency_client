@@ -24,7 +24,6 @@ export const NavLinks = ({
     {
       href: "/services",
       label: "Services",
-      isDropdown: true,
     },
     { href: "/About", label: "About Us" },
     { href: "/Portfolio", label: "Portfolio" },
@@ -50,30 +49,7 @@ export const NavLinks = ({
             handleScroll(link.href);
           }
         };
-        // Render dropdown for "Services"
-        if (link.isDropdown) {
-          return (
-            <div key={link.label} className="relative">
-              {/* Trigger for Dropdown */}
-              <div
-                className="inline-block"
-                onMouseEnter={() => setIsDropdownOpen(true)}
-                onMouseLeave={() => setIsDropdownOpen(false)}
-              >
-                <Link
-                  href={link.href}
-                  onClick={handleLinkClick}
-                  className={`text-sm font-medium transition-colors hover:text-white ${
-                    isActive ? "text-white" : "text-gray-300"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              </div>
-            </div>
-          );
-        }
-
+  
         return (
           <Link
             key={link.label}
