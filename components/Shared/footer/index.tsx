@@ -7,6 +7,7 @@ import {
   Phone,
   MapPin,
 } from "lucide-react";
+import Link from "next/link";
 
 export const Footer = () => {
   return (
@@ -128,6 +129,11 @@ export const Footer = () => {
         <div className="mt-12 border-t border-white/10 pt-8">
           <p className="text-center text-sm text-gray-400">
             © {new Date().getFullYear()} SiSCOTEK. All rights reserved.
+          </p>
+        </div>
+        <div className="mt-2  border-white/10 ">
+          <p className="text-center text-xs text-gray-400">
+          Design and created by <Link href={"https://tanvir3.vercel.app/"} className="text-purple-400/90 hover:text-purple-500 transition-colors ">Tanvir</Link> ❤️
           </p>
         </div>
       </div>

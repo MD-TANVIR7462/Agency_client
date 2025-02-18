@@ -11,7 +11,7 @@ const SubHero = ({
   subHeroTittle?: string;
 }) => {
   return (
-    <section className="relative  sm:min-h-[60vh] overflow-hidden bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900">
+    <section className="relative  sm:h-[500px] max-h-[500px]  overflow-hidden bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900">
       <div className="absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-500/20 blur-[100px]" />
         <div className="absolute right-1/4 top-1/4 h-[300px] w-[300px] rounded-full bg-blue-500/20 blur-[80px]" />
@@ -30,7 +30,7 @@ const SubHero = ({
             {subHeroTittle ? subHeroTittle : ""}
           </p>
           <div className="mt-8">
-            <button className="group inline-flex items-center gap-2 rounded-full bg-white/10 px-8 py-3 text-white backdrop-blur-lg transition-all hover:bg-white/20">
+            <button className="group inline-flex text-sm sm:text-base items-center gap-2 rounded-full bg-white/10 px-4 py-2 sm:px-8 sm:py-3 text-white backdrop-blur-lg transition-all hover:bg-white/20">
               Get Started
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </button>
