@@ -133,7 +133,7 @@ export const Footer = () => {
         </div>
         <div className="mt-2  border-white/10 ">
           <p className="text-center text-xs text-gray-400">
-          Design and created by <Link href={"https://tanvir3.vercel.app/"} className="text-purple-400/90 hover:text-purple-500 transition-colors ">Tanvir</Link> ❤️
+          Design and created by <Link target="_blank" href={"https://tanvir3.vercel.app/"} className="text-purple-400/90 hover:text-purple-500 transition-colors ">Tanvir</Link> ❤️
           </p>
         </div>
       </div>
