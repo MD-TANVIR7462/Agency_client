@@ -1,4 +1,5 @@
 import React from 'react';
+import CareerHeroButton from '../Buttons/CareerButton';
 
 export const CareerHero = () => {
   return (
@@ -10,9 +11,7 @@ export const CareerHero = () => {
         <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-8">
           Be part of a team that's shaping the future of digital transformation. We're looking for passionate innovators.
         </p>
-        <button className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-3 rounded-lg hover:opacity-90 transition-all duration-300">
-          View Open Positions
-        </button>
+      <CareerHeroButton/>
       </div>
     </div>
   );

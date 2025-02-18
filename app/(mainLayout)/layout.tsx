@@ -1,9 +1,9 @@
 
 import type { Metadata } from "next";
-import { BackgroundEffects } from "@/components/ui/background-effects";
 import { MouseFollower } from "@/components/ui/mouse-follower";
 import { Navbar } from "@/components/Shared/navbar";
 import { Footer } from "@/components/Shared/footer";
+import ScrollButton from "@/components/ScrollButton/ScrollButtonTop";
 
 
 
@@ -21,9 +21,9 @@ export default function RootLayout({
    
       <>
         <MouseFollower />
-        <BackgroundEffects />
         <Navbar />
         <div className="bg-gray-900"> {children}</div>
+        <ScrollButton />
         <Footer />
       </>
 

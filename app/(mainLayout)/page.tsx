@@ -4,7 +4,6 @@ import { Features } from "@/components/features";
 import { Gallery } from "@/components/gallery";
 import { Testimonials } from "@/components/testimonials";
 import { TeamSection } from "@/components/About/team-section";
-
 export default function Home() {
   return (
     <>
@@ -12,9 +11,10 @@ export default function Home() {
         <Banner />
         <Services />
         <Features />
-        {/* <Gallery />
+        <Gallery />
         <TeamSection />
-        <Testimonials /> */}
+        <Testimonials />
+   
       </main>
     </>
   );
