@@ -12,9 +12,9 @@ export default function Home() {
         <Banner />
         <Services />
         <Features />
-        <Gallery />
+        {/* <Gallery />
         <TeamSection />
-        <Testimonials />
+        <Testimonials /> */}
       </main>
     </>
   );

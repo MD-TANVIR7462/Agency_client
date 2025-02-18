@@ -6,9 +6,9 @@ import { StatsSection } from "@/components/ui/stats-section";
 
 export const Banner = () => {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900">
+    <div className="relative max-h-[1200px]  overflow-hidden bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900">
       <div className="relative z-10 mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
-        <div className="flex min-h-screen items-center py-20">
+        <div className="flex min-h-[1000px] max-h-[1200px] items-center py-20">
           <div className="grid gap-12 lg:grid-cols-2">
             {/* Left Column - Content */}
             <div className="flex flex-col justify-center">
@@ -31,11 +31,11 @@ export const Banner = () => {
               </p>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                <button className="group flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 px-8 py-4 text-white transition-all hover:opacity-90">
+                <button className="group flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 px-8 py-4 text-white transition-all hover:opacity-90">
                   Start Your Journey
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
-                <button className="rounded-full border border-white/20 bg-white/5 px-8 py-4 text-white backdrop-blur-lg transition-all hover:bg-white/10">
+                <button className="rounded-lg border border-white/20 bg-white/5 px-8 py-4 text-white backdrop-blur-lg transition-all hover:bg-white/10">
                   View Portfolio
                 </button>
               </div>

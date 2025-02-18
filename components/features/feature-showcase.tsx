@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { CheckCircle } from "lucide-react";
+import Link from "next/link";
 
 const benefits = [
   "Advanced Analytics Dashboard",
@@ -62,9 +63,9 @@ export const FeatureShowcase = () => {
         </ul>
 
         <div className="mt-8">
-          <button className="rounded-full bg-gradient-to-r from-purple-500 to-blue-500 px-8 py-3 text-white transition-opacity hover:opacity-90">
+         <Link href="/About"> <button className="rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 px-8 py-3 text-white transition-opacity hover:opacity-90">
             Learn More
-          </button>
+          </button></Link>
         </div>
       </motion.div>
     </div>
