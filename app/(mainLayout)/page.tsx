@@ -14,7 +14,7 @@ export default function Home() {
   const bannerActive: bannerActive = {
     banner1: true,
     banner2: false,
-  } ;
+  };
   return (
     <>
       <main>
