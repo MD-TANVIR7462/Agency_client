@@ -1,5 +1,5 @@
 "use client";
-import { Banner } from "@/components/banner";
+import { Banner } from "@/components/Banner/banner";
 import { EditBannerForm } from "@/components/dashboard/EditHome/EditBannerFrom";
 import React from "react";
 

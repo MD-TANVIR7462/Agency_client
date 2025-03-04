@@ -1,7 +1,7 @@
 
 import { HeroImage } from "@/components/ui/hero-image";
 import { StatsSection } from "@/components/ui/stats-section";
-import BannerButton from "./Buttons/BannerButton";
+import BannerButton from "../Buttons/BannerButton";
 
 export const Banner = () => {
   
