@@ -20,6 +20,7 @@ export default function Home() {
       <main>
         {bannerActive?.banner1 === true && <Banner />}
         {bannerActive?.banner2 === true && <Banner2 />}
+        {/* <Banner2/> */}
         <Services />
         <Features />
         <Gallery />

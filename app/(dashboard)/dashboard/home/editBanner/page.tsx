@@ -1,5 +1,6 @@
 "use client";
 import { Banner } from "@/components/Banner/banner";
+import { Banner2 } from "@/components/Banner/Banner2";
 import { EditBannerForm } from "@/components/dashboard/EditHome/EditBannerFrom";
 import React from "react";
 
@@ -25,6 +26,7 @@ const EditBannerPage = () => {
   return (
     <div className="relative">
       <Banner />
+      <Banner2 />
       <EditBannerForm initialData={initialData} onSubmit={handleBannerUpdate} />
     </div>
   );
