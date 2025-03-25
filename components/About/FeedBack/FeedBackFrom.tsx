@@ -1,10 +1,9 @@
-"use client"
+"use client";
 import { type FormEvent, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Testimonial } from "@/components/types/Testimonial";
 import { Modal } from "@/components/Shared/Modal";
-
-
+import handleUploads from "@/lib/handleImgUplods";
 
 interface TestimonialFormProps {
   isOpen: boolean;
@@ -20,11 +19,12 @@ export const TestimonialForm = ({
   const [imageError, setImageError] = useState<string>("");
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isLoading, setIsloading] = useState(false);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     setImageError("");
-    
+
     if (!file) {
       setPreviewUrl("");
       return;
@@ -49,7 +49,6 @@ export const TestimonialForm = ({
       }
       return;
     }
-
     // Create preview URL
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -60,22 +59,26 @@ export const TestimonialForm = ({
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsloading(true);
     const formData = new FormData(e.currentTarget);
-    const file = formData.get("image") as File;
+    const file = formData.get("image");
 
     if (!file || !(file instanceof File)) {
       setImageError("Please select an image");
       return;
     }
+    //cludinery ........
+    const imgLink = await handleUploads(file);
 
     const data: Partial<Testimonial> = {
       content: formData.get("content") as string,
       author: formData.get("author") as string,
       role: formData.get("role") as string,
-      image: previewUrl, // In a real app, you'd upload this file to a server and get a URL
+      image: imgLink.secure_url, // In a real app, you'd upload this file to a server and get a URL
       status: "inactive",
     };
-    
+
+    setIsloading(false);
     onSubmit(data);
     onClose();
     setPreviewUrl("");
@@ -85,11 +88,7 @@ export const TestimonialForm = ({
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      title="Submit Your Review"
-    >
+    <Modal isOpen={isOpen} onClose={onClose} title="Submit Your Review">
       <motion.form
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -97,7 +96,7 @@ export const TestimonialForm = ({
         onSubmit={handleSubmit}
       >
         <div>
-          <label 
+          <label
             htmlFor="content"
             className="block text-sm font-medium text-purple-400 mb-1"
           >
@@ -114,7 +113,7 @@ export const TestimonialForm = ({
         </div>
 
         <div>
-          <label 
+          <label
             htmlFor="author"
             className="block text-sm font-medium text-purple-400 mb-1"
           >
@@ -130,7 +129,7 @@ export const TestimonialForm = ({
         </div>
 
         <div>
-          <label 
+          <label
             htmlFor="role"
             className="block text-sm font-medium text-purple-400 mb-1"
           >
@@ -147,7 +146,7 @@ export const TestimonialForm = ({
         </div>
 
         <div>
-          <label 
+          <label
             htmlFor="image"
             className="block text-sm font-medium text-purple-400 mb-1"
           >
@@ -158,7 +157,7 @@ export const TestimonialForm = ({
             id="image"
             name="image"
             ref={fileInputRef}
-            accept="image/jpeg,image/jpg,image/png"
+            accept="image/jpeg,image/jpg,image/png,"
             onChange={handleImageChange}
             className="w-full bg-gray-900 border border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400 file:text-gray-950 hover:file:bg-purple-500"
             required
@@ -168,9 +167,9 @@ export const TestimonialForm = ({
           )}
           {previewUrl && (
             <div className="mt-2">
-              <img 
-                src={previewUrl} 
-                alt="Preview" 
+              <img
+                src={previewUrl}
+                alt="Preview"
                 className="w-20 h-20 object-cover rounded-lg"
               />
             </div>
@@ -193,7 +192,7 @@ export const TestimonialForm = ({
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            Submit Review
+            {isLoading ? "Processing..." : "Submit Review"}
           </motion.button>
         </div>
       </motion.form>

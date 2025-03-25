@@ -32,6 +32,7 @@ export default function LoginForm() {
             required
             className="customInput"
             placeholder="Email address"
+
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -46,17 +47,14 @@ export default function LoginForm() {
             required
             className="customInput"
             placeholder="Password"
-
+     
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
       </div>
 
       <div>
-        <button
-          type="submit"
-          className="primaryButton w-full"
-        >
+        <button type="submit" className="primaryButton w-full">
           Sign in
         </button>
       </div>

@@ -10,12 +10,13 @@ export default function CreateAdminForm({ onSubmit }: CreateAdminFormProps) {
     fullName: "",
     email: "",
     password: "",
-    role: "admin",
+    role: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
+    const data =  onSubmit(formData);
+    console.log(data)
   };
 
   return (
@@ -33,7 +34,7 @@ export default function CreateAdminForm({ onSubmit }: CreateAdminFormProps) {
 
           <input
             type="file"
-            accept="image/*"
+            accept=".jpeg,.png,.jpg"
             className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400/40 file:text-white hover:file:bg-purple-400/50  transition-colors "
           />
         </div>
