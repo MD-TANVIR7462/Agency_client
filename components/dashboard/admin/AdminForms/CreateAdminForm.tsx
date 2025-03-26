@@ -11,6 +11,7 @@ export default function CreateAdminForm({ onSubmit }: CreateAdminFormProps) {
     email: "",
     password: "",
     role: "",
+    image:''
   });
 
   const handleSubmit = (e: React.FormEvent) => {

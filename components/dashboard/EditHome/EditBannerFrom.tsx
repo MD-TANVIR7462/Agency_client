@@ -1,8 +1,9 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Pencil } from "lucide-react";
 import { Modal } from "@/components/Shared/Modal";
+import handleUploads from "@/lib/handleImgUplods";
 
 interface BannerData {
   title1: string;
@@ -16,38 +17,81 @@ interface EditBannerFormProps {
   onSubmit: (data: BannerData) => void;
 }
 
-export const EditBannerForm = ({
+export const EditBannerForm: FC<EditBannerFormProps> = ({
   initialData,
   onSubmit,
-}: EditBannerFormProps) => {
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState<BannerData>(
-    initialData || {
-      title1: "",
-      title2: "",
-      subtext: "",
-      imageUrl: "",
-    }
+    initialData || { title1: "", title2: "", subtext: "", imageUrl: "" }
   );
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit(formData);
-    setIsModalOpen(false);
-  };
+  const [imageError, setImageError] = useState<string>("");
+  const [previewUrl, setPreviewUrl] = useState<string>(
+    initialData?.imageUrl || ""
+  );
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setImageError("");
+
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.match(/^image\/(jpeg|jpg|png)$/)) {
+      setImageError("Please select a valid image file (JPG or PNG)");
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      setImageError("Image size should be less than 5MB");
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      return;
+    }
+
+    // Preview image
+    const reader = new FileReader();
+    reader.onloadend = () => setPreviewUrl(reader.result as string);
+    reader.readAsDataURL(file);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      let imageUrl = formData.imageUrl;
+      const file = fileInputRef.current?.files?.[0];
+
+      if (file) {
+        const imgLink = await handleUploads(file);
+        if (!imgLink?.secure_url) throw new Error("Image upload failed");
+        imageUrl = imgLink.secure_url;
+      }
+
+      onSubmit({ ...formData, imageUrl });
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      setImageError("Image upload failed. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <>
+      {/* Edit Button */}
       <motion.button
         onClick={() => setIsModalOpen(true)}
         className="z-20 fixed bottom-[4%] right-[3%] bg-purple-600 text-white p-3 rounded-full shadow-lg hover:bg-purple-700 transition-colors"
@@ -60,6 +104,7 @@ export const EditBannerForm = ({
         <Pencil size={24} />
       </motion.button>
 
+      {/* Modal */}
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -71,64 +116,61 @@ export const EditBannerForm = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
+          {/* Title Inputs */}
+          {/* Image Upload */}
           <div>
-            <label className="block text-sm font-medium text-gray-300">
-              Title 1
+            {previewUrl && (
+              <img
+                src={previewUrl}
+                alt="Preview"
+                className="mb-5 w-[50%] h-40 object-cover rounded-lg"
+              />
+            )}
+            <label className="block text-sm font-medium text-white mb-1">
+              Image (JPG or PNG, max 5MB)
             </label>
             <input
-              type="text"
-              name="title1"
-              maxLength={17}
-              value={formData.title1}
-              onChange={handleChange}
-              className="customInput"
-              placeholder="Enter banner title 1"
+              type="file"
+              name="image"
+              ref={fileInputRef}
+              accept="image/jpeg,image/png"
+              onChange={handleImageChange}
+              className="w-full bg-gray-900  border border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400 file:text-gray-950 hover:file:bg-purple-500"
             />
+            {imageError && <p className="text-red-500 text-sm">{imageError}</p>}
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-300">
-              Title 2
-            </label>
-            <input
-              type="text"
-              name="title2"
-              maxLength={17}
-              value={formData.title2}
-              onChange={handleChange}
-              className="customInput"
-              placeholder="Enter banner title 2"
-            />
-          </div>
+          <input
+            type="text"
+            name="title1"
+            value={formData.title1}
+            onChange={handleChange}
+            placeholder="Title 1"
+            className="customInput"
+            maxLength={17}
+            required
+          />
+          <input
+            type="text"
+            name="title2"
+            value={formData.title2}
+            onChange={handleChange}
+            placeholder="Title 2"
+            className="customInput"
+            maxLength={17}
+            required
+          />
+          <textarea
+            name="subtext"
+            value={formData.subtext}
+            onChange={handleChange}
+            placeholder="Subtext"
+            className="customInput"
+            maxLength={190}
+            rows={3}
+            required
+          />
 
-          <div>
-            <label className="block text-sm font-medium text-gray-300">
-              Subtext
-            </label>
-            <textarea
-              name="subtext"
-              maxLength={190}
-              value={formData.subtext}
-              onChange={handleChange}
-              rows={3}
-              className="customInput"
-              placeholder="Enter banner subtext"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-300">
-              Image URL
-            </label>
-            <input
-              type="url"
-              name="imageUrl"
-              value={formData.imageUrl}
-              onChange={handleChange}
-              className="customInput"
-              placeholder="Enter image URL"
-            />
-          </div>
-
+          {/* Buttons */}
           <div className="flex justify-end space-x-3 pt-4">
             <motion.button
               type="button"
@@ -144,8 +186,9 @@ export const EditBannerForm = ({
               className="primaryButton"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              disabled={isLoading}
             >
-              Save Changes
+              {isLoading ? "Saving..." : "Save Changes"}
             </motion.button>
           </div>
         </motion.form>
