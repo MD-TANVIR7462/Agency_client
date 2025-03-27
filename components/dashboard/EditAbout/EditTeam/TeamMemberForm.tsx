@@ -3,6 +3,7 @@
 import { FC, useRef, useState } from "react";
 import { TeamMember } from "@/components/types/TeamMember";
 import { Modal } from "@/components/Shared/Modal";
+import handleUploads from "@/lib/handleImgUplods";
 
 interface TeamMemberFormProps {
   member?: TeamMember | null;
@@ -53,15 +54,23 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({ member, isOpen, onClos
     reader.readAsDataURL(file);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    setIsloading(true);
     e.preventDefault();
-
     const formData = new FormData(e.target as HTMLFormElement);
+    const file = formData.get("image");
+    if (!file || !(file instanceof File)) {
+      setImageError("Please select an image");
+      return;
+    }
+    //cludinery ........
+    const imgLink = await handleUploads(file);
+
     const data: Partial<TeamMember> = {
       name: formData.get("name") as string,
       role: formData.get("role") as string,
       team: [formData.get("team") as string],
-      image: formData.get("image") as string,
+      image: imgLink.secure_url as string,
       bio: formData.get("bio") as string,
       skills: (formData.get("skills") as string)
         .split("\n")
@@ -76,6 +85,8 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({ member, isOpen, onClos
       },
     };
     onSubmit(data);
+    setIsloading(false);
+    console.log(data);
   };
 
   return (
@@ -198,7 +209,7 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({ member, isOpen, onClos
             type="submit"
             className="px-4 py-2 bg-purple-400/10 text-purple-400 rounded-md hover:bg-purple-400/20"
           >
-            {member ? "Update Member" : "Add Member"}
+            {member ? (!isLoading ? "Update Member" : "Updating...") : !isLoading ? "Add Member" : "Processing..."}
           </button>
         </div>
       </form>

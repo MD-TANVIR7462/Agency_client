@@ -30,7 +30,7 @@ import {
   Position,
 } from "@/components/types/career";
 import { EditPositionModal } from "@/components/Career/EditPositons/EditPositionModal";
-import { div } from "framer-motion/client";
+
 
 export default function AdminDashboard() {
   const [positions, setPositions] = useState<Position[]>(initialPositions);

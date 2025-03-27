@@ -11,13 +11,7 @@ interface GalleryFormProps {
   isEditing: boolean;
 }
 
-export function GalleryForm({
-  formData,
-  onChange,
-  onSubmit,
-  onCancel,
-  isEditing,
-}: GalleryFormProps) {
+export function GalleryForm({ formData, onChange, onSubmit, onCancel, isEditing }: GalleryFormProps) {
   const [previewUrl, setPreviewUrl] = useState(formData.url || "");
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,36 +24,28 @@ export function GalleryForm({
         onChange({ ...formData, url });
       };
       reader.readAsDataURL(file);
-
-   
     }
   };
 
   return (
     <form onSubmit={onSubmit} className="space-y-6">
       <div className="space-y-2">
-        <label className="block text-sm font-medium text-gray-200">Image</label>
+        <label htmlFor="image" className="block text-sm font-medium text-purple-400 mb-1">
+          Your Photo (JPG or PNG, max 5MB)
+        </label>
         <div className="flex flex-col items-center gap-4">
-          {previewUrl && (
-            <img
-              src={previewUrl}
-              alt="Preview"
-              className="w-32 h-32 object-cover rounded-lg"
-            />
-          )}
+          {previewUrl && <img src={previewUrl} alt="Preview" className="w-32 h-32 object-cover rounded-lg" />}
           <input
             type="file"
-               accept="image/jpeg,image/jpg,image/png"
+            accept="image/jpeg,image/jpg,image/png"
             onChange={handleImageChange}
-            className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400/40 file:text-white hover:file:bg-purple-400/50  transition-colors "
+            className="w-full bg-gray-900 border border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400 file:text-gray-950 hover:file:bg-purple-500"
           />
         </div>
       </div>
 
       <div className="space-y-2">
-        <label className="block text-sm font-medium text-gray-200">
-          Caption
-        </label>
+        <label className="block text-sm font-medium text-gray-200">Caption</label>
         <input
           type="text"
           value={formData.caption || ""}
@@ -88,17 +74,10 @@ export function GalleryForm({
       </div>
 
       <div className="flex justify-end space-x-4">
-        <button
-          type="button"
-          onClick={onCancel}
-          className="secondaryButton"
-        >
+        <button type="button" onClick={onCancel} className="secondaryButton">
           Cancel
         </button>
-        <button
-          type="submit"
-          className="primaryButton"
-        >
+        <button type="submit" className="primaryButton">
           {isEditing ? "Save Changes" : "Add Image"}
         </button>
       </div>

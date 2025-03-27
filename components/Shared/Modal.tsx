@@ -34,9 +34,9 @@ export const Modal: React.FC<ModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto">
+    <div className="fixed inset-0 z-50 overflow-y-auto ">
       <div className="fixed inset-0 bg-black/70" onClick={onClose} />
-      <div className="relative min-h-screen flex items-center justify-center p-4">
+      <div className="relative min-h-screen flex items-center justify-center p-4 ">
         <div className={`relative bg-[#1E1E30] rounded-xl ${width?width:"max-w-2xl"} w-full max-h-[90vh] overflow-y-auto`}>
           <div className="sticky top-0 bg-[#1E1E30] p-4 border-b border-purple-900/30 flex justify-between items-center">
             <h2 className="text-xl font-semibold text-white">{title}</h2>

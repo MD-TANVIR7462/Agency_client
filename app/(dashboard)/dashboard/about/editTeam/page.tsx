@@ -19,11 +19,7 @@ export default function EditTeamPage() {
 
   const handleStatusChange = (member: TeamMember) => {
     setMembers(
-      members.map((m) =>
-        m.name === member.name
-          ? { ...m, status: m.status === "active" ? "inactive" : "active" }
-          : m
-      )
+      members.map((m) => (m.name === member.name ? { ...m, status: m.status === "active" ? "inactive" : "active" } : m))
     );
   };
 
@@ -44,11 +40,7 @@ export default function EditTeamPage() {
 
   const handleSubmit = (data: Partial<TeamMember>) => {
     if (selectedMember) {
-      setMembers(
-        members.map((member) =>
-          member.name === selectedMember.name ? { ...member, ...data } : member
-        )
-      );
+      setMembers(members.map((member) => (member.name === selectedMember.name ? { ...member, ...data } : member)));
     } else {
       const newMember = {
         ...data,
@@ -64,19 +56,12 @@ export default function EditTeamPage() {
       <div className="max-w-[1900px] mx-auto">
         <div className="flex justify-between items-center mb-8">
           <DashSubTitle text="Team" />
-          <button
-            onClick={handleAddNew}
-            className="flex primaryButton items-center"
-          >
+          <button onClick={handleAddNew} className="flex primaryButton items-center">
             <Plus className="md:w-5 md:h-5  w-4 h-4" />
             Add Member
           </button>
         </div>
-        <TeamMemberDetails
-          member={selectedMember}
-          isOpen={isDetailsOpen}
-          onClose={() => setIsDetailsOpen(false)}
-        />
+        <TeamMemberDetails member={selectedMember} isOpen={isDetailsOpen} onClose={() => setIsDetailsOpen(false)} />
         <TeamMembersTable
           members={members}
           onEdit={handleEdit}

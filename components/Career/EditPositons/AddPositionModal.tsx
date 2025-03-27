@@ -2,8 +2,8 @@
 
 import { FC } from "react";
 
-import { Modal } from "@/components/Shared/Modal";
 import { Position } from "@/components/types/career";
+import { Modal } from "@/components/Shared/Modal";
 
 interface AddPositionModalProps {
   isOpen: boolean;
@@ -48,7 +48,7 @@ export const AddPositionModal: FC<AddPositionModalProps> = ({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Add New Position">
+    <Modal width="max-w-4xl" isOpen={isOpen} onClose={onClose} title="Add New Position">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
