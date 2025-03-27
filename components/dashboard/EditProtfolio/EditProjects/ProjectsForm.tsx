@@ -4,7 +4,7 @@ import { Modal } from "@/components/Shared/Modal";
 import { Project } from "@/components/types/Projects";
 import handleUploads from "@/lib/handleImgUplods";
 
-import { FC, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 
 interface ProjectFormProps {
   project?: Project | null;
@@ -18,7 +18,11 @@ export const ProjectForm: FC<ProjectFormProps> = ({ project, isOpen, onClose, on
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsloading] = useState(false);
-
+  useEffect(() => {
+    if (project?.image) {
+      setPreviewUrl(project.image);
+    }
+  }, [project]);
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     setImageError("");
@@ -144,7 +148,7 @@ export const ProjectForm: FC<ProjectFormProps> = ({ project, isOpen, onClose, on
             Cancel
           </button>
           <button type="submit" className="primaryButton">
-            {project ? (!isLoading ? "Update Member" : "Updating...") : !isLoading ? "Add Member" : "Processing..."}
+            {project ? (!isLoading ? "Update Project" : "Updating...") : !isLoading ? "Add Project" : "Processing..."}
           </button>
         </div>
       </form>

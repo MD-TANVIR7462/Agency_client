@@ -16,7 +16,7 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({ isOpen, onClose, ima
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90"
+          className="fixed  inset-0 z-50 flex items-center justify-center p-4 bg-black/90 "
           onClick={onClose}
         >
           <motion.div
@@ -24,7 +24,7 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({ isOpen, onClose, ima
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: "spring", damping: 20 }}
-            className="relative max-w-5xl w-full"
+            className="relative max-w-3xl  w-full"
             onClick={e => e.stopPropagation()}
           >
             <button
@@ -36,7 +36,7 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({ isOpen, onClose, ima
             <img
               src={imageUrl}
               alt="Gallery"
-              className="w-full h-auto rounded-lg"
+              className="w-full h-300px sm:h-[400px]  md:h-[500px]  rounded-lg"
             />
           </motion.div>
         </motion.div>

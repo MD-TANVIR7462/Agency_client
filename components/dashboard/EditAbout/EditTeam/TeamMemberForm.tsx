@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { TeamMember } from "@/components/types/TeamMember";
 import { Modal } from "@/components/Shared/Modal";
 import handleUploads from "@/lib/handleImgUplods";
@@ -15,6 +15,11 @@ interface TeamMemberFormProps {
 export const TeamMemberForm: FC<TeamMemberFormProps> = ({ member, isOpen, onClose, onSubmit }) => {
   const [imageError, setImageError] = useState<string>("");
   const [previewUrl, setPreviewUrl] = useState<string>("");
+  useEffect(() => {
+    if (member?.image) {
+      setPreviewUrl(member.image);
+    }
+  }, [member]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsloading] = useState(false);
 
