@@ -2,7 +2,6 @@
 import { Admin } from "@/components/types/Admin";
 import { FC } from "react";
 
-
 interface AdminFormProps {
   admin?: Admin | null;
   onSubmit: (data: Partial<Admin>) => void;
@@ -14,7 +13,7 @@ const AdminForm: FC<AdminFormProps> = ({ admin, onSubmit, onClose }) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
-    
+
     const data: Partial<Admin> = {
       name: formData.get("name") as string,
       email: formData.get("email") as string,
@@ -23,10 +22,9 @@ const AdminForm: FC<AdminFormProps> = ({ admin, onSubmit, onClose }) => {
       location: formData.get("location") as string,
       phone: formData.get("phone") as string,
     };
-
+    console.log(data);
     onSubmit(data);
   };
-
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
@@ -100,20 +98,19 @@ const AdminForm: FC<AdminFormProps> = ({ admin, onSubmit, onClose }) => {
             required
           />
         </div>
-      <div>
-        <label className="block text-sm font-medium text-purple-400 mb-1">
-          Phone
-        </label>
-        <input
-          type="tel"
-          name="phone"
-          defaultValue={admin?.phone}
-          className="customInput"
-          required
-        />
+        <div>
+          <label className="block text-sm font-medium text-purple-400 mb-1">
+            Phone
+          </label>
+          <input
+            type="tel"
+            name="phone"
+            defaultValue={admin?.phone}
+            className="customInput"
+            required
+          />
+        </div>
       </div>
-      </div>
-
 
       <div className="flex justify-end gap-3 pt-4">
         <button

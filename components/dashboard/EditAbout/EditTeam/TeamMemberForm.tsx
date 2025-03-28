@@ -12,7 +12,12 @@ interface TeamMemberFormProps {
   onSubmit: (data: Partial<TeamMember>) => void;
 }
 
-export const TeamMemberForm: FC<TeamMemberFormProps> = ({ member, isOpen, onClose, onSubmit }) => {
+export const TeamMemberForm: FC<TeamMemberFormProps> = ({
+  member,
+  isOpen,
+  onClose,
+  onSubmit,
+}) => {
   const [imageError, setImageError] = useState<string>("");
   const [previewUrl, setPreviewUrl] = useState<string>("");
   useEffect(() => {
@@ -91,19 +96,29 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({ member, isOpen, onClos
     };
     onSubmit(data);
     setIsloading(false);
-    console.log(data);
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title={member ? "Edit Member" : "Add New Member"}>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title={member ? "Edit Member" : "Add New Member"}
+    >
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           {previewUrl && (
             <div className="mb-2">
-              <img src={previewUrl} alt="Preview" className="w-28 h-28 object-cover rounded-lg" />
+              <img
+                src={previewUrl}
+                alt="Preview"
+                className="w-28 h-28 object-cover rounded-lg"
+              />
             </div>
           )}
-          <label htmlFor="image" className="block text-sm font-medium text-purple-400 mb-1">
+          <label
+            htmlFor="image"
+            className="block text-sm font-medium text-purple-400 mb-1"
+          >
             Your Photo (JPG or PNG, max 5MB)
           </label>
           <input
@@ -116,23 +131,43 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({ member, isOpen, onClos
             className="w-full bg-gray-900 border border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400 file:text-gray-950 hover:file:bg-purple-500"
             required
           />
-          {imageError && <p className="mt-1 text-sm text-red-400">{imageError}</p>}
+          {imageError && (
+            <p className="mt-1 text-sm text-red-400">{imageError}</p>
+          )}
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-purple-400 mb-1">Name</label>
-            <input type="text" name="name" defaultValue={member?.name} className="customInput" required />
+            <label className="block text-sm font-medium text-purple-400 mb-1">
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              defaultValue={member?.name}
+              className="customInput"
+              required
+            />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-purple-400 mb-1">Role</label>
-            <input type="text" name="role" defaultValue={member?.role} className="customInput" required />
+            <label className="block text-sm font-medium text-purple-400 mb-1">
+              Role
+            </label>
+            <input
+              type="text"
+              name="role"
+              defaultValue={member?.role}
+              className="customInput"
+              required
+            />
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-purple-400 mb-1">Team</label>
+            <label className="block text-sm font-medium text-purple-400 mb-1">
+              Team
+            </label>
             <select
               name="team"
               defaultValue={member?.team[0] || ""}
@@ -150,8 +185,15 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({ member, isOpen, onClos
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-purple-400 mb-1">Status</label>
-            <select name="status" defaultValue={member?.status || "active"} className="customInput" required>
+            <label className="block text-sm font-medium text-purple-400 mb-1">
+              Status
+            </label>
+            <select
+              name="status"
+              defaultValue={member?.status || "active"}
+              className="customInput"
+              required
+            >
               <option value="active">Active</option>
               <option value="inactive">Inactive</option>
             </select>
@@ -159,17 +201,35 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({ member, isOpen, onClos
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">Bio</label>
-          <textarea name="bio" defaultValue={member?.bio} className="customInput" rows={3} required />
+          <label className="block text-sm font-medium text-purple-400 mb-1">
+            Bio
+          </label>
+          <textarea
+            name="bio"
+            defaultValue={member?.bio}
+            className="customInput"
+            rows={3}
+            required
+          />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">Skills (one per line)</label>
-          <textarea name="skills" defaultValue={member?.skills.join("\n")} className="customInput" rows={4} required />
+          <label className="block text-sm font-medium text-purple-400 mb-1">
+            Skills (one per line)
+          </label>
+          <textarea
+            name="skills"
+            defaultValue={member?.skills.join("\n")}
+            className="customInput"
+            rows={4}
+            required
+          />
         </div>
 
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-purple-400">Social Links</label>
+          <label className="block text-sm font-medium text-purple-400">
+            Social Links
+          </label>
           <div className="grid grid-cols-2 gap-4">
             <input
               type="url"
@@ -214,7 +274,13 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({ member, isOpen, onClos
             type="submit"
             className="px-4 py-2 bg-purple-400/10 text-purple-400 rounded-md hover:bg-purple-400/20"
           >
-            {member ? (!isLoading ? "Update Member" : "Updating...") : !isLoading ? "Add Member" : "Processing..."}
+            {member
+              ? !isLoading
+                ? "Update Member"
+                : "Updating..."
+              : !isLoading
+              ? "Add Member"
+              : "Processing..."}
           </button>
         </div>
       </form>
