@@ -92,7 +92,7 @@ export default function CreateAdminForm({ onSubmit }: CreateAdminFormProps) {
             onChange={handleImageChange}
             name="image"
             accept=".jpeg,.png,.jpg"
-            className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400/40 file:text-white hover:file:bg-purple-400/50  transition-colors "
+            className="w-full text-sm cursor-pointer text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400/40 file:text-white hover:file:bg-purple-400/50  transition-colors "
           />
           {imageError && (
             <p className="mt-1 text-sm text-red-400">{imageError}</p>

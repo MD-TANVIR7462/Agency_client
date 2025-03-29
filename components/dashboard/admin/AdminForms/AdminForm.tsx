@@ -1,6 +1,6 @@
 "use client";
 import { Admin } from "@/components/types/Admin";
-import { FC } from "react";
+import { FC, useState } from "react";
 
 interface AdminFormProps {
   admin?: Admin | null;
@@ -9,7 +9,10 @@ interface AdminFormProps {
 }
 
 const AdminForm: FC<AdminFormProps> = ({ admin, onSubmit, onClose }) => {
+const [isLoading,setIsloading]=useState(false)
+
   const handleSubmit = (e: React.FormEvent) => {
+    setIsloading(true)
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
@@ -22,7 +25,7 @@ const AdminForm: FC<AdminFormProps> = ({ admin, onSubmit, onClose }) => {
       location: formData.get("location") as string,
       phone: formData.get("phone") as string,
     };
-    console.log(data);
+    setIsloading(false)
     onSubmit(data);
   };
   return (
@@ -124,7 +127,7 @@ const AdminForm: FC<AdminFormProps> = ({ admin, onSubmit, onClose }) => {
           type="submit"
           className="px-4 py-2 bg-purple-400/10 text-purple-400 rounded-md hover:bg-purple-400/20"
         >
-          {admin ? "Update Admin" : "Add Admin"}
+          {admin ? isLoading?"Processing...":"Update Admin" : isLoading?"Processing...":"Add Admin"}
         </button>
       </div>
     </form>

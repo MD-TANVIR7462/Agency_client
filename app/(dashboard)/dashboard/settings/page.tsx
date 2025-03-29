@@ -60,6 +60,7 @@ export default function WebsiteSettings() {
                     <input
                       type="file"
                       className="hidden"
+                      required
                       accept="image/jpeg,image/jpg,image/png"
                       id="logoInput"
                     />

@@ -135,7 +135,7 @@ export const EditBannerForm: FC<EditBannerFormProps> = ({
               ref={fileInputRef}
               accept="image/jpeg,image/png"
               onChange={handleImageChange}
-              className="w-full bg-gray-900  border border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400 file:text-gray-950 hover:file:bg-purple-500"
+              className="w-full bg-gray-900  border cursor-pointer border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400 file:text-gray-950 hover:file:bg-purple-500"
             />
             {imageError && <p className="text-red-500 text-sm">{imageError}</p>}
           </div>

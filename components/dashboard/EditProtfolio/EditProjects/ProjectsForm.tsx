@@ -102,7 +102,7 @@ export const ProjectForm: FC<ProjectFormProps> = ({ project, isOpen, onClose, on
             ref={fileInputRef}
             accept="image/jpeg,image/jpg,image/png,"
             onChange={handleImageChange}
-            className="w-full bg-gray-900 border border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400 file:text-gray-950 hover:file:bg-purple-500"
+            className="w-full bg-gray-900 border cursor-pointer border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400 file:text-gray-950 hover:file:bg-purple-500"
             required
           />
           {imageError && <p className="mt-1 text-sm text-red-400">{imageError}</p>}
