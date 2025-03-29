@@ -150,7 +150,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
             type="file"
             accept=".png,.pdf,.doc,.docx"
             onChange={handleFileChange}
-            className="w-full bg-gray-900 border cursor-pointer border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400 file:text-gray-950 hover:file:bg-purple-500"
+            className="w-full bg-gray-900 border border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400 file:text-gray-950 hover:file:bg-purple-500"
           />
           {uploadError && (
             <p className="text-red-500 text-sm mt-2">{uploadError}</p>
