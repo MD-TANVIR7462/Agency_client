@@ -35,6 +35,7 @@ export default function EditGalleryPage() {
   };
 
   const handleSave = async (e: FormEvent<Element>) => {
+    setIsloading(true)
     setIsloading(true);
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
@@ -57,6 +58,7 @@ export default function EditGalleryPage() {
       };
       // setImages([...images, newImage]);
     }
+    setIsloading(false)
     setIsFormModalOpen(false);
   };
 
@@ -91,6 +93,7 @@ export default function EditGalleryPage() {
               }}
               onCancel={() => setIsFormModalOpen(false)}
               isEditing={!!editingImage}
+              isLoading={isLoading}
             />
           </Modal>
 

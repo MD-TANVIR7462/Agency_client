@@ -9,9 +9,10 @@ interface GalleryFormProps {
   onSubmit: (e: React.FormEvent) => void;
   onCancel: () => void;
   isEditing: boolean;
+  isLoading: boolean;
 }
 
-export function GalleryForm({ formData, onChange, onSubmit, onCancel, isEditing }: GalleryFormProps) {
+export function GalleryForm({ formData, onChange, onSubmit, onCancel, isEditing, isLoading }: GalleryFormProps) {
   const [previewUrl, setPreviewUrl] = useState(formData.url || "");
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -37,6 +38,7 @@ export function GalleryForm({ formData, onChange, onSubmit, onCancel, isEditing 
           <input
             type="file"
             name="image"
+            required
             accept="image/jpeg,image/jpg,image/png"
             onChange={handleImageChange}
             className="w-full bg-gray-900 border border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400 file:text-gray-950 hover:file:bg-purple-500"
@@ -61,7 +63,7 @@ export function GalleryForm({ formData, onChange, onSubmit, onCancel, isEditing 
           Cancel
         </button>
         <button type="submit" className="primaryButton">
-          {isEditing ? "Save Changes" : "Add Image"}
+          {isEditing ? isLoading? "Processing...":"Save Changes" : isLoading?"Processing...":"Add Image"}
         </button>
       </div>
     </form>

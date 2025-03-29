@@ -140,12 +140,12 @@ export default function CreateAdminForm({ onSubmit }: CreateAdminFormProps) {
           />
           {openEye ? (
             <EyeOff
-              className="cursor-pointer absolute top-3 right-2 text-red-600"
+              className="cursor-pointer absolute top-3 right-2 text-gray-500"
               onClick={() => setopenEye(false)}
             />
           ) : (
             <Eye
-              className="absolute top-3 right-2 text-violet-500 cursor-pointer"
+              className="absolute top-3 right-2 text-gray-500 cursor-pointer"
               onClick={() => setopenEye(true)}
             />
           )}

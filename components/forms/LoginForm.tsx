@@ -1,21 +1,29 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email === "admin@example.com" && password === "admin123") {
-      localStorage.setItem("user", JSON.stringify({ role: "super_admin" }));
-      router.push("/dashboard/admin");
-    } else if (email === "user@example.com" && password === "user123") {
-      localStorage.setItem("user", JSON.stringify({ role: "admin" }));
-      router.push("/dashboard/admin");
-    }
+    setLoading(true);
+
+    setTimeout(() => {
+      if (email === "admin@example.com" && password === "admin123") {
+        localStorage.setItem("user", JSON.stringify({ role: "super_admin" }));
+        router.push("/dashboard/admin");
+      } else if (email === "user@example.com" && password === "user123") {
+        localStorage.setItem("user", JSON.stringify({ role: "admin" }));
+        router.push("/dashboard/admin");
+      }
+      setLoading(false);
+    }, 2000);
   };
 
   return (
@@ -32,30 +40,39 @@ export default function LoginForm() {
             required
             className="customInput"
             placeholder="Email address"
-
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div>
+        <div className="relative">
           <label htmlFor="password" className="sr-only">
             Password
           </label>
           <input
             id="password"
             name="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             required
-            className="customInput"
+            className="customInput pr-10"
             placeholder="Password"
-     
             onChange={(e) => setPassword(e.target.value)}
           />
+          <button
+            type="button"
+            className="absolute right-3 top-3 text-gray-500"
+            onClick={() => setShowPassword((prev) => !prev)}
+          >
+            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
         </div>
       </div>
 
       <div>
-        <button type="submit" className="primaryButton w-full">
-          Sign in
+        <button
+          type="submit"
+          className="primaryButton w-full flex items-center justify-center"
+          disabled={loading}
+        >
+          {loading ? "Signing in..." : "Sign in"}
         </button>
       </div>
     </form>
