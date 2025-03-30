@@ -63,9 +63,10 @@ export function GalleryForm({ formData, onChange, onSubmit, onCancel, isEditing,
           Cancel
         </button>
         <button type="submit" className="primaryButton">
-          {isEditing ? isLoading? "Processing...":"Save Changes" : isLoading?"Processing...":"Add Image"}
+          {isEditing ? isLoading? "Processing...":"Save" : isLoading?"Processing...":"Add Image"}
         </button>
       </div>
     </form>
   );
 }
+  
