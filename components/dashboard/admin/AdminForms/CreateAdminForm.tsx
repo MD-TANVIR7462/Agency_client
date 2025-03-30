@@ -10,7 +10,7 @@ interface CreateAdminFormProps {
 
 export default function CreateAdminForm({ onSubmit }: CreateAdminFormProps) {
   const [openEye, setopenEye] = useState(false);
-  const [imageError, setImageError] = useState<string>("")
+  const [imageError, setImageError] = useState<string>("");
   let [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -63,6 +63,7 @@ export default function CreateAdminForm({ onSubmit }: CreateAdminFormProps) {
   //end image show.....
 
   const handleSubmit = async (e: React.FormEvent) => {
+    setIsloading(true);
     e.preventDefault();
     const fileformData = new FormData(e.target as HTMLFormElement);
     const file = fileformData.get("image");
@@ -72,6 +73,7 @@ export default function CreateAdminForm({ onSubmit }: CreateAdminFormProps) {
     const img = imgLink.secure_url;
     formData.image = img;
     onSubmit(formData);
+    setIsloading(false);
   };
 
   return (
@@ -81,7 +83,9 @@ export default function CreateAdminForm({ onSubmit }: CreateAdminFormProps) {
         <div className="flex flex-col items-center gap-4">
           <img
             src={
-              previewUrl ? previewUrl : "https://res.cloudinary.com/dsmbm1bvy/image/upload/v1743171752/njz3ggt18rriujpbb1sm.png"
+              previewUrl
+                ? previewUrl
+                : "https://res.cloudinary.com/dsmbm1bvy/image/upload/v1743171752/njz3ggt18rriujpbb1sm.png"
             }
             alt="Preview"
             className="w-32 h-32 object-cover rounded-lg"
@@ -167,8 +171,19 @@ export default function CreateAdminForm({ onSubmit }: CreateAdminFormProps) {
         </select>
       </div>
       <div className="pt-4">
-        <button type="submit" className="primaryButton w-full">
-          Create Admin
+        <button
+          type="submit"
+          className="primaryButton w-full flex justify-center items-center gap-2"
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <>
+              <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+              Creating...
+            </>
+          ) : (
+            "Create Admin"
+          )}
         </button>
       </div>
     </form>

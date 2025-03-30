@@ -272,15 +272,19 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
           </button>
           <button
             type="submit"
-            className="px-4 py-2 bg-purple-400/10 text-purple-400 rounded-md hover:bg-purple-400/20"
+            className={`px-4 py-2 rounded-md flex items-center justify-center gap-2 bg-purple-400/10 text-purple-400 hover:bg-purple-400/20 transition-colors min-w-[120px]`}
+            disabled={isLoading}
           >
-            {member
-              ? !isLoading
-                ? "Update Member"
-                : "Updating..."
-              : !isLoading
-              ? "Add Member"
-              : "Processing..."}
+            {isLoading ? (
+              <>
+                <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></span>
+                Processing...
+              </>
+            ) : member ? (
+              "Update Member"
+            ) : (
+              "Add Member"
+            )}
           </button>
         </div>
       </form>

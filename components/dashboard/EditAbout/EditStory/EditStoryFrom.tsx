@@ -1,9 +1,7 @@
-import { FC } from 'react';
-import { motion } from 'framer-motion';
-import { CompanyInfo } from '@/components/types/ConpanyStroy';
-import { Modal } from '@/components/Shared/Modal';
-
-
+import { FC } from "react";
+import { motion } from "framer-motion";
+import { CompanyInfo } from "@/components/types/ConpanyStroy";
+import { Modal } from "@/components/Shared/Modal";
 
 interface CompanyFormProps {
   isOpen: boolean;
@@ -21,35 +19,40 @@ export const StoryFrom: FC<CompanyFormProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    
+
     const data: CompanyInfo = {
       stats: {
-        years: formData.get('years') as string,
-        projects: formData.get('projects') as string,
-        teamSize: formData.get('teamSize') as string,
-        satisfaction: formData.get('satisfaction') as string,
+        years: formData.get("years") as string,
+        projects: formData.get("projects") as string,
+        teamSize: formData.get("teamSize") as string,
+        satisfaction: formData.get("satisfaction") as string,
       },
       story: {
-        title: formData.get('storyTitle') as string,
-        content: formData.get('storyContent') as string,
+        title: formData.get("storyTitle") as string,
+        content: formData.get("storyContent") as string,
       },
       mission: {
         ...initialData.mission,
-        title: formData.get('missionTitle') as string,
-        content: formData.get('missionContent') as string,
+        title: formData.get("missionTitle") as string,
+        content: formData.get("missionContent") as string,
       },
       vision: {
         ...initialData.vision,
-        title: formData.get('visionTitle') as string,
-        content: formData.get('visionContent') as string,
+        title: formData.get("visionTitle") as string,
+        content: formData.get("visionContent") as string,
       },
     };
-    
+
     onSubmit(data);
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Edit Company Information" width={"max-w-3xl"}>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Edit Company Information"
+      width={"max-w-3xl"}
+    >
       <motion.form
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -203,6 +206,25 @@ export const StoryFrom: FC<CompanyFormProps> = ({
           >
             Save Changes
           </motion.button>
+
+          {/* <motion.button
+            type="submit"
+           
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+              className="primaryButton  flex justify-center items-center gap-2"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+                  Processing...
+                </>
+              ) : (
+                "Save Changes"
+              )}
+        
+          </motion.button> */}
         </div>
       </motion.form>
     </Modal>

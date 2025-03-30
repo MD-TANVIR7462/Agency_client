@@ -188,11 +188,21 @@ export const TestimonialForm = ({
           </motion.button>
           <motion.button
             type="submit"
-            className="primaryButton"
+           
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-          >
-            {isLoading ? "Processing..." : "Submit Review"}
+              className="primaryButton  flex justify-center items-center gap-2"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+                  Processing...
+                </>
+              ) : (
+                "Save Changes"
+              )}
+        
           </motion.button>
         </div>
       </motion.form>

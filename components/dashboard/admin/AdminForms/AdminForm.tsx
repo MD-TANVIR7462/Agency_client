@@ -9,10 +9,10 @@ interface AdminFormProps {
 }
 
 const AdminForm: FC<AdminFormProps> = ({ admin, onSubmit, onClose }) => {
-const [isLoading,setIsloading]=useState(false)
+  const [isLoading, setIsloading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
-    setIsloading(true)
+    setIsloading(true);
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
@@ -25,7 +25,7 @@ const [isLoading,setIsloading]=useState(false)
       location: formData.get("location") as string,
       phone: formData.get("phone") as string,
     };
-    setIsloading(false)
+    setIsloading(false);
     onSubmit(data);
   };
   return (
@@ -103,7 +103,7 @@ const [isLoading,setIsloading]=useState(false)
         </div>
         <div>
           <label className="block text-sm font-medium text-purple-400 mb-1">
-            Phone
+            Phonedzxf
           </label>
           <input
             type="tel"
@@ -125,9 +125,17 @@ const [isLoading,setIsloading]=useState(false)
         </button>
         <button
           type="submit"
-          className="px-4 py-2 bg-purple-400/10 text-purple-400 rounded-md hover:bg-purple-400/20"
+          className="primaryButton  flex justify-center items-center gap-2"
+          disabled={isLoading}
         >
-          {admin ? isLoading?"Processing...":"Update Admin" : isLoading?"Processing...":"Add Admin"}
+          {isLoading ? (
+            <>
+              <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+              Updaating...
+            </>
+          ) : (
+            "Update Admin"
+          )}
         </button>
       </div>
     </form>

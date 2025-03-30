@@ -19,7 +19,8 @@ export default function Profile() {
     setIsClient(true);
     const user = getUserFromStorage();
     if (user) {
-      const adminData = demoAdmins.find((admin) => admin.email === user.email) || demoAdmins[0];
+      const adminData =
+        demoAdmins.find((admin) => admin.email === user.email) || demoAdmins[0];
       setProfileData(adminData);
     }
   }, []);
@@ -46,7 +47,7 @@ export default function Profile() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsloading(true)
+    setIsloading(true);
     const fileformData = new FormData(e.target as HTMLFormElement);
     const file = fileformData.get("image");
 
@@ -61,8 +62,8 @@ export default function Profile() {
       phone: fileformData.get("tel"),
       avatarUrl: img,
     };
-    setIsloading(false)
-    setIsModalOpen(false)
+    setIsloading(false);
+    setIsModalOpen(false);
   };
 
   return (
@@ -70,7 +71,13 @@ export default function Profile() {
       <div className="flex items-start justify-between">
         <div className="flex items-center space-x-6">
           <div className="relative">
-            <Image src={previewUrl || ""} alt="Profile" width={100} height={100} className="rounded-full" />
+            <Image
+              src={previewUrl || ""}
+              alt="Profile"
+              width={100}
+              height={100}
+              className="rounded-full"
+            />
             <button
               onClick={() => setIsModalOpen(true)}
               className="absolute bottom-0 right-0 bg-purple-400 p-2 rounded-full hover:bg-purple-500 transition-colors"
@@ -79,9 +86,15 @@ export default function Profile() {
             </button>
           </div>
           <div>
-            <h2 className="text-lg sm:text-2xl font-bold text-white">{profileData.name}</h2>
-            <p className="text-sm sm:text-base text-gray-400">{profileData.role}</p>
-            <p className="text-sm sm:text-base text-gray-400 mt-1">{profileData.email}</p>
+            <h2 className="text-lg sm:text-2xl font-bold text-white">
+              {profileData.name}
+            </h2>
+            <p className="text-sm sm:text-base text-gray-400">
+              {profileData.role}
+            </p>
+            <p className="text-sm sm:text-base text-gray-400 mt-1">
+              {profileData.email}
+            </p>
           </div>
         </div>
       </div>
@@ -89,20 +102,36 @@ export default function Profile() {
       <div className="mt-8 grid grid-cols-2 gap-4">
         <div className="bg-gray-800 p-3 md:p-4 rounded-lg">
           <h3 className="text-sm font-medium text-gray-400">Location</h3>
-          <p className="mt-1 text-sm sm:text-lg font-semibold text-white">{profileData.location}</p>
+          <p className="mt-1 text-sm sm:text-lg font-semibold text-white">
+            {profileData.location}
+          </p>
         </div>
         <div className="bg-gray-800 p-3 md:p-4 rounded-lg">
           <h3 className="text-sm font-medium text-gray-400">Phone</h3>
-          <p className="mt-1 text-xs sm:text-lg font-semibold text-white">{profileData.phone}</p>
+          <p className="mt-1 text-xs sm:text-lg font-semibold text-white">
+            {profileData.phone}
+          </p>
         </div>
       </div>
 
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Edit Profile">
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Edit Profile"
+      >
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-200">Image</label>
+            <label className="block text-sm font-medium text-gray-200">
+              Image
+            </label>
             <div className="flex flex-col items-center gap-4">
-              {previewUrl && <img src={previewUrl} alt="Preview" className="w-32 h-32 object-cover rounded-lg" />}
+              {previewUrl && (
+                <img
+                  src={previewUrl}
+                  alt="Preview"
+                  className="w-32 h-32 object-cover rounded-lg"
+                />
+              )}
               <input
                 type="file"
                 name="image"
@@ -113,24 +142,64 @@ export default function Profile() {
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300">Full Name</label>
-            <input type="text" name="name" defaultValue={profileData.name} className="customInput" />
+            <label className="block text-sm font-medium text-gray-300">
+              Full Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              defaultValue={profileData.name}
+              className="customInput"
+            />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300">Email</label>
-            <input type="email" name="email" defaultValue={profileData.email} className="customInput" />
+            <label className="block text-sm font-medium text-gray-300">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              defaultValue={profileData.email}
+              className="customInput"
+            />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300">Phone</label>
-            <input type="tel" name="tel" defaultValue={profileData.phone} className="customInput" />
+            <label className="block text-sm font-medium text-gray-300">
+              Phone
+            </label>
+            <input
+              type="tel"
+              name="tel"
+              defaultValue={profileData.phone}
+              className="customInput"
+            />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300">Location</label>
-            <input type="text" name="location" defaultValue={profileData.location} className="customInput" />
+            <label className="block text-sm font-medium text-gray-300">
+              Location
+            </label>
+            <input
+              type="text"
+              name="location"
+              defaultValue={profileData.location}
+              className="customInput"
+            />
           </div>
           <div className="pt-4">
-            <button type="submit" className="w-full primaryButton">
-             {isLoading?"Processing...":" Save Changes"}
+           
+            <button
+              type="submit"
+              className="primaryButton w-full flex justify-center items-center gap-2"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+                  Updating...
+                </>
+              ) : (
+                "Save Changes"
+              )}
             </button>
           </div>
         </form>
