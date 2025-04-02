@@ -8,6 +8,7 @@ import { Technology } from "@/components/types/TechnologyDashboard";
 interface TechnologyFormProps {
   technology?: Technology | null;
   isOpen: boolean;
+  icon?:string;
   onClose: () => void;
   onSubmit: (data: Partial<Technology>) => void;
 }
@@ -15,6 +16,7 @@ interface TechnologyFormProps {
 export const TechnologyForm: FC<TechnologyFormProps> = ({
   technology,
   isOpen,
+  icon,
   onClose,
   onSubmit,
 }) => {
@@ -51,6 +53,17 @@ export const TechnologyForm: FC<TechnologyFormProps> = ({
             type="text"
             name="name"
             defaultValue={technology?.name}
+            className="customInput"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-purple-400 mb-1">
+            Icon
+          </label>
+          <input
+            type="text"
+            name="icon"
             className="customInput"
             required
           />

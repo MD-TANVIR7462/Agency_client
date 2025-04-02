@@ -23,6 +23,7 @@ export const ServiceForm: FC<ServiceFormProps> = ({
     const formData = new FormData(e.target as HTMLFormElement);
     const data: Partial<Service> = {
       title: formData.get("title") as string,
+      icon: formData.get("icon") as string,
       shortDescription: formData.get("shortDescription") as string,
       fullDescription: formData.get("fullDescription") as string,
       features: (formData.get("features") as string).split("\n"),
@@ -35,14 +36,12 @@ export const ServiceForm: FC<ServiceFormProps> = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title={service ? "Edit Service" : "Add Service"}
-    >
+      title={service ? "Edit Service" : "Add Service"}>
       <motion.form
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="space-y-4"
-        onSubmit={handleSubmit}
-      >
+        onSubmit={handleSubmit}>
         <div>
           <label className="block text-sm font-medium text-purple-400 mb-1">
             Title
@@ -51,6 +50,18 @@ export const ServiceForm: FC<ServiceFormProps> = ({
             type="text"
             name="title"
             defaultValue={service?.title}
+            className="customInput"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-purple-400 mb-1">
+            Icon
+          </label>
+          <input
+            type="text"
+            name="icon"
+            defaultValue={service?.icon}
             className="customInput"
             required
           />
@@ -114,16 +125,14 @@ export const ServiceForm: FC<ServiceFormProps> = ({
             onClick={onClose}
             className="secondaryButton"
             whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
+            whileTap={{ scale: 0.98 }}>
             Cancel
           </motion.button>
           <motion.button
             type="submit"
             className="primaryButton"
             whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
+            whileTap={{ scale: 0.98 }}>
             {service ? "Update Service" : "Add Service"}
           </motion.button>
         </div>
