@@ -1,20 +1,11 @@
 import { Service } from "@/components/types/services";
-import {
-    Code2,
-    Smartphone,
-    Globe,
-    Database,
-    Cloud,
-    Shield,
-    
-  } from "lucide-react";
 
 
   
-  export const services: Service[] = [
+  export const services: Service[] =[
     {
       id: "web-development",
-      icon: Code2,
+      icon: "Code2",
       title: "Custom Development",
       shortDescription:
         "Build scalable solutions with cutting-edge technologies tailored to your unique business needs.",
@@ -40,7 +31,7 @@ import {
     {
       id: "mobile-development",
       title: "Mobile Development",
-      icon: Smartphone,
+      icon: "Smartphone",
       shortDescription:
         "Native and cross-platform mobile apps for iOS and Android.",
       fullDescription:
@@ -65,9 +56,8 @@ import {
     {
       id: "ui-ux-design",
       title: "UI/UX Design",
-      icon: Globe,
-      shortDescription:
-        "Beautiful, intuitive interfaces that users love.",
+      icon: "Globe",
+      shortDescription: "Beautiful, intuitive interfaces that users love.",
       fullDescription:
         "Our design team creates engaging digital experiences that captivate users and drive conversions. We combine aesthetics with functionality to build interfaces that are both beautiful and effective.",
       features: [
@@ -90,9 +80,8 @@ import {
     {
       id: "database-solutions",
       title: "Database Solutions",
-      icon: Database,
-      shortDescription:
-        "Scalable database architecture and optimization.",
+      icon: "Database",
+      shortDescription: "Scalable database architecture and optimization.",
       fullDescription:
         "We design and implement robust database solutions that ensure data integrity, security, and performance. Our expertise covers both SQL and NoSQL databases, optimized for your specific needs.",
       features: [
@@ -115,9 +104,8 @@ import {
     {
       id: "cloud-services",
       title: "Cloud Services",
-      icon: Cloud,
-      shortDescription:
-        "Cloud infrastructure and deployment solutions.",
+      icon: "Cloud",
+      shortDescription: "Cloud infrastructure and deployment solutions.",
       fullDescription:
         "Leverage the power of cloud computing with our comprehensive cloud services. We help businesses migrate, optimize, and scale their infrastructure in the cloud.",
       features: [
@@ -140,9 +128,8 @@ import {
     {
       id: "security",
       title: "Security Solutions",
-      icon: Shield,
-      shortDescription:
-        "Comprehensive security audits and implementation.",
+      icon: "Shield",
+      shortDescription: "Comprehensive security audits and implementation.",
       fullDescription:
         "Protect your digital assets with our advanced security solutions. We provide comprehensive security assessments, implementation, and ongoing monitoring to keep your systems safe.",
       features: [
@@ -162,4 +149,4 @@ import {
         "Zero Trust",
       ],
     },
-  ];
+  ]
