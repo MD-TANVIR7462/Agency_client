@@ -48,11 +48,8 @@ export default function EditServicesPage() {
         )
       );
     } else {
-      const newService: Service = {
-        // id: `service-1212`,
-        icon: Plus, // Default icon, should be updated with proper icon selection
-        ...(data as Service),
-      };
+      const newService: Service =  data as Service
+      ;
       setNewService(newService);
     }
     setIsFormOpen(false);
