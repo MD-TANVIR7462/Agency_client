@@ -31,6 +31,8 @@ export const TechnologyForm: FC<TechnologyFormProps> = ({
         .filter(Boolean),
     };
     onSubmit(data);
+
+    
   };
 
   return (
