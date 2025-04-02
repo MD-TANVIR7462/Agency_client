@@ -3,6 +3,7 @@ export interface Position {
   title: string;
   department: string;
   location: string;
+  salary?:string;
   type: string;
   tags: string[];
   description: string;

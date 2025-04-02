@@ -6,8 +6,9 @@ export const positions: Position[] = [
     id: "senior-fullstack",
     title: "Senior Full Stack Developer",
     department: "Engineering",
-    location: "Remote / Global",
+    location: "Kader Tawar 112, chittagong.",
     type: "Full-time",
+    salary:"12000 BDT",
     tags: ["React", "Node.js", "Cloud"],
     description: "We're looking for a Senior Full Stack Developer to join our engineering team and help build scalable solutions for our global clients.",
     requirements: [
