@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal } from "../Shared/Modal";
 import { Position } from "../types/career";
 import { ApplicationForm } from "../types/career";
-import handleUploads from "@/lib/handleImgUplods";
 
 interface ApplicationModalProps {
   isOpen: boolean;
@@ -21,56 +20,81 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
     phone: "",
     linkedIn: "",
     portfolio: "",
-    resume: null,
+    resumeLink: "",
   });
 
   const [loading, setLoading] = useState<boolean>(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
 
+  const [resumePreviewUrl, setResumePreviewUrl] = useState<string | null>(null);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!form.resume) {
-      setUploadError("No file selected. Please upload a resume.");
+    setLoading(true);
+    if (!form.fullName || !form.email || !form.phone) {
+      setUploadError("Please fill in all required fields.");
       return;
     }
-
-    setLoading(true);
-    setUploadError(null); // Reset error state before starting
+    
+    if (!form.resumeLink) {
+      setUploadError("Please provide your resume link.");
+      return;
+    }
+    
+    console.log(loading);
+    setUploadError(null);
 
     try {
-      console.log(form.resume)
-      const data = await handleUploads(form.resume);
+      // Prepare the complete form data to submit
+      const formData = {
+        ...form,
+        position: position.title,
+      };
 
-      if (!data) {
-        throw new Error(data.error?.message || "Failed to upload resume.");
-      }
+      // Here you would typically send the data to your backend
+      console.log("Form data ready for submission:", formData);
 
-      if (data.secure_url) {
-        const resumeUrl = data.secure_url;
-        console.log("Resume uploaded:", resumeUrl);
-
-        // Update form state with the uploaded file URL
-        setForm((prevForm) => ({ ...prevForm, resume: resumeUrl }));
-
-        // Handle form submission to your backend here
-        console.log("Form submitted:", { ...form, resume: resumeUrl });
-
-        // Close the modal
-        onClose();
-      }
+      // Reset form and close modal on success
+      setForm({
+        fullName: "",
+        email: "",
+        phone: "",
+        linkedIn: "",
+        portfolio: "",
+        resumeLink: "",
+      });
+      setResumePreviewUrl(null);
+      onClose();
     } catch (error: any) {
-      setUploadError(error.message || "Error uploading file.");
-      console.error("Error uploading file:", error);
+      setUploadError(error.message || "Error submitting application.");
+      console.error("Submission error:", error);
     } finally {
       setLoading(false);
+      console.log(loading);
     }
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.[0]) {
-      setForm({ ...form, resume: e.target.files[0] });
-      setUploadError(null); // Clear error when a file is selected
+  const handleLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setForm({ ...form, resumeLink: value });
+    setUploadError(null);
+
+    // Check if it's a valid Google Drive URL
+    const urlPattern = /^(https?:\/\/)?(www\.)?drive\.google\.com\/.*$/;
+    if (value && !urlPattern.test(value)) {
+      setUploadError("Please provide a valid Google Drive resume link.");
+    } else {
+      // Generate a preview URL for Google Drive PDF
+      const fileId = value.match(
+        /(?:drive\.google\.com.*\/d\/)(.*?)(?:\/|$)/
+      )?.[1];
+      if (fileId) {
+        setResumePreviewUrl(
+          `https://drive.google.com/file/d/${fileId}/preview`
+        );
+      } else {
+        setResumePreviewUrl(null);
+      }
     }
   };
 
@@ -79,11 +103,11 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
       isOpen={isOpen}
       onClose={onClose}
       title={`Apply for ${position.title}`}
-    >
+      width="max-w-3xl">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Full Name *
+            Full Name <span className="text-red-400">*</span>
           </label>
           <input
             type="text"
@@ -96,7 +120,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
 
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Email *
+            Email <span className="text-red-400">*</span>
           </label>
           <input
             type="email"
@@ -109,7 +133,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
 
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Phone *
+            Phone <span className="text-red-400">*</span>
           </label>
           <input
             type="tel"
@@ -127,6 +151,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
           <input
             type="url"
             className="w-full bg-[#252540] border border-purple-900/30 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+            value={form.linkedIn}
             onChange={(e) => setForm({ ...form, linkedIn: e.target.value })}
           />
         </div>
@@ -138,33 +163,65 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
           <input
             type="url"
             className="w-full bg-[#252540] border border-purple-900/30 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+            value={form.portfolio}
             onChange={(e) => setForm({ ...form, portfolio: e.target.value })}
           />
         </div>
-
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Resume *
+            (Resume / CV) Link <span className="text-red-400">*</span>
+            <span className="text-sm text-gray-400 block mt-1">
+              Please upload your{" "}
+              <strong className="text-gray-300">Resume / CV</strong> to Google
+              Drive and ensure it's set to public access.
+            </span>
           </label>
+
           <input
-            type="file"
-            accept=".png,.pdf,.doc,.docx"
-            onChange={handleFileChange}
-            className="w-full bg-gray-900 border border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400 file:text-gray-950 hover:file:bg-purple-500"
+            type="url"
+            required
+            className="w-full bg-[#252540] border border-purple-900/30 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+            value={form.resumeLink}
+            onChange={handleLinkChange}
           />
           {uploadError && (
             <p className="text-red-500 text-sm mt-2">{uploadError}</p>
           )}
         </div>
 
+        {resumePreviewUrl && (
+          <div className="mt-4">
+            <p className="text-sm text-gray-300 mb-2">Resume Preview:</p>
+            <div className="h-96 border-2 p-1 border-purple-600 rounded-lg">
+              <iframe
+                src={resumePreviewUrl}
+                className="w-full h-full"
+                title="Resume Preview"></iframe>
+            </div>
+            <div className="mt-2 flex justify-between">
+              <a
+                href={resumePreviewUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-purple-400 hover:text-purple-300 text-sm">
+                Open in new tab
+              </a>
+            </div>
+          </div>
+        )}
+
         <button
           type="submit"
-          disabled={loading}
-          className={`w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-lg hover:opacity-90 transition-all duration-300 ${
-            loading ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-        >
-          {loading ? "Uploading..." : "Submit Application"}
+          className="primaryButton  flex justify-center items-center gap-2"
+          disabled={loading}>
+          {loading ? (
+            <>
+              <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+              Submiting...
+            </>
+          ) : (
+            "Submit Application"
+          )}
         </button>
       </form>
     </Modal>

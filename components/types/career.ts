@@ -18,7 +18,7 @@ export interface ApplicationForm {
   phone: string;
   linkedIn?: string;
   portfolio?: string;
-  resume: File | null;
+  resumeLink: string;
 }
 
 

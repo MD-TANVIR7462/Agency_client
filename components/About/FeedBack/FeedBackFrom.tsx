@@ -200,7 +200,7 @@ export const TestimonialForm = ({
                   Processing...
                 </>
               ) : (
-                "Save Changes"
+                "Submit"
               )}
         
           </motion.button>
