@@ -220,7 +220,7 @@ export default function WebsiteSettings() {
                   Company Logo
                 </label>
                 <div className="flex items-center gap-4">
-                  <div className="relative w-20 h-20 rounded-lg overflow-hidden bg-gray-800 border border-gray-700">
+                  <div className="relative w-28 h-20 rounded-lg overflow-hidden bg-gray-800 border border-gray-700">
                     {previewUrl ? (
                       <Image
                         src={previewUrl}
@@ -357,8 +357,8 @@ export default function WebsiteSettings() {
 
             <div className="space-y-6">
               <div className="p-4 md:p-6 bg-gray-800/50 rounded-lg">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-gray-700 border border-gray-600">
+                <div className="flex items-center gap-4 mb-4 ">
+                  <div className="relative w-24 h-16 rounded-lg overflow-hidden bg-gray-700 border border-gray-600">
                     {previewUrl ? (
                       <Image
                         src={previewUrl}
@@ -372,11 +372,11 @@ export default function WebsiteSettings() {
                       </div>
                     )}
                   </div>
-                  <div>
+                  <div className="overflow-x-hidden w-full">
                     <h3 className="text-xl font-bold">
                       {formData.companyName || "Your Company Name"}
                     </h3>
-                    <p className="text-gray-400">
+                    <p className="text-gray-400 truncate ">
                       {formData.tagline || "Your company tagline"}
                     </p>
                   </div>
