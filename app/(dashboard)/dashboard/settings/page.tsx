@@ -274,6 +274,7 @@ export default function WebsiteSettings() {
                 <label className="block text-sm font-medium text-purple-400 mb-1">
                   Company Name
                 </label>
+                
                 <input
                   type="text"
                   name="companyName"
