@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal } from "../Shared/Modal";
 import { Position } from "../types/career";
 import { ApplicationForm } from "../types/career";
@@ -150,6 +150,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
           </label>
           <input
             type="url"
+              placeholder="Your Linkedin profile link"
             className="w-full bg-[#252540] border border-purple-900/30 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
             value={form.linkedIn}
             onChange={(e) => setForm({ ...form, linkedIn: e.target.value })}
@@ -162,6 +163,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
           </label>
           <input
             type="url"
+            placeholder="Your protfolio link"
             className="w-full bg-[#252540] border border-purple-900/30 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
             value={form.portfolio}
             onChange={(e) => setForm({ ...form, portfolio: e.target.value })}
@@ -180,7 +182,8 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
           <input
             type="url"
             required
-            className="w-full bg-[#252540] border border-purple-900/30 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+            placeholder="Your Resume link"
+            className="w-full  bg-[#252540] border border-purple-900/30 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
             value={form.resumeLink}
             onChange={handleLinkChange}
           />
