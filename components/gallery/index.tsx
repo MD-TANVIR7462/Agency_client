@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GalleryGrid } from "./gallery-grid";
+
 import Tittle from "../Shared/Tittle";
+import { GalleryGrid } from "./gallery-grid";
+
 
 export const Gallery = () => {
   return (

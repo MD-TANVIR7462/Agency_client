@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-// import { useRouter } from "next/router";
 import { usePathname, useRouter } from "next/navigation";
 import {
   ChevronDown,
@@ -224,15 +223,15 @@ export default function Sidebar() {
               </button>
             </Link>
           </nav>
-          <div className="relative top-8">
+          <div className="absolute w-[90%] bottom-12">
             <Link href={"/"}>
-              <button className="w-full flex items-center gap-2 px-2 py-2 ring-1 ring-purple-400 bg-purple-400/20 text-white rounded-md hover:bg-purple-400/30 transition-colors">
+              <button className="w-full flex items-center gap-2 px-2 py-2 hover:text-purple-600 ring-1 rounded-sm">
                 <ArrowUpRight className="w-4 h-4" />
                 <span className="text-sm font-medium">Exit</span>
               </button>
             </Link>
 
-            <button onClick={handleLogout} className="mt-[5%] w-full flex items-center gap-2 px-2 py-2 ring-2 text-white rounded-md hover:bg-red-500 transition-colors">
+            <button onClick={handleLogout} className="mt-[5%] w-full flex items-center gap-2 px-2 py-2 ring-1 text-white rounded-sm hover:text-red-500 transition-colors">
               <LogOut className="w-4 h-4" />
               <span className="text-sm font-medium">Log Out</span>
             </button>
