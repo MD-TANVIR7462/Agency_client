@@ -17,7 +17,7 @@ const handleUploads = async (file: any) => {
   
 
   const data = await response.json();
-  console.log(data);
+
   return data;
 };
 export default handleUploads;
