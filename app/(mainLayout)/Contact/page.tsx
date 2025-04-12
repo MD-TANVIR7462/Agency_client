@@ -11,8 +11,8 @@ const ContactPage = () => {
       <SubHero heroTittle="Contact Us" subHeroTittle="Your questions and ideas matter — let's start a conversation" />
       <Stats />
       <ContactInfo/>
-       <ServicesCTA />
        <FAQ/>
+       <ServicesCTA />
     </div>
   );
 };
