@@ -9,13 +9,13 @@ import {
 
 interface ServiceCardProps {
   title: string;
-  shortDescription: string;
+  shortDes: string;
   icon?: LucideIcon | undefined; 
 
   onClick: () => void;
 }
 
-export const ServiceCard = ({ title, shortDescription, icon: Icon, onClick }: ServiceCardProps) => {
+export const ServiceCard = ({ title, shortDes, icon: Icon, onClick }: ServiceCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <motion.div
@@ -44,7 +44,7 @@ export const ServiceCard = ({ title, shortDescription, icon: Icon, onClick }: Se
         </div>
 
         <h3 className="mb-4 text-xl font-semibold text-white">{title}</h3>
-        <p className="text-gray-400">{shortDescription}</p>
+        <p className="text-gray-400">{shortDes}</p>
 
         <div className="mt-6 flex items-center text-sm font-medium text-white">
           <span className="relative">

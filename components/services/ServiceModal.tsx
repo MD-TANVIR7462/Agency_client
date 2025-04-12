@@ -49,7 +49,7 @@ export function ServiceModal({
             <div>
               <h2 className="text-3xl font-bold text-white">{service.title}</h2>
               <p className="mt-2 text-lg text-purple-300">
-                {service.shortDescription}
+                {service.shortDes}
               </p>
             </div>
           </div>

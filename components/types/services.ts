@@ -1,7 +1,7 @@
 export interface Service {
   id: string;
   title: string;
-  shortDescription: string;
+  shortDes: string;
   fullDescription: string;
   icon?: string|any; 
   features?: string[];

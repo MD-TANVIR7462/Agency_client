@@ -47,7 +47,7 @@ export const ServiceTable: FC<ServiceTableProps> = ({
                   {service.title}
                 </div>
               </td>
-              <td className="p-4 text-gray-300 truncate">{service.shortDescription}</td>
+              <td className="p-4 text-gray-300 truncate">{service.shortDes}</td>
               <td className="p-4">
                 <select
                   className="bg-gray-900 cursor-pointer text-white border border-purple-400/40 rounded px-2 py-1"

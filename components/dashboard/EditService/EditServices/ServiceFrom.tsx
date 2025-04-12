@@ -24,7 +24,7 @@ export const ServiceForm: FC<ServiceFormProps> = ({
     const data: Partial<Service> = {
       title: formData.get("title") as string,
       icon: formData.get("icon") as string,
-      shortDescription: formData.get("shortDescription") as string,
+      shortDes: formData.get("shortDes") as string,
       fullDescription: formData.get("fullDescription") as string,
       features: (formData.get("features") as string).split("\n"),
       technologies: (formData.get("technologies") as string).split("\n"),
@@ -73,8 +73,8 @@ export const ServiceForm: FC<ServiceFormProps> = ({
           </label>
           <input
             type="text"
-            name="shortDescription"
-            defaultValue={service?.shortDescription}
+            name="shortDes"
+            defaultValue={service?.shortDes}
             className="customInput"
             required
           />
