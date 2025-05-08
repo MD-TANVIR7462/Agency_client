@@ -54,7 +54,7 @@
 - **Email:** `admin@example.com`  
 - **Password:** `admin123`
 
-> ⚠️ These credentials are for development/demo only. Please change them before deploying to production.
+> ⚠️ These credentials are for development/demo only.
 ## ✨ Key Features
 ---
 - ✅ **Modern Agency Website**
