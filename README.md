@@ -11,6 +11,11 @@
 
 ## 📸 Project Screenshots
 
+### 👥 Public Home Page  
+> Candidates can browse and apply directly for open positions
+![Career Page](https://i.ibb.co.com/ynTFgsqP/screencapture-localhost-3000-2025-05-08-23-42-47.png)
+
+---
 ### 🧭 Admin Dashboard Overview  
 > Full control panel with access to all major sections
 ![Dashboard Overview](https://i.ibb.co.com/tTYcNM9Y/screencapture-localhost-3000-dashboard-2025-05-08-23-41-54.png)
@@ -23,11 +28,7 @@
 
 ---
 
-### 👥 Public Career Page  
-> Candidates can browse and apply directly for open positions
-![Career Page](https://i.ibb.co.com/ynTFgsqP/screencapture-localhost-3000-2025-05-08-23-42-47.png)
 
----
 
 ## ⚙️ Technologies Used
 
