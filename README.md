@@ -5,7 +5,7 @@
 
 ---
 
-**Agency Client** is a modern full-stack web application for a software firm or digital agency. It consists of a **fully responsive website** for visitors and a powerful **admin dashboard** for content and career management.
+**Siscotek** is a modern full-stack web application for a software firm or digital agency. It consists of a **fully responsive website** for visitors and a powerful **admin dashboard** for content and career management.
 
 ---
 

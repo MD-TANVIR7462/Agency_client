@@ -12,9 +12,16 @@ export default function LoginPage() {
         </div>
         <LoginForm />
         <p className="mt-2 text-center text-sm text-gray-400">
+          <b>Admin Credentials (for demo purposes)</b>: 
+          <br />
+          <b>Email:</b> admin@example.com
+          <br />
+          <b>Password:</b> admin123
+        </p>
+        <p className="mt-2 text-center text-sm text-gray-400">
           <b>Note</b>: Some features from the dashboard may not work properly as it's
           currently <b className="text-white">under development</b>. Please check the server repository for
-          more information.
+          more information.  
         </p>
       </div>
     </div>
