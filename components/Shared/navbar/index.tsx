@@ -33,9 +33,8 @@ export const Navbar = () => {
       <div className="mx-auto max-w-[85rem] px-[1%] sm:px-[2%] lg:px-[2.5%] ">
         <div className="flex h-20 items-center justify-between">
           <div className="flex items-center ">
-            <Link href="/dashboard" className="text-2xl font-bold text-white ms-2">
-              {/* SiSCO<span className="text-purple-400">TEK</span> */}
-              <Image className=" w-28 h-16" alt="img" src="http://res.cloudinary.com/dsmbm1bvy/image/upload/v1743919393/Siscotek_Images/ywzzahjbccq50cuw9koz.png" height={500} width={500}/>
+            <Link href="/login" className="text-2xl font-bold text-white ms-2">
+              SiSCO<span className="text-purple-400">TEK</span> 
             </Link>
           </div>
 
