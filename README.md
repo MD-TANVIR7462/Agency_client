@@ -12,7 +12,7 @@
 ## 📸 Project Screenshots
 
 ### 👥 Public Home Page  
-> Candidates can browse and apply directly for open positions
+> Fully responsive ui with Next Js ,Tailwind Css and other Front End Technologies.
 ![Career Page](https://i.ibb.co.com/ynTFgsqP/screencapture-localhost-3000-2025-05-08-23-42-47.png)
 
 ---
