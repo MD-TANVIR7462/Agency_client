@@ -11,11 +11,7 @@ interface TestimonialFormProps {
   onSubmit: (data: Partial<Testimonial>) => void;
 }
 
-export const TestimonialForm = ({
-  isOpen,
-  onClose,
-  onSubmit,
-}: TestimonialFormProps): JSX.Element => {
+export const TestimonialForm = ({ isOpen, onClose, onSubmit }: TestimonialFormProps) => {
   const [imageError, setImageError] = useState<string>("");
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -96,10 +92,7 @@ export const TestimonialForm = ({
         onSubmit={handleSubmit}
       >
         <div>
-          <label
-            htmlFor="content"
-            className="block text-sm font-medium text-purple-400 mb-1"
-          >
+          <label htmlFor="content" className="block text-sm font-medium text-purple-400 mb-1">
             Your Review
           </label>
           <textarea
@@ -113,10 +106,7 @@ export const TestimonialForm = ({
         </div>
 
         <div>
-          <label
-            htmlFor="author"
-            className="block text-sm font-medium text-purple-400 mb-1"
-          >
+          <label htmlFor="author" className="block text-sm font-medium text-purple-400 mb-1">
             Your Name
           </label>
           <input
@@ -129,10 +119,7 @@ export const TestimonialForm = ({
         </div>
 
         <div>
-          <label
-            htmlFor="role"
-            className="block text-sm font-medium text-purple-400 mb-1"
-          >
+          <label htmlFor="role" className="block text-sm font-medium text-purple-400 mb-1">
             Your Role
           </label>
           <input
@@ -146,10 +133,7 @@ export const TestimonialForm = ({
         </div>
 
         <div>
-          <label
-            htmlFor="image"
-            className="block text-sm font-medium text-purple-400 mb-1"
-          >
+          <label htmlFor="image" className="block text-sm font-medium text-purple-400 mb-1">
             Your Photo (JPG or PNG, max 5MB)
           </label>
           <input
@@ -162,16 +146,10 @@ export const TestimonialForm = ({
             className="w-full cursor-pointer bg-gray-900 border border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400 file:text-gray-950 hover:file:bg-purple-500"
             required
           />
-          {imageError && (
-            <p className="mt-1 text-sm text-red-400">{imageError}</p>
-          )}
+          {imageError && <p className="mt-1 text-sm text-red-400">{imageError}</p>}
           {previewUrl && (
             <div className="mt-2">
-              <img
-                src={previewUrl}
-                alt="Preview"
-                className="w-20 h-20 object-cover rounded-lg"
-              />
+              <img src={previewUrl} alt="Preview" className="w-20 h-20 object-cover rounded-lg" />
             </div>
           )}
         </div>
@@ -188,21 +166,19 @@ export const TestimonialForm = ({
           </motion.button>
           <motion.button
             type="submit"
-           
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-              className="primaryButton  flex justify-center items-center gap-2"
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <>
-                  <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
-                  Processing...
-                </>
-              ) : (
-                "Submit"
-              )}
-        
+            className="primaryButton  flex justify-center items-center gap-2"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+                Processing...
+              </>
+            ) : (
+              "Submit"
+            )}
           </motion.button>
         </div>
       </motion.form>

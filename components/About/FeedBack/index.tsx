@@ -4,12 +4,12 @@ import { useState } from "react";
 import { TestimonialForm } from "./FeedBackFrom";
 import { Testimonial } from "@/components/types/Testimonial";
 
-export const FeedBack = (): JSX.Element => {
+export const FeedBack = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = (data: Partial<Testimonial>) => {
     console.log("Testimonial submitted:", data);
-    // Here you would typically send this data to your backend
+    // Backend integration will be placed here
   };
 
   return (
