@@ -1,9 +1,11 @@
-export interface Service {
-  id: string;
+export type Service = {
+  _id?: string;
   title: string;
+  icon?: string;
   shortDes: string;
   fullDescription: string;
-  icon?: string|any; 
-  features?: string[];
-  technologies?: string[];
-}
+  features: string[];
+  technologies: string[];
+  isActive?: boolean;
+  isDeleted?: boolean;
+};

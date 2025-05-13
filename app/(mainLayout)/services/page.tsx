@@ -1,14 +1,11 @@
-"use client"
-import { ServicesGrid } from "@/components/services/services-grid";
 import { TechnologyStack } from "@/components/services/technology-stack";
 import { ServicesCTA } from "@/components/services/services-cta";
 import SubHero from "@/components/Shared/SubHero";
-import { useState } from "react";
-import { Service } from "@/components/types/services";
-import { ServiceModal } from "@/components/services/ServiceModal";
+import { ServiceGridWraper } from "@/components/services/ServicesWraper";
+import { getData } from "@/lib/ServerActions";
 
-const ServicePage = () => {
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
+const ServicePage = async () => {
+  const serviceData = await getData("service");
   return (
     <>
       <SubHero
@@ -17,10 +14,9 @@ const ServicePage = () => {
           "Comprehensive digital solutions tailored to transform your business and drive growth in the modern digital landscape."
         }
       ></SubHero>
-      <ServicesGrid onServiceClick={setSelectedService} />
+      <ServiceGridWraper serviceData={serviceData?.data} />
       <TechnologyStack />
       <ServicesCTA />
-      <ServiceModal service={selectedService} onClose={() => setSelectedService(null)} />
     </>
   );
 };

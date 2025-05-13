@@ -7,8 +7,8 @@ import { useState } from "react";
 import { Service } from "../types/services";
 import { ServiceModal } from "./ServiceModal";
 
-export const Services = () => {
-   const [selectedService, setSelectedService] = useState<Service | null>(null);
+export const Services = ({serviceData}:{serviceData:Service[]}) => {
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
   return (
     <section className="relative overflow-hidden bg-gray-900 py-24">
       {/* Background Elements */}
@@ -25,8 +25,8 @@ export const Services = () => {
           >
             <Tittle tittle={"Transformation Digital Services"} />
             <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
-              Elevate your business with our comprehensive suite of digital
-              solutions, designed to drive innovation and accelerate growth.
+              Elevate your business with our comprehensive suite of digital solutions, designed to drive innovation and
+              accelerate growth.
             </p>
           </motion.div>
 
@@ -38,7 +38,7 @@ export const Services = () => {
             className="mt-16"
           >
             <span className="text-start">
-            <ServicesGrid onServiceClick={setSelectedService}/>
+              <ServicesGrid serviceData={serviceData} onServiceClick={setSelectedService} />
             </span>
           </motion.div>
         </div>

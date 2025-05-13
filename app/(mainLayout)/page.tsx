@@ -5,23 +5,22 @@ import { Gallery } from "@/components/gallery";
 import { Testimonials } from "@/components/testimonials";
 import { TeamSection } from "@/components/About/team-section";
 import { Banner2 } from "@/components/Banner/Banner2";
+import { getData } from "@/lib/ServerActions";
+import { TBanner } from "@/components/types/Banner";
 
-export default function Home() {
-  type bannerActive = {
-    banner1: boolean;
-    banner2: boolean;
-  };
-  const bannerActive: bannerActive = {
-    banner1: true,
-    banner2: false,
-  };
+const Home = async () => {
+  const bannerData = await getData("banner");
+  const banner: TBanner = bannerData?.data[0];
+  const serviceData = await getData("service");
+
+  //data
+
   return (
     <>
       <main>
-        {bannerActive?.banner1 === true && <Banner />}
-        {bannerActive?.banner2 === true && <Banner2 />}
-        {/* <Banner2/> */}
-        <Services />
+        {banner?.activeBanner === 1 && <Banner bannerData={banner} />}
+        {banner?.activeBanner === 2 && <Banner2 bannerData={banner} />}
+        <Services serviceData={serviceData.data}/>
         <Features />
         <Gallery />
         <TeamSection />
@@ -29,4 +28,6 @@ export default function Home() {
       </main>
     </>
   );
-}
+};
+
+export default Home;

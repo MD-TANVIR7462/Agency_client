@@ -1,11 +1,14 @@
-"use client"
+"use client";
 import { StatsSection } from "@/components/ui/stats-section";
 import BannerButton from "../Buttons/BannerButton";
-import { useInView } from "react-intersection-observer";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { TBanner } from "../types/Banner";
 
-export const Banner2 = () => {
+export const Banner2 = ({ bannerData }: { bannerData: TBanner }) => {
+    if (bannerData.activeBanner !== 2) {
+    return null;
+  }
   const images = [
     "/Banner/brand-building.webp",
     "/Banner/programming-&-tech.webp",
@@ -13,8 +16,6 @@ export const Banner2 = () => {
     "/Banner/digital-marketing.webp",
     "/Banner/graphics-&-design.webp",
   ];
-
-  const [heroRef, heroInView] = useInView({ triggerOnce: true });
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {

@@ -10,10 +10,12 @@ export const GalleryGrid = () => {
     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {projectsData?.map((project, index) => (
         <motion.div
+          key={index}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="group relative h-full overflow-hidden rounded-sm shadow-lg">
+          className="group relative h-full overflow-hidden rounded-sm shadow-lg"
+        >
           {/* Background Image */}
           <img
             src={project.image}
@@ -31,22 +33,19 @@ export const GalleryGrid = () => {
           <div className="absolute inset-0 flex flex-col justify-end p-6 text-white z-30">
             {/* Title & Category */}
             <div className="transform transition-all duration-500 group-hover:-translate-y-36 absolute bottom-3">
-              <p className="mb-1 text-sm text-purple-300 group-hover:text-purple-200">
-                {project.category}
-              </p>
+              <p className="mb-1 text-sm text-purple-300 group-hover:text-purple-200">{project.category}</p>
               <h3 className="text-2xl font-bold">{project.title}</h3>
             </div>
 
             {/* Description & Link */}
             <div className="mt-4 opacity-0 translate-y-8 transition-all duration-500  group-hover:translate-y-0 group-hover:opacity-100">
-              <p className="mb-4 text-sm text-white/80 line-clamp-3">
-                {project.description}
-              </p>
+              <p className="mb-4 text-sm text-white/80 line-clamp-3">{project.description}</p>
               <Link
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-10 w-10 hover:scale-110 items-center justify-center rounded-full bg-white text-purple-600 transition hover:bg-purple-100 hover:text-purple-900">
+                className="inline-flex h-10 w-10 hover:scale-110 items-center justify-center rounded-full bg-white text-purple-600 transition hover:bg-purple-100 hover:text-purple-900"
+              >
                 <ExternalLink size={18} />
               </Link>
             </div>

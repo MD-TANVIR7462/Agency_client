@@ -1,9 +1,9 @@
-export const HeroImage = () => {
+export const HeroImage = ({img}:{img:string}) => {
   return (
     <div className="relative h-full w-full">
       <div className="relative h-[600px] w-full overflow-hidden rounded-2xl">
         <img
-          src="https://images.unsplash.com/photo-1581472723648-909f4851d4ae?auto=format&fit=crop&q=80"
+          src={img}
           alt="Modern software development"
           className="h-full w-full object-cover"
         />

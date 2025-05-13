@@ -1,13 +1,17 @@
-
 import { HeroImage } from "@/components/ui/hero-image";
 import { StatsSection } from "@/components/ui/stats-section";
 import BannerButton from "../Buttons/BannerButton";
+import { TBanner } from "../types/Banner";
 
-export const Banner = () => {
-  
+export const Banner = async ({ bannerData }: { bannerData: TBanner} ) => {
+  console.log(bannerData);
+  // if (bannerData.activeBanner !== 1) {
+  //   return null;
+  // }
+  const { title1, title2, subtext, img_url } = bannerData;
 
   return (
-    <div className="relative max-h-[1200px]  overflow-hidden bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900">
+    <div className="relative max-h-[1200px] overflow-hidden bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900">
       <div className="relative z-10 mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
         <div className="flex min-h-[900px] lg:min-h-[1000px] max-h-[1200px] items-center py-20">
           <div className="grid gap-12 lg:grid-cols-2">
@@ -18,22 +22,18 @@ export const Banner = () => {
                 <div className="absolute -right-4 -bottom-4 h-20 w-20 rounded-full bg-blue-500/10 blur-xl" />
 
                 <h1 className="relative text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
-                  Transform Your
+                  {title1}
                   <span className="block bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                    Digital Vision
+                    {title2}
                   </span>
                 </h1>
               </div>
 
-              <p className="mt-6 text-lg leading-relaxed text-gray-300">
-                We're not just developers; we're digital architects crafting the
-                future. Our team transforms complex challenges into elegant
-                solutions that drive your business forward.
-              </p>
+              <p className="mt-6 text-lg leading-relaxed text-gray-300">{subtext}</p>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-           <BannerButton/>
-                <button className= "rounded-full md:rounded-lg  border border-white/20 bg-white/5 px-8 py-4 text-white backdrop-blur-lg transition-all hover:bg-white/10">
+                <BannerButton />
+                <button className="rounded-full md:rounded-lg border border-white/20 bg-white/5 px-8 py-4 text-white backdrop-blur-lg transition-all hover:bg-white/10">
                   View Portfolio
                 </button>
               </div>
@@ -43,7 +43,7 @@ export const Banner = () => {
 
             {/* Right Column - Image */}
             <div className="hidden lg:block">
-              <HeroImage />
+              <HeroImage img={img_url} />
             </div>
           </div>
         </div>
