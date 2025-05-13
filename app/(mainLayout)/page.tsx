@@ -1,3 +1,4 @@
+"use server"
 import { Banner } from "@/components/Banner/banner";
 import { Services } from "@/components/services";
 import { Features } from "@/components/features";
@@ -10,7 +11,9 @@ import { TBanner } from "@/components/types/Banner";
 
 const Home = async () => {
   const bannerData = await getData("banner");
+
   const banner: TBanner = bannerData?.data[0];
+  console.log(banner);
   const serviceData = await getData("service");
 
   //data
