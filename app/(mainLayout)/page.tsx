@@ -1,4 +1,4 @@
-"use server"
+"use server";
 import { Banner } from "@/components/Banner/banner";
 import { Services } from "@/components/services";
 import { Features } from "@/components/features";
@@ -13,7 +13,7 @@ const Home = async () => {
   const bannerData = await getData("banner");
 
   const banner: TBanner = bannerData?.data[0];
-  console.log(banner);
+  const teamdata = await getData("team");
   const serviceData = await getData("service");
 
   //data
@@ -23,10 +23,10 @@ const Home = async () => {
       <main>
         {banner?.activeBanner === 1 && <Banner bannerData={banner} />}
         {banner?.activeBanner === 2 && <Banner2 bannerData={banner} />}
-        <Services serviceData={serviceData.data}/>
+        <Services serviceData={serviceData.data} />
         <Features />
         <Gallery />
-        <TeamSection />
+        <TeamSection teamMembers={teamdata?.data} />
         <Testimonials />
       </main>
     </>

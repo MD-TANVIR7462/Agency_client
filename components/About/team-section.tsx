@@ -1,10 +1,10 @@
-"use client";
-
+"use client"
 import { useState } from "react";
-import { Facebook, Linkedin, Twitter, Github } from "lucide-react";
-import {  teamMembers } from "../data/team-data";
+import { Facebook, Linkedin, Github } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Tittle from "../Shared/Tittle";
+
+import { TeamMember } from "../types/TeamMember";
 
 const teamCategories = [
   "All Teams",
@@ -14,10 +14,10 @@ const teamCategories = [
   "Graphics Design",
 ];
 
-export function TeamSection() {
+export const TeamSection = ({ teamMembers }: { teamMembers: TeamMember[] }) => {
   const [activeTab, setActiveTab] = useState("All Teams");
 
-  const filteredTeam = teamMembers.filter((member) =>
+  const filteredTeam = teamMembers?.filter((member) =>
     activeTab === "All Teams" ? true : member.team.includes(activeTab)
   );
 
@@ -39,8 +39,7 @@ export function TeamSection() {
                 activeTab === category
                   ? "bg-gray-700 text-white shadow-lg shadow-gray-600/30"
                   : "bg-gray-800/75 text-gray-400 hover:bg-gray-700"
-              )}
-            >
+              )}>
               {category}
             </button>
           ))}
@@ -48,7 +47,7 @@ export function TeamSection() {
 
         {/* Team Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredTeam.map((member, index) => (
+          {filteredTeam?.map((member, index) => (
             <div
               key={index}
               className={cn(
@@ -56,8 +55,7 @@ export function TeamSection() {
                 activeTab === "All Teams" || member.team.includes(activeTab)
                   ? "bg-gray-800/50 border-gray-700  hover:inset-x-0 hover:-top-px   hover:bg-gradient-to-r    "
                   : "bg-gray-800/20 border-gray-800 opacity-50"
-              )}
-            >
+              )}>
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
 
@@ -88,8 +86,7 @@ export function TeamSection() {
                     {member.skills.map((skill, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 text-xs rounded-full bg-gray-700 text-gray-300"
-                      >
+                        className="px-3 py-1 text-xs rounded-full bg-gray-700 text-gray-300">
                         {skill}
                       </span>
                     ))}
@@ -101,24 +98,21 @@ export function TeamSection() {
                       href={member.social.linkedin}
                       className="text-gray-400 hover:text-purple-300 transition-colors duration-300"
                       target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                      rel="noopener noreferrer">
                       <Linkedin className="w-5 h-5" />
                     </a>
                     <a
                       href={member.social.facebook}
                       className="text-gray-400 hover:text-purple-300 transition-colors duration-300"
                       target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                      rel="noopener noreferrer">
                       <Facebook className="w-5 h-5" />
                     </a>
                     <a
                       href={member.social.github}
                       className="text-gray-400 hover:text-purple-300 transition-colors duration-300"
                       target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                      rel="noopener noreferrer">
                       <Github className="w-5 h-5" />
                     </a>
                   </div>
@@ -130,4 +124,4 @@ export function TeamSection() {
       </div>
     </section>
   );
-}
+};

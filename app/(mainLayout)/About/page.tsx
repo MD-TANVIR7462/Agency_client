@@ -5,23 +5,28 @@ import { OurStory } from "@/components/About/our-story";
 import { Stats } from "@/components/About/stats";
 import { TeamSection } from "@/components/About/team-section";
 import { Values } from "@/components/About/values";
+import { Testimonials } from "@/components/testimonials";
+import { getData } from "@/lib/ServerActions";
 import SubHero from "@/components/Shared/SubHero";
 
-import { Testimonials } from "@/components/testimonials";
-
-export default function AboutPage() {
+const AboutPage = async () => {
+  const teamdata = await getData("team");
   return (
-    <div className="min-h-screen ">
-      <SubHero heroTittle="About Us" subHeroTittle="Discover our journey, mission, and the passion driving us forward."/>
+    <div className="min-h-screen">
+      <SubHero
+        heroTittle="About Us"
+        subHeroTittle="Discover our journey, mission, and the passion driving us forward."
+      />
       <Stats />
       <OurStory />
       <MissionVision />
       <Values />
       <Achievements />
-      <TeamSection />
+      <TeamSection teamMembers={teamdata?.data} />
       <Testimonials />
-      <FeedBack/>
+      <FeedBack />
     </div>
-
   );
-}
+};
+
+export default AboutPage;

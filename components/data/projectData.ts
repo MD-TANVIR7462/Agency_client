@@ -3,7 +3,7 @@ import { Project } from "../types/Projects";
 export const projectsData: Project[] = [
   {
     title: "E-Commerce Platform",
-    id: 1,
+    _id: 1,
     status: "active",
     category: "Web Development",
     description:"The Best Software Development Agency Continually strategize standards compliant ideas rather than performance based alignments. Globally leverage existing alternative solutions through virtual users.The Best Software Development Agency Continually strategize standards compliant ideas rather than performance based alignments. Globally leverage existing alternative solutions through virtual users.",
@@ -12,7 +12,7 @@ export const projectsData: Project[] = [
   },
   {
     title: "Mobile Banking App",
-    id: 2,
+    _id: 2,
     status: "active",
     category: "Web Development",
     description:"The Best Software Development Agency Continually strategize standards compliant ideas rather than performance based alignments. Globally leverage existing alternative solutions through virtual users.",
@@ -21,7 +21,7 @@ export const projectsData: Project[] = [
   },
   {
     title: "AI-Powered Analytics",
-    id: 3,
+    _id: 3,
     status: "active",
     category: "Web Apps",
     description:"The Best Software Development Agency Continually strategize standards compliant ideas rather than performance based alignments. Globally leverage existing alternative solutions through virtual users.",
@@ -30,7 +30,7 @@ export const projectsData: Project[] = [
   },
   {
     title: "Smart Home System",
-    id: 4,
+    _id: 4,
     status: "active",
     category: "Graphics",
     description:"The Best Software Development Agency Continually strategize standards compliant ideas rather than performance based alignments. Globally leverage existing alternative solutions through virtual users.",
@@ -39,7 +39,7 @@ export const projectsData: Project[] = [
   },
   {
     title: "Healthcare Platform",
-    id: 5,
+    _id: 5,
     status: "active",
     category: "Web Development",
     description:"The Best Software Development Agency Continually strategize standards compliant ideas rather than performance based alignments. Globally leverage existing alternative solutions through virtual users.",
@@ -48,7 +48,7 @@ export const projectsData: Project[] = [
   },
   {
     title: "Fintech Dashboard",
-    id: 6,
+    _id: 6,
     status: "active",
     category: "Graphics",
     description:"The Best Software Development Agency Continually strategize standards compliant ideas rather than performance based alignments. Globally leverage existing alternative solutions through virtual users.",

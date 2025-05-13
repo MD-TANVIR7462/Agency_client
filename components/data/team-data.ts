@@ -13,7 +13,9 @@ export const teamMembers: TeamMember[] = [
       facebook: "https://facebook.com",
       github: "https://github.com"
     },
-    skills: ["React", "Node.js", "TypeScript"]
+    skills: ["React", "Node.js", "TypeScript"],
+    isActive: true,
+    isDeleted: false,
   },
   {
     name: "Michael Chen",
@@ -27,7 +29,9 @@ export const teamMembers: TeamMember[] = [
       facebook: "https://facebook.com",
       github: "https://github.com"
     },
-    skills: ["SEO", "Analytics", "Content Strategy"]
+    skills: ["SEO", "Analytics", "Content Strategy"],
+      isActive: true,
+    isDeleted: false,
   },
   {
     name: "Emily Rodriguez",
@@ -41,7 +45,9 @@ export const teamMembers: TeamMember[] = [
       facebook: "https://facebook.com",
       github: "https://github.com"
     },
-    skills: ["Figma", "Adobe XD", "UI Design"]
+    skills: ["Figma", "Adobe XD", "UI Design"],
+      isActive: true,
+    isDeleted: false,
   },
   {
     name: "David Kim",
@@ -55,7 +61,9 @@ export const teamMembers: TeamMember[] = [
       facebook: "https://facebook.com",
       github: "https://github.com"
     },
-    skills: ["Network Security", "Cloud Infrastructure"]
+    skills: ["Network Security", "Cloud Infrastructure"],
+      isActive: true,
+    isDeleted: false,
   },
   {
     name: "Alex Turner",
@@ -69,6 +77,8 @@ export const teamMembers: TeamMember[] = [
       facebook: "https://facebook.com",
       github: "https://github.com"
     },
-    skills: ["React", "Python", "AWS"]
+    skills: ["React", "Python", "AWS"],
+      isActive: true,
+    isDeleted: false,
   }
 ];

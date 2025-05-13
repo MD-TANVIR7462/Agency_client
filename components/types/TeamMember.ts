@@ -11,5 +11,6 @@ export interface TeamMember {
       github: string;
     };
     skills: string[];
-    status?: "active" | "inactive";
+  isActive?: boolean;
+  isDeleted?: boolean;
   }

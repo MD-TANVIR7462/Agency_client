@@ -1,5 +1,6 @@
 import { Zap, Shield, Users, Clock, Target, Sparkles } from "lucide-react";
-import FeatureGridWrapper from "./FeatureGridWraper";
+import MotionWraper from "../Shared/MotionWraper";
+
 
 const features = [
   {
@@ -44,14 +45,22 @@ export const FeaturesGrid = () => {
       {features.map((feature, index) => {
         const Icon = feature.icon;
         return (
-          <FeatureGridWrapper key={index} delay={index * 0.1}>
+          <MotionWraper
+            key={index}
+            delay={index * 0.1}
+            className={
+              "group relative rounded-2xl bg-white/5 p-8 backdrop-blur-lg"
+            }
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}>
             <div className="absolute inset-x-0 -top-px mx-auto h-px w-3/4 bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             <Icon className="mb-4 h-8 w-8 text-purple-400" />
             <h3 className="mb-2 text-xl font-semibold text-white">
               {feature.title}
             </h3>
             <p className="text-gray-400">{feature.description}</p>
-          </FeatureGridWrapper>
+          </MotionWraper>
         );
       })}
     </div>

@@ -1,9 +1,10 @@
 export interface Project {
   title: string;
-  id: number;
-  status?: "active" | "inactive";
-  description:string,
-  featured?:string,
+  _id: number;
+  isActive?: boolean;
+  description: string,
+  isDeleted?: boolean;
+  isFeatured?: boolean
   category: string;
   image: string;
   link: string;
