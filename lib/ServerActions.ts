@@ -6,7 +6,7 @@ const BASE_URL = envConfig.SERVER_BASE_URL; // Can be dynamic
 export async function getData(endpoint: string) {
   try {
     const res = await fetch(`${BASE_URL}/${endpoint}`);
-    if (!res.ok) throw new Error("Failed to fetch data");
+    // if (!res.ok) throw new Error("Failed to fetch data");
     const data = await res.json();
     return data;
   } catch (error) {
@@ -20,7 +20,6 @@ export async function getData(endpoint: string) {
 export async function getSingleData(endpoint: string, id: string) {
   try {
     const res = await fetch(`${BASE_URL}/${endpoint}/${id}`);
-    if (!res.ok) throw new Error("Failed to fetch data");
     const data = await res.json();
 
     return data;
@@ -39,7 +38,7 @@ export async function createData(endpoint: string, data: any) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    if (!res.ok) throw new Error("Failed to create data");
+    // if (!res.ok) throw new Error("Failed to create data");
     const response = await res.json();
 
     return response;
@@ -58,7 +57,7 @@ export async function updateData(endpoint: string, id: string, data: any) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    if (!res.ok) throw new Error("Failed to update data");
+    // if (!res.ok) throw new Error("Failed to update data");
     const response = await res.json();
     return response;
   } catch (error) {
@@ -73,7 +72,7 @@ export async function deleteData(endpoint: string, id: string) {
     const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
       method: "DELETE",
     });
-    if (!res.ok) throw new Error("Failed to delete data");
+    // if (!res.ok) throw new Error("Failed to delete data");
     return { success: true, message: "Deleted successfully!" };
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";

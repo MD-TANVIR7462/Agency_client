@@ -4,10 +4,10 @@ import { CompanyInfo } from '../types/ConpanyStroy';
 
 export const initialCompanyInfo: CompanyInfo = {
   stats: {
-    years: "10+",
-    projects: "500+",
-    teamSize: "50+",
-    satisfaction: "98%"
+    years: "10",
+    projects: "500",
+    teamSize: "50",
+    satisfaction: "98"
   },
   story: {
     title: "Our Story",

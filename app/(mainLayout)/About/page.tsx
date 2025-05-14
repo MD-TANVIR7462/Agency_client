@@ -11,15 +11,18 @@ import SubHero from "@/components/Shared/SubHero";
 
 const AboutPage = async () => {
   const teamdata = await getData("team");
+  const companyStory= (await getData("story"))?.data[0]
+ 
+  
   return (
     <div className="min-h-screen">
       <SubHero
         heroTittle="About Us"
         subHeroTittle="Discover our journey, mission, and the passion driving us forward."
       />
-      <Stats />
-      <OurStory />
-      <MissionVision />
+      <Stats {...companyStory}/>
+      <OurStory {...companyStory} />
+      <MissionVision {...companyStory}/>
       <Values />
       <Achievements />
       <TeamSection teamMembers={teamdata?.data} />

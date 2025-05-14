@@ -3,13 +3,14 @@ import { useState } from "react";
 
 import { TestimonialForm } from "./FeedBackFrom";
 import { Testimonial } from "@/components/types/Testimonial";
+import { createData } from "@/lib/ServerActions";
 
 export const FeedBack = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleSubmit = (data: Partial<Testimonial>) => {
-    console.log("Testimonial submitted:", data);
-    // Backend integration will be placed here
+  const handleSubmit =async (data: Partial<Testimonial>) => {
+    const createFeedback =await createData("testimonial/create-testimonial", data);
+    console.log(createFeedback.data);
   };
 
   return (
@@ -23,11 +24,7 @@ export const FeedBack = () => {
         </button>
       </div>
 
-      <TestimonialForm
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSubmit={handleSubmit}
-      />
+      <TestimonialForm isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={handleSubmit} />
     </>
   );
 };

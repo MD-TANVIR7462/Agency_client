@@ -1,5 +1,3 @@
-
-
 import { Award, Users2, Gem, Globe2 } from "lucide-react";
 import Tittle from "../Shared/Tittle";
 
@@ -42,9 +40,7 @@ export function Achievements() {
               <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
                 {achievement.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-white">
-                {achievement.title}
-              </h3>
+              <h3 className="text-xl font-semibold mb-4 text-white">{achievement.title}</h3>
               <p className="text-gray-400">{achievement.description}</p>
             </div>
           ))}

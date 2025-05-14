@@ -1,5 +1,3 @@
-"use client";
-
 import { Users, Code2, Trophy, Target } from "lucide-react";
 import Tittle from "../Shared/Tittle";
 
@@ -7,26 +5,22 @@ const values = [
   {
     icon: <Code2 className="w-12 h-12 text-purple-400 mb-4" />,
     title: "Technical Excellence",
-    description:
-      "We maintain the highest standards of code quality and technical innovation.",
+    description: "We maintain the highest standards of code quality and technical innovation.",
   },
   {
     icon: <Users className="w-12 h-12 text-purple-400 mb-4" />,
     title: "Client Partnership",
-    description:
-      "We build lasting relationships based on trust and mutual success.",
+    description: "We build lasting relationships based on trust and mutual success.",
   },
   {
     icon: <Target className="w-12 h-12 text-purple-400 mb-4" />,
     title: "Result Driven",
-    description:
-      "We focus on delivering measurable business outcomes for our clients.",
+    description: "We focus on delivering measurable business outcomes for our clients.",
   },
   {
     icon: <Trophy className="w-12 h-12 text-purple-400 mb-4" />,
     title: "Innovation First",
-    description:
-      "We stay ahead of technology trends to deliver cutting-edge solutions.",
+    description: "We stay ahead of technology trends to deliver cutting-edge solutions.",
   },
 ];
 
@@ -41,9 +35,7 @@ export function Values() {
           {values.map((value, index) => (
             <div key={index} className="bg-gray-800 p-8 rounded-lg ">
               {value.icon}
-              <h3 className="text-xl font-semibold mb-4 text-white">
-                {value.title}
-              </h3>
+              <h3 className="text-xl font-semibold mb-4 text-white">{value.title}</h3>
               <p className="text-gray-400">{value.description}</p>
             </div>
           ))}
