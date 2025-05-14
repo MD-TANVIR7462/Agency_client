@@ -70,8 +70,8 @@ export const TestimonialForm = ({ isOpen, onClose, onSubmit }: TestimonialFormPr
       content: formData.get("content") as string,
       author: formData.get("author") as string,
       role: formData.get("role") as string,
-      image: imgLink.secure_url, // In a real app, you'd upload this file to a server and get a URL
-      status: "inactive",
+      image: imgLink.secure_url,
+      isActive: false,
     };
 
     setIsloading(false);

@@ -7,7 +7,6 @@ export const GalleryGrid = async () => {
   const projects = await getData("project");
   const allprojectsData: Project[] = projects?.data;
   const projectsData = allprojectsData.filter((project) => project.isFeatured===true);
-  console.log(projectsData);
   return (
     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {projectsData?.map((project, index) => (

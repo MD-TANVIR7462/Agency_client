@@ -10,9 +10,7 @@ import { getData } from "@/lib/ServerActions";
 import { TBanner } from "@/components/types/Banner";
 
 const Home = async () => {
-  const bannerData = await getData("banner");
-
-  const banner: TBanner = bannerData?.data[0];
+  const banner: TBanner = (await getData("banner"))?.data[0];
   const teamdata = await getData("team");
   const serviceData = await getData("service");
 
