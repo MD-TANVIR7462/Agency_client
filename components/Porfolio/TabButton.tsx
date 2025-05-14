@@ -17,12 +17,12 @@ export default function TabButton({ label, icon: Icon, isActive, onClick }: TabB
         isActive ? "text-purple-400" : "text-gray-400 hover:text-purple-400"
       }`}
     >
-      <Icon className="h-5 w-5" />
-      <span className="font-medium">{label}</span>
+      <Icon className="h-5 w-5 hidden md:block" />
+      <span className=" text-sm sm:text-base font-medium truncate">{label}</span>
       {isActive && (
         <motion.div
           layoutId="activeTab"
-          className="absolute inset-0 rounded-xl border-2 border-purple-400"
+          className="absolute inset-0 rounded-[5px] border-2 border-purple-400"
           transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
         />
       )}

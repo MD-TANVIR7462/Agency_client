@@ -6,8 +6,8 @@ import TabButton from "./TabButton";
 
 const tabs = [
   { id: "all", label: "All", icon: Share2 },
-  { id: "Web Development", label: "Web Sites", icon: Code2 },
-  { id: "Web Apps", label: "Web Apps", icon: Code },
+  { id: "Web site", label: "Web Sites", icon: Code2 },
+  { id: "Web App", label: "Web Apps", icon: Code },
   { id: "Graphics", label: "Graphics", icon: Palette },
 ];
 
