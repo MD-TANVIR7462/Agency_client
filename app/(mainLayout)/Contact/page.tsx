@@ -1,18 +1,25 @@
 import { Stats } from "@/components/About/stats";
 import ContactInfo from "@/components/Contact/ContactInfo";
 import { ServicesCTA } from "@/components/services/services-cta";
-import FAQ from "@/components/Shared/Faq/FAQ";
+import FAQSection from "@/components/Shared/Faq/FAQSection";
 import SubHero from "@/components/Shared/SubHero";
+import { getData } from "@/lib/ServerActions";
 import React from "react";
 
-const ContactPage = () => {
+const ContactPage = async () => {
+  const hide = true;
+  const companyStory = (await getData("story"))?.data[0];
+
   return (
     <div>
-      <SubHero heroTittle="Contact Us" subHeroTittle="Your questions and ideas matter — let's start a conversation" />
-      <Stats />
-      <ContactInfo/>
-       <FAQ/>
-       <ServicesCTA />
+      <SubHero
+        heroTittle="Contact Us"
+        subHeroTittle="Your questions and ideas matter — let's start a conversation"
+      />
+      <Stats {...companyStory} />
+      <ContactInfo />
+      <FAQSection hide={hide} />
+      <ServicesCTA />
     </div>
   );
 };

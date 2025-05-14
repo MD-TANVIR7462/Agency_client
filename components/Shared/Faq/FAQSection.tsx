@@ -5,8 +5,8 @@ import Link from "next/link";
 import { getData } from "@/lib/ServerActions";
 import { FAQ } from "@/components/types/Faq";
 
-const FAQSection = async ({ path }: any) => {
-  const faqs :FAQ= (await getData("faq"))?.data;
+const FAQSection = async ({ hide }: { hide: boolean }) => {
+  const faqs: FAQ = (await getData("faq"))?.data;
 
   return (
     <section className="py-24 relative">
@@ -28,7 +28,8 @@ const FAQSection = async ({ path }: any) => {
               />
             ))}
           </div>
-          {path != "/Contact" && (
+
+          {hide !== true && (
             <div className="text-center mt-12">
               <p className="text-gray-400 mb-4">Still have questions?</p>
               <Link href={"/Contact"}>

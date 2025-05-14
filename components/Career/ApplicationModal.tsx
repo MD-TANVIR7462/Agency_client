@@ -1,7 +1,9 @@
+"use client";
 import React, { useState } from "react";
 import { Modal } from "../Shared/Modal";
 import { Position } from "../types/career";
 import { ApplicationForm } from "../types/career";
+import { createData } from "@/lib/ServerActions";
 
 interface ApplicationModalProps {
   isOpen: boolean;
@@ -35,12 +37,12 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
       setUploadError("Please fill in all required fields.");
       return;
     }
-    
+
     if (!form.resumeLink) {
       setUploadError("Please provide your resume link.");
       return;
     }
-    
+
     console.log(loading);
     setUploadError(null);
 
@@ -53,7 +55,11 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
 
       // Here you would typically send the data to your backend
       console.log("Form data ready for submission:", formData);
-
+      const createApplication = await createData(
+        "application/create-application",
+        formData
+      );
+      console.log(createApplication);
       // Reset form and close modal on success
       setForm({
         fullName: "",
@@ -150,7 +156,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({
           </label>
           <input
             type="url"
-              placeholder="Your Linkedin profile link"
+            placeholder="Your Linkedin profile link"
             className="w-full bg-[#252540] border border-purple-900/30 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
             value={form.linkedIn}
             onChange={(e) => setForm({ ...form, linkedIn: e.target.value })}

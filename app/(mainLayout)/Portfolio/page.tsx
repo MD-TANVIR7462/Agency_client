@@ -1,4 +1,3 @@
-
 import IndustryExpertise from "@/components/Porfolio/IndustryExpertise";
 import ProcessSection2 from "@/components/Porfolio/ProcessSection";
 import ProjectsSection from "@/components/Porfolio/ProjectsSection";
@@ -6,8 +5,9 @@ import FAQSection from "@/components/Shared/Faq/FAQSection";
 import SubHero from "@/components/Shared/SubHero";
 import { getData } from "@/lib/ServerActions";
 
-const Portfolio = async() => {
-  const projectData = await getData("project")
+const Portfolio = async () => {
+  const projectData = await getData("project");
+  const hide = false;
   return (
     <div>
       <SubHero
@@ -20,10 +20,10 @@ const Portfolio = async() => {
         <ProjectsSection {...projectData} />
         <ProcessSection2 />
         <IndustryExpertise />
-        <FAQSection />
+        <FAQSection hide={hide} />
       </span>
     </div>
   );
 };
-
+ 
 export default Portfolio;
