@@ -2,41 +2,11 @@ import React from "react";
 import FAQItem from "./FAQItem";
 import Tittle from "../Tittle";
 import Link from "next/link";
+import { getData } from "@/lib/ServerActions";
+import { FAQ } from "@/components/types/Faq";
 
-const FAQSection = ({ path }: any) => {
-
-  const faqs = [
-    {
-      question: "What is your development process?",
-      answer:
-        "Our development process follows an agile methodology with iterative development cycles. We begin with thorough requirement analysis, followed by design, development, testing, and deployment phases. Regular client communication and feedback are integral parts of our process.",
-    },
-    {
-      question: "How do you ensure project quality?",
-      answer:
-        "We maintain high quality standards through comprehensive code reviews, automated testing, continuous integration/deployment (CI/CD), and regular quality audits. Our team follows industry best practices and uses modern development tools to ensure robust and scalable solutions.",
-    },
-    {
-      question: "What technologies do you specialize in?",
-      answer:
-        "We specialize in a wide range of modern technologies including React, Node.js, Python, AWS, and more. Our tech stack is constantly evolving to incorporate the latest innovations while maintaining stability and performance.",
-    },
-    {
-      question: "How do you handle project maintenance?",
-      answer:
-        "We provide comprehensive maintenance services including regular updates, security patches, performance optimization, and 24/7 monitoring. Our support team is always available to address any issues and ensure smooth operation of your systems.",
-    },
-    {
-      question: "What is your pricing model?",
-      answer:
-        "We offer flexible pricing models including fixed-price projects, time and materials, and dedicated team arrangements. The specific model is chosen based on project requirements, scope, and client preferences to ensure the best value for your investment.",
-    },
-    {
-      question: "How do you ensure data security?",
-      answer:
-        "Security is our top priority. We implement industry-standard security measures, follow OWASP guidelines, use encryption for sensitive data, and regularly conduct security audits. Our team is trained in the latest security practices to protect your valuable data.",
-    },
-  ];
+const FAQSection = async ({ path }: any) => {
+  const faqs :FAQ= (await getData("faq"))?.data;
 
   return (
     <section className="py-24 relative">

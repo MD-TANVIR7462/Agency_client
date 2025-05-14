@@ -34,7 +34,7 @@ const ProcessSection2 = () => {
             every project
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {processData?.map((item, index) => (
             <div key={index} className="relative p-6 bg-gray-800 rounded-lg">
               <span className="text-5xl font-bold text-purple-400/20 absolute top-4 right-4">

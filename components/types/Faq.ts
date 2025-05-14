@@ -1,6 +1,9 @@
+import { JSX } from "react";
+
 export interface FAQ {
-  id: string;
-  question: string;
+  map(arg0: (faq: any, index: any) => JSX.Element): import("react").ReactNode;
   answer: string;
-  status?: "active" | "inactive";
+  question: string;
+  isActive?: boolean;
+  isDeleted?: boolean;
 }
