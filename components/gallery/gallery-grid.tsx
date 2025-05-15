@@ -4,7 +4,7 @@ import MotionWraper from "../Shared/MotionWraper";
 import { Project } from "../types/Projects";
 import { getData } from "@/server/ServerActions";
 export const GalleryGrid = async () => {
-  const projectsData: Project[] = (await getData("project?isFeatured=true"))?.data;
+  const projectsData: Project[] = (await getData("project?isFeatured=true&?isActive=true"))?.data;
 
   return (
     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -14,7 +14,7 @@ export const GalleryGrid = async () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="group relative h-full overflow-hidden rounded-sm shadow-lg cursor-pointer"
+          className="group relative h-[320px]   overflow-hidden rounded-sm shadow-lg cursor-pointer"
         >
           {/* Background Image */}
           <img

@@ -1,42 +1,12 @@
-"use client";
-
-import { motion } from "framer-motion";
+import MotionWraper from "@/components/Shared/MotionWraper";
+import { getData } from "@/server/ServerActions";
 import { ArrowUpRight, Circle } from "lucide-react";
 
-const recentProjects = [
-  {
-    name: "E-Commerce Platform",
-    client: "TechStore Inc.",
-    status: "In Progress",
-    statusColor: "text-yellow-500",
-    completion: 75,
-  },
-  {
-    name: "Mobile Banking App",
-    client: "FinTech Solutions",
-    status: "Review",
-    statusColor: "text-purple-400",
-    completion: 90,
-  },
-  {
-    name: "Healthcare Dashboard",
-    client: "MedCare Systems",
-    status: "Completed",
-    statusColor: "text-green-500",
-    completion: 100,
-  },
-  {
-    name: "Social Media Platform",
-    client: "ConnectHub",
-    status: "In Progress",
-    statusColor: "text-yellow-500",
-    completion: 40,
-  },
-];
-
-export function RecentProjects() {
+const RecentProjects = async () => {
+  const projectData = (await getData("project"))?.data;
+console.log(projectData)
   return (
-    <motion.div
+    <MotionWraper
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 }}
@@ -51,31 +21,33 @@ export function RecentProjects() {
       </div>
 
       <div className="space-y-4">
-        {recentProjects.map((project) => (
+        {projectData.slice(0,3).map((project:any) => (
           <div
             key={project.name}
             className="flex items-center justify-between p-4 rounded-lg bg-gray-900/30 hover:bg-gray-900/50 transition-colors text-white"
           >
             <div>
-              <h4 className="text-sm  sm:font-medium mb-1">{project.name}</h4>
-              <p className="text-sm text-gray-400">{project.client}</p>
+              <h4 className="text-sm  sm:font-medium mb-1">{project?.title}</h4>
+              <p className="text-sm text-gray-400">{project?.category}</p>
             </div>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
-                <Circle className={`w-3 h-3 fill-current ${project.statusColor}`} />
-                <span className="text-sm">{project.status}</span>
+                <Circle className={`w-3 h-3 fill-current ${project?.isActive===true?"text-green-500":"text-red-500"}` }/>
+                <span className="text-sm">{project.isActive===true? "Active" :"Inactive"}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                
+                <span className="text-sm">Completed</span>
               </div>
               <div className="w-24 h-2 bg-gray-800 rounded-full overflow-hidden hidden sm:block">
-                <div
-                  className="h-full bg-purple-400 rounded-full"
-                  style={{ width: `${project.completion}%` }}
-                />
+                <div className="h-full bg-purple-400 rounded-full" style={{ width: `100%` }} />
               </div>
-              <span className="text-sm text-gray-400">{project.completion}%</span>
+              <span className="text-sm text-gray-400">100%</span>
             </div>
           </div>
         ))}
       </div>
-    </motion.div>
+    </MotionWraper>
   );
-}
+};
+export default RecentProjects;

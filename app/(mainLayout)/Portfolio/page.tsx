@@ -7,7 +7,7 @@ import { getData } from "@/server/ServerActions";
 
 
 const Portfolio = async () => {
-  const projectData = await getData("project");
+  const projectData = await getData("project?isActive=true");
   const hide = false;
   return (
     <div>

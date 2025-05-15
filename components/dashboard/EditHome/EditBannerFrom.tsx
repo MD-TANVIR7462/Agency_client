@@ -4,37 +4,47 @@ import { motion } from "framer-motion";
 import { Pencil } from "lucide-react";
 import { Modal } from "@/components/Shared/Modal";
 import handleUploads from "@/lib/handleImgUplods";
+import { updateData } from "@/server/ServerActions";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface BannerData {
-  title1: string;
-  title2: string;
-  subtext: string;
-  imageUrl: string;
+  title1?: string;
+  title2?: string;
+  subtext?: string;
+  activeBanner?: number;
+  img_url?: string;
+  _id?: string;
 }
 
 interface EditBannerFormProps {
   initialData?: BannerData;
-  onSubmit: (data: BannerData) => void;
 }
 
-export const EditBannerForm: FC<EditBannerFormProps> = ({
-  initialData,
-  onSubmit,
-}) => {
+export const EditBannerForm: FC<EditBannerFormProps> = ({ initialData }) => {
+  const router = useRouter();
+  const [bannerActive, setBannerActive] = useState(initialData?.activeBanner);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState<BannerData>(
-    initialData || { title1: "", title2: "", subtext: "", imageUrl: "" }
+    initialData || { title1: "", title2: "", subtext: "", img_url: "" }
   );
   const [imageError, setImageError] = useState<string>("");
-  const [previewUrl, setPreviewUrl] = useState<string>(
-    initialData?.imageUrl || ""
-  );
+  const [previewUrl, setPreviewUrl] = useState<string>(initialData?.img_url || "");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleBannerUpdate = async (data: BannerData) => {
+    const { title1, title2, subtext, img_url, _id } = data;
+    const id = _id;
+    const updatedData = { title1, title2, subtext, img_url, activeBanner: bannerActive };
+    const result = await updateData("banner/update-banner", id as string, updatedData);
+    if (result.success) {
+      router.refresh();
+      toast.success(result?.message);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -70,16 +80,16 @@ export const EditBannerForm: FC<EditBannerFormProps> = ({
     setIsLoading(true);
 
     try {
-      let imageUrl = formData.imageUrl;
+      let img_url = formData.img_url;
       const file = fileInputRef.current?.files?.[0];
 
       if (file) {
         const imgLink = await handleUploads(file);
         if (!imgLink?.secure_url) throw new Error("Image upload failed");
-        imageUrl = imgLink.secure_url;
+        img_url = imgLink.secure_url;
       }
 
-      onSubmit({ ...formData, imageUrl });
+      handleBannerUpdate({ ...formData, img_url });
       setIsModalOpen(false);
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -89,6 +99,9 @@ export const EditBannerForm: FC<EditBannerFormProps> = ({
     }
   };
 
+  const onStatusChange = (id: string, activeNumber: number) => {
+    setBannerActive(activeNumber as number);
+  };
   return (
     <>
       {/* Edit Button */}
@@ -105,11 +118,7 @@ export const EditBannerForm: FC<EditBannerFormProps> = ({
       </motion.button>
 
       {/* Modal */}
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        title="Edit Banner"
-      >
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Edit Banner">
         <motion.form
           onSubmit={handleSubmit}
           className="space-y-4"
@@ -119,16 +128,8 @@ export const EditBannerForm: FC<EditBannerFormProps> = ({
           {/* Title Inputs */}
           {/* Image Upload */}
           <div>
-            {previewUrl && (
-              <img
-                src={previewUrl}
-                alt="Preview"
-                className="mb-5 w-[50%] h-40 object-cover rounded-lg"
-              />
-            )}
-            <label className="block text-sm font-medium text-white mb-1">
-              Image (JPG or PNG, max 5MB)
-            </label>
+            {previewUrl && <img src={previewUrl} alt="Preview" className="mb-5 w-[50%] h-40 object-cover rounded-lg" />}
+            <label className="block text-sm font-medium text-white mb-1">Image (JPG or PNG, max 5MB)</label>
             <input
               type="file"
               name="image"
@@ -169,6 +170,21 @@ export const EditBannerForm: FC<EditBannerFormProps> = ({
             rows={3}
             required
           />
+
+          <select
+            className="bg-gray-900/80 cursor-pointer text-white border border-purple-400/40 rounded-md px-2 py-2"
+            onChange={(e) => {
+              const value = parseInt(e.target.value) as 1 | 2;
+              setFormData((prev) => ({ ...prev, activeBanner: value }));
+              if (initialData?._id) {
+                onStatusChange(initialData._id, Number(e.target.value));
+              }
+            }}
+            value={formData.activeBanner?.toString() || bannerActive}
+          >
+            <option value="1">Banner 1</option>
+            <option value="2">Banner 2</option>
+          </select>
 
           {/* Buttons */}
           <div className="flex justify-end space-x-3 pt-4">

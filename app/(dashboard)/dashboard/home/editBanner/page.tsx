@@ -1,33 +1,17 @@
-"use client";
 import { Banner } from "@/components/Banner/banner";
 import { Banner2 } from "@/components/Banner/Banner2";
 import { EditBannerForm } from "@/components/dashboard/EditHome/EditBannerFrom";
-import React from "react";
+import { TBanner } from "@/components/types/Banner";
+import { getData } from "@/server/ServerActions";
 
-const EditBannerPage = () => {
-  const handleBannerUpdate = (data: {
-    title1: string;
-    title2: string;
-    subtext: string;
-    imageUrl: string;
-  }) => {
-    // Here you would typically update your backend/database
-    console.log("Banner updated:", data);
-  };
-  const initialData = {
-    title1: "Transform Your",
-    title2: "Digital Vision",
-    subtext:
-      "We're not just developers; we're digital architects crafting the future. Our team transforms complex challenges into elegant solutions that drive your business forward.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80",
-  };
+const EditBannerPage = async () => {
+  const initialData: TBanner = (await getData("banner"))?.data[0];
 
   return (
     <div className="relative">
-      <Banner />
-      <Banner2 />
-      <EditBannerForm initialData={initialData} onSubmit={handleBannerUpdate} />
+      <Banner bannerData={initialData} />
+      <Banner2 bannerData={initialData} />
+      <EditBannerForm initialData={initialData}   />
     </div>
   );
 };

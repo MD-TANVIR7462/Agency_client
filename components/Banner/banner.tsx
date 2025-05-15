@@ -4,10 +4,7 @@ import BannerButton from "../Buttons/BannerButton";
 import { TBanner } from "../types/Banner";
 
 export const Banner = async ({ bannerData }: { bannerData: TBanner} ) => {
-  console.log(bannerData);
-  // if (bannerData.activeBanner !== 1) {
-  //   return null;
-  // }
+
   const { title1, title2, subtext, img_url } = bannerData;
 
   return (

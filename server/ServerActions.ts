@@ -2,7 +2,6 @@
 
 import { envConfig } from "@/lib/env.config";
 
-
 const BASE_URL = envConfig.SERVER_BASE_URL; // Can be dynamic
 // GET ALL DATA
 export async function getData(endpoint: string) {
@@ -54,8 +53,10 @@ export async function createData(endpoint: string, data: any) {
 // UPDATE DATA
 export async function updateData(endpoint: string, id: string, data: any) {
   try {
+    const url = `${BASE_URL}/${endpoint}/${id}`;
+    console.log(url);
     const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });

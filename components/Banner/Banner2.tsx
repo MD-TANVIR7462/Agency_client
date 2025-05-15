@@ -6,9 +6,6 @@ import { useState, useEffect } from "react";
 import { TBanner } from "../types/Banner";
 
 export const Banner2 = ({ bannerData }: { bannerData: TBanner }) => {
-    if (bannerData.activeBanner !== 2) {
-    return null;
-  }
   const images = [
     "/Banner/brand-building.webp",
     "/Banner/programming-&-tech.webp",
@@ -36,17 +33,14 @@ export const Banner2 = ({ bannerData }: { bannerData: TBanner }) => {
                 <div className="absolute -right-4 -bottom-4 h-20 w-20 rounded-full bg-blue-500/10 blur-xl" />
 
                 <h1 className="relative text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
-                  Transform Your
+                  {bannerData?.title1}
                   <span className="block bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                    Digital Vision
+                    {bannerData?.title2}
                   </span>
                 </h1>
               </div>
 
-              <p className="mt-6 text-lg leading-relaxed text-gray-300">
-                We're not just developers; we're digital architects crafting the future. Our team transforms complex
-                challenges into elegant solutions that drive your business forward.
-              </p>
+              <p className="mt-6 text-lg leading-relaxed text-gray-300">{bannerData?.subtext}</p>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <BannerButton />
