@@ -2,8 +2,8 @@ import React from "react";
 import FAQItem from "./FAQItem";
 import Tittle from "../Tittle";
 import Link from "next/link";
-import { getData } from "@/lib/ServerActions";
 import { FAQ } from "@/components/types/Faq";
+import { getData } from "@/server/ServerActions";
 
 const FAQSection = async ({ hide }: { hide: boolean }) => {
   const faqs: FAQ = (await getData("faq"))?.data;

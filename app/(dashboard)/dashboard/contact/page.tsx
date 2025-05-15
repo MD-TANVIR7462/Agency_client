@@ -2,7 +2,6 @@
 import ContactInfo from "@/components/Contact/ContactInfo";
 import { EditContactButton } from "@/components/dashboard/EditContact/EditContactButton";
 import { EditContactForm } from "@/components/dashboard/EditContact/EditContactFrom";
-import DashSubTitle from "@/components/Shared/DashSubTitle";
 import { Modal } from "@/components/Shared/Modal";
 import React, { useState } from "react";
 

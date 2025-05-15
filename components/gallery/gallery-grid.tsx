@@ -1,8 +1,8 @@
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import MotionWraper from "../Shared/MotionWraper";
-import { getData } from "@/lib/ServerActions";
 import { Project } from "../types/Projects";
+import { getData } from "@/server/ServerActions";
 export const GalleryGrid = async () => {
   const projectsData: Project[] = (await getData("project?isFeatured=true"))?.data;
 

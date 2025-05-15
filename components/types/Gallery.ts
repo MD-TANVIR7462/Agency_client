@@ -1,6 +1,7 @@
 export interface GalleryImage {
-    id: string;
-    url: string;
-    caption: string;
-    status: 'active' | 'inactive';
+  _id:string
+  url: string;
+  caption: string;
+  isActive?: boolean;
+  isDeleted?: boolean;
   }

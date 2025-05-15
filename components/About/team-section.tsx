@@ -46,12 +46,12 @@ export const TeamSection = ({ teamMembers }: { teamMembers: TeamMember[] }) => {
         </div>
 
         {/* Team Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 xl:gap-8">
           {filteredTeam?.map((member, index) => (
             <div
               key={index}
               className={cn(
-                "group relative p-6 rounded-xl backdrop-blur-sm border transition-all duration-500",
+                "group relative p-6  rounded-xl backdrop-blur-sm border transition-all duration-500",
                 activeTab === "All Teams" || member.team.includes(activeTab)
                   ? "bg-gray-800/50 border-gray-700  hover:inset-x-0 hover:-top-px   hover:bg-gradient-to-r    "
                   : "bg-gray-800/20 border-gray-800 opacity-50"

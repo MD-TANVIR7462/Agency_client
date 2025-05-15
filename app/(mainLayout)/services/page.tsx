@@ -2,7 +2,8 @@ import { TechnologyStack } from "@/components/services/technology-stack";
 import { ServicesCTA } from "@/components/services/services-cta";
 import SubHero from "@/components/Shared/SubHero";
 import { ServiceGridWraper } from "@/components/services/ServicesWraper";
-import { getData } from "@/lib/ServerActions";
+import { getData } from "@/server/ServerActions";
+
 
 const ServicePage = async () => {
   const serviceData = await getData("service");

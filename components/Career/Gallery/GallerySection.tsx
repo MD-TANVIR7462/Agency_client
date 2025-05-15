@@ -1,11 +1,10 @@
-"use client"
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { GalleryModal } from './GalleryModal';
-import { galleryImages } from '@/components/data/gallery';
+"use client";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { GalleryModal } from "./GalleryModal";
+import { GalleryImage } from "@/components/types/Gallery";
 
-
-export const GallerySection = () => {
+export const GallerySection = ({ galleryData }: { galleryData: GalleryImage[] }) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const containerVariants = {
@@ -13,9 +12,9 @@ export const GallerySection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
@@ -24,9 +23,9 @@ export const GallerySection = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5
-      }
-    }
+        duration: 0.5,
+      },
+    },
   };
 
   return (
@@ -35,14 +34,14 @@ export const GallerySection = () => {
         <h2 className="text-3xl font-bold text-center mb-4 text-white">Life at SiSCOTEK</h2>
         <p className="text-gray-400 text-center mb-12">Get a glimpse of our vibrant workplace culture</p>
 
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {galleryImages.map((image, index) => (
+          {galleryData?.map((image, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
@@ -64,11 +63,7 @@ export const GallerySection = () => {
         </motion.div>
       </div>
 
-      <GalleryModal
-        isOpen={!!selectedImage}
-        onClose={() => setSelectedImage(null)}
-        imageUrl={selectedImage || ''}
-      />
+      <GalleryModal isOpen={!!selectedImage} onClose={() => setSelectedImage(null)} imageUrl={selectedImage || ""} />
     </section>
   );
 };

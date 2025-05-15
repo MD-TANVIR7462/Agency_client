@@ -6,8 +6,8 @@ import { Gallery } from "@/components/gallery";
 import { Testimonials } from "@/components/testimonials";
 import { TeamSection } from "@/components/About/team-section";
 import { Banner2 } from "@/components/Banner/Banner2";
-import { getData } from "@/lib/ServerActions";
 import { TBanner } from "@/components/types/Banner";
+import { getData } from "@/server/ServerActions";
 
 const Home = async () => {
   

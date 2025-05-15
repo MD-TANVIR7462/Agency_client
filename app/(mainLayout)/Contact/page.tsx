@@ -3,7 +3,8 @@ import ContactInfo from "@/components/Contact/ContactInfo";
 import { ServicesCTA } from "@/components/services/services-cta";
 import FAQSection from "@/components/Shared/Faq/FAQSection";
 import SubHero from "@/components/Shared/SubHero";
-import { getData } from "@/lib/ServerActions";
+import { getData } from "@/server/ServerActions";
+
 import React from "react";
 
 const ContactPage = async () => {

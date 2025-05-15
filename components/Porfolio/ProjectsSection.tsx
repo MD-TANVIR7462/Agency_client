@@ -6,8 +6,9 @@ import ProjectCard from "./ProjectCard";
 import TabList from "./TabList";
 import MotionWraper from "../Shared/MotionWraper";
 import { Project } from "../types/Projects";
-import { getData } from "@/lib/ServerActions";
-import Loader from "../Shared/Loader";
+import { getData } from "@/server/ServerActions";
+
+
 
 export default function ProjectsSection({ data }: { data: Project[] }) {
   const [activeTab, setActiveTab] = useState("all");

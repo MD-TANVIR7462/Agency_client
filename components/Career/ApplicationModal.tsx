@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Modal } from "../Shared/Modal";
 import { Position } from "../types/career";
 import { ApplicationForm } from "../types/career";
-import { createData } from "@/lib/ServerActions";
+import { createData } from "@/server/ServerActions";
 
 interface ApplicationModalProps {
   isOpen: boolean;

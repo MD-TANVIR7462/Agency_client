@@ -6,8 +6,8 @@ import { Stats } from "@/components/About/stats";
 import { TeamSection } from "@/components/About/team-section";
 import { Values } from "@/components/About/values";
 import { Testimonials } from "@/components/testimonials";
-import { getData } from "@/lib/ServerActions";
 import SubHero from "@/components/Shared/SubHero";
+import { getData } from "@/server/ServerActions";
 
 const AboutPage = async () => {
   const teamdata = await getData("team");

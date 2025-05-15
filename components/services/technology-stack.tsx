@@ -1,7 +1,8 @@
 import Tittle from "../Shared/Tittle";
 import MotionWraper from "../Shared/MotionWraper";
 import Technologies from "./technologies";
-import { getData } from "@/lib/ServerActions";
+import { getData } from "@/server/ServerActions";
+
 
 export const TechnologyStack = async () => {
   const technologyData = (await getData("/technologies"))?.data;

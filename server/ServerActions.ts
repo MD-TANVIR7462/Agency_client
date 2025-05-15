@@ -1,5 +1,7 @@
 "use server";
-import { envConfig } from "./env.config";
+
+import { envConfig } from "@/lib/env.config";
+
 
 const BASE_URL = envConfig.SERVER_BASE_URL; // Can be dynamic
 // GET ALL DATA

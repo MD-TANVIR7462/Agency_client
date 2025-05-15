@@ -1,4 +1,3 @@
-import React from "react";
 import CareerHeroButton from "../Buttons/CareerButton";
 
 export const CareerHero = () => {

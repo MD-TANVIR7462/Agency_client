@@ -3,7 +3,8 @@ import { useState } from "react";
 
 import { TestimonialForm } from "./FeedBackFrom";
 import { Testimonial } from "@/components/types/Testimonial";
-import { createData } from "@/lib/ServerActions";
+import { createData } from "@/server/ServerActions";
+
 
 export const FeedBack = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

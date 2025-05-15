@@ -1,7 +1,8 @@
 import { TestimonialSlider } from "./testimonial-slider";
 import Tittle from "../Shared/Tittle";
 import MotionWraper from "../Shared/MotionWraper";
-import { getData } from "@/lib/ServerActions";
+import { getData } from "@/server/ServerActions";
+
 
 export const Testimonials = async() => {
   const testimonials =await getData("testimonial?status=true")
