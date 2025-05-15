@@ -51,7 +51,7 @@ export const ServiceTable: FC<ServiceTableProps> = ({
               <td className="p-4">
                 <select
                   className="bg-gray-900 cursor-pointer text-white border border-purple-400/40 rounded px-2 py-1"
-                  onChange={(e) => onStatusChange(service.id, e.target.value)}
+                  onChange={(e) => onStatusChange(service._id as string, e.target.value)}
                   defaultValue="active"
                 >
                   <option value="active" >Active</option>

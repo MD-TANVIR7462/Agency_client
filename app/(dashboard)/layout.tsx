@@ -1,8 +1,6 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Sidebar from "@/components/dashboard/sidebar";
 import Header from "@/components/dashboard/header";
+import MotionWraper from "@/components/Shared/MotionWraper";
 
 export default function DashboardLayout({
   children,
@@ -14,14 +12,14 @@ export default function DashboardLayout({
       <Sidebar />
       <div className="lg:ml-[280px]">
         <Header />
-        <motion.main
+        <MotionWraper
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
           className="p-3 md:p-6"
         >
           {children}
-        </motion.main>
+        </MotionWraper>
       </div>
     </div>
   );

@@ -3,14 +3,18 @@
 import { useState } from "react";
 import { Service } from "@/components/types/services";
 import { motion } from "framer-motion";
-import { Plus } from "lucide-react";
+import { icons, Plus } from "lucide-react";
 import { ServiceTable } from "@/components/dashboard/EditService/EditServices/ServiceTable";
 import { ServiceForm } from "@/components/dashboard/EditService/EditServices/ServiceFrom";
 import { ServiceModal } from "@/components/services/ServiceModal";
 import DashSubTitle from "@/components/Shared/DashSubTitle";
+import { updateData } from "@/server/ServerActions";
 
-export default function EditServiceIndex({ serviceData }: { serviceData: Service[] }) {
-  const [servicesData, setServices] = useState<Service[]>(serviceData);
+export default function EditServiceIndex({
+  serviceData,
+}: {
+  serviceData: Service[];
+}) {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -35,16 +39,30 @@ export default function EditServiceIndex({ serviceData }: { serviceData: Service
     setIsFormOpen(true);
   };
 
-  const handleSubmit = (data: Partial<Service>) => {
+  const handleSubmit = async (data: Partial<Service>) => {
     if (selectedService) {
-      setServices(servicesData.map((service) => (service._id === selectedService._id ? { ...service } : service)));
-      console.log(servicesData);
+      const { title, icon, shortDes, fullDescription, features, technologies } =
+        data;
+      const newData = {
+        title,
+        icon,
+        shortDes,
+        fullDescription,
+        features,
+        technologies,
+      };
+      const result = await updateData(
+        "service/update-service",
+        data?._id,
+        newData
+      );
+      console.log(result);
     } else {
       const newService: Service = data as Service;
       setNewService(newService);
     }
     setIsFormOpen(false);
-    console.log(newServiceData);
+    console.log(selectedService);
   };
 
   return (
@@ -56,8 +74,7 @@ export default function EditServiceIndex({ serviceData }: { serviceData: Service
             onClick={handleAddNew}
             className="flex gap-1 items-center  primaryButton"
             whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
+            whileTap={{ scale: 0.98 }}>
             <Plus className="md:w-5 md:h-5  w-4 h-4" />
             Add Service
           </motion.button>
@@ -70,7 +87,11 @@ export default function EditServiceIndex({ serviceData }: { serviceData: Service
           onStatusChange={handleStatusChange}
         />
 
-        <ServiceModal service={selectedService} isOpen={isDetailsOpen} onClose={() => setIsDetailsOpen(false)} />
+        <ServiceModal
+          service={selectedService}
+          isOpen={isDetailsOpen}
+          onClose={() => setIsDetailsOpen(false)}
+        />
 
         <ServiceForm
           service={selectedService}

@@ -1,5 +1,4 @@
 "use server";
-import { dashboardStats } from "@/lib/constants/dashboard-stats";
 import { StatCard } from "@/components/dashboard/stats/stat-card";
 import { RevenueChart } from "@/components/dashboard/stats/revenue-chart";
 import { ProjectDistribution } from "@/components/dashboard/projects/project-distribution";

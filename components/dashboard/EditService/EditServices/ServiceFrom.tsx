@@ -20,6 +20,7 @@ export const ServiceForm: FC<ServiceFormProps> = ({
 }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
     const formData = new FormData(e.target as HTMLFormElement);
     const data: Partial<Service> = {
       title: formData.get("title") as string,
@@ -29,6 +30,11 @@ export const ServiceForm: FC<ServiceFormProps> = ({
       features: (formData.get("features") as string).split("\n"),
       technologies: (formData.get("technologies") as string).split("\n"),
     };
+
+    if (service) {
+      const _id = service._id;
+      data._id = _id;
+    }
     onSubmit(data);
   };
 

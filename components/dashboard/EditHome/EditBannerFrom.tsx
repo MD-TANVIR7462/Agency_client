@@ -6,7 +6,6 @@ import { Modal } from "@/components/Shared/Modal";
 import handleUploads from "@/lib/handleImgUplods";
 import { updateData } from "@/server/ServerActions";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 
 interface BannerData {
   title1?: string;
@@ -19,32 +18,49 @@ interface BannerData {
 
 interface EditBannerFormProps {
   initialData?: BannerData;
+  onUpdate: () => void;
 }
 
-export const EditBannerForm: FC<EditBannerFormProps> = ({ initialData }) => {
-  const router = useRouter();
+export const EditBannerForm: FC<EditBannerFormProps> = ({
+  initialData,
+  onUpdate,
+}) => {
   const [bannerActive, setBannerActive] = useState(initialData?.activeBanner);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState<BannerData>(
     initialData || { title1: "", title2: "", subtext: "", img_url: "" }
   );
   const [imageError, setImageError] = useState<string>("");
-  const [previewUrl, setPreviewUrl] = useState<string>(initialData?.img_url || "");
+  const [previewUrl, setPreviewUrl] = useState<string>(
+    initialData?.img_url || ""
+  );
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleBannerUpdate = async (data: BannerData) => {
     const { title1, title2, subtext, img_url, _id } = data;
     const id = _id;
-    const updatedData = { title1, title2, subtext, img_url, activeBanner: bannerActive };
-    const result = await updateData("banner/update-banner", id as string, updatedData);
+    const updatedData = {
+      title1,
+      title2,
+      subtext,
+      img_url,
+      activeBanner: bannerActive,
+    };
+    const result = await updateData(
+      "banner/update-banner",
+      id as string,
+      updatedData
+    );
     if (result.success) {
-      router.refresh();
+      onUpdate();
       toast.success(result?.message);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -112,24 +128,33 @@ export const EditBannerForm: FC<EditBannerFormProps> = ({ initialData }) => {
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        title="Edit Banner"
-      >
+        title="Edit Banner">
         <Pencil size={24} />
       </motion.button>
 
       {/* Modal */}
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Edit Banner">
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Edit Banner">
         <motion.form
           onSubmit={handleSubmit}
           className="space-y-4"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
+          animate={{ opacity: 1, y: 0 }}>
           {/* Title Inputs */}
           {/* Image Upload */}
           <div>
-            {previewUrl && <img src={previewUrl} alt="Preview" className="mb-5 w-[50%] h-40 object-cover rounded-lg" />}
-            <label className="block text-sm font-medium text-white mb-1">Image (JPG or PNG, max 5MB)</label>
+            {previewUrl && (
+              <img
+                src={previewUrl}
+                alt="Preview"
+                className="mb-5 w-[50%] h-40 object-cover rounded-lg"
+              />
+            )}
+            <label className="block text-sm font-medium text-white mb-1">
+              Image (JPG or PNG, max 5MB)
+            </label>
             <input
               type="file"
               name="image"
@@ -180,8 +205,7 @@ export const EditBannerForm: FC<EditBannerFormProps> = ({ initialData }) => {
                 onStatusChange(initialData._id, Number(e.target.value));
               }
             }}
-            value={formData.activeBanner?.toString() || bannerActive}
-          >
+            value={formData.activeBanner?.toString() || bannerActive}>
             <option value="1">Banner 1</option>
             <option value="2">Banner 2</option>
           </select>
@@ -193,8 +217,7 @@ export const EditBannerForm: FC<EditBannerFormProps> = ({ initialData }) => {
               onClick={() => setIsModalOpen(false)}
               className="secondaryButton"
               whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
+              whileTap={{ scale: 0.98 }}>
               Cancel
             </motion.button>
             <motion.button
@@ -202,8 +225,7 @@ export const EditBannerForm: FC<EditBannerFormProps> = ({ initialData }) => {
               className="primaryButton"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              disabled={isLoading}
-            >
+              disabled={isLoading}>
               {isLoading ? "Saving..." : "Save Changes"}
             </motion.button>
           </div>
