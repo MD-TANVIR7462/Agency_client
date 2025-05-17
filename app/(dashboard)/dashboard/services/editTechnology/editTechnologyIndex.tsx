@@ -7,9 +7,10 @@ import { TechnologyTable } from "@/components/dashboard/EditService/EditTechnolo
 import { TechnologyForm } from "@/components/dashboard/EditService/EditTechnology/TechnologyFrom";
 import DashSubTitle from "@/components/Shared/DashSubTitle";
 import { TechCardProps } from "@/components/types/TechnoloGyCardProps";
-import { createData, updateData } from "@/server/ServerActions";
+import { createData, deleteData, updateData } from "@/server/ServerActions";
 import { ErrorToast, SuccessToast } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { deleteToast } from "@/lib/deleteToast";
 
 const EditTechnologyIndex = ({ technologyData }: { technologyData: TechCardProps[] }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,7 +39,7 @@ const EditTechnologyIndex = ({ technologyData }: { technologyData: TechCardProps
   };
 
   const handleSubmit = async (data: Partial<TechCardProps>, id?: string | any) => {
-    console.log(data)
+    console.log(data);
     if (selectedTechnology) {
       const result = await updateData("technologies/update-technology", id, data);
       console.log(data, id, result);
@@ -62,9 +63,19 @@ const EditTechnologyIndex = ({ technologyData }: { technologyData: TechCardProps
     setIsModalOpen(false);
   };
 
-  const handleDelete = (technologyId: string) => {
-    // Implement view details functionality
-    console.log(technologyId);
+  const handleDelete = async (id: string) => {
+    console.log(id);
+    const handleDeleteTechnology = async () => {
+      const result = await deleteData("technologies/delete-technology", id);
+      if (result?.success) {
+        router.refresh();
+        SuccessToast(result.message);
+      } else {
+        ErrorToast(result.message);
+      }
+    };
+
+    deleteToast(handleDeleteTechnology, "Delete this Technology ?");
   };
 
   return (

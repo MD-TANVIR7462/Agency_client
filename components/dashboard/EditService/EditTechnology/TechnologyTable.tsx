@@ -12,6 +12,9 @@ interface TechnologyTableProps {
 }
 
 export const TechnologyTable: FC<TechnologyTableProps> = ({ technologies, onEdit, onDelete, onStatusChange }) => {
+  const handle = (p: any) => {
+    console.log(p);
+  };
   return (
     <div className="w-full overflow-x-auto bg-gray-900/50 rounded-lg shadow-xl text-sm ring-1 ring-purple-500/20">
       <table className="w-full border-collapse">
@@ -61,16 +64,15 @@ export const TechnologyTable: FC<TechnologyTableProps> = ({ technologies, onEdit
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => onEdit(technology)}
-                      className="p-2 text-purple-400 hover:bg-purple-400/10 rounded-full"
+                      className="p-2 text-purple-400 hover:bg-purple-400/10 rounded-full cursor-pointer"
                     >
                       <Edit className="w-4 h-4" />
                     </motion.button>
                     <motion.button
-                      disabled={true}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => onDelete(technology?._id as string)}
-                      className="p-2 text-purple-400 hover:bg-purple-400/10 rounded-full"
+                      className="p-2 text-purple-400 hover:bg-purple-400/10 rounded-full cursor-pointer"
                     >
                       <Trash2 className="w-4 h-4" />
                     </motion.button>
