@@ -9,7 +9,7 @@ interface TeamMemberFormProps {
   member?: TeamMember | null;
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (data: Partial<TeamMember>) => void;
+  onSubmit: (data: Partial<TeamMember>, id?: string) => void;
 }
 
 export const TeamMemberForm: FC<TeamMemberFormProps> = ({
@@ -23,8 +23,13 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
   useEffect(() => {
     if (member?.image) {
       setPreviewUrl(member.image);
+    } else {
+      setPreviewUrl("");
     }
-  }, [member]);
+    if (!isOpen) {
+      setPreviewUrl("");
+    }
+  }, [member, isOpen]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsloading] = useState(false);
 
@@ -75,6 +80,7 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
     }
     //cludinery ........
     const imgLink = await handleUploads(file);
+    const isActive = formData.get("status") === "active";
 
     const data: Partial<TeamMember> = {
       name: formData.get("name") as string,
@@ -86,7 +92,7 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
         .split("\n")
         .map((s) => s.trim())
         .filter(Boolean),
-      status: formData.get("status") as "active" | "inactive",
+      isActive,
       social: {
         linkedin: formData.get("linkedin") as string,
         twitter: formData.get("twitter") as string,
@@ -94,7 +100,12 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
         github: formData.get("github") as string,
       },
     };
-    onSubmit(data);
+
+    if (data.image === undefined) {
+      data.image = previewUrl;
+    }
+
+    onSubmit(data, member?._id as string);
     setIsloading(false);
   };
 
@@ -102,8 +113,7 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title={member ? "Edit Member" : "Add New Member"}
-    >
+      title={member ? "Edit Member" : "Add New Member"}>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           {previewUrl && (
@@ -117,20 +127,31 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
           )}
           <label
             htmlFor="image"
-            className="block text-sm font-medium text-purple-400 mb-1"
-          >
+            className="block text-sm font-medium text-purple-400 mb-1">
             Your Photo (JPG or PNG, max 5MB)
           </label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            ref={fileInputRef}
-            accept="image/jpeg,image/jpg,image/png,"
-            onChange={handleImageChange}
-            className="w-full bg-gray-900 border cursor-pointer border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400 file:text-gray-950 hover:file:bg-purple-500"
-            required
-          />
+          {member ? (
+            <input
+              type="file"
+              id="image"
+              name="image"
+              ref={fileInputRef}
+              accept="image/jpeg,image/jpg,image/png,"
+              onChange={handleImageChange}
+              className="w-full bg-gray-900 border cursor-pointer border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400 file:text-gray-950 hover:file:bg-purple-500"
+            />
+          ) : (
+            <input
+              type="file"
+              id="image"
+              name="image"
+              ref={fileInputRef}
+              accept="image/jpeg,image/jpg,image/png,"
+              onChange={handleImageChange}
+              className="w-full bg-gray-900 border cursor-pointer border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400 file:text-gray-950 hover:file:bg-purple-500"
+              required
+            />
+          )}
           {imageError && (
             <p className="mt-1 text-sm text-red-400">{imageError}</p>
           )}
@@ -172,8 +193,7 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
               name="team"
               defaultValue={member?.team[0] || ""}
               className="customInput hover:cursor-pointer"
-              required
-            >
+              required>
               <option value="" disabled>
                 Select a team
               </option>
@@ -190,10 +210,15 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
             </label>
             <select
               name="status"
-              defaultValue={member?.status || "active"}
+              defaultValue={
+                member
+                  ? member?.isActive === true
+                    ? "active"
+                    : "inactive"
+                  : "active"
+              }
               className="customInput"
-              required
-            >
+              required>
               <option value="active">Active</option>
               <option value="inactive">Inactive</option>
             </select>
@@ -266,15 +291,13 @@ export const TeamMemberForm: FC<TeamMemberFormProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 border border-purple-400/30 text-purple-400 rounded-md hover:bg-purple-400/10"
-          >
+            className="px-4 py-2 border border-purple-400/30 text-purple-400 rounded-md hover:bg-purple-400/10">
             Cancel
           </button>
           <button
             type="submit"
             className={`px-4 py-2 rounded-md flex items-center justify-center gap-2 bg-purple-400/10 text-purple-400 hover:bg-purple-400/20 transition-colors min-w-[120px]`}
-            disabled={isLoading}
-          >
+            disabled={isLoading}>
             {isLoading ? (
               <>
                 <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></span>

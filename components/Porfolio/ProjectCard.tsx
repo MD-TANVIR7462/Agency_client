@@ -14,7 +14,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="group relative h-full overflow-hidden rounded-sm shadow-lg"
+      className="group relative h-[320px] overflow-hidden rounded-sm shadow-lg"
     >
       {/* Background Image */}
       <img
@@ -39,7 +39,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
         {/* Description & Link */}
         <div className="mt-4 opacity-0 translate-y-8 transition-all duration-500  group-hover:translate-y-0 group-hover:opacity-100">
-          <p className="mb-4 text-sm text-white/80 line-clamp-3 ">
+          <p className="mb-4 text-sm text-white/80 line-clamp-5 ">
             {project.description}
           </p>
           <Link

@@ -13,14 +13,21 @@ import { useRouter } from "next/navigation";
 import { ErrorToast, SuccessToast } from "@/lib/utils";
 import { deleteToast } from "@/lib/deleteToast";
 
-export default function EditServiceIndex({ serviceData }: { serviceData: Service[] }) {
+export default function EditServiceIndex({
+  serviceData,
+}: {
+  serviceData: Service[];
+}) {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const router = useRouter();
 
-  const handleStatusChange = async (id: string, status: "active" | "inactive") => {
+  const handleStatusChange = async (
+    id: string,
+    status: "active" | "inactive"
+  ) => {
     const isActive = status === "active";
     const data = { isActive };
     const result = await updateData("service/update-service", id, data);
@@ -92,8 +99,7 @@ export default function EditServiceIndex({ serviceData }: { serviceData: Service
             onClick={handleAddNew}
             className="flex gap-1 items-center  primaryButton"
             whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
+            whileTap={{ scale: 0.98 }}>
             <Plus className="md:w-5 md:h-5  w-4 h-4" />
             Add Service
           </motion.button>
@@ -107,7 +113,11 @@ export default function EditServiceIndex({ serviceData }: { serviceData: Service
           onDelete={handleDelete}
         />
 
-        <ServiceModal service={selectedService} isOpen={isDetailsOpen} onClose={() => setIsDetailsOpen(false)} />
+        <ServiceModal
+          service={selectedService}
+          isOpen={isDetailsOpen}
+          onClose={() => setIsDetailsOpen(false)}
+        />
 
         <ServiceForm
           service={selectedService}

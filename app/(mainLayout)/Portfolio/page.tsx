@@ -5,7 +5,6 @@ import FAQSection from "@/components/Shared/Faq/FAQSection";
 import SubHero from "@/components/Shared/SubHero";
 import { getData } from "@/server/ServerActions";
 
-
 const Portfolio = async () => {
   const projectData = await getData("project?isActive=true");
   const hide = false;
@@ -26,5 +25,5 @@ const Portfolio = async () => {
     </div>
   );
 };
- 
+
 export default Portfolio;
