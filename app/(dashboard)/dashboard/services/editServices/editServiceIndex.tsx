@@ -3,25 +3,33 @@
 import { useState } from "react";
 import { Service } from "@/components/types/services";
 import { motion } from "framer-motion";
-import { icons, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { ServiceTable } from "@/components/dashboard/EditService/EditServices/ServiceTable";
 import { ServiceForm } from "@/components/dashboard/EditService/EditServices/ServiceFrom";
 import { ServiceModal } from "@/components/services/ServiceModal";
 import DashSubTitle from "@/components/Shared/DashSubTitle";
-import { updateData } from "@/server/ServerActions";
+import { createData, deleteData, updateData } from "@/server/ServerActions";
+import { useRouter } from "next/navigation";
+import { ErrorToast, SuccessToast } from "@/lib/utils";
+import { deleteToast } from "@/lib/deleteToast";
 
-export default function EditServiceIndex({
-  serviceData,
-}: {
-  serviceData: Service[];
-}) {
+export default function EditServiceIndex({ serviceData }: { serviceData: Service[] }) {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [newServiceData, setNewService] = useState<Service | null>(null);
 
-  const handleStatusChange = (id: string, status: string) => {
-    // setServices(servicesData.map((service) => (service._id === id ? { ...service, status } : service)));
+  const router = useRouter();
+
+  const handleStatusChange = async (id: string, status: "active" | "inactive") => {
+    const isActive = status === "active";
+    const data = { isActive };
+    const result = await updateData("service/update-service", id, data);
+    if (result?.success) {
+      SuccessToast("Status updated successfully!");
+      router.refresh();
+    } else {
+      ErrorToast(result?.message);
+    }
   };
 
   const handleEdit = (service: Service) => {
@@ -29,7 +37,7 @@ export default function EditServiceIndex({
     setIsFormOpen(true);
   };
 
-  const handleViewDetails = (service: Service) => {
+  const handleViewDetails = async (service: Service) => {
     setSelectedService(service);
     setIsDetailsOpen(true);
   };
@@ -39,30 +47,40 @@ export default function EditServiceIndex({
     setIsFormOpen(true);
   };
 
-  const handleSubmit = async (data: Partial<Service>) => {
+  const handleDelete = async (id: string) => {
+    const handleDeleteService = async () => {
+      const result = await deleteData("service/delete-service", id);
+      if (result?.success) {
+        router.refresh();
+        SuccessToast(result.message);
+      } else {
+        ErrorToast(result.message);
+      }
+    };
+
+    deleteToast(handleDeleteService, "Delete this service ?");
+  };
+
+  const handleSubmit = async (data: Partial<Service>, id?: string | any) => {
     if (selectedService) {
-      const { title, icon, shortDes, fullDescription, features, technologies } =
-        data;
-      const newData = {
-        title,
-        icon,
-        shortDes,
-        fullDescription,
-        features,
-        technologies,
-      };
-      const result = await updateData(
-        "service/update-service",
-        data?._id,
-        newData
-      );
-      console.log(result);
+      const result = await updateData("service/update-service", id, data);
+      if (result?.success) {
+        SuccessToast(result?.message);
+        router.refresh();
+      } else {
+        ErrorToast(result?.message);
+      }
     } else {
       const newService: Service = data as Service;
-      setNewService(newService);
+      const result = await createData("service/create-service", newService);
+      if (result?.success) {
+        SuccessToast(result?.message);
+        router.refresh();
+      } else {
+        ErrorToast(result?.message);
+      }
     }
     setIsFormOpen(false);
-    console.log(selectedService);
   };
 
   return (
@@ -74,7 +92,8 @@ export default function EditServiceIndex({
             onClick={handleAddNew}
             className="flex gap-1 items-center  primaryButton"
             whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}>
+            whileTap={{ scale: 0.98 }}
+          >
             <Plus className="md:w-5 md:h-5  w-4 h-4" />
             Add Service
           </motion.button>
@@ -85,13 +104,10 @@ export default function EditServiceIndex({
           onEdit={handleEdit}
           onViewDetails={handleViewDetails}
           onStatusChange={handleStatusChange}
+          onDelete={handleDelete}
         />
 
-        <ServiceModal
-          service={selectedService}
-          isOpen={isDetailsOpen}
-          onClose={() => setIsDetailsOpen(false)}
-        />
+        <ServiceModal service={selectedService} isOpen={isDetailsOpen} onClose={() => setIsDetailsOpen(false)} />
 
         <ServiceForm
           service={selectedService}

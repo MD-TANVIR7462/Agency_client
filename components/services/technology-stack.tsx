@@ -5,7 +5,7 @@ import { getData } from "@/server/ServerActions";
 
 
 export const TechnologyStack = async () => {
-  const technologyData = (await getData("/technologies"))?.data;
+  const technologyData = (await getData("technologies?isActive=true"))?.data;
 
   return (
     <section className="relative overflow-hidden bg-gray-900 py-24">

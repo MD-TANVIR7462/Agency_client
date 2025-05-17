@@ -9,15 +9,10 @@ interface ServiceFormProps {
   service?: Service | null;
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (data: Partial<Service>) => void;
+  onSubmit: (data: Partial<Service>, id?: string|any) => void;
 }
 
-export const ServiceForm: FC<ServiceFormProps> = ({
-  service,
-  isOpen,
-  onClose,
-  onSubmit,
-}) => {
+export const ServiceForm: FC<ServiceFormProps> = ({ service, isOpen, onClose, onSubmit }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -30,66 +25,37 @@ export const ServiceForm: FC<ServiceFormProps> = ({
       features: (formData.get("features") as string).split("\n"),
       technologies: (formData.get("technologies") as string).split("\n"),
     };
-
+    let id;
     if (service) {
-      const _id = service._id;
-      data._id = _id;
+      id = service._id;
     }
-    onSubmit(data);
+    onSubmit(data, id);
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      title={service ? "Edit Service" : "Add Service"}>
+    <Modal isOpen={isOpen} onClose={onClose} title={service ? "Edit Service" : "Add Service"}>
       <motion.form
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="space-y-4"
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+      >
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Title
-          </label>
-          <input
-            type="text"
-            name="title"
-            defaultValue={service?.title}
-            className="customInput"
-            required
-          />
+          <label className="block text-sm font-medium text-purple-400 mb-1">Title</label>
+          <input type="text" name="title" defaultValue={service?.title} className="customInput" required />
         </div>
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Icon
-          </label>
-          <input
-            type="text"
-            name="icon"
-            defaultValue={service?.icon}
-            className="customInput"
-            required
-          />
+          <label className="block text-sm font-medium text-purple-400 mb-1">Icon</label>
+          <input type="text" name="icon" defaultValue={service?.icon} className="customInput" required />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Short Description
-          </label>
-          <input
-            type="text"
-            name="shortDes"
-            defaultValue={service?.shortDes}
-            className="customInput"
-            required
-          />
+          <label className="block text-sm font-medium text-purple-400 mb-1">Short Description</label>
+          <input type="text" name="shortDes" defaultValue={service?.shortDes} className="customInput" required />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Full Description
-          </label>
+          <label className="block text-sm font-medium text-purple-400 mb-1">Full Description</label>
           <textarea
             name="fullDescription"
             defaultValue={service?.fullDescription}
@@ -100,9 +66,7 @@ export const ServiceForm: FC<ServiceFormProps> = ({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Features (one per line)
-          </label>
+          <label className="block text-sm font-medium text-purple-400 mb-1">Features (one per line)</label>
           <textarea
             name="features"
             defaultValue={service?.features?.join("\n")}
@@ -113,9 +77,7 @@ export const ServiceForm: FC<ServiceFormProps> = ({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Technologies (one per line)
-          </label>
+          <label className="block text-sm font-medium text-purple-400 mb-1">Technologies (one per line)</label>
           <textarea
             name="technologies"
             defaultValue={service?.technologies?.join("\n")}
@@ -131,14 +93,16 @@ export const ServiceForm: FC<ServiceFormProps> = ({
             onClick={onClose}
             className="secondaryButton"
             whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}>
+            whileTap={{ scale: 0.98 }}
+          >
             Cancel
           </motion.button>
           <motion.button
             type="submit"
             className="primaryButton"
             whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}>
+            whileTap={{ scale: 0.98 }}
+          >
             {service ? "Update Service" : "Add Service"}
           </motion.button>
         </div>

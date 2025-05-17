@@ -6,4 +6,5 @@ export interface TechCardProps {
    isActive?: boolean,
    isDeleted?:boolean,
    index?:number
+   _id?:string
  }

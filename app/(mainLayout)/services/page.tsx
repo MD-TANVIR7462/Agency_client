@@ -4,9 +4,8 @@ import SubHero from "@/components/Shared/SubHero";
 import { ServiceGridWraper } from "@/components/services/ServicesWraper";
 import { getData } from "@/server/ServerActions";
 
-
 const ServicePage = async () => {
-  const serviceData = await getData("service");
+  const serviceData = await getData("service?isActive=true");
   return (
     <>
       <SubHero

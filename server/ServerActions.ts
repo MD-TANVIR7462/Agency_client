@@ -6,7 +6,9 @@ const BASE_URL = envConfig.SERVER_BASE_URL; // Can be dynamic
 // GET ALL DATA
 export async function getData(endpoint: string) {
   try {
-    const res = await fetch(`${BASE_URL}/${endpoint}`);
+    const res = await fetch(`${BASE_URL}/${endpoint}`, {
+      cache: "no-store",
+    });
     // if (!res.ok) throw new Error("Failed to fetch data");
     const data = await res.json();
     return data;
@@ -54,7 +56,6 @@ export async function createData(endpoint: string, data: any) {
 export async function updateData(endpoint: string, id: string, data: any) {
   try {
     const url = `${BASE_URL}/${endpoint}/${id}`;
-    console.log(url);
     const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
