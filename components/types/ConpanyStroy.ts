@@ -1,4 +1,4 @@
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon } from "lucide-react";
 
 export interface CompanyStats {
   years: string;
@@ -8,6 +8,7 @@ export interface CompanyStats {
 }
 
 export interface CompanyInfo {
+  _id?: string;
   stats: CompanyStats;
   story: {
     title: string;

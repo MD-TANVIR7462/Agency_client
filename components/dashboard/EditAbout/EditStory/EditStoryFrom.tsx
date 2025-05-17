@@ -7,15 +7,10 @@ interface CompanyFormProps {
   isOpen: boolean;
   onClose: () => void;
   initialData: CompanyInfo;
-  onSubmit: (data: CompanyInfo) => void;
+  onSubmit: (data: CompanyInfo, id: string) => void;
 }
 
-export const StoryFrom: FC<CompanyFormProps> = ({
-  isOpen,
-  onClose,
-  initialData,
-  onSubmit,
-}) => {
+export const StoryFrom: FC<CompanyFormProps> = ({ isOpen, onClose, initialData, onSubmit }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
@@ -43,16 +38,11 @@ export const StoryFrom: FC<CompanyFormProps> = ({
       },
     };
 
-    onSubmit(data);
+    onSubmit(data, initialData?._id as string);
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      title="Edit Company Information"
-      width={"max-w-3xl"}
-    >
+    <Modal isOpen={isOpen} onClose={onClose} title="Edit Company Information" width={"max-w-3xl"}>
       <motion.form
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -61,21 +51,11 @@ export const StoryFrom: FC<CompanyFormProps> = ({
       >
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-purple-400 mb-1">
-              Years of Experience
-            </label>
-            <input
-              type="text"
-              name="years"
-              defaultValue={initialData.stats.years}
-              className="customInput"
-              required
-            />
+            <label className="block text-sm font-medium text-purple-400 mb-1">Years of Experience</label>
+            <input type="text" name="years" defaultValue={initialData.stats.years} className="customInput" required />
           </div>
           <div>
-            <label className="block text-sm font-medium text-purple-400 mb-1">
-              Projects Delivered
-            </label>
+            <label className="block text-sm font-medium text-purple-400 mb-1">Projects Delivered</label>
             <input
               type="text"
               name="projects"
@@ -85,9 +65,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-purple-400 mb-1">
-              Team Size
-            </label>
+            <label className="block text-sm font-medium text-purple-400 mb-1">Team Size</label>
             <input
               type="text"
               name="teamSize"
@@ -97,9 +75,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-purple-400 mb-1">
-              Client Satisfaction
-            </label>
+            <label className="block text-sm font-medium text-purple-400 mb-1">Client Satisfaction</label>
             <input
               type="text"
               name="satisfaction"
@@ -111,9 +87,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Story Title
-          </label>
+          <label className="block text-sm font-medium text-purple-400 mb-1">Story Title</label>
           <input
             type="text"
             name="storyTitle"
@@ -124,9 +98,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Story Content
-          </label>
+          <label className="block text-sm font-medium text-purple-400 mb-1">Story Content</label>
           <textarea
             name="storyContent"
             defaultValue={initialData.story.content}
@@ -137,9 +109,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Mission Title
-          </label>
+          <label className="block text-sm font-medium text-purple-400 mb-1">Mission Title</label>
           <input
             type="text"
             name="missionTitle"
@@ -150,9 +120,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Mission Content
-          </label>
+          <label className="block text-sm font-medium text-purple-400 mb-1">Mission Content</label>
           <textarea
             name="missionContent"
             defaultValue={initialData.mission.content}
@@ -163,9 +131,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Vision Title
-          </label>
+          <label className="block text-sm font-medium text-purple-400 mb-1">Vision Title</label>
           <input
             type="text"
             name="visionTitle"
@@ -176,9 +142,7 @@ export const StoryFrom: FC<CompanyFormProps> = ({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Vision Content
-          </label>
+          <label className="block text-sm font-medium text-purple-400 mb-1">Vision Content</label>
           <textarea
             name="visionContent"
             defaultValue={initialData.vision.content}
