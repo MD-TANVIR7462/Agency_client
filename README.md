@@ -1,7 +1,7 @@
 # 🚀 Agency Client — Full Stack Software Agency Website
 
 > ⚠️ **Note for Recruiters:**  
-> This project is currently **under active development** and will be **fully completed within the next 20–25 days**. The foundational structure is already in place, with major modules nearly finalized. Feel free to explore the features, code structure, and UI — everything is progressing rapidly!
+> This project is currently **under active development** and will be **fully completed within the next 7–10 days**. The foundational structure is already in place, with major modules nearly finalized. Feel free to explore the features, code structure, and UI — everything is progressing rapidly!
 
 ---
 
