@@ -66,7 +66,7 @@ export default function EditGalleryPage() {
   };
 
   const handleStatusChange = (id: string, status: "active" | "inactive") => {
-    setImages(images.map((image) => (image._id === id ? { ...image, status } : image)));
+    setImages(images?.map((image) => (image._id === id ? { ...image, status } : image)));
   };
 
   return (

@@ -64,7 +64,7 @@ export default function FAQPage() {
 
   const handleSave = (faq: FAQ) => {
     if (editingFaq) {
-      setFaqs(faqs.map((f) => (f.id === faq.id ? faq : f)));
+      setFaqs(faqs?.map((f) => (f.id === faq.id ? faq : f)));
     } else {
       const newFaq = {
         ...faq,
@@ -76,7 +76,7 @@ export default function FAQPage() {
   };
 
   const handleStatusChange = (id: string, status: 'active' | 'inactive') => {
-    setFaqs(faqs.map((faq) => 
+    setFaqs(faqs?.map((faq) => 
       faq.id === id ? { ...faq, status } : faq
     ));
   };

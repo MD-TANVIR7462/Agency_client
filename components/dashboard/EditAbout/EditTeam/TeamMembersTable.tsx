@@ -47,7 +47,7 @@ export const TeamMembersTable: FC<TeamMembersTableProps> = ({
               <td className="p-4 text-gray-300">{member.role}</td>
               <td className="p-4">
                 <div className="flex flex-wrap gap-1">
-                  {member.team.map((t) => (
+                  {member?.team?.map((t) => (
                     <span
                       key={t}
                       className="px-2 py-1 text-xs rounded-full bg-purple-400/10 text-purple-400">

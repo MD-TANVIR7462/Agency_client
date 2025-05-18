@@ -313,7 +313,7 @@ export default function WebsiteSettings() {
                     icon: Instagram,
                     color: "text-pink-500",
                   },
-                ].map(({ name, icon: Icon, color }) => (
+                ]?.map(({ name, icon: Icon, color }) => (
                   <div key={name} className="flex items-center gap-3">
                     <Icon className={`w-5 h-5 ${color}`} />
                     <input
@@ -384,7 +384,7 @@ export default function WebsiteSettings() {
                 </div>
 
                 <div className="flex gap-4 mt-6">
-                  {["linkedin", "twitter", "facebook", "instagram"].map(
+                  {["linkedin", "twitter", "facebook", "instagram"]?.map(
                     (name) => {
                       const url = formData[name as keyof typeof formData];
                       return url ? (

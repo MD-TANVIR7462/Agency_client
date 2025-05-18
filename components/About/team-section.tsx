@@ -30,7 +30,7 @@ export const TeamSection = ({ teamMembers }: { teamMembers: TeamMember[] }) => {
 
         {/* Team Category Tabs */}
         <div className="flex  overflow-x-auto  md:justify-center gap-4 mb-12 mt-4  mx-auto ">
-          {teamCategories.map((category) => (
+          {teamCategories?.map((category) => (
             <button
               key={category}
               onClick={() => setActiveTab(category)}
@@ -83,7 +83,7 @@ export const TeamSection = ({ teamMembers }: { teamMembers: TeamMember[] }) => {
 
                   {/* Skills */}
                   <div className="flex flex-wrap justify-center gap-2 mb-4">
-                    {member.skills.map((skill, idx) => (
+                    {member?.skills?.map((skill, idx) => (
                       <span
                         key={idx}
                         className="px-3 py-1 text-xs rounded-full bg-gray-700 text-gray-300">

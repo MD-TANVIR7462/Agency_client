@@ -20,7 +20,7 @@ export default function ApplicationsTable({ positionId }: ApplicationsTableProps
 
   const handleSelectCandidate = (applicationId: string) => {
     setApplications(
-      applications.map((app) =>
+      applications?.map((app) =>
         app.id === applicationId
           ? {
               ...app,
@@ -33,7 +33,7 @@ export default function ApplicationsTable({ positionId }: ApplicationsTableProps
 
   const handleRejectCandidate = (applicationId: string) => {
     setApplications(
-      applications.map((app) =>
+      applications?.map((app) =>
         app.id === applicationId
           ? {
               ...app,
@@ -62,13 +62,13 @@ export default function ApplicationsTable({ positionId }: ApplicationsTableProps
           <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
             Applications
           </span>
-          <span className="text-sm bg-gray-800 px-2 py-1 rounded-full">{applications.length}</span>
+          <span className="text-sm bg-gray-800 px-2 py-1 rounded-full">{applications?.length}</span>
         </h4>
 
         <FilterButton />
       </div>
       <div className="overflow-x-auto overflow-y-auto">
-        {applications.length > 0 ? (
+        {applications?.length > 0 ? (
           <table className="w-full">
             <thead>
               <tr className="text-left border-b border-gray-800">

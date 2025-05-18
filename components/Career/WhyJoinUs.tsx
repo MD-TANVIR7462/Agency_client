@@ -41,7 +41,7 @@ export const WhyJoinUs = () => {
         <p className="text-gray-400 text-center mb-12">Experience a workplace that values innovation, growth, and well-being</p>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => (
+          {benefits?.map((benefit, index) => (
             <div key={index} className="bg-[#1E1E30] rounded-xl p-6 hover:bg-[#252540] transition-all duration-300 border border-purple-900/30">
               <div className="bg-purple-900/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 {benefit.icon}

@@ -32,7 +32,7 @@ export function Values() {
           <Tittle tittle="Our Values" />
         </span>
         <div className="grid  mt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-6 xl:gap-8">
-          {values.map((value, index) => (
+          {values?.map((value, index) => (
             <div key={index} className="bg-gray-800 p-8 rounded-lg ">
               {value.icon}
               <h3 className="text-xl font-semibold mb-4 text-white">{value.title}</h3>

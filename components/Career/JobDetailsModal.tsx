@@ -41,7 +41,7 @@ export const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
             Requirements
           </h3>
           <ul className="list-disc list-inside space-y-2">
-            {position.requirements.map((req, index) => (
+            {position.requirements?.map((req, index) => (
               <li key={index} className="leading-relaxed">
                 {req}
               </li>
@@ -55,7 +55,7 @@ export const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
             Responsibilities
           </h3>
           <ul className="list-disc list-inside space-y-2">
-            {position.responsibilities.map((resp, index) => (
+            {position.responsibilities?.map((resp, index) => (
               <li key={index} className="leading-relaxed">
                 {resp}
               </li>
@@ -67,7 +67,7 @@ export const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
         <div className="bg-gray-900 p-6 rounded-lg shadow-md border border-gray-700">
           <h3 className="text-lg font-semibold text-white mb-3">Benefits</h3>
           <ul className="list-disc list-inside space-y-2">
-            {position.benefits.map((benefit, index) => (
+            {position.benefits?.map((benefit, index) => (
               <li key={index} className="leading-relaxed">
                 {benefit}
               </li>
@@ -90,7 +90,7 @@ export const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
        
           <p className="mt-3">
             <strong>Tags:</strong>{" "}
-            {position.tags.map((tag, index) => (
+            {position.tags?.map((tag, index) => (
               <span
                 key={index}
                 className="bg-violet-500 text-white px-2 py-1 rounded-full text-xs mr-2"

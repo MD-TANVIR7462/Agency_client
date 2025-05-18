@@ -4,7 +4,6 @@ import { ArrowUpRight, Circle } from "lucide-react";
 
 const RecentProjects = async () => {
   const projectData = (await getData("project"))?.data;
-console.log(projectData)
   return (
     <MotionWraper
       initial={{ opacity: 0, y: 20 }}
@@ -21,7 +20,7 @@ console.log(projectData)
       </div>
 
       <div className="space-y-4">
-        {projectData.slice(0,3).map((project:any) => (
+        {projectData&& projectData?.slice(0,3).map((project:any) => (
           <div
             key={project.name}
             className="flex items-center justify-between p-4 rounded-lg bg-gray-900/30 hover:bg-gray-900/50 transition-colors text-white"

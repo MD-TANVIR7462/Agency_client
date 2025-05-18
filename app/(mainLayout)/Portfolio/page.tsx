@@ -17,7 +17,7 @@ const Portfolio = async () => {
         }
       />
       <span>
-        <ProjectsSection {...projectData} />
+        {projectData && <ProjectsSection {...projectData} />}
         <ProcessSection2 />
         <IndustryExpertise />
         <FAQSection hide={hide} />

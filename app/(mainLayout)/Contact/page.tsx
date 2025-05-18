@@ -9,14 +9,14 @@ import React from "react";
 
 const ContactPage = async () => {
   const hide = true;
-  const companyStory = (await getData("story"))?.data[0];
+  const companyStory = (await getData("story"))?.data?.[0];
   const constactData = (await getData("contact"))?.data;
 
   return (
     <div>
       <SubHero heroTittle="Contact Us" subHeroTittle="Your questions and ideas matter — let's start a conversation" />
-      <Stats {...companyStory} />
-      <ContactInfo constactData={constactData} />
+      {companyStory && <Stats {...companyStory} />}
+      {constactData && <ContactInfo constactData={constactData} />}
       <FAQSection hide={hide} />
       <ServicesCTA />
     </div>

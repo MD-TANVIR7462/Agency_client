@@ -50,7 +50,7 @@ export default function AdminDashboard() {
 
   const handleEditPosition = (updatedPosition: Position) => {
     setPositions(
-      positions.map((pos) =>
+      positions?.map((pos) =>
         pos.id === updatedPosition.id ? updatedPosition : pos
       )
     );
@@ -63,7 +63,7 @@ export default function AdminDashboard() {
 
   const handleToggleStatus = (id: string) => {
     setPositions(
-      positions.map((pos) =>
+      positions?.map((pos) =>
         pos.id === id
           ? { ...pos, status: pos.status === "active" ? "inactive" : "active" }
           : pos
@@ -73,7 +73,7 @@ export default function AdminDashboard() {
 
   const handleSelectCandidate = (applicationId: string) => {
     setApplications(
-      applications.map((app) =>
+      applications?.map((app) =>
         app.id === applicationId
           ? {
               ...app,
@@ -149,7 +149,7 @@ export default function AdminDashboard() {
           <EmptyState />
         ) : (
           <div className="space-y-8">
-            {positions.map((position) => (
+            {positions?.map((position) => (
               <div
                 key={position.id}
                 className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 md:p-8 border border-gray-800/50 shadow-xl hover:border-purple-500/30 transition-all duration-300"
@@ -245,7 +245,7 @@ export default function AdminDashboard() {
                         <tbody>
                           {getApplicationsForPosition(
                             position.id
-                          ).sliceApplication.map((app) => (
+                          ).sliceApplication?.map((app) => (
                             <tr
                               key={app.id}
                               className="border-b border-gray-800 hover:bg-gray-800/30 transition-colors"

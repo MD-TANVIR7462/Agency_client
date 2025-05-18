@@ -26,10 +26,10 @@ export const TeamMemberDetails: FC<TeamMemberDetailsProps> = ({
               className="w-24 h-24 rounded-full object-cover"
             />
             <div>
-              <h3 className="text-xl font-semibold text-white">{member.name}</h3>
-              <p className="text-gray-400">{member.role}</p>
+              <h3 className="text-xl font-semibold text-white">{member?.name}</h3>
+              <p className="text-gray-400">{member?.role}</p>
               <div className="mt-2 flex gap-2">
-                {member.team.map((t) => (
+                {member?.team?.map((t) => (
                   <span
                     key={t}
                     className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-400/10 text-purple-400"

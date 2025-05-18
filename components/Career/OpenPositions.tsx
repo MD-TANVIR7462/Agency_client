@@ -39,7 +39,7 @@ export const OpenPositions = () => {
 
         <div className="grid gap-6">
           {positions?.length > 0 ? (
-            positions.map((position) => (
+            positions?.map((position) => (
               <div
                 key={position.id}
                 className="bg-[#1E1E30] rounded-xl p-6 hover:bg-[#252540] transition-all duration-300 border border-purple-900/30"
@@ -64,7 +64,7 @@ export const OpenPositions = () => {
                       </div>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {position.tags.map((tag, idx) => (
+                      {position?.tags?.map((tag, idx) => (
                         <span
                           key={idx}
                           className="px-3 py-1 bg-purple-900/30 text-purple-300 rounded-full text-sm"

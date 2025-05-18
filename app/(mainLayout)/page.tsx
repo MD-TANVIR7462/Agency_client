@@ -10,24 +10,20 @@ import { TBanner } from "@/components/types/Banner";
 import { getData } from "@/server/ServerActions";
 
 const Home = async () => {
-  const banner: TBanner = (await getData("banner"))?.data[0];
-  const teamdata = await getData("team?isActive=true");
-  const serviceData = await getData("service?isActive=true");
-
-  //data
+  const banner = (await getData("banner"))?.data?.[0] as TBanner;
+  const teamData = (await getData("team?isActive=true"))?.data;
+  const serviceData = (await getData("service?isActive=true"))?.data;
 
   return (
-    <>
-      <main>
-        {banner?.activeBanner === 1 && <Banner bannerData={banner} />}
-        {banner?.activeBanner === 2 && <Banner2 bannerData={banner} />}
-        <Services serviceData={serviceData.data} />
-        <Features />
-        <Gallery />
-        <TeamSection teamMembers={teamdata?.data} />
-        <Testimonials />
-      </main>
-    </>
+    <main>
+      {banner && banner?.activeBanner === 1 && <Banner bannerData={banner} />}
+      {banner && banner?.activeBanner === 2 && <Banner2 bannerData={banner} />}
+      {serviceData && <Services serviceData={serviceData} />}
+      <Features />
+      <Gallery />
+      {teamData && <TeamSection teamMembers={teamData} />}
+      <Testimonials />
+    </main>
   );
 };
 

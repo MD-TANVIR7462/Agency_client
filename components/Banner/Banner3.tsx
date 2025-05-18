@@ -100,7 +100,7 @@ function Banner3() {
                   { number: "250+", label: "Projects Completed" },
                   { number: "50+", label: "Happy Clients" },
                   { number: "10+", label: "Years Experience" },
-                ].map((stat, index) => (
+                ]?.map((stat, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}

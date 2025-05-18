@@ -19,7 +19,7 @@ const ProjectsPage = () => {
   const handleAddProject = (data: Partial<Project>) => {
     const newProject = {
       ...data,
-      id: Math.max(...projects.map((p) => p.id)) + 1,
+      id: Math.max(...projects?.map((p) => p._id)) + 1,
     } as Project;
 
     setProjects([...projects, newProject]);
@@ -29,8 +29,8 @@ const ProjectsPage = () => {
   const handleEditProject = (data: Partial<Project>) => {
     if (!selectedProject) return;
 
-    const updatedProjects = projects.map((project) =>
-      project.id === selectedProject.id ? { ...project, ...data } : project
+    const updatedProjects = projects?.map((project) =>
+      project._id === selectedProject._id ? { ...project, ...data } : project
     );
 
     setProjects(updatedProjects);
@@ -53,13 +53,15 @@ const ProjectsPage = () => {
 
   const filteredProjects = projects.filter((project) => {
     if (filter === "all") return true;
-    return project.status === filter;
+
+    // return project.isActive === filter;
+    // console.log("filtered");
   });
 
   return (
     <div className=" p-0 md:p-4 lg:p-6 max-w-[1900px] mx-auto">
       <div className="flex justify-between items-center mb-6">
-        <DashSubTitle text="Projects"/>
+        <DashSubTitle text="Projects" />
         <div className="flex gap-3">
           <CustomDropdown currentFilter={filter} onFilterChange={setFilter} />
           <Button onClick={handleAddNew} className="primaryButton">
@@ -69,11 +71,7 @@ const ProjectsPage = () => {
         </div>
       </div>
 
-      <ProjectsTable
-        projects={filteredProjects}
-        onView={handleView}
-        onEdit={handleEdit}
-      />
+      <ProjectsTable projects={filteredProjects} onView={handleView} onEdit={handleEdit} />
 
       <ProjectForm
         project={selectedProject}

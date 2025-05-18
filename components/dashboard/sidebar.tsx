@@ -146,7 +146,7 @@ export default function Sidebar() {
                 </div>
               </button>
             </Link>
-            {menuItems.map((item) => (
+            {menuItems?.map((item) => (
               <div key={item.title} className="mb-2">
                 <button
                   onClick={() => toggleSubmenu(item.title)}

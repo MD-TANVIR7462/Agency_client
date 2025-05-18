@@ -8,7 +8,7 @@ export const Testimonials = async () => {
   const testimonialsData = testimonials?.data;
   return (
     <section className="relative overflow-hidden bg-gray-900 py-20">
-      {testimonialsData.length > 0 && (
+      {testimonialsData && (
         <>
           <div className="absolute left-1/4 top-1/2 -z-10 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-purple-500/20 blur-[100px]" />
 

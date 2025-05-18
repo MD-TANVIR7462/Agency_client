@@ -18,7 +18,9 @@ const CareerPage = async() => {
       <CareerHero />
       <OpenPositions />
       <WhyJoinUs />
-      <GallerySection  galleryData={galleryData}/>
+      {
+        galleryData&& <GallerySection  galleryData={galleryData}/>
+      }
       <FAQSection hide={hide} />
     </div>
   );

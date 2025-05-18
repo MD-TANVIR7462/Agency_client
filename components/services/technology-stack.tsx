@@ -3,7 +3,6 @@ import MotionWraper from "../Shared/MotionWraper";
 import Technologies from "./technologies";
 import { getData } from "@/server/ServerActions";
 
-
 export const TechnologyStack = async () => {
   const technologyData = (await getData("technologies?isActive=true"))?.data;
 
@@ -23,7 +22,7 @@ export const TechnologyStack = async () => {
             Cutting-edge technologies powering your digital success
           </p>
         </MotionWraper>
-        <Technologies technologyData={technologyData}/>
+        {technologyData && <Technologies technologyData={technologyData} />}
       </div>
     </section>
   );

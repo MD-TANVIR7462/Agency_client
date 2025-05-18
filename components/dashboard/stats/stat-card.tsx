@@ -1,7 +1,7 @@
 import MotionWraper from "@/components/Shared/MotionWraper";
 import { Code, ShieldCheck , Briefcase, Award } from "lucide-react";
 
-interface StatCardProps {
+export interface StatCardProps {
   satisfaction: string;
   teamSize: string;
   projects: string;

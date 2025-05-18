@@ -23,14 +23,14 @@ export default function AdminList() {
   };
 
   const handleStatusChange = (updatedAdmin: Admin) => {
-    setAdmins(admins.map(admin => 
+    setAdmins(admins?.map(admin => 
       admin.id === updatedAdmin.id ? updatedAdmin : admin
     ));
   };
 
   const handleSubmit = (data: Partial<Admin>) => {
     if (selectedAdmin) {
-      setAdmins(admins.map(admin =>
+      setAdmins(admins?.map(admin =>
         admin.id === selectedAdmin.id ? { ...admin, ...data } : admin
       ));
     }

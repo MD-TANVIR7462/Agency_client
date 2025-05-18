@@ -6,7 +6,7 @@ import { FAQ } from "@/components/types/Faq";
 import { getData } from "@/server/ServerActions";
 
 const FAQSection = async ({ hide }: { hide: boolean }) => {
-  const faqs: FAQ = (await getData("faq"))?.data;
+  const faqs: FAQ[] = (await getData("faq"))?.data;
 
   return (
     <section className="py-24 relative">
@@ -14,18 +14,11 @@ const FAQSection = async ({ hide }: { hide: boolean }) => {
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">
             <Tittle tittle=" Frequently Asked Questions" />
-            <p className="text-gray-400">
-              Get answers to common questions about our services and processes
-            </p>
+            <p className="text-gray-400">Get answers to common questions about our services and processes</p>
           </div>
           <div className="bg-gray-950/50 rounded-2xl p-8 backdrop-blur-sm border border-purple-400/10">
-            {faqs.map((faq, index) => (
-              <FAQItem
-                key={index}
-                question={faq.question}
-                answer={faq.answer}
-                index={index}
-              />
+            {faqs && faqs?.map((faq, index) => (
+              <FAQItem key={index} question={faq.question} answer={faq.answer} index={index} />
             ))}
           </div>
 

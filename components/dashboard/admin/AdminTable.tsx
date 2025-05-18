@@ -32,7 +32,7 @@ const AdminTable: FC<AdminTableProps> = ({
           </tr>
         </thead>
         <tbody className="divide-y divide-purple-400/10">
-          {admins.map((admin) => (
+          {admins?.map((admin) => (
             <tr
               key={admin.id}
               className="hover:bg-purple-400/5 transition-colors duration-150"

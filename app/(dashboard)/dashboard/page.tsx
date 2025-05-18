@@ -7,7 +7,8 @@ import { getData } from "@/server/ServerActions";
 import RecentProjects from "@/components/dashboard/projects/recent-projects";
 
 const DashboardPage = async () => {
-  const dashboardStats = (await getData("story"))?.data[0]?.stats;
+  const dashboardStats = (await getData("story"))?.data?.[0]?.stats;
+
   return (
     <div className="space-y-6 max-w-[1600px] mx-auto">
       <div>
@@ -15,7 +16,7 @@ const DashboardPage = async () => {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <StatCard key={dashboardStats.years} {...dashboardStats} />
+        {dashboardStats && <StatCard key={dashboardStats?.years} {...dashboardStats} />}
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">

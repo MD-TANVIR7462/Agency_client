@@ -8,8 +8,6 @@ import MotionWraper from "../Shared/MotionWraper";
 import { Project } from "../types/Projects";
 import { getData } from "@/server/ServerActions";
 
-
-
 export default function ProjectsSection({ data }: { data: Project[] }) {
   const [activeTab, setActiveTab] = useState("all");
   const [projects, setProjects] = useState<Project[]>(data);
@@ -65,9 +63,10 @@ export default function ProjectsSection({ data }: { data: Project[] }) {
               transition={{ duration: 0.3 }}
               className="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-3"
             >
-              {projects.map((project, index) => (
-                <ProjectCard key={project._id || index} project={project} index={index} />
-              ))}
+              {projects &&
+                projects?.map((project, index) => (
+                  <ProjectCard key={project._id || index} project={project} index={index} />
+                ))}
             </MotionWraper>
           </AnimatePresence>
         )}
