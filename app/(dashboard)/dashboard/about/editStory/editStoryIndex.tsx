@@ -1,5 +1,5 @@
 "use client";
-import { FC, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Pencil } from "lucide-react";
 import { CompanyInfo } from "@/components/types/ConpanyStroy";

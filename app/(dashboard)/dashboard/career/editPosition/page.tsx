@@ -20,16 +20,18 @@ import { applications as initialApplications } from "@/components/data/applicati
 
 import Link from "next/link";
 import DashSubTitle from "@/components/Shared/DashSubTitle";
-import EmptyState from "@/components/Career/EditPositons/EmptyState";
-import { StatusBadge } from "@/components/Career/EditPositons/StatusBadge";
-import { AddPositionModal } from "@/components/Career/EditPositons/AddPositionModal";
+
 
 import {
   Application,
   ApplicationStatus,
   Position,
 } from "@/components/types/career";
+import EmptyState from "@/components/Career/EditPositons/EmptyState";
+import { StatusBadge } from "@/components/Career/EditPositons/StatusBadge";
+import { AddPositionModal } from "@/components/Career/EditPositons/AddPositionModal";
 import { EditPositionModal } from "@/components/Career/EditPositons/EditPositionModal";
+
 
 
 export default function AdminDashboard() {

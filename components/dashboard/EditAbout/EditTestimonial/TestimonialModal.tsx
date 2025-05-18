@@ -1,7 +1,4 @@
-"use client";
-
 import { Dialog } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Testimonial } from "@/components/types/Testimonial";
 import { X } from "lucide-react";
@@ -9,20 +6,15 @@ import { X } from "lucide-react";
 interface TestimonialModalProps {
   testimonial: Testimonial | null;
   onClose: () => void;
-  onStatusChange: (
-    testimonial: Testimonial,
-    status: "active" | "inactive"
-  ) => void;
 }
 
 export function TestimonialModal({
   testimonial,
   onClose,
-  onStatusChange,
 }: TestimonialModalProps) {
   if (!testimonial) return null;
 
-  const isActive = testimonial.status === "active";
+  const isActive = testimonial.isActive === true;
 
   return (
     <Dialog open={!!testimonial} onOpenChange={() => onClose()}>
@@ -70,21 +62,8 @@ export function TestimonialModal({
             </p>
           </div>
 
-          <div className="flex justify-between items-center">
-            <button
-              onClick={() => {
-                onStatusChange(testimonial, isActive ? "inactive" : "active");
-                onClose();
-              }}
-
-              className={
-                isActive
-                  ? "primaryButton"
-                  : "secondaryButton"
-              }
-            >
-              {isActive ? "Deactivate Testimonial" : "Activate Testimonial"}
-            </button>
+          <div className="flex justify-end items-center">
+          
             <button onClick={onClose} className="border-purple-400/20 text-purple-400  hover:bg-purple-400/20 transition-colors rounded-full p-2">
               <X className="h-5 w-5"/>
             </button>

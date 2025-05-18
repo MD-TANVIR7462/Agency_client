@@ -64,7 +64,6 @@ const EditTechnologyIndex = ({ technologyData }: { technologyData: TechCardProps
   };
 
   const handleDelete = async (id: string) => {
-    console.log(id);
     const handleDeleteTechnology = async () => {
       const result = await deleteData("technologies/delete-technology", id);
       if (result?.success) {

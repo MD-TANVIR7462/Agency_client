@@ -13,37 +13,37 @@ const initialFaqs: FAQ[] = [
     id: "1",
     question: "What is your development process?",
     answer: "Our development process follows an agile methodology with iterative development cycles. We begin with thorough requirement analysis, followed by design, development, testing, and deployment phases. Regular client communication and feedback are integral parts of our process.",
-    status: "active",
+    isActive: true,
   },
   {
     id: "2",
     question: "How do you ensure project quality?",
     answer: "We maintain high quality standards through comprehensive code reviews, automated testing, continuous integration/deployment (CI/CD), and regular quality audits. Our team follows industry best practices and uses modern development tools to ensure robust and scalable solutions.",
-    status: "active",
+    isActive: true,
   },
   {
     id: "3",
     question: "What technologies do you specialize in?",
     answer: "We specialize in a wide range of modern technologies including React, Node.js, Python, AWS, and more. Our tech stack is constantly evolving to incorporate the latest innovations while maintaining stability and performance.",
-    status: "active",
+    isActive: true,
   },
   {
     id: "4",
     question: "How do you handle project maintenance?",
     answer: "We provide comprehensive maintenance services including regular updates, security patches, performance optimization, and 24/7 monitoring. Our support team is always available to address any issues and ensure smooth operation of your systems.",
-    status: "active",
+    isActive: true,
   },
   {
     id: "5",
     question: "What is your pricing model?",
     answer: "We offer flexible pricing models including fixed-price projects, time and materials, and dedicated team arrangements. The specific model is chosen based on project requirements, scope, and client preferences to ensure the best value for your investment.",
-    status: "active",
+    isActive: true,
   },
   {
     id: "6",
     question: "How do you ensure data security?",
     answer: "Security is our top priority. We implement industry-standard security measures, follow OWASP guidelines, use encryption for sensitive data, and regularly conduct security audits. Our team is trained in the latest security practices to protect your valuable data.",
-    status: "active",
+    isActive: true,
   },
 ];
 

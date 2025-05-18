@@ -1,5 +1,3 @@
-"use client";
-
 import { FC } from "react";
 import { Edit, Eye, Trash2 } from "lucide-react";
 import { TeamMember } from "@/components/types/TeamMember";
@@ -60,7 +58,7 @@ export const TeamMembersTable: FC<TeamMembersTableProps> = ({
               </td>
               <td className="p-4">
                 <select
-                  className="bg-gray-900 text-white border border-purple-400/40 rounded px-2 py-1"
+                  className="bg-gray-900 text-white border border-purple-400/40 rounded px-2 py-1 cursor-pointer"
                   onChange={(e) =>
                     onStatusChange(
                       member?._id as string,

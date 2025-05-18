@@ -4,9 +4,10 @@ import { Briefcase, MapPin, Clock, Info } from "lucide-react";
 
 import { JobDetailsModal } from "./JobDetailsModal";
 import { ApplicationModal } from "./ApplicationModal";
-import { Position } from "../types/career";
-import { positions } from "../data/positions";
+
 import EmptyState from "./EditPositons/EmptyState";
+import { Position } from "@/components/types/career";
+import { positions } from "@/components/data/positions";
 
 
 export const OpenPositions = () => {
@@ -37,7 +38,7 @@ export const OpenPositions = () => {
         </p>
 
         <div className="grid gap-6">
-          {positions.length > 0 ? (
+          {positions?.length > 0 ? (
             positions.map((position) => (
               <div
                 key={position.id}

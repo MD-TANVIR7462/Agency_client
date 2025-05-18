@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { Modal } from "../Shared/Modal";
-import { Position } from "../types/career";
-import { ApplicationForm } from "../types/career";
+
 import { createData } from "@/server/ServerActions";
+import { ApplicationForm, Position } from "@/components/types/career";
+import { Modal } from "@/components/Shared/Modal";
 
 interface ApplicationModalProps {
   isOpen: boolean;

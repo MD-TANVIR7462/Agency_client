@@ -76,8 +76,9 @@ export async function deleteData(endpoint: string, id: string) {
     const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
       method: "DELETE",
     });
-    // if (!res.ok) throw new Error("Failed to delete data");
-    return { success: true, message: "Deleted successfully!" };
+    const response = await res.json();
+
+    return response;
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
     return { error: errorMessage };

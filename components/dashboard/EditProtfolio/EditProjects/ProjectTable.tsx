@@ -1,6 +1,6 @@
 "use client";
 
-import { Edit, Eye,  } from "lucide-react";
+import { Edit, Eye } from "lucide-react";
 import { Project } from "@/components/types/Projects";
 import Link from "next/link";
 
@@ -10,11 +10,7 @@ interface ProjectsTableProps {
   onEdit: (project: Project) => void;
 }
 
-export function ProjectsTable({
-  projects,
-  onView,
-  onEdit,
-}: ProjectsTableProps) {
+export function ProjectsTable({ projects, onView, onEdit }: ProjectsTableProps) {
   return (
     <div className="w-full overflow-x-auto bg-gray-900/50 rounded-lg shadow-xl text-sm ring-1 ring-purple-500/20">
       <table className="w-full border-collapse">
@@ -27,11 +23,8 @@ export function ProjectsTable({
           </tr>
         </thead>
         <tbody className="divide-y divide-purple-400/10">
-          {projects.map((project) => (
-            <tr
-              key={project.id}
-              className="hover:bg-purple-400/5 transition-colors duration-150"
-            >
+          {projects?.map((project) => (
+            <tr key={project?._id} className="hover:bg-purple-400/5 transition-colors duration-150">
               <td className="p-4">
                 <div className="flex items-center gap-3">
                   <img
@@ -39,9 +32,7 @@ export function ProjectsTable({
                     alt={project.title}
                     className="w-10 h-10 rounded-full object-cover ring-2 ring-purple-400/20 hidden sm:block"
                   />
-                  <span className="font-medium text-white text-sm truncate" >
-                    {project.title}
-                  </span>
+                  <span className="font-medium text-white text-sm truncate">{project.title}</span>
                 </div>
               </td>
               <td className="p-4 text-gray-300 truncate ">{project.category}</td>

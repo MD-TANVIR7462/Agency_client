@@ -3,14 +3,17 @@
 import { FormEvent, Suspense, useState } from "react";
 import { Plus } from "lucide-react";
 import { GalleryImage } from "@/components/types/Gallery";
-import { galleryImages } from "@/components/data/gallery";
+
 import { GalleryTable } from "@/components/dashboard/EditCareer/EditGallery/GalleryTable";
 import { Modal } from "@/components/Shared/Modal";
 import { GalleryForm } from "@/components/dashboard/EditCareer/EditGallery/GalleryForm";
-import { GalleryModal } from "@/components/Career/Gallery/GalleryModal";
+
 import DashSubTitle from "@/components/Shared/DashSubTitle";
 import LoadingState from "@/components/dashboard/EditCareer/AllApplications/LoadingState";
 import handleUploads from "@/lib/handleImgUplods";
+import { galleryImages } from "@/components/data/gallery";
+import { GalleryModal } from "@/components/Career/Gallery/GalleryModal";
+
 
 export default function EditGalleryPage() {
   const [images, setImages] = useState<GalleryImage[]>(galleryImages);
@@ -63,7 +66,7 @@ export default function EditGalleryPage() {
   };
 
   const handleStatusChange = (id: string, status: "active" | "inactive") => {
-    setImages(images.map((image) => (image.id === id ? { ...image, status } : image)));
+    setImages(images.map((image) => (image._id === id ? { ...image, status } : image)));
   };
 
   return (

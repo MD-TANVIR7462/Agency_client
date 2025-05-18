@@ -1,23 +1,17 @@
-"use client";
-
-import { Eye, Trash2 } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
-import { Testimonial } from '@/components/types/Testimonial';
-
+import { Eye, Trash2 } from "lucide-react";
+import { Testimonial } from "@/components/types/Testimonial";
 
 interface TestimonialsTableProps {
   testimonials: Testimonial[];
   onViewDetails: (testimonial: Testimonial) => void;
-  onStatusChange: (testimonial: Testimonial, status: 'active' | 'inactive') => void;
-  onDelete: (testimonial: Testimonial) => void;
+  onStatusChange: (id: string, status: "active" | "inactive") => void;
+  onDelete: (id: string) => void;
 }
 
-export function TestimonialsTable({ 
-  testimonials, 
-  onViewDetails,
-  onStatusChange,
-  onDelete
-}: TestimonialsTableProps) {
+export function TestimonialsTable({ testimonials, onViewDetails, onStatusChange, onDelete }: TestimonialsTableProps) {
+  const change = (e:any)=>{
+    console.log(e)
+  }
   return (
     <div className="w-full overflow-x-auto bg-gray-900/50 rounded-lg shadow-xl text-sm ring-1 ring-purple-500/20">
       <table className="w-full border-collapse">
@@ -31,57 +25,55 @@ export function TestimonialsTable({
           </tr>
         </thead>
         <tbody className="divide-y divide-purple-400/10 ">
-          {testimonials.map((testimonial) => (
-            <tr 
-              key={testimonial.id} 
-              className="hover:bg-purple-400/5 transition-colors duration-150"
-            >
-              <td className="p-4">
-                <div className="flex items-center gap-3">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.author}
-                    className="w-10 h-10 rounded-full object-cover ring-2 ring-purple-400/20 hidden sm:block"
-                  />
-                  <span className="font-medium text-white text-sm truncate">{testimonial.author}</span>
-                </div>
-              </td>
-              <td className="p-4 text-gray-300 truncate">{testimonial.role}</td>
-              <td className="p-4 text-gray-300 hidden md:block">
-                <p className="truncate max-w-md">{testimonial.content}</p>
-              </td>
-              <td className="p-4">
-                <Badge 
-                  variant="outline" 
-                  className={`${
-                    testimonial.status === 'active'
-                      ? 'border-purple-400 text-purple-400'
-                      : 'border-red-400 text-red-400'
-                  }`}
-                >
-                  {testimonial.status === 'active' ? 'Active' : 'Inactive'}
-                </Badge>
-              </td>
-              <td className="p-4">
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => onViewDetails(testimonial)}
-                    className="p-2 text-purple-400 hover:bg-purple-400/10 rounded-full transition-colors"
-                    title="View Details"
+          {Array.isArray(testimonials) &&
+            testimonials?.map((testimonial) => (
+              <tr key={testimonial?._id as string} className="hover:bg-purple-400/5 transition-colors duration-150">
+                <td className="p-4">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.author}
+                      className="w-10 h-10 rounded-full object-cover ring-2 ring-purple-400/20 hidden sm:block"
+                    />
+                    <span className="font-medium text-white text-sm truncate">{testimonial.author}</span>
+                  </div>
+                </td>
+                <td className="p-4 text-gray-300 truncate">{testimonial.role}</td>
+                <td className="p-4 text-gray-300 hidden md:block">
+                  <p className="truncate max-w-md">{testimonial.content}</p>
+                </td>
+                <td className="p-4">
+                  <select
+                    className="bg-gray-900 text-white border border-purple-400/40 rounded px-2 py-1 cursor-pointer"
+                    onChange={(e) =>
+                      onStatusChange(testimonial?._id as string, e.target.value as "active" | "inactive")
+                    }
+                    defaultValue={testimonial.isActive === true ? "active" : "inactive"}
                   >
-                    <Eye className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => onDelete(testimonial)}
-                    className="p-2 text-red-400 hover:bg-red-400/10 rounded-full transition-colors"
-                    title="Delete"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                </div>
-              </td>
-            </tr>
-          ))}
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </td>
+                <td className="p-4">
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => onViewDetails(testimonial)}
+                      className="p-2 text-purple-400 hover:bg-purple-400/10 rounded-full transition-colors "
+                      title="View Details"
+                    >
+                      <Eye className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => onDelete(testimonial?._id as string)}
+                      className="p-2 text-red-400 hover:bg-red-400/10 rounded-full transition-colors "
+                      title="Delete"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>

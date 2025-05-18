@@ -2,26 +2,18 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-  Calendar,
-  ExternalLink,
-  Linkedin,
-  Trash2,
-  UserCheck,
-  UserRoundX,
-} from "lucide-react";
+import { Calendar, ExternalLink, Linkedin, Trash2, UserCheck, UserRoundX } from "lucide-react";
 import { applications as initialApplications } from "@/components/data/applications";
-import { StatusBadge } from "@/components/Career/EditPositons/StatusBadge";
+
 import { Application, ApplicationStatus } from "@/components/types/career";
 import FilterButton from "./FilterButton";
+import { StatusBadge } from "@/components/Career/EditPositons/StatusBadge";
 
 interface ApplicationsTableProps {
   positionId: string;
 }
 
-export default function ApplicationsTable({
-  positionId,
-}: ApplicationsTableProps) {
+export default function ApplicationsTable({ positionId }: ApplicationsTableProps) {
   const [applications, setApplications] = useState<Application[]>(
     initialApplications.filter((app) => app.positionId === positionId)
   );
@@ -32,10 +24,7 @@ export default function ApplicationsTable({
         app.id === applicationId
           ? {
               ...app,
-              status:
-                app.status === "pending" || app.status === "rejected"
-                  ? "selected"
-                  : "pending",
+              status: app.status === "pending" || app.status === "rejected" ? "selected" : "pending",
             }
           : app
       )
@@ -48,10 +37,7 @@ export default function ApplicationsTable({
         app.id === applicationId
           ? {
               ...app,
-              status:
-                app.status === "pending" || app.status === "selected"
-                  ? "rejected"
-                  : "pending",
+              status: app.status === "pending" || app.status === "selected" ? "rejected" : "pending",
             }
           : app
       )
@@ -76,9 +62,7 @@ export default function ApplicationsTable({
           <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
             Applications
           </span>
-          <span className="text-sm bg-gray-800 px-2 py-1 rounded-full">
-            {applications.length}
-          </span>
+          <span className="text-sm bg-gray-800 px-2 py-1 rounded-full">{applications.length}</span>
         </h4>
 
         <FilterButton />
@@ -101,16 +85,9 @@ export default function ApplicationsTable({
             </thead>
             <tbody>
               {applications.map((app, index) => (
-                <tr
-                  key={app.id}
-                  className="border-b border-gray-800 hover:bg-gray-800/30 transition-colors"
-                >
-                  <td className="py-4 px-4 font-medium truncate">
-                    {index + 1}
-                  </td>
-                  <td className="py-4 px-4 font-medium truncate text-sm">
-                    {app.fullName}
-                  </td>
+                <tr key={app.id} className="border-b border-gray-800 hover:bg-gray-800/30 transition-colors">
+                  <td className="py-4 px-4 font-medium truncate">{index + 1}</td>
+                  <td className="py-4 px-4 font-medium truncate text-sm">{app.fullName}</td>
                   <td className="py-4 px-4 truncate text-sm">{app.email}</td>
                   <td className="py-4 px-4 truncate text-sm">{app.phone}</td>
                   <td className="py-4 px-4 text-sm">
@@ -119,9 +96,7 @@ export default function ApplicationsTable({
                   <td className="py-4 px-4">
                     <div className="flex items-center gap-2 text-gray-400 truncate">
                       <Calendar className="w-4 h-4 " />
-                      <span className="text-sm">
-                        {formatDate(app.submittedAt)}
-                      </span>
+                      <span className="text-sm">{formatDate(app.submittedAt)}</span>
                     </div>
                   </td>
                   <td className="py-4 px-4">
@@ -160,11 +135,7 @@ export default function ApplicationsTable({
                             ? "bg-green-500/20 text-green-400 hover:bg-green-500/30"
                             : "bg-gray-800 text-gray-400 hover:bg-gray-700"
                         }`}
-                        title={
-                          app.status === "selected"
-                            ? "Unselect Candidate"
-                            : "Select Candidate"
-                        }
+                        title={app.status === "selected" ? "Unselect Candidate" : "Select Candidate"}
                       >
                         <UserCheck className="w-5 h-5" />
                       </button>
@@ -175,11 +146,7 @@ export default function ApplicationsTable({
                             ? "bg-red-500/20 text-red-400 hover:bg-red-500/30"
                             : "bg-gray-800 text-gray-400 hover:bg-gray-700"
                         }`}
-                        title={
-                          app.status === "rejected"
-                            ? "UnReject Candidate"
-                            : "Reject Candidate"
-                        }
+                        title={app.status === "rejected" ? "UnReject Candidate" : "Reject Candidate"}
                       >
                         <UserRoundX className="w-5 h-5" />
                       </button>

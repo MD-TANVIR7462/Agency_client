@@ -1,20 +1,27 @@
 "use client";
 
 import { Modal } from "@/components/Shared/Modal";
-import { FAQ } from "@/components/types/Faq";
+
 import { useState, useEffect } from "react";
 import { FAQForm } from "./FAQFrom";
 
+interface FAQPROP {
+  answer: string;
+  question: string;
+  status?: string;
+  isDeleted?: boolean;
+  id?: string;
+}
 
 interface FAQModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (faq: FAQ) => void;
-  faq: FAQ | null;
+  onSave: (faq: FAQPROP) => void;
+  faq: FAQPROP | null;
 }
 
 export function FAQModal({ isOpen, onClose, onSave, faq }: FAQModalProps) {
-  const [formData, setFormData] = useState<Partial<FAQ>>({
+  const [formData, setFormData] = useState<Partial<FAQPROP>>({
     question: "",
     answer: "",
     status: "active",
@@ -45,11 +52,7 @@ export function FAQModal({ isOpen, onClose, onSave, faq }: FAQModalProps) {
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      title={faq ? "Edit FAQ" : "Add New FAQ"}
-    >
+    <Modal isOpen={isOpen} onClose={onClose} title={faq ? "Edit FAQ" : "Add New FAQ"}>
       <FAQForm
         formData={formData}
         onChange={setFormData}

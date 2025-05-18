@@ -10,7 +10,7 @@ import SubHero from "@/components/Shared/SubHero";
 import { getData } from "@/server/ServerActions";
 
 const AboutPage = async () => {
-  const teamdata = await getData("team");
+  const teamdata = await getData("team?isActive=true");
   const companyStory= (await getData("story"))?.data[0]
  
   

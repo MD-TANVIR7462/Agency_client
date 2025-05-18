@@ -1,4 +1,5 @@
-import CareerHeroButton from "../Buttons/CareerButton";
+import CareerHeroButton from "@/components/Buttons/CareerButton";
+
 
 export const CareerHero = () => {
   return (

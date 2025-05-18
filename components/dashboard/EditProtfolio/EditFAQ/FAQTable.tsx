@@ -3,11 +3,10 @@
 import { FAQ } from "@/components/types/Faq";
 import { Edit } from "lucide-react";
 
-
 interface FAQTableProps {
   faqs: FAQ[];
   onEdit: (faq: FAQ) => void;
-  onStatusChange: (id: string, status: 'active' | 'inactive') => void;
+  onStatusChange: (id: string, status: "active" | "inactive") => void;
 }
 
 export function FAQTable({ faqs, onEdit, onStatusChange }: FAQTableProps) {
@@ -24,10 +23,7 @@ export function FAQTable({ faqs, onEdit, onStatusChange }: FAQTableProps) {
         </thead>
         <tbody className="divide-y divide-purple-400/10">
           {faqs.map((faq) => (
-            <tr
-              key={faq.id}
-              className="hover:bg-purple-400/5 transition-colors duration-150"
-            >
+            <tr key={faq.id} className="hover:bg-purple-400/5 transition-colors duration-150">
               <td className="p-4 text-white truncate">{faq.question}</td>
               <td className="p-4 text-gray-300">
                 <div className="max-w-md truncate">{faq.answer}</div>
@@ -35,8 +31,8 @@ export function FAQTable({ faqs, onEdit, onStatusChange }: FAQTableProps) {
               <td className="p-4">
                 <select
                   className="bg-gray-900 text-white border border-purple-400/40 rounded px-2 py-1"
-                  value={faq.status}
-                  onChange={(e) => onStatusChange(faq.id, e.target.value as 'active' | 'inactive')}
+                  value={faq.isActive === true ? "active" : "inactive"}
+                  onChange={(e) => onStatusChange(faq?.id as string, e.target.value as "active" | "inactive")}
                 >
                   <option value="active">Active</option>
                   <option value="inactive">Inactive</option>

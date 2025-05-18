@@ -1,11 +1,8 @@
 import { Mail, Phone, MapPin } from "lucide-react";
 import Tittle from "../Shared/Tittle";
-import { getData } from "@/server/ServerActions";
 
-
-
-const ContactInfo = async() => {
-  const constactData = (await getData("contact"))?.data
+const ContactInfo = (constactData: any) => {
+  console.log();
   return (
     <section className="py-20 bg-gray-900 max-w-[80rem] mx-auto px-3">
       <span className="text-center ">

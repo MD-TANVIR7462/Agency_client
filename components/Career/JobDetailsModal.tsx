@@ -1,6 +1,7 @@
+import { Modal } from "@/components/Shared/Modal";
+import { Position } from "@/components/types/career";
 import React from "react";
-import { Modal } from "../Shared/Modal";
-import { Position } from "../types/career";
+
 
 interface JobDetailsModalProps {
   isOpen: boolean;

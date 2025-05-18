@@ -12,9 +12,7 @@ interface TechnologyTableProps {
 }
 
 export const TechnologyTable: FC<TechnologyTableProps> = ({ technologies, onEdit, onDelete, onStatusChange }) => {
-  const handle = (p: any) => {
-    console.log(p);
-  };
+
   return (
     <div className="w-full overflow-x-auto bg-gray-900/50 rounded-lg shadow-xl text-sm ring-1 ring-purple-500/20">
       <table className="w-full border-collapse">
