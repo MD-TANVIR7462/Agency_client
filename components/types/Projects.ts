@@ -1,6 +1,6 @@
 export interface Project {
   title: string;
-  _id: number;
+  _id?: string;
   isActive?: boolean;
   description: string,
   isDeleted?: boolean;

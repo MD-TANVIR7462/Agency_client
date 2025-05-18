@@ -9,11 +9,10 @@ import { Modal } from "@/components/Shared/Modal";
 import { GalleryForm } from "@/components/dashboard/EditCareer/EditGallery/GalleryForm";
 
 import DashSubTitle from "@/components/Shared/DashSubTitle";
-import LoadingState from "@/components/dashboard/EditCareer/AllApplications/LoadingState";
+import LoadingState from "@/components/Shared/LoadingState";
 import handleUploads from "@/lib/handleImgUplods";
 import { galleryImages } from "@/components/data/gallery";
 import { GalleryModal } from "@/components/Career/Gallery/GalleryModal";
-
 
 export default function EditGalleryPage() {
   const [images, setImages] = useState<GalleryImage[]>(galleryImages);
@@ -38,7 +37,7 @@ export default function EditGalleryPage() {
   };
 
   const handleSave = async (e: FormEvent<Element>) => {
-    setIsloading(true)
+    setIsloading(true);
     setIsloading(true);
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
@@ -61,12 +60,14 @@ export default function EditGalleryPage() {
       };
       // setImages([...images, newImage]);
     }
-    setIsloading(false)
+    setIsloading(false);
     setIsFormModalOpen(false);
   };
 
   const handleStatusChange = (id: string, status: "active" | "inactive") => {
-    setImages(images?.map((image) => (image._id === id ? { ...image, status } : image)));
+    setImages(
+      images?.map((image) => (image._id === id ? { ...image, status } : image))
+    );
   };
 
   return (
@@ -75,19 +76,25 @@ export default function EditGalleryPage() {
         <div className=" max-w-[1900px] mx-auto">
           <div className="flex justify-between items-center mb-8">
             <DashSubTitle text="Gallery" />
-            <button onClick={handleAdd} className="primaryButton flex items-center">
+            <button
+              onClick={handleAdd}
+              className="primaryButton flex items-center">
               <Plus className="md:w-5 md:h-5  w-4 h-4" />
               Add Image
             </button>
           </div>
 
-          <GalleryTable images={images} onView={handleView} onEdit={handleEdit} onStatusChange={handleStatusChange} />
+          <GalleryTable
+            images={images}
+            onView={handleView}
+            onEdit={handleEdit}
+            onStatusChange={handleStatusChange}
+          />
 
           <Modal
             isOpen={isFormModalOpen}
             onClose={() => setIsFormModalOpen(false)}
-            title={editingImage ? "Edit Image" : "Add New Image"}
-          >
+            title={editingImage ? "Edit Image" : "Add New Image"}>
             <GalleryForm
               formData={editingImage || {}}
               onChange={setEditingImage}

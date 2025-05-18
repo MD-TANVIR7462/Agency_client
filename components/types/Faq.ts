@@ -1,5 +1,5 @@
 export interface FAQ {
-  id?: string;
+  _id?: string;
   answer: string;
   question: string;
   isActive?: boolean;

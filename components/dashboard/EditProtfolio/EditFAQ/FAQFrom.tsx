@@ -1,62 +1,110 @@
-"use client";
-
+import { FC, useState } from "react";
+import { motion } from "framer-motion";
+import { Modal } from "@/components/Shared/Modal";
 import { FAQ } from "@/components/types/Faq";
 
-interface FAQFormProps {
-  formData: Partial<FAQ>;
-  onChange: (data: Partial<FAQ>) => void;
-  onSubmit: (e: React.FormEvent) => void;
-  onCancel: () => void;
-  isEditing: boolean;
+interface FaqFormProps {
+  faq?: FAQ | null;
+  isOpen: boolean;
+  onClose: () => void;
+  onSubmit: (data: Partial<FAQ>, id?: string) => void;
 }
 
-export function FAQForm({ formData, onChange, onSubmit, onCancel, isEditing }: FAQFormProps) {
+export const FAQForm: FC<FaqFormProps> = ({
+  faq,
+  isOpen,
+  onClose,
+  onSubmit,
+}) => {
+  const [isLoading, setIsloading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsloading(true);
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data: Partial<FAQ> = {
+      question: formData.get("question") as string,
+      answer: formData.get("answer") as string,
+    };
+
+    let id;
+    if (faq) {
+      id = faq._id;
+    }
+
+    try {
+      onSubmit(data, id);
+    } finally {
+      setIsloading(false);
+    }
+  };
+
   return (
-    <form onSubmit={onSubmit} className="space-y-6">
-      <div className="space-y-2">
-        <label className="block text-sm font-medium text-gray-200">Question</label>
-        <input
-          type="text"
-          value={formData.question || ""}
-          onChange={(e) => onChange({ ...formData, question: e.target.value })}
-          className="customInput"
-          placeholder="Enter the question"
-          required
-        />
-      </div>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title={faq ? "Edit FAQ" : "Add FAQ"}>
+      <motion.form
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="space-y-4"
+        onSubmit={handleSubmit}>
+        <div>
+          <label className="block text-sm font-medium text-purple-400 mb-1">
+            question
+          </label>
+          <input
+            type="text"
+            name="question"
+            defaultValue={faq?.question}
+            className="customInput"
+            required
+          />
+        </div>
 
-      <div className="space-y-2">
-        <label className="block text-sm font-medium text-gray-200">Answer</label>
-        <textarea
-          value={formData.answer || ""}
-          onChange={(e) => onChange({ ...formData, answer: e.target.value })}
-          className="customInput min-h-[100px]"
-          placeholder="Enter the answer"
-          required
-          rows={6}
-        />
-      </div>
+        <div>
+          <label className="block text-sm font-medium text-purple-400 mb-1">
+            Answer
+          </label>
+          <textarea
+            name="answer"
+            defaultValue={faq?.answer}
+            className="customInput"
+            rows={4}
+            required
+          />
+        </div>
 
-      <div className="flex items-center space-x-2">
-        <label className="text-sm font-medium text-gray-200">Status</label>
-        <select
-          value={formData.isActive === true ? "active" : "inactive"}
-          onChange={(e) => onChange({ ...formData, isActive: e.target.value === "active" ? true : false })}
-          className="bg-gray-800 border border-gray-700 rounded-md text-white px-3 py-2 focus:outline-none focus:ring-1 focus:ring-purple-500/50"
-        >
-          <option value="active">Active</option>
-          <option value="inactive">Inactive</option>
-        </select>
-      </div>
+        <div className="flex justify-end gap-3 pt-4">
+          <motion.button
+            type="button"
+            onClick={onClose}
+            className="secondaryButton"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}>
+            Cancel
+          </motion.button>
 
-      <div className="flex justify-end space-x-4">
-        <button type="button" onClick={onCancel} className="secondaryButton">
-          Cancel
-        </button>
-        <button type="submit" className="primaryButton">
-          {isEditing ? "Save Changes" : "Add FAQ"}
-        </button>
-      </div>
-    </form>
+          <button
+            type="submit"
+            className={
+              "px-4 py-2 rounded-md flex items-center justify-center gap-2 bg-purple-400/10 text-purple-400 hover:bg-purple-400/20 transition-colors min-w-[120px]"
+            }
+            disabled={isLoading}>
+            {isLoading ? (
+              <>
+                <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></span>
+                Processing...
+              </>
+            ) : faq ? (
+              "Update FAQ"
+            ) : (
+              "Add FAQ"
+            )}
+          </button>
+        </div>
+      </motion.form>
+    </Modal>
   );
-}
+};

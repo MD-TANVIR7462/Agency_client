@@ -28,6 +28,7 @@ export const ServiceForm: FC<ServiceFormProps> = ({ service, isOpen, onClose, on
       id = service._id;
     }
     onSubmit(data, id);
+    console.log(data)
   };
 
   return (
