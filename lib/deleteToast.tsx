@@ -6,7 +6,7 @@ export const deleteToast = (handleDelete: () => void, message?: string) => {
       <span>{message || "Are you sure ?"}</span>
       <button
         onClick={() => handleDelete()}
-        className="ml-2 text-sm text-gray-500 hover:text-green-700">
+        className="ml-2 text-sm text-gray-500 hover:text-green-500">
         <Check />
       </button>
       <button
