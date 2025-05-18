@@ -58,8 +58,6 @@ export function FAQTable({
                     title="Edit FAQ">
                     <Edit className="w-4 h-4" />
                   </button>
-                </td>
-                <td>
                   <button
                     onClick={() => onDelete(faq?._id as string)}
                     className="p-2 text-purple-400 hover:bg-purple-400/10 rounded-full transition-colors">
