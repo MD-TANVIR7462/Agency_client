@@ -39,10 +39,8 @@ const EditTechnologyIndex = ({ technologyData }: { technologyData: TechCardProps
   };
 
   const handleSubmit = async (data: Partial<TechCardProps>, id?: string | any) => {
-    console.log(data);
     if (selectedTechnology) {
       const result = await updateData("technologies/update-technology", id, data);
-      console.log(data, id, result);
 
       if (result?.success) {
         SuccessToast(result?.message);

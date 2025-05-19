@@ -1,17 +1,14 @@
 "use client";
 import { useState } from "react";
-
 import { TestimonialForm } from "./FeedBackFrom";
 import { Testimonial } from "@/components/types/Testimonial";
 import { createData } from "@/server/ServerActions";
 
-
 export const FeedBack = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleSubmit =async (data: Partial<Testimonial>) => {
-    const createFeedback =await createData("testimonial/create-testimonial", data);
-    console.log(createFeedback.data);
+  const handleSubmit = async (data: Partial<Testimonial>) => {
+    const createFeedback = await createData("testimonial/create-testimonial", data);
   };
 
   return (

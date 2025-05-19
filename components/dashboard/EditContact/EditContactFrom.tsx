@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 interface ContactFormData {
   email: string;
   phone: string;
   address: string;
+  _id: string;
+  isActive?: boolean;
 }
 
 interface EditContactFormProps {
@@ -13,11 +15,7 @@ interface EditContactFormProps {
   onClose: () => void;
 }
 
-export const EditContactForm: React.FC<EditContactFormProps> = ({
-  initialData,
-  onSubmit,
-  onClose,
-}) => {
+export const EditContactForm: React.FC<EditContactFormProps> = ({ initialData, onSubmit, onClose }) => {
   const [formData, setFormData] = useState(initialData);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -25,9 +23,7 @@ export const EditContactForm: React.FC<EditContactFormProps> = ({
     onSubmit(formData);
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -97,15 +93,10 @@ export const EditContactForm: React.FC<EditContactFormProps> = ({
         >
           Cancel
         </motion.button>
-        <motion.button
-          type="submit"
-          className="primaryButton"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
+        <motion.button type="submit" className="primaryButton" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
           Save Changes
         </motion.button>
       </div>
     </motion.form>
   );
-}
+};

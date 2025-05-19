@@ -9,9 +9,6 @@ interface TestimonialsTableProps {
 }
 
 export function TestimonialsTable({ testimonials, onViewDetails, onStatusChange, onDelete }: TestimonialsTableProps) {
-  const change = (e:any)=>{
-    console.log(e)
-  }
   return (
     <div className="w-full overflow-x-auto bg-gray-900/50 rounded-lg shadow-xl text-sm ring-1 ring-purple-500/20">
       <table className="w-full border-collapse">

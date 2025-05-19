@@ -39,7 +39,7 @@ export default function EditTestimonialIndex({ data }: { data: Testimonial[] }) 
   }, [filterStatus, data]);
 
   const handleDelete = async (id: string) => {
-    console.log(id);
+
     const handleDeleteTestimonial = async () => {
       const result = await deleteData("testimonial/delete-testimonial", id);
       if (result?.success) {
@@ -55,10 +55,8 @@ export default function EditTestimonialIndex({ data }: { data: Testimonial[] }) 
 
   const handleStatusChange = async (id: string, status: "active" | "inactive") => {
     const isActive = status === "active";
-    console.log(isActive, id, status);
     const data = { isActive };
     const result = await updateData("testimonial/update-testimonial", id, data);
-    console.log(result);
     if (result?.success) {
       SuccessToast("Status updated successfully!");
       router.refresh();

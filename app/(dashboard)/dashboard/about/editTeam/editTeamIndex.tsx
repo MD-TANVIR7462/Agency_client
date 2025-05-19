@@ -56,7 +56,7 @@ export default function EditTeamIndex({
 
   const handleSubmit = async (data: Partial<TeamMember>, id?: string) => {
     if (selectedMember) {
-      console.log(id, data);
+      
       const result = await updateData("team/update-member", id as string, data);
       if (result?.success) {
         SuccessToast(result?.message);
