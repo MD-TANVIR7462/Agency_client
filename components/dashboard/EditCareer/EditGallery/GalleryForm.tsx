@@ -9,6 +9,7 @@ interface GalleryFormProps {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   onCancel: () => void;
   isEditing: boolean;
+  
   isLoading: boolean;
 }
 
