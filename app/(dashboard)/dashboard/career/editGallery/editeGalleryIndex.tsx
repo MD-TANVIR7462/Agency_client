@@ -26,7 +26,7 @@ export default function EditeGalleryIndex({ galleryData: images }: { galleryData
   const router = useRouter();
 
   const handleAdd = () => {
-    setEditingImage(null); 
+    setEditingImage(null);
     setIsFormModalOpen(true);
   };
 

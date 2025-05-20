@@ -21,87 +21,47 @@ import { applications as initialApplications } from "@/components/data/applicati
 import Link from "next/link";
 import DashSubTitle from "@/components/Shared/DashSubTitle";
 
-
-import {
-  Application,
-  ApplicationStatus,
-  Position,
-} from "@/components/types/career";
+import { Application, ApplicationStatus, Position, TPosition } from "@/components/types/career";
 import EmptyState from "@/components/Career/EditPositons/EmptyState";
 import { StatusBadge } from "@/components/Career/EditPositons/StatusBadge";
 import { AddPositionModal } from "@/components/Career/EditPositons/AddPositionModal";
 import { EditPositionModal } from "@/components/Career/EditPositons/EditPositionModal";
-
-
+import { createData } from "@/server/ServerActions";
+import { ErrorToast, SuccessToast } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 export default function AdminDashboard() {
   const [positions, setPositions] = useState<Position[]>(initialPositions);
-  const [applications, setApplications] =
-    useState<Application[]>(initialApplications);
+  const [applications, setApplications] = useState<Application[]>(initialApplications);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingPosition, setEditingPosition] = useState<Position | null>(null);
-  const handleAddPosition = (newPosition: Omit<Position, "id">) => {
-    const position: Position = {
-      ...newPosition,
-      id: `position-${Date.now()}`,
-    };
-    setPositions([...positions, position]);
+  const router = useRouter();
+
+  const handleAddPosition = async (newPosition: TPosition) => {
+    const data = newPosition as TPosition;
+    const result = await createData("position/create-position", data);
+    console.log(result);
+    if (result?.success) {
+      SuccessToast(result?.message);
+      router.refresh();
+    } else {
+      ErrorToast(result?.message);
+    }
   };
 
-  const handleEditPosition = (updatedPosition: Position) => {
-    setPositions(
-      positions?.map((pos) =>
-        pos.id === updatedPosition.id ? updatedPosition : pos
-      )
-    );
-    setEditingPosition(null);
+  const handleEditPosition = (updatedPosition: Partial<Position>) => {
+    console.log(updatedPosition);
   };
 
   const handleDeletePosition = (id: string) => {
     setPositions(positions.filter((pos) => pos.id !== id));
   };
 
-  const handleToggleStatus = (id: string) => {
-    setPositions(
-      positions?.map((pos) =>
-        pos.id === id
-          ? { ...pos, status: pos.status === "active" ? "inactive" : "active" }
-          : pos
-      )
-    );
-  };
+  const handleToggleStatus = (id: string) => {};
 
-  const handleSelectCandidate = (applicationId: string) => {
-    setApplications(
-      applications?.map((app) =>
-        app.id === applicationId
-          ? {
-              ...app,
-              status:
-                app.status === "pending" || app.status === "rejected"
-                  ? "selected"
-                  : "pending",
-            }
-          : app
-      )
-    );
-  };
+  const handleSelectCandidate = (applicationId: string) => {};
 
-  const handleRejectCandidate = (applicationId: string) => {
-    setApplications(
-      applications.map((app) =>
-        app.id === applicationId
-          ? {
-              ...app,
-              status:
-                app.status === "pending" || app.status === "selected"
-                  ? "rejected"
-                  : "pending",
-            }
-          : app
-      )
-    );
-  };
+  const handleRejectCandidate = (applicationId: string) => {};
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -115,9 +75,7 @@ export default function AdminDashboard() {
   };
 
   const getApplicationsForPosition = (positionId: string) => {
-    const allApplications = applications.filter(
-      (app) => app.positionId === positionId
-    );
+    const allApplications = applications.filter((app) => app.positionId === positionId);
     const sliceApplication = allApplications.slice(0, 2);
     const applicationData = {
       allApplications,
@@ -132,14 +90,9 @@ export default function AdminDashboard() {
         <div className="flex justify-between items-center mb-8">
           <div>
             <DashSubTitle text="Position" />
-            <p className="text-gray-400 mt-2 hidden md:block">
-              Manage job positions and track applications
-            </p>
+            <p className="text-gray-400 mt-2 hidden md:block">Manage job positions and track applications</p>
           </div>
-          <button
-            onClick={() => setIsAddModalOpen(true)}
-            className="primaryButton flex items-center"
-          >
+          <button onClick={() => setIsAddModalOpen(true)} className="primaryButton flex items-center">
             <Plus className="md:w-5 md:h-5  w-4 h-4" />
             Add Position
           </button>
@@ -157,14 +110,10 @@ export default function AdminDashboard() {
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
                   <div>
                     <div className="flex items-center gap-3">
-                      <h3 className="text-2xl font-semibold">
-                        {position.title}
-                      </h3>
+                      <h3 className="text-2xl font-semibold">{position.title}</h3>
                       <span
                         className={`px-3 py-1 rounded-full text-sm ${
-                          position.status === "active"
-                            ? "bg-green-500/20 text-green-400"
-                            : "bg-red-500/20 text-red-400"
+                          position.status === "active" ? "bg-green-500/20 text-green-400" : "bg-red-500/20 text-red-400"
                         }`}
                       >
                         {position.status}
@@ -218,17 +167,12 @@ export default function AdminDashboard() {
                       Applications
                     </span>
                     <span className="text-sm bg-gray-800 px-2 py-1 rounded-full">
-                      {
-                        getApplicationsForPosition(position.id).allApplications
-                          .length
-                      }
+                      {getApplicationsForPosition(position.id).allApplications.length}
                     </span>
                   </h4>
                   <div className="overflow-x-auto">
-                    {getApplicationsForPosition(position.id).sliceApplication
-                      .length > 0 &&
-                    getApplicationsForPosition(position.id).sliceApplication
-                      .length < 3 ? (
+                    {getApplicationsForPosition(position.id).sliceApplication.length > 0 &&
+                    getApplicationsForPosition(position.id).sliceApplication.length < 3 ? (
                       <table className="w-full ">
                         <thead>
                           <tr className="text-left border-b border-gray-800">
@@ -243,26 +187,16 @@ export default function AdminDashboard() {
                           </tr>
                         </thead>
                         <tbody>
-                          {getApplicationsForPosition(
-                            position.id
-                          ).sliceApplication?.map((app) => (
+                          {getApplicationsForPosition(position.id).sliceApplication?.map((app) => (
                             <tr
                               key={app.id}
                               className="border-b border-gray-800 hover:bg-gray-800/30 transition-colors"
                             >
-                              <td className="py-4 px-4 font-medium truncate">
-                                {app.fullName}
-                              </td>
-                              <td className="py-4 px-4 truncate">
-                                {app.email}
-                              </td>
-                              <td className="py-4 px-4 truncate">
-                                {app.phone}
-                              </td>
+                              <td className="py-4 px-4 font-medium truncate">{app.fullName}</td>
+                              <td className="py-4 px-4 truncate">{app.email}</td>
+                              <td className="py-4 px-4 truncate">{app.phone}</td>
                               <td className="py-4 px-4">
-                                <StatusBadge
-                                  status={app.status as ApplicationStatus}
-                                />
+                                <StatusBadge status={app.status as ApplicationStatus} />
                               </td>
                               <td className="py-4 px-4">
                                 <div className="flex items-center gap-2 text-gray-400 truncate">
@@ -304,36 +238,24 @@ export default function AdminDashboard() {
                                     </button>
                                   </Link>
                                   <button
-                                    onClick={() =>
-                                      handleSelectCandidate(app.id)
-                                    }
+                                    onClick={() => handleSelectCandidate(app.id)}
                                     className={`p-2 rounded-lg transition-all duration-300 ${
                                       app.status === "selected"
                                         ? "bg-green-500/20 text-green-400 hover:bg-green-500/30"
                                         : "bg-gray-800 text-gray-400 hover:bg-gray-700"
                                     }`}
-                                    title={
-                                      app.status === "selected"
-                                        ? "Unselect Candidate"
-                                        : "Select Candidate"
-                                    }
+                                    title={app.status === "selected" ? "Unselect Candidate" : "Select Candidate"}
                                   >
                                     <UserCheck className="w-5 h-5" />
                                   </button>
                                   <button
-                                    onClick={() =>
-                                      handleRejectCandidate(app.id)
-                                    }
+                                    onClick={() => handleRejectCandidate(app.id)}
                                     className={`p-2 rounded-lg transition-all duration-300 ${
                                       app.status === "rejected"
                                         ? "bg-red-500/20 text-red-400 hover:bg-red-500/30"
                                         : "bg-gray-800 text-gray-400 hover:bg-gray-700"
                                     }`}
-                                    title={
-                                      app.status === "rejected"
-                                        ? "UnReject Candidate"
-                                        : "Reject Candidate"
-                                    }
+                                    title={app.status === "rejected" ? "UnReject Candidate" : "Reject Candidate"}
                                   >
                                     <UserRoundX className="w-5 h-5" />
                                   </button>
@@ -354,19 +276,14 @@ export default function AdminDashboard() {
                       </table>
                     ) : (
                       <div className="text-center py-8 bg-gray-900/30 rounded-lg border border-gray-800/50">
-                        <p className="text-gray-400">
-                          No applications received yet.
-                        </p>
+                        <p className="text-gray-400">No applications received yet.</p>
                       </div>
                     )}
                   </div>
                 </div>
                 <div className="utilityEnd">
-                  {getApplicationsForPosition(position.id).allApplications
-                    .length > 2 && (
-                    <Link
-                      href={`/dashboard/career/editPosition/${position.id}`}
-                    >
+                  {getApplicationsForPosition(position.id).allApplications.length > 2 && (
+                    <Link href={`/dashboard/career/editPosition/${position.id}`}>
                       <button className="primaryButton">See All</button>
                     </Link>
                   )}
@@ -377,11 +294,7 @@ export default function AdminDashboard() {
         )}
       </div>
 
-      <AddPositionModal
-        isOpen={isAddModalOpen}
-        onClose={() => setIsAddModalOpen(false)}
-        onAdd={handleAddPosition}
-      />
+      <AddPositionModal isOpen={isAddModalOpen} onClose={() => setIsAddModalOpen(false)} onAdd={handleAddPosition} />
 
       {editingPosition && (
         <EditPositionModal

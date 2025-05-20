@@ -2,27 +2,26 @@
 
 import { FC } from "react";
 
-import { Position } from "@/components/types/career";
+
 import { Modal } from "@/components/Shared/Modal";
+import { TPosition } from "@/components/types/career";
+
 
 interface AddPositionModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onAdd: (position: Omit<Position, "id">) => void;
+  onAdd: (position: TPosition) => void;
 }
 
-export const AddPositionModal: FC<AddPositionModalProps> = ({
-  isOpen,
-  onClose,
-  onAdd,
-}) => {
+export const AddPositionModal: FC<AddPositionModalProps> = ({ isOpen, onClose, onAdd }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    const data: Omit<Position, "id"> = {
+    const data: TPosition= {
       title: formData.get("title") as string,
       department: formData.get("department") as string,
       location: formData.get("location") as string,
+      salary: formData.get("salary") as string | undefined,
       type: formData.get("type") as string,
       description: formData.get("description") as string,
       tags: (formData.get("tags") as string)
@@ -41,10 +40,10 @@ export const AddPositionModal: FC<AddPositionModalProps> = ({
         .split("\n")
         .map((s) => s.trim())
         .filter(Boolean),
-      status: "active" as const,
+   
     };
     onAdd(data);
-    onClose()
+    onClose();
   };
 
   return (
@@ -52,47 +51,25 @@ export const AddPositionModal: FC<AddPositionModalProps> = ({
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-purple-400 mb-1">
-              Title
-            </label>
+            <label className="block text-sm font-medium text-purple-400 mb-1">Title</label>
             <input type="text" name="title" className="customInput" required />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-purple-400 mb-1">
-              Department
-            </label>
-            <input
-              type="text"
-              name="department"
-              className="customInput"
-              required
-            />
+            <label className="block text-sm font-medium text-purple-400 mb-1">Department</label>
+            <input type="text" name="department" className="customInput" required />
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-purple-400 mb-1">
-              Location
-            </label>
-            <input
-              type="text"
-              name="location"
-              className="customInput"
-              required
-            />
+            <label className="block text-sm font-medium text-purple-400 mb-1">Location</label>
+            <input type="text" name="location" className="customInput" required />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-purple-400 mb-1">
-              Type
-            </label>
-            <select
-              name="type"
-              className="customInput hover:cursor-pointer"
-              required
-            >
+            <label className="block text-sm font-medium text-purple-400 mb-1">Type</label>
+            <select name="type" className="customInput hover:cursor-pointer" required>
               <option value="" disabled selected>
                 Select job type
               </option>
@@ -105,21 +82,12 @@ export const AddPositionModal: FC<AddPositionModalProps> = ({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Description
-          </label>
-          <textarea
-            name="description"
-            className="customInput"
-            rows={3}
-            required
-          />
+          <label className="block text-sm font-medium text-purple-400 mb-1">Description</label>
+          <textarea name="description" className="customInput" rows={3} required />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Tags (one per line)
-          </label>
+          <label className="block text-sm font-medium text-purple-400 mb-1">Tags (one per line)</label>
           <textarea
             name="tags"
             className="customInput"
@@ -130,34 +98,23 @@ export const AddPositionModal: FC<AddPositionModalProps> = ({
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Requirements (one per line)
-          </label>
-          <textarea
-            name="requirements"
-            className="customInput"
-            rows={4}
-            required
-          />
+          <label className="block text-sm font-medium text-purple-400 mb-1">Requirements (one per line)</label>
+          <textarea name="requirements" className="customInput" rows={4} required />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Responsibilities (one per line)
-          </label>
-          <textarea
-            name="responsibilities"
-            className="customInput"
-            rows={4}
-            required
-          />
+          <label className="block text-sm font-medium text-purple-400 mb-1">Responsibilities (one per line)</label>
+          <textarea name="responsibilities" className="customInput" rows={4} required />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Benefits (one per line)
-          </label>
+          <label className="block text-sm font-medium text-purple-400 mb-1">Benefits (one per line)</label>
           <textarea name="benefits" className="customInput" rows={4} required />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-purple-400 mb-1">Salary</label>
+          <input type="text" name="salary" className="customInput" />
         </div>
 
         <div className="flex justify-end gap-3 pt-4">

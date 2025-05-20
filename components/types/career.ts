@@ -1,17 +1,3 @@
-export interface Position {
-  id: string;
-  title: string;
-  department: string;
-  location: string;
-  salary?:string;
-  type: string;
-  tags: string[];
-  description: string;
-  requirements: string[];
-  responsibilities: string[];
-  benefits: string[];
-}
-
 export interface ApplicationForm {
   fullName: string;
   email: string;
@@ -21,10 +7,9 @@ export interface ApplicationForm {
   resumeLink: string;
 }
 
-
-
 export interface Position {
   id: string;
+  _id?: string;
   title: string;
   department: string;
   location: string;
@@ -34,7 +19,24 @@ export interface Position {
   requirements: string[];
   responsibilities: string[];
   benefits: string[];
-  status: 'active' | 'inactive';
+  status: "active" | "inactive";
+  isActive?: boolean;
+  salary?: string | undefined;
+}
+
+export interface TPosition {
+  _id?: string;
+  title: string;
+  department: string;
+  location: string;
+  type: string;
+  tags: string[];
+  description: string;
+  requirements: string[];
+  responsibilities: string[];
+  benefits: string[];
+  isActive?: boolean;
+  salary?: string | undefined;
 }
 
 export interface Application {
@@ -50,5 +52,4 @@ export interface Application {
   submittedAt: string;
 }
 
-
-export type ApplicationStatus = 'pending' | 'selected' | 'rejected' ;
+export type ApplicationStatus = "pending" | "selected" | "rejected";
