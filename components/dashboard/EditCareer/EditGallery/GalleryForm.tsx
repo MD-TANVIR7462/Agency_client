@@ -12,6 +12,9 @@ interface GalleryFormProps {
   isLoading: boolean;
 }
 
+
+
+
 export function GalleryForm({ formData, onChange, onSubmit, onCancel, isEditing, isLoading }: GalleryFormProps) {
   const [previewUrl, setPreviewUrl] = useState(formData?.url || "");
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
