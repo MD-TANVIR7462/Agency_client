@@ -2,20 +2,20 @@
 
 import { FC } from "react";
 import { Modal } from "@/components/Shared/Modal";
-import { Position } from "@/components/types/career";
+import { TPosition } from "@/components/types/career";
 
 interface EditPositionModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onEdit: (position: Partial<Position>) => void;
-  position: Position;
+  onEdit: (position: Partial<TPosition>) => void;
+  position: TPosition;
 }
 
 export const EditPositionModal: FC<EditPositionModalProps> = ({ isOpen, onClose, onEdit, position }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    const data: Partial<Position> = {
+    const data: Partial<TPosition> = {
       ...position,
       title: formData.get("title") as string,
       department: formData.get("department") as string,
@@ -45,7 +45,7 @@ export const EditPositionModal: FC<EditPositionModalProps> = ({ isOpen, onClose,
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Edit Position">
+    <Modal isOpen={isOpen} onClose={onClose} title="Edit Position" width={"max-w-4xl"}>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -121,7 +121,7 @@ export const EditPositionModal: FC<EditPositionModalProps> = ({ isOpen, onClose,
 
         <div>
           <label className="block text-sm font-medium text-purple-400 mb-1">Salary</label>
-          <input type="text" name="salary" className="customInput" />
+          <input type="text" name="salary" className="customInput" defaultValue={position.salary} />
         </div>
 
         <div className="flex justify-end gap-3 pt-4">

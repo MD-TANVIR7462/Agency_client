@@ -1,7 +1,7 @@
-import { Position } from "../types/career";
 
 
-export const positions: Position[] = [
+
+export const positions = [
   {
     id: "senior-fullstack",
     title: "Senior Full Stack Developer",

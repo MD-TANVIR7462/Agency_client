@@ -1,12 +1,12 @@
 import { Modal } from "@/components/Shared/Modal";
-import { Position } from "@/components/types/career";
-import React from "react";
 
+import React from "react";
+import { TPosition } from "../types/career";
 
 interface JobDetailsModalProps {
   isOpen: boolean;
   onClose: () => void;
-  position: Position;
+  position: TPosition;
   onApply: () => void;
 }
 
@@ -17,7 +17,7 @@ export const JobDetailsModal: React.FC<JobDetailsModalProps> = ({
   onApply,
 }) => {
   return (
-    <Modal width="max-w-3xl" isOpen={isOpen} onClose={onClose} title={position.title}>
+    <Modal width="max-w-4xl" isOpen={isOpen} onClose={onClose} title={position.title}>
       <div className="space-y-8 text-gray-300">
         {/* About the Role */}
         <div className="bg-gray-900 p-6 rounded-lg shadow-md border border-gray-700">

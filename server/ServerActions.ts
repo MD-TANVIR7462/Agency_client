@@ -22,7 +22,9 @@ export async function getData(endpoint: string) {
 // GET SINGLE DATA
 export async function getSingleData(endpoint: string, id: string) {
   try {
-    const res = await fetch(`${BASE_URL}/${endpoint}/${id}`);
+    const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
+      cache: "no-store",
+    });
     const data = await res.json();
 
     return data;
@@ -55,10 +57,9 @@ export async function createData(endpoint: string, data: any) {
 // UPDATE DATA
 export async function updateData(endpoint: string, id: string, data: any) {
   try {
-    const url = `${BASE_URL}/${endpoint}/${id}`;
     const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json","Authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ3ODQxMDEwLCJleHAiOjE3NDc4ODQyMTB9.XwMWqq_D5uF4sApW9oQ2buUCte0H1NM3iQ9O_ZlqKuM" },
       body: JSON.stringify(data),
     });
     // if (!res.ok) throw new Error("Failed to update data");

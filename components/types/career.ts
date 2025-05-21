@@ -1,31 +1,23 @@
-export interface ApplicationForm {
+export type TApplication = {
+  _id?: string;
+  positionId?: string;
   fullName: string;
   email: string;
   phone: string;
   linkedIn?: string;
   portfolio?: string;
-  resumeLink: string;
-}
-
-export interface Position {
-  id: string;
-  _id?: string;
-  title: string;
-  department: string;
-  location: string;
-  type: string;
-  tags: string[];
-  description: string;
-  requirements: string[];
-  responsibilities: string[];
-  benefits: string[];
-  status: "active" | "inactive";
-  isActive?: boolean;
-  salary?: string | undefined;
-}
+  resumeUrl: string;
+  isPending?: boolean;
+  isDeleted?: boolean;
+  isSelected?: boolean;
+  isRejected?: boolean;
+  updatedAt?:string
+  createdAt?:string
+};
 
 export interface TPosition {
   _id?: string;
+  applications?: TApplication[];
   title: string;
   department: string;
   location: string;
@@ -37,19 +29,6 @@ export interface TPosition {
   benefits: string[];
   isActive?: boolean;
   salary?: string | undefined;
-}
-
-export interface Application {
-  status: string;
-  id: string;
-  positionId: string;
-  fullName: string;
-  email: string;
-  phone: string;
-  linkedIn: string;
-  portfolio: string;
-  resumeUrl: string;
-  submittedAt: string;
 }
 
 export type ApplicationStatus = "pending" | "selected" | "rejected";

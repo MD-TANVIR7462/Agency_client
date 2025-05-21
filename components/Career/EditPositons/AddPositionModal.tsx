@@ -47,7 +47,7 @@ export const AddPositionModal: FC<AddPositionModalProps> = ({ isOpen, onClose, o
   };
 
   return (
-    <Modal width="max-w-4xl" isOpen={isOpen} onClose={onClose} title="Add New Position">
+    <Modal width="max-w-4xl" isOpen={isOpen} onClose={onClose} title="Add New Position" >
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>

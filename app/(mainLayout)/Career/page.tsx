@@ -7,12 +7,12 @@ import { getData } from "@/server/ServerActions";
 
 const CareerPage = async () => {
   const hide = false;
-
   const galleryData = (await getData("gallery?isActive=true"))?.data;
+  const positionData = (await getData("position"))?.data;
   return (
     <div className="min-h-screen bg-[#1A1A2E]">
       <CareerHero />
-      <OpenPositions />
+      {positionData && <OpenPositions positonData={positionData} />}
       <WhyJoinUs />
       {galleryData && <GallerySection galleryData={galleryData} />}
       <FAQSection hide={hide} />
