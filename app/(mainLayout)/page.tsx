@@ -21,8 +21,8 @@ const Home = async () => {
       {banner && banner?.activeBanner === 2 && <Banner2 bannerData={banner} />}
       {serviceData && <Services serviceData={serviceData} />}
       <Features />
-      <ProcessSection2/>
       <Gallery />
+      <ProcessSection2/>
       {teamData && <TeamSection teamMembers={teamData} />}
       <Testimonials />
     </main>

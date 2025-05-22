@@ -164,13 +164,7 @@ const ApplicationsTable = ({ data: positionData }: ApplicationsTableProps) => {
               </tbody>
             </table>
 
-            <PaginationControls
-              currentPage={pagination.page}
-              totalPages={pagination.totalPages}
-              positionId={position?._id as string}
-              filterStatus={filterStatus}
-              limit={pagination.limit}
-            />
+      
           </>
         ) : (
           <div className="text-center py-8 bg-gray-900/30 rounded-lg border border-gray-800/50">
@@ -178,6 +172,15 @@ const ApplicationsTable = ({ data: positionData }: ApplicationsTableProps) => {
           </div>
         )}
       </div>
+      {
+              <PaginationControls
+              currentPage={pagination.page}
+              totalPages={pagination.totalPages}
+              positionId={position?._id as string}
+              filterStatus={filterStatus}
+              limit={pagination.limit}
+            />
+      }
     </div>
   );
 };

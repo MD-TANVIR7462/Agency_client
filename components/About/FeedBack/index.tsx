@@ -3,12 +3,25 @@ import { useState } from "react";
 import { TestimonialForm } from "./FeedBackFrom";
 import { Testimonial } from "@/components/types/Testimonial";
 import { createData } from "@/server/ServerActions";
+import { ErrorToast, SuccessToast } from "@/lib/utils";
 
 export const FeedBack = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = async (data: Partial<Testimonial>) => {
-    const createFeedback = await createData("testimonial/create-testimonial", data);
+    try{
+      const createFeedback = await createData("testimonial/create-testimonial", data);
+      if(createFeedback.success){
+        SuccessToast("Thanks for your Feedback!")
+      }
+      else{
+        ErrorToast("Please Try Again!")
+      }
+    }
+    catch(err){
+      ErrorToast("Something went wrong!")
+    }
+    
   };
 
   return (
