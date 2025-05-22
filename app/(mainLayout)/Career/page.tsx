@@ -10,7 +10,7 @@ const CareerPage = async () => {
   const galleryData = (await getData("gallery?isActive=true"))?.data;
   const positionData = (await getData("position"))?.data;
   return (
-    <div className="min-h-screen bg-[#1A1A2E]">
+    <div className="min-h-screen ">
       <CareerHero />
       {positionData && <OpenPositions positonData={positionData} />}
       <WhyJoinUs />

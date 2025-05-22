@@ -8,6 +8,7 @@ import { TeamSection } from "@/components/About/team-section";
 import { Banner2 } from "@/components/Banner/Banner2";
 import { TBanner } from "@/components/types/Banner";
 import { getData } from "@/server/ServerActions";
+import ProcessSection2 from "@/components/Porfolio/ProcessSection";
 
 const Home = async () => {
   const banner = (await getData("banner"))?.data?.[0] as TBanner;
@@ -20,6 +21,7 @@ const Home = async () => {
       {banner && banner?.activeBanner === 2 && <Banner2 bannerData={banner} />}
       {serviceData && <Services serviceData={serviceData} />}
       <Features />
+      <ProcessSection2/>
       <Gallery />
       {teamData && <TeamSection teamMembers={teamData} />}
       <Testimonials />

@@ -11,12 +11,14 @@ export function StatusBadge({ status }: StatusBadgeProps) {
     pending: "bg-yellow-500/20 text-yellow-400",
     selected: "bg-green-500/20 text-green-400",
     rejected: "bg-red-500/20 text-red-400",
+    hold:"bg-purple-500/20 text-purple-500"
   };
 
   const labels = {
     pending: "Pending",
     selected: "Selected",
     rejected: "Rejected",
+    hold:"Hold"
   };
 
   return (

@@ -64,7 +64,7 @@ export const OpenPositions = ({ positonData }: { positonData: TPosition[] }) => 
                   <div className="flex gap-3">
                     <button
                       onClick={() => handleMoreInfo(position)}
-                      className="flex items-center gap-2 truncate  bg-purple-900/40 text-purple-300 px-6 py-2 rounded-lg hover:bg-purple-900/50 transition-all duration-300"
+                      className="primaryButton flex items-center"
                     >
                       <Info className="w-4 h-4" />
                       More Info

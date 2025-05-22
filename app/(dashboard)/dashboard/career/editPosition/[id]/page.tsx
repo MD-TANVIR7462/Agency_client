@@ -19,7 +19,7 @@ const ApplicationPage = async ({ params }: PageProps) => {
         <div className="space-y-8">
           <Suspense fallback={<LoadingState />}>
             {params?.id && <ApplicationDetails id={params.id} />}
-            {positionData && <ApplicationsTable position={positionData} />}
+            {positionData && <ApplicationsTable data={positionData} />}
           </Suspense>
         </div>
       </div>

@@ -11,21 +11,19 @@ import { Filter } from "lucide-react";
 
 interface StatusFilterProps {
   currentFilter: "all" | "selected" | "rejected";
-  //   onFilterChange: (status: "all" | "selected" | "rejected") => void;
+  onFilterChange: (status: "all" | "selected" | "rejected") => void;
 }
 
-// const FilterButton = ({ currentFilter, onFilterChange }: StatusFilterProps) => {
-const FilterButton = () => {
+const FilterButton = ({ currentFilter, onFilterChange }: StatusFilterProps) => {
   const getFilterLabel = () => {
-    // switch ("all") {
-    //   case "selected":
-    //     return "Selected";
-    //   case "rejected":
-    //     return "Rejected";
-    //   default:
-    //     return "All";
-    // }
-    return "All"
+    switch (currentFilter) {
+      case "selected":
+        return "Selected";
+      case "rejected":
+        return "Rejected";
+      default:
+        return "All";
+    }
   };
 
   return (
@@ -39,29 +37,24 @@ const FilterButton = () => {
       <DropdownMenuContent className="bg-gray-900 border-purple-400/20 text-sm md:text-base ">
         <DropdownMenuItem
           className={`text-white hover:bg-purple-400/10 cursor-pointer ${
-            // currentFilter === "all" ? "bg-purple-400/20" : ""
-            ""
+            currentFilter === "all" ? "bg-purple-400/20" : ""
           }`}
-          //   onClick={() => onFilterChange("all")}
+          onClick={() => onFilterChange("all")}
         >
           All
         </DropdownMenuItem>
         <DropdownMenuItem
           className={`text-white hover:bg-purple-400/10 text-sm md:text-base cursor-pointer
-             ${
-               // currentFilter === "selected" ? "bg-purple-400/20" : ""
-               ""
-             }`}
-          //   onClick={() => onFilterChange("selected")}
+             ${currentFilter === "selected" ? "bg-purple-400/20" : ""}`}
+          onClick={() => onFilterChange("selected")}
         >
           Selected
         </DropdownMenuItem>
         <DropdownMenuItem
           className={`text-white hover:bg-purple-400/10 text-sm md:text-base cursor-pointer ${
-            // currentFilter === "rejected" ? "bg-purple-400/20" : ""
-            ""
+            currentFilter === "rejected" ? "bg-purple-400/20" : ""
           }`}
-          //   onClick={() => onFilterChange("rejected")}
+          onClick={() => onFilterChange("rejected")}
         >
           Rejected
         </DropdownMenuItem>

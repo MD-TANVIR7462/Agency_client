@@ -13,7 +13,7 @@ export const Gallery = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center">
-          <Tittle tittle={"Our Latest Projects"} />
+          <Tittle tittle={"Latest Projects"} />
           <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
             Explore our portfolio of successful digital transformations and
             innovative solutions.

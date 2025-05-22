@@ -57,13 +57,13 @@ export const TeamSection = ({ teamMembers }: { teamMembers: TeamMember[] }) => {
                   : "bg-gray-800/20 border-gray-800 opacity-50"
               )}>
               {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-purple-500/10 opacity-0  transition-opacity duration-300 rounded-xl"></div>
 
               {/* Content */}
               <div className="relative">
                 {/* Image */}
                 <div className="relative mb-6">
-                  <div className="absolute inset-0 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-purple-900 to-purple rounded-full opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"></div>
                   <img
                     src={member.image}
                     alt={member.name}
