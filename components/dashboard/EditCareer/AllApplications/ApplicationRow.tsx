@@ -1,4 +1,4 @@
-"use client";
+
 
 import Link from "next/link";
 import { Calendar, ExternalLink, Linkedin, Trash2, UserCheck, UserRoundX } from "lucide-react";

@@ -8,7 +8,7 @@ import { getData } from "@/server/ServerActions";
 const CareerPage = async () => {
   const hide = false;
   const galleryData = (await getData("gallery?isActive=true"))?.data;
-  const positionData = (await getData("position"))?.data;
+  const positionData = (await getData("position?isActive=true"))?.data;
   return (
     <div className="min-h-screen ">
       <CareerHero />

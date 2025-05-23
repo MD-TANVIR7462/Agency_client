@@ -1,5 +1,3 @@
-"use client";
-
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
@@ -27,32 +25,42 @@ export const PaginationControls = ({
         Page {currentPage} of {totalPages}
       </div>
       <div className="flex gap-2">
-        <Link
-          href={`?positionId=${positionId}&status=${filterStatus}&page=${currentPage - 1}&limit=${limit}`}
-          className={`flex items-center gap-1 px-3 py-1.5 rounded-lg border ${
-            hasPrevPage
-              ? "border-gray-700 hover:bg-gray-800/50 text-gray-300"
-              : "border-gray-800 text-gray-600 cursor-not-allowed"
-          }`}
-          aria-disabled={!hasPrevPage}
-          tabIndex={!hasPrevPage ? -1 : undefined}
-        >
-          <ChevronLeft className="w-4 h-4" />
-          Previous
-        </Link>
-        <Link
-          href={`?positionId=${positionId}&status=${filterStatus}&page=${currentPage + 1}&limit=${limit}`}
-          className={`flex items-center gap-1 px-3 py-1.5 rounded-lg border ${
-            hasNextPage
-              ? "border-gray-700 hover:bg-gray-800/50 text-gray-300"
-              : "border-gray-800 text-gray-600 cursor-not-allowed"
-          }`}
-          aria-disabled={!hasNextPage}
-          tabIndex={!hasNextPage ? -1 : undefined}
-        >
-          Next
-          <ChevronRight className="w-4 h-4" />
-        </Link>
+        {totalPages > 1 && (
+          <>
+            {hasPrevPage ? (
+              <Link
+                href={`?positionId=${positionId}&status=${filterStatus}&page=${
+                  currentPage - 1
+                }&limit=${limit}`}
+                className="flex items-center gap-1 px-3 py-1.5 rounded-lg border border-gray-700 hover:bg-gray-800/50 text-gray-300"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                Previous
+              </Link>
+            ) : (
+              <span className="flex items-center gap-1 px-3 py-1.5 rounded-lg border border-gray-800 text-gray-600 cursor-not-allowed">
+                <ChevronLeft className="w-4 h-4" />
+                Previous
+              </span>
+            )}
+            {hasNextPage ? (
+              <Link
+                href={`?positionId=${positionId}&status=${filterStatus}&page=${
+                  currentPage + 1
+                }&limit=${limit}`}
+                className="flex items-center gap-1 px-3 py-1.5 rounded-lg border border-gray-700 hover:bg-gray-800/50 text-gray-300"
+              >
+                Next
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            ) : (
+              <span className="flex items-center gap-1 px-3 py-1.5 rounded-lg border border-gray-800 text-gray-600 cursor-not-allowed">
+                Next
+                <ChevronRight className="w-4 h-4" />
+              </span>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
