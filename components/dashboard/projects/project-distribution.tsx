@@ -1,11 +1,14 @@
-"use client";
-
+"use client"
 import { motion } from "framer-motion";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
-import { projectTypes } from "@/lib/constants/project-types";
 
+export const projectTypes = [
+  { name: "Web Development", percentage: 45 },
+  { name: "Web Apps", percentage: 30 },
+  { name: "UI/UX Design", percentage: 15 },
+  { name: "Cloud Solutions", percentage: 10 },
+];
 const COLORS = ["#818CF8", "#A78BFA", "#F472B6", "#FB923C"];
-
 export function ProjectDistribution() {
   return (
     <motion.div

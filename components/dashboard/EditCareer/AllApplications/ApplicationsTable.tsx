@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { deleteToast } from "@/lib/deleteToast";
 import { useEffect, useState } from "react";
 import { PaginationControls } from "./PaginationControls";
-import { Skeleton } from "@/components/ui/skeleton";
+// import { Skeleton } from "@/components/ui/skeleton";
 import ApplicationRow from "./ApplicationRow";
 
 interface ApplicationsTableProps {
@@ -24,7 +24,7 @@ const ApplicationsTable = ({ data: positionData }: ApplicationsTableProps) => {
   const [filterStatus, setFilterStatus] = useState<"all" | "selected" | "rejected">(
     (searchParams.get("status") as any) || "all"
   );
-  const [loading, setLoading] = useState<boolean>(true);
+
   const [applications, setApplications] = useState<TApplication[]>([]);
   const [pagination, setPagination] = useState({
     total: 0,
@@ -35,7 +35,7 @@ const ApplicationsTable = ({ data: positionData }: ApplicationsTableProps) => {
 
   const fetchApplications = async () => {
     try {
-      setLoading(true);
+      // setLoading(true);
       const response = await getData(
         `application?positionId=${position._id}&status=${filterStatus}&page=${page}&limit=${limit}`
       );
@@ -53,7 +53,7 @@ const ApplicationsTable = ({ data: positionData }: ApplicationsTableProps) => {
       console.error("Error fetching applications:", error);
       setApplications([]);
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 
@@ -66,7 +66,7 @@ const ApplicationsTable = ({ data: positionData }: ApplicationsTableProps) => {
       const result = await updateData("application/select", id, {});
       if (result.success) {
         SuccessToast("Operation Successful");
-        fetchApplications();
+        router.refresh();
       } else {
         ErrorToast(result.message);
       }
@@ -80,7 +80,7 @@ const ApplicationsTable = ({ data: positionData }: ApplicationsTableProps) => {
       const result = await updateData("application/reject", id, {});
       if (result.success) {
         SuccessToast("Operation Successful");
-        fetchApplications();
+        router.refresh();
       } else {
         ErrorToast(result.message);
       }
@@ -93,7 +93,7 @@ const ApplicationsTable = ({ data: positionData }: ApplicationsTableProps) => {
     const deleteCandidate = async () => {
       const result = await deleteData("application/delete-application", id);
       if (result?.success) {
-        fetchApplications();
+        router.refresh();
         SuccessToast(result.message);
       } else {
         ErrorToast(result.message);
@@ -128,13 +128,15 @@ const ApplicationsTable = ({ data: positionData }: ApplicationsTableProps) => {
       </div>
 
       <div className="overflow-x-auto overflow-y-auto">
-        {loading ? (
+        {/* {loading ? (
           <div className="space-y-4">
             {[...Array(5)].map((_, i) => (
               <Skeleton key={i} className="h-16 w-full bg-gray-800/50 rounded-lg" />
             ))}
           </div>
-        ) : applications.length > 0 ? (
+        ) :
+         */}
+        {applications.length > 0 ? (
           <>
             <table className="w-full">
               <thead>
@@ -163,8 +165,6 @@ const ApplicationsTable = ({ data: positionData }: ApplicationsTableProps) => {
                 ))}
               </tbody>
             </table>
-
-      
           </>
         ) : (
           <div className="text-center py-8 bg-gray-900/30 rounded-lg border border-gray-800/50">
@@ -173,13 +173,13 @@ const ApplicationsTable = ({ data: positionData }: ApplicationsTableProps) => {
         )}
       </div>
       {
-              <PaginationControls
-              currentPage={pagination.page}
-              totalPages={pagination.totalPages}
-              positionId={position?._id as string}
-              filterStatus={filterStatus}
-              limit={pagination.limit}
-            />
+        <PaginationControls
+          currentPage={pagination.page}
+          totalPages={pagination.totalPages}
+          positionId={position?._id as string}
+          filterStatus={filterStatus}
+          limit={pagination.limit}
+        />
       }
     </div>
   );
