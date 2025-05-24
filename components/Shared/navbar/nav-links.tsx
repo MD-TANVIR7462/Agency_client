@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import { useState } from "react";
+
 
 interface NavLinksProps {
   className?: string;
@@ -17,7 +16,7 @@ export const NavLinks = ({
   onClose,
 }: NavLinksProps) => {
   const pathname = usePathname();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
 
   const links = [
     { href: "/", label: "Home" },

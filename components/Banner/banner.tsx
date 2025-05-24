@@ -3,8 +3,7 @@ import { StatsSection } from "@/components/ui/stats-section";
 import BannerButton from "../Buttons/BannerButton";
 import { TBanner } from "../types/Banner";
 
-export const Banner = async ({ bannerData }: { bannerData: TBanner} ) => {
-
+export const Banner = async ({ bannerData, state }: { bannerData: TBanner; state: any }) => {
   const { title1, title2, subtext, img_url } = bannerData;
 
   return (
@@ -35,7 +34,7 @@ export const Banner = async ({ bannerData }: { bannerData: TBanner} ) => {
                 </button>
               </div>
 
-              <StatsSection />
+              <StatsSection state={state?.stats} />
             </div>
 
             {/* Right Column - Image */}

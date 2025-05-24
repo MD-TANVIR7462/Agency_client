@@ -155,9 +155,7 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Logo Upload */}
               <div>
-                <label className="block text-sm font-medium text-purple-400 mb-1">
-                  Company Logo
-                </label>
+                <label className="block text-sm font-medium text-purple-400 mb-1">Company Logo</label>
                 <div className="flex items-center gap-4">
                   <div className="relative w-28 h-20 rounded-lg overflow-hidden bg-gray-800 border border-gray-700">
                     {logoLoading && (
@@ -168,9 +166,7 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
                     {previewUrl ? (
                       <Image src={previewUrl} alt="Company Logo" fill className="object-cover" />
                     ) : (
-                      <div className="flex items-center justify-center h-full text-gray-500">
-                        No logo
-                      </div>
+                      <div className="flex items-center justify-center h-full text-gray-500">No logo</div>
                     )}
                   </div>
                   <div className="space-y-2">
@@ -192,7 +188,11 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
                       }`}
                     >
                       <Upload className={`w-4 h-4 ${logoLoading ? "animate-pulse" : ""}`} />
-                      {logoLoading ? "Uploading..." : previewUrl && previewUrl !== formData.logo ? "Change Logo" : "Upload Logo"}
+                      {logoLoading
+                        ? "Uploading..."
+                        : previewUrl && previewUrl !== formData.logo
+                        ? "Change Logo"
+                        : "Upload Logo"}
                     </label>
                     <button
                       type="button"
@@ -213,9 +213,7 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
 
               {/* Company Name */}
               <div>
-                <label className="block text-sm font-medium text-purple-400 mb-1">
-                  Company Name
-                </label>
+                <label className="block text-sm font-medium text-purple-400 mb-1">Company Name</label>
                 <input
                   type="text"
                   name="companyName"
@@ -229,9 +227,7 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
 
               {/* Tagline */}
               <div>
-                <label className="block text-sm font-medium text-purple-400 mb-1">
-                  Tagline
-                </label>
+                <label className="block text-sm font-medium text-purple-400 mb-1">Tagline</label>
                 <textarea
                   name="tagline"
                   value={formData.tagline}
@@ -245,9 +241,7 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
 
               {/* Social Media Links */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-white">
-                  Social Media Links
-                </h3>
+                <h3 className="text-lg font-semibold text-white">Social Media Links</h3>
 
                 {[
                   { name: "linkedin", icon: Linkedin, color: "text-blue-400" },
@@ -306,18 +300,12 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
                     {previewUrl ? (
                       <Image src={previewUrl} alt="Company Logo" fill className="object-cover" />
                     ) : (
-                      <div className="flex items-center justify-center h-full text-gray-500">
-                        No logo
-                      </div>
+                      <div className="flex items-center justify-center h-full text-gray-500">No logo</div>
                     )}
                   </div>
                   <div className="overflow-x-hidden w-full">
-                    <h3 className="text-xl font-bold">
-                      {formData.companyName || "Your Company Name"}
-                    </h3>
-                    <p className="text-gray-400 truncate">
-                      {formData.tagline || "Your company tagline"}
-                    </p>
+                    <h3 className="text-xl font-bold">{formData.companyName || "Your Company Name"}</h3>
+                    <p className="text-gray-400 truncate">{formData.tagline || "Your company tagline"}</p>
                   </div>
                 </div>
 

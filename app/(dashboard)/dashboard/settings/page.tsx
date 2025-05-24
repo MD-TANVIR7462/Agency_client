@@ -4,13 +4,8 @@ import SettingsIndex from "./settingsIndex";
 
 const WebsiteSettings = async () => {
   const settingsData = (await getData("settings"))?.data?.[0];
-  console.log(settingsData)
 
-  return <div>
-    {
-      settingsData&&<SettingsIndex settings={settingsData} />
-    }
-  </div>;
+  return <div>{settingsData && <SettingsIndex settings={settingsData} />}</div>;
 };
 
 export default WebsiteSettings;

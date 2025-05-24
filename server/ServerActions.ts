@@ -9,7 +9,6 @@ export async function getData(endpoint: string) {
     const res = await fetch(`${BASE_URL}/${endpoint}`, {
       cache: "no-store",
     });
-    // if (!res.ok) throw new Error("Failed to fetch data");
     const data = await res.json();
     return data;
   } catch (error) {
@@ -43,7 +42,6 @@ export async function createData(endpoint: string, data: any) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    // if (!res.ok) throw new Error("Failed to create data");
     const response = await res.json();
 
     return response;
@@ -59,10 +57,9 @@ export async function updateData(endpoint: string, id: string, data: any) {
   try {
     const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
       method: "PATCH",
-      headers: { "Content-Type": "application/json","Authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ3ODQxMDEwLCJleHAiOjE3NDc4ODQyMTB9.XwMWqq_D5uF4sApW9oQ2buUCte0H1NM3iQ9O_ZlqKuM" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
-    // if (!res.ok) throw new Error("Failed to update data");
     const response = await res.json();
     return response;
   } catch (error) {
@@ -80,6 +77,20 @@ export async function deleteData(endpoint: string, id: string) {
     const response = await res.json();
 
     return response;
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
+    return { error: errorMessage };
+  }
+}
+
+//GetSettings.......
+export async function getSettings() {
+  try {
+    const res = await fetch(`${BASE_URL}/settings`, {
+      cache: "no-store",
+    });
+    const data = await res.json();
+    return data?.data?.[0];
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
     return { error: errorMessage };

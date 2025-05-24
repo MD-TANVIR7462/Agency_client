@@ -14,11 +14,12 @@ const Home = async () => {
   const banner = (await getData("banner"))?.data?.[0] as TBanner;
   const teamData = (await getData("team?isActive=true"))?.data;
   const serviceData = (await getData("service?isActive=true"))?.data;
+  const statsData = (await getData("story"))?.data?.[0];
 
   return (
     <main>
-      {banner && banner?.activeBanner === 1 && <Banner bannerData={banner} />}
-      {banner && banner?.activeBanner === 2 && <Banner2 bannerData={banner} />}
+      {banner && banner?.activeBanner === 1 && <Banner bannerData={banner} state={statsData} />}
+      {banner && banner?.activeBanner === 2 && <Banner2 bannerData={banner} state={statsData} />}
       {serviceData && <Services serviceData={serviceData} />}
       <Features />
       <Gallery />

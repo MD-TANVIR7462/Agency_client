@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { TBanner } from "../types/Banner";
 
-export const Banner2 = ({ bannerData }: { bannerData: TBanner }) => {
+export const Banner2 = ({ bannerData ,state}: { bannerData: TBanner,state:any }) => {
   const images = [
     "/Banner/brand-building.webp",
     "/Banner/programming-&-tech.webp",
@@ -49,7 +49,7 @@ export const Banner2 = ({ bannerData }: { bannerData: TBanner }) => {
                 </button>
               </div>
 
-              <StatsSection />
+              <StatsSection state={state?.stats} />
             </div>
 
             {/* Right Column - Image */}
@@ -61,9 +61,9 @@ export const Banner2 = ({ bannerData }: { bannerData: TBanner }) => {
                     src={images[currentIndex]}
                     alt="Service Image"
                     className="absolute w-full h-full object-cover rounded-2xl"
-                    initial={{ opacity: 0, x: 50 }} // ডান দিক থেকে আসবে
+                    initial={{ opacity: 0, x: 50 }} 
                     animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -50 }} // বাম দিকে চলে যাবে
+                    exit={{ opacity: 0, x: -50 }} 
                     transition={{ duration: 1.2 }}
                   />
                 </AnimatePresence>

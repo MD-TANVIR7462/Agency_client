@@ -1,3 +1,4 @@
+import { getData } from "@/server/ServerActions";
 import {
   Facebook,
   Twitter,
@@ -9,7 +10,9 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-export const Footer = () => {
+export const Footer = async() => {
+    // const settingsData = (await getData("settings"))?.data?.[0];
+    // console.log(settingsData)
   return (
     <footer className="relative overflow-hidden bg-gray-900">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50" />
