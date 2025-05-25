@@ -6,7 +6,7 @@ type StatusBadgeProps = {
 };
 
 export function StatusBadge({ status }: StatusBadgeProps) {
-  console.log(status)
+
   const styles = {
     pending: "bg-yellow-500/20 text-yellow-400",
     selected: "bg-green-500/20 text-green-400",

@@ -6,7 +6,7 @@ export const StatsSection = ({ state }: { state: any }) => {
     { icon: Code, value: state?.projects, label: "Projects" },
     { icon: Users, value: state?.teamSize, label: "Team" },
   ];
-  console.log(state);
+
   return (
     <div className="mt-8 grid grid-cols-3 gap-4">
       {stats?.map((stat, index) => (

@@ -26,7 +26,7 @@ export default function EditFAQindex({ faqs }: { faqs: FAQ[] }) {
   };
 
   const handleSubmit = async (data: Partial<FAQ>, id?: string) => {
-   console.log(data,id)
+ 
     if (editingFaq) {
       const result = await updateData(
         "faq/update-faq",

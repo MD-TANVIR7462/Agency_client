@@ -47,12 +47,11 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onCl
         positionId: position._id,
       };
       //send data to backend........
-      console.log("Form data ready for submission:", formData);
       const createApplication = await createData("application/create-application", formData);
       if (createApplication?.success) {
         SuccessToast("Application Submited");
       } else {
-        console.log(createApplication);
+
         ErrorToast(createApplication?.message || "Network Error please Try Again!");
       }
 

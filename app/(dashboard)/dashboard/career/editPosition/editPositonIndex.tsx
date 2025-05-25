@@ -28,7 +28,7 @@ import { useRouter } from "next/navigation";
 import { deleteToast } from "@/lib/deleteToast";
 
 export default function EditPositonIndex({ positions }: { positions: TPosition[] }) {
-  console.log(positions);
+
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingPosition, setEditingPosition] = useState<TPosition | null>(null);
@@ -37,7 +37,7 @@ export default function EditPositonIndex({ positions }: { positions: TPosition[]
   const handleAddPosition = async (newPosition: TPosition) => {
     const data = newPosition as TPosition;
     const result = await createData("position/create-position", data);
-    console.log(result);
+
     if (result?.success) {
       SuccessToast(result?.message);
       router.refresh();
@@ -131,7 +131,7 @@ export default function EditPositonIndex({ positions }: { positions: TPosition[]
       if (result.success) {
         SuccessToast("Operation Successful");
         router.refresh();
-        console.log(result);
+   
       } else {
         ErrorToast(result.message);
       }
@@ -146,7 +146,7 @@ export default function EditPositonIndex({ positions }: { positions: TPosition[]
       if (result.success) {
         SuccessToast("Operation Successful");
         router.refresh();
-        console.log(result);
+    
       } else {
         ErrorToast(result.message);
       }
