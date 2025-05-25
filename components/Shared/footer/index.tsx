@@ -1,18 +1,18 @@
 import { getData } from "@/server/ServerActions";
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
-
-export const Footer = async() => {
-    // const settingsData = (await getData("settings"))?.data?.[0];
-    // console.log(settingsData)
+//  companyName: 'SISCOTEK',
+//   tagline: 'Transforming businesses through innovative digital solutions.',
+//   facebook: 'https://facebook.com',
+//   twitter: 'https://twitter.com',
+//   linkedin: 'https://linkedin.com',
+//   instagram: 'https://instagram.com',
+//   createdAt: '2025-05-24T05:32:39.725Z',
+//   updatedAt: '2025-05-24T09:13:25.328Z',
+//   logo: 'https://res.cloudinary.com/dsmbm1bvy/image/upload/v1748078004/Siscotek_Images/z3elwbbbjcsmzrq83qby.jpg'
+export const Footer = async () => {
+  const settingsData = (await getData("settings"))?.data?.[0];
+  console.log(settingsData);
   return (
     <footer className="relative overflow-hidden bg-gray-900">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50" />
@@ -32,35 +32,23 @@ export const Footer = async() => {
         <div className="grid gap-8 lg:grid-cols-4">
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <h2 className="text-2xl font-bold text-white">SiSCOTEK</h2>
+            <h2 className="text-2xl font-bold text-white">{settingsData.companyName || "SiSCOTEK"}</h2>
             <p className="mt-4 text-gray-400">
-              Transforming businesses through innovative digital solutions.
+              {settingsData.tagline || "Transforming businesses through innovative digital solutions."}
             </p>
             <div className="mt-6 flex gap-4">
-              <a
-                href="#"
-                className="text-gray-400 transition-colors hover:text-white"
-              >
+              <Link href={settingsData.facebook || "#"} className="text-gray-400 transition-colors hover:text-white">
                 <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 transition-colors hover:text-white"
-              >
+              </Link>
+              <Link href={settingsData.twitter || "#"} className="text-gray-400 transition-colors hover:text-white">
                 <Twitter className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 transition-colors hover:text-white"
-              >
+              </Link>
+              <Link href={settingsData.instagram || "#"} className="text-gray-400 transition-colors hover:text-white">
                 <Instagram className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 transition-colors hover:text-white"
-              >
+              </Link>
+              <Link href={settingsData.linkedin || "#"} className="text-gray-400 transition-colors hover:text-white">
                 <Linkedin className="h-5 w-5" />
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -79,10 +67,7 @@ export const Footer = async() => {
                     "Cybersecurity",
                   ].map((service) => (
                     <li key={service}>
-                      <a
-                        href="#"
-                        className="text-gray-400 transition-colors hover:text-white"
-                      >
+                      <a href="#" className="text-gray-400 transition-colors hover:text-white">
                         {service}
                       </a>
                     </li>
@@ -92,18 +77,13 @@ export const Footer = async() => {
               <div>
                 <h3 className="text-lg font-semibold text-white">Company</h3>
                 <ul className="mt-4 space-y-2">
-                  {["About Us", "Our Team", "Careers", "Blog", "Contact"].map(
-                    (item) => (
-                      <li key={item}>
-                        <a
-                          href="#"
-                          className="text-gray-400 transition-colors hover:text-white"
-                        >
-                          {item}
-                        </a>
-                      </li>
-                    )
-                  )}
+                  {["About Us", "Our Team", "Careers", "Blog", "Contact"].map((item) => (
+                    <li key={item}>
+                      <a href="#" className="text-gray-400 transition-colors hover:text-white">
+                        {item}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -136,7 +116,15 @@ export const Footer = async() => {
         </div>
         <div className="mt-2  border-white/10 ">
           <p className="text-center text-xs text-gray-400">
-          Design and created by <Link target="_blank" href={"https://tanvir3.vercel.app/"} className="text-purple-400/90 hover:text-purple-500 transition-colors ">Tanvir</Link> ❤️
+            Design and created by{" "}
+            <Link
+              target="_blank"
+              href={"https://tanvir3.vercel.app/"}
+              className="text-purple-400/90 hover:text-purple-500 transition-colors "
+            >
+              Tanvir
+            </Link>{" "}
+            ❤️
           </p>
         </div>
       </div>
