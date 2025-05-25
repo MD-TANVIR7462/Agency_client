@@ -39,7 +39,6 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onCl
       return;
     }
 
-    console.log(loading);
     setUploadError(null);
 
     try {
@@ -53,9 +52,10 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onCl
       if (createApplication?.success) {
         SuccessToast("Application Submited");
       } else {
-        console.log(createApplication)
-        ErrorToast(createApplication?.message || "Failed to update status.");
+        console.log(createApplication);
+        ErrorToast(createApplication?.message || "Network Error please Try Again!");
       }
+
       // Reset form and close modal on success
       setForm({
         fullName: "",
@@ -105,6 +105,8 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onCl
           <input
             type="text"
             required
+            minLength={3}
+            maxLength={50}
             className="w-full bg-[#252540] border border-purple-900/30 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
             value={form.fullName}
             onChange={(e) => setForm({ ...form, fullName: e.target.value })}

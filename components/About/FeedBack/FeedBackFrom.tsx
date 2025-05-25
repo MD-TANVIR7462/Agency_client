@@ -93,13 +93,15 @@ export const TestimonialForm = ({ isOpen, onClose, onSubmit }: TestimonialFormPr
       >
         <div>
           <label htmlFor="content" className="block text-sm font-medium text-purple-400 mb-1">
-            Your Review
+            Your Review<span className="text-red-400">*</span>
           </label>
           <textarea
             id="content"
             name="content"
             className="w-full bg-gray-900 border border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400"
             rows={4}
+            minLength={2}
+            maxLength={160}
             required
             placeholder="Share your experience..."
           />
@@ -107,25 +109,30 @@ export const TestimonialForm = ({ isOpen, onClose, onSubmit }: TestimonialFormPr
 
         <div>
           <label htmlFor="author" className="block text-sm font-medium text-purple-400 mb-1">
-            Your Name
+            Your Name<span className="text-red-400">*</span>
           </label>
           <input
             type="text"
+            minLength={2}
+            maxLength={27}
             id="author"
             name="author"
             className="w-full bg-gray-900 border border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400"
             required
+            placeholder="Your Name..."
           />
         </div>
 
         <div>
           <label htmlFor="role" className="block text-sm font-medium text-purple-400 mb-1">
-            Your Role
+            Your Role<span className="text-red-400">*</span>
           </label>
           <input
             type="text"
             id="role"
             name="role"
+            minLength={2}
+            maxLength={35}
             className="w-full bg-gray-900 border border-purple-400/30 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-400"
             required
             placeholder="e.g. CEO, Developer, Designer"
@@ -134,7 +141,7 @@ export const TestimonialForm = ({ isOpen, onClose, onSubmit }: TestimonialFormPr
 
         <div>
           <label htmlFor="image" className="block text-sm font-medium text-purple-400 mb-1">
-            Your Photo (JPG or PNG, max 5MB)
+            Your Photo (JPG or PNG, max 5MB)<span className="text-red-400">*</span>
           </label>
           <input
             type="file"
