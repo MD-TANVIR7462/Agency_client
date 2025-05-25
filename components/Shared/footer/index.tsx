@@ -23,21 +23,37 @@ export const Footer = async () => {
         <div className="grid gap-8 lg:grid-cols-4">
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <h2 className="text-2xl font-bold text-white">{settingsData.companyName || "SiSCOTEK"}</h2>
+            <h2 className="text-2xl font-bold text-white">
+              {settingsData?.companyName ? settingsData?.companyName : "SiSCOTEK"}
+            </h2>
             <p className="mt-4 text-gray-400">
-              {settingsData.tagline || "Transforming businesses through innovative digital solutions."}
+              {settingsData?.tagline
+                ? settingsData.tagline
+                : "Transforming businesses through innovative digital solutions."}
             </p>
             <div className="mt-6 flex gap-4">
-              <Link href={settingsData.facebook || "#"} className="text-gray-400 transition-colors hover:text-white">
+              <Link
+                href={settingsData?.facebook ? settingsData.facebook : "#"}
+                className="text-gray-400 transition-colors hover:text-white"
+              >
                 <Facebook className="h-5 w-5" />
               </Link>
-              <Link href={settingsData.twitter || "#"} className="text-gray-400 transition-colors hover:text-white">
+              <Link
+                href={settingsData?.twitter ? settingsData?.twitter : "#"}
+                className="text-gray-400 transition-colors hover:text-white"
+              >
                 <Twitter className="h-5 w-5" />
               </Link>
-              <Link href={settingsData.instagram || "#"} className="text-gray-400 transition-colors hover:text-white">
+              <Link
+                href={settingsData?.instagram ? settingsData?.instagram : "#"}
+                className="text-gray-400 transition-colors hover:text-white"
+              >
                 <Instagram className="h-5 w-5" />
               </Link>
-              <Link href={settingsData.linkedin || "#"} className="text-gray-400 transition-colors hover:text-white">
+              <Link
+                href={settingsData?.linkedin ? settingsData?.linkedin : "#"}
+                className="text-gray-400 transition-colors hover:text-white"
+              >
                 <Linkedin className="h-5 w-5" />
               </Link>
             </div>

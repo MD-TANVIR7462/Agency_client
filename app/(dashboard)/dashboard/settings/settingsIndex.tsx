@@ -50,7 +50,7 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
     setLogoLoading(true);
 
     if (!file) {
-      setPreviewUrl(formData.logo);
+      setPreviewUrl(formData?.logo);
       setLogoLoading(false);
       return;
     }
@@ -107,16 +107,16 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
       }
 
       const dataToSend = {
-        companyName: formData.companyName,
-        tagline: formData.tagline,
-        facebook: formData.facebook,
-        twitter: formData.twitter,
-        linkedin: formData.linkedin,
-        instagram: formData.instagram,
+        companyName: formData?.companyName,
+        tagline: formData?.tagline,
+        facebook: formData?.facebook,
+        twitter: formData?.twitter,
+        linkedin: formData?.linkedin,
+        instagram: formData?.instagram,
         logo: logoUrl,
       };
 
-      const res = await updateData("settings/update-settings", settings._id as string, dataToSend);
+      const res = await updateData("settings/update-settings", settings?._id as string, dataToSend);
 
       if (!res.success) {
         throw new Error("Failed to update settings");
@@ -190,7 +190,7 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
                       <Upload className={`w-4 h-4 ${logoLoading ? "animate-pulse" : ""}`} />
                       {logoLoading
                         ? "Uploading..."
-                        : previewUrl && previewUrl !== formData.logo
+                        : previewUrl && previewUrl !== formData?.logo
                         ? "Change Logo"
                         : "Upload Logo"}
                     </label>
@@ -217,7 +217,7 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
                 <input
                   type="text"
                   name="companyName"
-                  value={formData.companyName}
+                  value={formData?.companyName}
                   onChange={handleChange}
                   className="customInput"
                   required
@@ -230,7 +230,7 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
                 <label className="block text-sm font-medium text-purple-400 mb-1">Tagline</label>
                 <textarea
                   name="tagline"
-                  value={formData.tagline}
+                  value={formData?.tagline}
                   onChange={handleChange}
                   className="customInput"
                   rows={3}
@@ -254,7 +254,7 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
                     <input
                       type="url"
                       name={name}
-                      value={formData[name as keyof typeof formData] || ""}
+                      value={formData?.[name as keyof typeof formData] || ""}
                       onChange={handleChange}
                       placeholder={`${name.charAt(0).toUpperCase() + name.slice(1)} URL`}
                       className="customInput flex-1"
@@ -304,8 +304,8 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
                     )}
                   </div>
                   <div className="overflow-x-hidden w-full">
-                    <h3 className="text-xl font-bold">{formData.companyName || "Your Company Name"}</h3>
-                    <p className="text-gray-400 truncate">{formData.tagline || "Your company tagline"}</p>
+                    <h3 className="text-xl font-bold">{formData?.companyName || "Your Company Name"}</h3>
+                    <p className="text-gray-400 truncate">{formData?.tagline || "Your company tagline"}</p>
                   </div>
                 </div>
 
