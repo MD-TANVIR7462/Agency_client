@@ -22,7 +22,6 @@ import {
   User,
 } from "lucide-react";
 
-
 const menuItems = [
   {
     title: "Home",
@@ -73,7 +72,7 @@ export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const pathname = usePathname();
-  const router = useRouter()
+  const router = useRouter();
 
   const toggleSubmenu = (title: string) => {
     setOpenSubmenu(openSubmenu === title ? null : title);
@@ -92,13 +91,10 @@ export default function Sidebar() {
     },
   };
 
-
-  const handleLogout = ()=>{
-
-    localStorage.removeItem("user")
-    router.replace("/")
-  
-  }
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    router.replace("/");
+  };
 
   return (
     <>
@@ -106,11 +102,7 @@ export default function Sidebar() {
         onClick={() => setIsOpen(!isOpen)}
         className="fixed top-4 left-4 z-50 p-2 bg-purple-400/80 text-white rounded-md lg:hidden"
       >
-        {isOpen ? (
-          <X className="w-6 h-6 " />
-        ) : (
-          <MenuIcon className="w-6 h-6 " />
-        )}
+        {isOpen ? <X className="w-6 h-6 " /> : <MenuIcon className="w-6 h-6 " />}
       </button>
 
       <motion.div
@@ -122,24 +114,20 @@ export default function Sidebar() {
         <div className="p-4">
           <div className="flex justify-center lg:justify-start items-center gap-2 mb-8 pt-4 ">
             <Layout className=":w-8 :h-8 text-purple-400 hidden lg:block" />
-            <span className=" text-base lg:text-xl font-bold ">SiSCOTEK</span>
+            <span className=" text-base lg:text-xl font-bold ">DASHBOARD</span>
           </div>
 
           <nav>
             <Link href={"/dashboard"}>
-              <button
-                className={`w-full flex items-center justify-between p-2 rounded-md transition-colors mb-2`}
-              >
+              <button className={`w-full flex items-center justify-between p-2 rounded-md transition-colors mb-2`}>
                 <div className="flex items-center gap-2">
                   <LayoutDashboard className="w-5 h-5" />
-                  <span>Dashboard</span>
+                  <span>Analytics</span>
                 </div>
               </button>
             </Link>
             <Link href={"/dashboard/admin"}>
-              <button
-                className={`w-full flex items-center justify-between p-2 rounded-md transition-colors mb-2`}
-              >
+              <button className={`w-full flex items-center justify-between p-2 rounded-md transition-colors mb-2`}>
                 <div className="flex items-center gap-2">
                   <User className="w-5 h-5" />
                   <span>Profile</span>
@@ -151,9 +139,7 @@ export default function Sidebar() {
                 <button
                   onClick={() => toggleSubmenu(item.title)}
                   className={`w-full flex items-center justify-between p-2 rounded-md transition-colors ${
-                    pathname.startsWith(item.path)
-                      ? "bg-purple-400/20 text-white"
-                      : "hover:bg-gray-800"
+                    pathname.startsWith(item.path) ? "bg-purple-400/20 text-white" : "hover:bg-gray-800"
                   }`}
                 >
                   <div className="flex items-center gap-2">
@@ -161,9 +147,7 @@ export default function Sidebar() {
                     <span>{item.title}</span>
                   </div>
                   <ChevronDown
-                    className={`w-4 h-4 transition-transform ${
-                      openSubmenu === item.title ? "rotate-180" : ""
-                    }`}
+                    className={`w-4 h-4 transition-transform ${openSubmenu === item.title ? "rotate-180" : ""}`}
                   />
                 </button>
 
@@ -181,9 +165,7 @@ export default function Sidebar() {
                           key={subItem.path}
                           href={subItem.path}
                           className={`block pl-10 py-2 text-sm rounded-md transition-colors ${
-                            pathname === subItem.path
-                              ? " text-purple-400"
-                              : "hover:text-purple-400"
+                            pathname === subItem.path ? " text-purple-400" : "hover:text-purple-400"
                           }`}
                         >
                           {subItem.title}
@@ -197,9 +179,7 @@ export default function Sidebar() {
             <Link href={"/dashboard/contact"}>
               <button
                 className={`w-full flex items-center justify-between p-2 rounded-md transition-colors mb-2 ${
-                  pathname.startsWith("/dashboard/contact")
-                    ? "bg-purple-400/20 text-white"
-                    : "hover:bg-gray-800"
+                  pathname.startsWith("/dashboard/contact") ? "bg-purple-400/20 text-white" : "hover:bg-gray-800"
                 }`}
               >
                 <div className="flex items-center gap-2">
@@ -211,9 +191,7 @@ export default function Sidebar() {
             <Link href={"/dashboard/settings"}>
               <button
                 className={`w-full flex items-center justify-between p-2 rounded-md transition-colors ${
-                  pathname.startsWith("siteSettings")
-                    ? "bg-purple-400/20 text-white"
-                    : "hover:bg-gray-800"
+                  pathname.startsWith("siteSettings") ? "bg-purple-400/20 text-white" : "hover:bg-gray-800"
                 }`}
               >
                 <div className="flex items-center gap-2">
@@ -231,7 +209,10 @@ export default function Sidebar() {
               </button>
             </Link>
 
-            <button onClick={handleLogout} className="mt-[5%] w-full flex items-center gap-2 px-2 py-2 ring-1 text-white rounded-sm hover:text-red-500 transition-colors">
+            <button
+              onClick={handleLogout}
+              className="mt-[5%] w-full flex items-center gap-2 px-2 py-2 ring-1 text-white rounded-sm hover:text-red-500 transition-colors"
+            >
               <LogOut className="w-4 h-4" />
               <span className="text-sm font-medium">Log Out</span>
             </button>

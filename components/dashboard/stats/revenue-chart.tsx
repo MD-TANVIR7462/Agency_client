@@ -39,10 +39,10 @@ export function RevenueChart() {
             <p className="text-sm text-gray-400">Monthly revenue statistics</p>
           </div>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 bg-purple-400/20 text-purple-400 rounded-lg hover:bg-purple-400/30 transition-colors">
+        {/* <button className="flex items-center gap-2 px-4 py-2 bg-purple-400/20 text-purple-400 rounded-lg hover:bg-purple-400/30 transition-colors">
           <span className="text-sm font-medium">View All</span>
           <ArrowUpRight className="w-4 h-4" />
-        </button>
+        </button> */}
       </div>
 
       <div className="h-[300px]">

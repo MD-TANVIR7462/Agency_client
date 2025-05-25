@@ -1,15 +1,12 @@
 import Sidebar from "@/components/dashboard/sidebar";
 import Header from "@/components/dashboard/header";
 import MotionWraper from "@/components/Shared/MotionWraper";
+import { getData } from "@/server/ServerActions";
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-gray-950">
-      <Sidebar />
+      <Sidebar/>
       <div className="lg:ml-[280px]">
         <Header />
         <MotionWraper

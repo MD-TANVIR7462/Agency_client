@@ -1,18 +1,9 @@
 import { getData } from "@/server/ServerActions";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
-//  companyName: 'SISCOTEK',
-//   tagline: 'Transforming businesses through innovative digital solutions.',
-//   facebook: 'https://facebook.com',
-//   twitter: 'https://twitter.com',
-//   linkedin: 'https://linkedin.com',
-//   instagram: 'https://instagram.com',
-//   createdAt: '2025-05-24T05:32:39.725Z',
-//   updatedAt: '2025-05-24T09:13:25.328Z',
-//   logo: 'https://res.cloudinary.com/dsmbm1bvy/image/upload/v1748078004/Siscotek_Images/z3elwbbbjcsmzrq83qby.jpg'
+
 export const Footer = async () => {
   const settingsData = (await getData("settings"))?.data?.[0];
-  console.log(settingsData);
   return (
     <footer className="relative overflow-hidden bg-gray-900">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50" />
