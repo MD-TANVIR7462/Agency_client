@@ -12,7 +12,7 @@
 
 ---
 ### 🧭 Admin Dashboard page   
-[Home](https://siscotek.vercel.app/)  
+[Home](https://siscotek.vercel.app/dashboard)  
 
 ---
 **Siscotek** is a modern full-stack web application for a software firm or digital agency. It consists of a **fully responsive website** for visitors and a powerful **admin dashboard** for content and career management.
