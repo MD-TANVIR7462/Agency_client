@@ -114,6 +114,7 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
         linkedin: formData?.linkedin,
         instagram: formData?.instagram,
         logo: logoUrl,
+        
       };
 
       const res = await updateData("settings/update-settings", settings?._id as string, dataToSend);

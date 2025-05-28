@@ -1,10 +1,20 @@
 # 🚀 Agency Client — Full Stack Software Agency Website
 
 > ⚠️ **Note for Recruiters:**  
-> This project is currently **under active development** and will be **fully completed within the next 7–10 days**. The foundational structure is already in place, with major modules nearly finalized. Feel free to explore the features, code structure, and UI — everything is progressing rapidly!
+> This project is currently **under active development** and will be **Development will completed within the next 5–10 days then it will be placed for SEO to the SEO team**. The foundational structure is already in place, with major modules nearly finalized. Feel free to explore the features, code structure, and UI — everything is progressing rapidly!
 
 ---
+## 📸 Project Links
 
+
+### 👥 Public Home Page  
+[Home](https://siscotek.vercel.app/)  
+
+---
+### 🧭 Admin Dashboard page   
+[Dashboard](https://siscotek.vercel.app/dashboard)  
+
+---
 **Siscotek** is a modern full-stack web application for a software firm or digital agency. It consists of a **fully responsive website** for visitors and a powerful **admin dashboard** for content and career management.
 
 ---
@@ -90,7 +100,7 @@
 
 - 🔄 Current Status: **In Final Development Phase**
 - ✅ Core functionality and dashboard nearly complete
-- 🕒 Expected Completion: **Within 20–25 days**
+- 🕒 Expected Completion: **Within 5–10 days**
 
 ---
 
