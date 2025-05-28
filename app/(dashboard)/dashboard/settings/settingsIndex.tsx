@@ -119,7 +119,7 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
       const res = await updateData("settings/update-settings", settings?._id as string, dataToSend);
 
       if (!res.success) {
-        throw new Error("Failed to update settings");
+        ErrorToast("Failed to update settings");
       }
 
       const { companyName, tagline, facebook, twitter, linkedin, instagram, logo } = res.data;
