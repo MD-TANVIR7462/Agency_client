@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
 import { createData } from "@/server/ServerActions";
 import { storeUserInfo } from "@/services/auth.services";
+import { SuccessToast } from "@/lib/utils";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -23,10 +24,9 @@ export default function LoginForm() {
       const result = await createData("auth/login", data);
       if (result?.success) {
         setLoading(false);
-        const res = storeUserInfo(result?.data?.accessToken);
-        if (res) {
-          router.push("/dashboard");
-        }
+        storeUserInfo(result?.data?.accessToken);
+        router.push("/dashboard");
+        SuccessToast("Successfully Logged In");
       }
     } catch (err) {
       console.log(err);

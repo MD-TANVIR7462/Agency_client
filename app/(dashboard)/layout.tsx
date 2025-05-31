@@ -1,12 +1,20 @@
+"use client";
 import Sidebar from "@/components/dashboard/sidebar";
 import Header from "@/components/dashboard/header";
 import MotionWraper from "@/components/Shared/MotionWraper";
-import { getData } from "@/server/ServerActions";
+
+import { getUserInfo } from "@/services/auth.services";
+import { useRouter } from "next/navigation";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+  const userInfo = getUserInfo();
+  if (!userInfo?.userToken) {
+    return router.push("/login");
+  }
   return (
     <div className="min-h-screen bg-gray-950">
-      <Sidebar/>
+      <Sidebar />
       <div className="lg:ml-[280px]">
         <Header />
         <MotionWraper
