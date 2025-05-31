@@ -21,6 +21,8 @@ import {
   LayoutDashboard,
   User,
 } from "lucide-react";
+import { removeUser } from "@/services/auth.services";
+import { SuccessToast } from "@/lib/utils";
 
 const menuItems = [
   {
@@ -92,8 +94,10 @@ export default function Sidebar() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
+    removeUser();
     router.replace("/");
+    SuccessToast("Logged out successfully")
+
   };
 
   return (

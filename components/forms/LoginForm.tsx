@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
+import { createData } from "@/server/ServerActions";
+import { storeUserInfo } from "@/services/auth.services";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -10,20 +12,36 @@ export default function LoginForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
-    setTimeout(() => {
-      if (email === "admin@example.com" && password === "admin123") {
-        localStorage.setItem("user", JSON.stringify({ role: "super_admin" }));
-        router.push("/dashboard/admin");
-      } else if (email === "user@example.com" && password === "user123") {
-        localStorage.setItem("user", JSON.stringify({ role: "admin" }));
-        router.push("/dashboard/admin");
+    const data = {
+      email,
+      password,
+    };
+    try {
+      const result = await createData("auth/login", data);
+      if (result?.success) {
+        setLoading(false);
+        const res = storeUserInfo(result?.data?.accessToken);
+        if (res) {
+          router.push("/dashboard");
+        }
       }
-      setLoading(false);
-    }, 2000);
+    } catch (err) {
+      console.log(err);
+    }
+
+    // setTimeout(() => {
+    //   if (email === "admin@example.com" && password === "admin123") {
+    //     localStorage.setItem("user", JSON.stringify({ role: "super_admin" }));
+    //     router.push("/dashboard/admin");
+    //   } else if (email === "user@example.com" && password === "user123") {
+    //     localStorage.setItem("user", JSON.stringify({ role: "admin" }));
+    //     router.push("/dashboard/admin");
+    //   }
+    //   setLoading(false);
+    // }, 2000);
   };
 
   return (
@@ -67,11 +85,7 @@ export default function LoginForm() {
       </div>
 
       <div>
-        <button
-          type="submit"
-          className="primaryButton w-full flex items-center justify-center"
-          disabled={loading}
-        >
+        <button type="submit" className="primaryButton w-full flex items-center justify-center" disabled={loading}>
           {loading ? "Signing in..." : "Sign in"}
         </button>
       </div>

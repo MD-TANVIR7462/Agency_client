@@ -14,6 +14,3 @@ export const SuccessToast = (message?: string) => {
 export const ErrorToast = (message?: string) => {
   toast.error(message || "Something went wrong!");
 };
-
-
-
