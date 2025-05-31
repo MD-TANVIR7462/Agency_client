@@ -9,14 +9,14 @@ export default function DashboardLayout({
 }) {
   return (
     <div className="min-h-screen bg-gray-950">
-      <motion.main
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
         className="p-3 md:p-6"
       >
         {children}
-      </motion.main>
+      </motion.div>
     </div>
   );
 }

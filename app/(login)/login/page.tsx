@@ -1,14 +1,27 @@
 "use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import LoginForm from "@/components/forms/LoginForm";
 import { getUserInfo } from "@/services/auth.services";
-import { useRouter } from "next/navigation";
+import Loader from "@/components/Shared/Loader";
 
 export default function LoginPage() {
   const router = useRouter();
-  const userInfo = getUserInfo();
-  if (userInfo?.userToken) {
-    return router.push("/dashboard");
-  }
+  const [isChecking, setIsChecking] = useState(true);
+
+  useEffect(() => {
+    const userInfo = getUserInfo();
+    if (userInfo?.userToken) {
+      router.push("/dashboard");
+    } else {
+      setIsChecking(false);
+    }
+  }, [router]);
+
+  if (isChecking) return <Loader/>
+
+
   return (
     <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
       <div className="max-w-md w-full space-y-8 bg-gray-900 p-8 rounded-xl">
