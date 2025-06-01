@@ -1,4 +1,5 @@
 import { authKey } from "@/lib/constants/constants";
+import { getData } from "@/server/ServerActions";
 import { jwtDecode } from "jwt-decode";
 
 export const setUserIntoLocalstorage = (token: string) => {
@@ -14,16 +15,23 @@ export const getUserInfoFromLocalStoreage = (key: string) => {
   }
   const userToken = localStorage.getItem(key);
   if (userToken) {
-    const userData = jwtDecode(userToken);
-    return { userToken, ...userData };
+
+    try {
+      const userData = jwtDecode(userToken);
+      return { userToken, ...userData };
+    }
+    catch (err) {
+      return null
+
+    }
   } else {
     return null;
   }
 };
 
 
-export const removeUserFromStorage = (key:string)=>{
-      if (!key || typeof window === "undefined") {
+export const removeUserFromStorage = (key: string) => {
+  if (!key || typeof window === "undefined") {
     return null;
   }
   return localStorage.removeItem(key)

@@ -4,6 +4,7 @@ import { getUserInfoFromLocalStoreage, removeUserFromStorage, setUserIntoLocalst
 export const storeUserInfo = (data: string) => {
   if (data) {
     setUserIntoLocalstorage(data);
+   
   } else return null;
 };
 

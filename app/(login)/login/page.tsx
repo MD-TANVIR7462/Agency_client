@@ -12,6 +12,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     const userInfo = getUserInfo();
+    console.log(userInfo)
     if (userInfo?.userToken) {
       router.push("/dashboard");
     } else {
