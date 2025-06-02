@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <>
       <MouseFollower />
       <Navindex />
-      <div className="-gray-900"> {children}</div>
+      <div className="bg-gray-900"> {children}</div>
       <ScrollButton />
       <Footer />
     </>

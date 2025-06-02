@@ -4,6 +4,18 @@ import Link from "next/link";
 
 export const Footer = async () => {
   const settingsData = (await getData("settings"))?.data?.[0];
+  const contactData = (await getData("contact"))?.data?.[0];
+
+  const links = [
+    { href: "/", label: "Home" },
+    {
+      href: "/services",
+      label: "Services",
+    },
+    { href: "/About", label: "About Us" },
+    { href: "/Portfolio", label: "Portfolio" },
+    { href: "/Career", label: "Career" },
+  ];
   return (
     <footer className="relative overflow-hidden bg-gray-900">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50" />
@@ -84,11 +96,11 @@ export const Footer = async () => {
               <div>
                 <h3 className="text-lg font-semibold text-white">Company</h3>
                 <ul className="mt-4 space-y-2">
-                  {["About Us", "Our Team", "Careers", "Blog", "Contact"].map((item) => (
-                    <li key={item}>
-                      <a href="#" className="text-gray-400 transition-colors hover:text-white">
-                        {item}
-                      </a>
+                  {links?.map((item) => (
+                    <li key={item?.label}>
+                      <Link href={item?.href} className="text-gray-400 transition-colors hover:text-white">
+                        {item?.label}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -102,15 +114,15 @@ export const Footer = async () => {
             <ul className="mt-4 space-y-4">
               <li className="flex items-center gap-3 text-gray-400">
                 <Mail className="h-5 w-5" />
-                <span>contact@SiSCOTEK.com</span>
+                <span>{contactData ? contactData.email : "contact@SiSCOTEK.com"}</span>
               </li>
               <li className="flex items-center gap-3 text-gray-400">
                 <Phone className="h-5 w-5" />
-                <span>+1 (555) 123-4567</span>
+                <span>{contactData ? contactData.phone : "Contact with Email"}</span>
               </li>
               <li className="flex items-center gap-3 text-gray-400">
                 <MapPin className="h-5 w-5" />
-                <span>123 Innovation Street, Tech City, TC 12345</span>
+                <span>{contactData ? contactData.address : " "}</span>
               </li>
             </ul>
           </div>

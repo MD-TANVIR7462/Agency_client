@@ -8,11 +8,7 @@ import { updateData } from "@/server/ServerActions";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const EditContactIndex = ({
-  contactData,
-}: {
-  contactData: { email: string; phone: string; address: string; _id: string };
-}) => {
+const EditContactIndex = ({contactData}: {contactData: { email: string; phone: string; address: string; _id: string }}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
 
