@@ -24,6 +24,7 @@ export default function LoginPage() {
         setIsChecking(false);
       }
     } catch (err) {
+      console.log(err);
       ErrorToast("Something went wrong!");
       router.push("/");
     }

@@ -26,6 +26,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       }
       setIsMounted(true);
     } catch (err) {
+      console.log(err)
       ErrorToast("Something went wrong!");
       router.push("/");
     }
