@@ -2,9 +2,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
-import { createData } from "@/server/ServerActions";
-import { storeUserInfo } from "@/services/auth.services";
-import { SuccessToast } from "@/lib/utils";
+import { varifyToken } from "@/services/auth.services";
+import { ErrorToast, SuccessToast } from "@/lib/utils";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
+import { useAppDispatch } from "@/redux/features/hooks";
+import { setUser } from "@/redux/features/auth/authSlice";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -12,36 +14,27 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [login, { data, error }] = useLoginMutation();
+  const dispatch = useAppDispatch();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    const data = {
+    const userInfo = {
       email,
       password,
     };
     try {
-      const result = await createData("auth/login", data);
-      if (result?.success) {
-        setLoading(false);
-        storeUserInfo(result?.data?.accessToken);
-        router.push("/dashboard");
-        SuccessToast("Successfully Logged In");
-      }
+      const res = await login(userInfo).unwrap();
+      const user = varifyToken(res?.data?.accessToken);
+      dispatch(setUser({ user: user, token: res?.data?.accessToken }));
+      router.push("/dashboard");
+      SuccessToast("Successfully Logged In");
     } catch (err) {
-      console.log(err);
+      const message = (err as any)?.data?.message;
+      ErrorToast(message);
+      setLoading(false);
     }
-
-    // setTimeout(() => {
-    //   if (email === "admin@example.com" && password === "admin123") {
-    //     localStorage.setItem("user", JSON.stringify({ role: "super_admin" }));
-    //     router.push("/dashboard/admin");
-    //   } else if (email === "user@example.com" && password === "user123") {
-    //     localStorage.setItem("user", JSON.stringify({ role: "admin" }));
-    //     router.push("/dashboard/admin");
-    //   }
-    //   setLoading(false);
-    // }, 2000);
   };
 
   return (

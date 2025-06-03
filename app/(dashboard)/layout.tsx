@@ -3,23 +3,32 @@ import { useEffect, useState } from "react";
 import Sidebar from "@/components/dashboard/sidebar";
 import Header from "@/components/dashboard/header";
 import MotionWraper from "@/components/Shared/MotionWraper";
-import { getUserInfo } from "@/services/auth.services";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/Shared/Loader";
+import { useAppSelector } from "@/redux/features/hooks";
+import { useCurrentToken, useCurrentUser } from "@/redux/features/auth/authSlice";
+import { ErrorToast } from "@/lib/utils";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(false);
 
+  const token = useAppSelector(useCurrentToken);
+  const user = useAppSelector(useCurrentUser);
+
   useEffect(() => {
-    const userInfo = getUserInfo();
-    if (!userInfo?.userToken) {
-      router.push("/login");
-    } else {
-      setIsAuthorized(true);
+    try {
+      if (!token || !user) {
+        router.push("/login");
+      } else {
+        setIsAuthorized(true);
+      }
+      setIsMounted(true);
+    } catch (err) {
+      ErrorToast("Something went wrong!");
+      router.push("/");
     }
-    setIsMounted(true);
   }, []);
 
   if (!isMounted || !isAuthorized) {
@@ -35,7 +44,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="p-3 md:p-6">
+          className="p-3 md:p-6"
+        >
           {children}
         </MotionWraper>
       </div>

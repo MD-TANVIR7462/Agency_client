@@ -21,8 +21,9 @@ import {
   LayoutDashboard,
   User,
 } from "lucide-react";
-import { removeUser } from "@/services/auth.services";
 import { SuccessToast } from "@/lib/utils";
+import { useDispatch } from "react-redux";
+import { logout } from "@/redux/features/auth/authSlice";
 
 const menuItems = [
   {
@@ -75,7 +76,7 @@ export default function Sidebar() {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const pathname = usePathname();
   const router = useRouter();
-
+  const disPatch = useDispatch();
   const toggleSubmenu = (title: string) => {
     setOpenSubmenu(openSubmenu === title ? null : title);
   };
@@ -93,11 +94,10 @@ export default function Sidebar() {
     },
   };
 
-  const handleLogout = () => {
-    removeUser();
-    router.replace("/");
-    SuccessToast("Logged out successfully")
-
+  const handleLogout = async () => {
+    disPatch(logout());
+    router.push("/");
+    SuccessToast("Logged out successfully");
   };
 
   return (

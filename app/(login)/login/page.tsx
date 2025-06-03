@@ -3,25 +3,33 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import LoginForm from "@/components/forms/LoginForm";
-import { getUserInfo } from "@/services/auth.services";
 import Loader from "@/components/Shared/Loader";
+
+import { useCurrentToken, useCurrentUser } from "@/redux/features/auth/authSlice";
+import { useAppSelector } from "@/redux/features/hooks";
+import { ErrorToast } from "@/lib/utils";
 
 export default function LoginPage() {
   const router = useRouter();
   const [isChecking, setIsChecking] = useState(true);
 
+  const token = useAppSelector(useCurrentToken);
+  const user = useAppSelector(useCurrentUser);
+
   useEffect(() => {
-    const userInfo = getUserInfo();
-    console.log(userInfo)
-    if (userInfo?.userToken) {
-      router.push("/dashboard");
-    } else {
-      setIsChecking(false);
+    try {
+      if (token && user) {
+        router.push("/dashboard");
+      } else {
+        setIsChecking(false);
+      }
+    } catch (err) {
+      ErrorToast("Something went wrong!");
+      router.push("/");
     }
   }, [router]);
 
-  if (isChecking) return <Loader/>
-
+  if (isChecking) return <Loader />;
 
   return (
     <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">

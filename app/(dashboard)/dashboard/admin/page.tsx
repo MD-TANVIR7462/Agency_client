@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { isAuthenticated } from "@/lib/logIn_admin_superAdmin_utils/auth";
 import CreateAdminButton from "@/components/dashboard/admin/CreateAdminButton";
 import Profile from "@/components/dashboard/admin/Profile";
 import AdminList from "@/components/dashboard/admin/AdminList";
