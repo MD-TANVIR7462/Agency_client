@@ -1,5 +1,5 @@
 import { authKey } from "@/lib/constants/constants";
-import { getData } from "@/server/ServerActions";
+
 import { jwtDecode } from "jwt-decode";
 
 export const setUserIntoLocalstorage = (token: string) => {
