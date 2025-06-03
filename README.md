@@ -61,8 +61,8 @@
 > Use the following credentials to explore the dashboard:
 - **Siscotek**  
    [Website Link](https://siscotek.vercel.app)  
-- **Email:** `admin@example.com`  
-- **Password:** `admin123`
+- **Email:** `tanvir.dev3@gmail.com`  
+- **Password:** `121212`
 
 > ⚠️ These credentials are for development/demo only.
 ## ✨ Key Features
