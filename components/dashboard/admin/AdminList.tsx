@@ -45,10 +45,11 @@ export default function AdminList() {
 
   const handleDeleteAdmin = async (id: string) => {
     const handleDeleteService = async () => {
-      const result = await deleteData("auth/register/delete-user", id);
+      const result = await deleteData("auth/register/delete-user", id, token as string);
       if (result?.success) {
-        router.refresh();
         SuccessToast(result.message);
+        router.refresh();
+        await fetchAdmin(true);
       } else {
         ErrorToast(result.message);
       }

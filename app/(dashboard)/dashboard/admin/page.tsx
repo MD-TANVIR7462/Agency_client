@@ -4,8 +4,6 @@ import Profile from "@/components/dashboard/admin/Profile";
 import AdminList from "@/components/dashboard/admin/AdminList";
 import { Modal } from "@/components/Shared/Modal";
 import CreateAdminForm from "@/components/dashboard/admin/AdminForms/CreateAdminForm";
-import { useAppSelector } from "@/redux/features/hooks";
-import { useCurrentToken } from "@/redux/features/auth/authSlice";
 import { useState } from "react";
 
 
@@ -25,7 +23,6 @@ export default function AdminDashboard() {
         </div>
 
         <Profile />
-
         <div className="mt-8">
           <h2 className="text-2xl font-semibold mb-4">Admin List</h2>
            <AdminList  />

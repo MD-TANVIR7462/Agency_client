@@ -71,9 +71,14 @@ export const updateData = async (endpoint: string, id: string, data: any, token?
 };
 
 // DELETE DATA
-export const deleteData = async (endpoint: string, id: string) => {
+export const deleteData = async (endpoint: string, id: string, token?: string) => {
   try {
-    const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, { method: "DELETE" });
+    const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
+      method: "DELETE",
+      headers: {
+        ...(token && { Authorization: `${token}` }),
+      },
+    });
     const response = await res.json();
     return response;
   } catch (error) {
