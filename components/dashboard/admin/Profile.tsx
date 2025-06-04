@@ -32,7 +32,7 @@ export default function Profile() {
       if (!suppressLoading) setLoading(true);
       const data = await getData("/auth/register/me", token as string);
       setProfileData(data?.data[0]);
-      setPreviewUrl(data?.data[0].img)
+      setPreviewUrl(data?.data[0]?.img)
       console.log(data.data[0]);
     } catch (error) {
       ErrorToast("Failed to load admin data");
