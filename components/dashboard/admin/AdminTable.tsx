@@ -18,7 +18,12 @@ type user = {
   iat: string;
   exp: string;
 };
-const AdminTable: FC<AdminTableProps> = ({ admins, onEdit, onDelete, onStatusChange }) => {
+const AdminTable: FC<AdminTableProps> = ({
+  admins,
+  onEdit,
+  onDelete,
+  onStatusChange,
+}) => {
   const user = useAppSelector(useCurrentUser) as user;
 
   return (
@@ -36,7 +41,9 @@ const AdminTable: FC<AdminTableProps> = ({ admins, onEdit, onDelete, onStatusCha
           {admins?.map((admin) => {
             const status = admin?.isActive === true ? "active" : "inactive";
             return (
-              <tr key={admin?._id} className="hover:bg-purple-400/5 transition-colors duration-150">
+              <tr
+                key={admin?._id}
+                className={`hover:bg-purple-400/5 transition-colors duration-150 `}>
                 <td className="p-4">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 relative">
@@ -48,8 +55,13 @@ const AdminTable: FC<AdminTableProps> = ({ admins, onEdit, onDelete, onStatusCha
                       />
                     </div>
                     <div>
-                      <span className="font-medium text-white">{admin?.name}</span>
+                      <span className="font-medium text-white">
+                        {admin?.name}
+                      </span>
                       <p className="text-sm text-gray-400">{admin?.email}</p>
+                      {admin?.email === user.email && (
+                        <p className="text-sm text-green-400 w-10 rounded-xl text-center bg-green-400/20 ">You</p>
+                      )}
                     </div>
                   </div>
                 </td>
@@ -57,10 +69,16 @@ const AdminTable: FC<AdminTableProps> = ({ admins, onEdit, onDelete, onStatusCha
                 <td className="p-4">
                   <select
                     className="bg-gray-900 text-white border border-purple-400/40 rounded px-2 py-1"
-                    onChange={(e) => onStatusChange(admin?._id as string, e.target.value as "active" | "inactive")}
+                    onChange={(e) =>
+                      onStatusChange(
+                        admin?._id as string,
+                        e.target.value as "active" | "inactive"
+                      )
+                    }
                     defaultValue={status}
-                    disabled={user?.email === admin?.email || user.role !== "superadmin"}
-                  >
+                    disabled={
+                      user?.email === admin?.email || user.role !== "superadmin"
+                    }>
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
                   </select>
@@ -70,19 +88,27 @@ const AdminTable: FC<AdminTableProps> = ({ admins, onEdit, onDelete, onStatusCha
                     <button
                       onClick={() => onEdit(admin)}
                       className={`p-2 text-purple-400 hover:bg-purple-400/10 rounded-full transition-colors ${
-                        user?.role !== "superadmin" ? "opacity-50 cursor-not-allowed" : ""
+                        user?.role !== "superadmin"
+                          ? "opacity-50 cursor-not-allowed"
+                          : ""
                       }`}
-                      disabled={user?.role !== "superadmin" || user?.email === admin?.email}
-                    >
+                      disabled={
+                        user?.role !== "superadmin" ||
+                        user?.email === admin?.email
+                      }>
                       <Edit className="w-4 h-4" />
                     </button>
                     <button
-                      disabled={user?.role != "superadmin" || user?.email === admin?.email}
+                      disabled={
+                        user?.role != "superadmin" ||
+                        user?.email === admin?.email
+                      }
                       onClick={() => onDelete(admin?._id as string)}
                       className={`p-2 text-red-400 hover:bg-red-400/10 rounded-full transition-colors ${
-                        user.role !== "superadmin" ? "opacity-50 cursor-not-allowed" : ""
-                      }`}
-                    >
+                        user.role !== "superadmin"
+                          ? "opacity-50 cursor-not-allowed"
+                          : ""
+                      }`}>
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
