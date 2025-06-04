@@ -1,10 +1,14 @@
-export interface Admin {
-  id: string;
+export type TAdmin = {
+  _id?:string
   name: string;
   email: string;
-  role: "admin" | "super_admin";
-  status: "active" | "inactive";
-  location: string;
-  phone: string;
-  avatarUrl?: string;
+  password: string;
+  role: "admin" | "superadmin";
+  location?: string;
+  phone?: string;
+  img: string;
+  isActive?: boolean;
+  isDeleted?: boolean;
+  needPasswordChange?: boolean;
+  passwordChangeAt?: any;
 }

@@ -3,39 +3,39 @@
 import { envConfig } from "@/lib/env.config";
 
 const BASE_URL = envConfig.SERVER_BASE_URL; // Can be dynamic
+
 // GET ALL DATA
-export async function getData(endpoint: string) {
+export const getData = async (endpoint: string, token?: string) => {
   try {
     const res = await fetch(`${BASE_URL}/${endpoint}`, {
       cache: "no-store",
+      headers: {
+        ...(token && { Authorization: `${token}` }),
+      },
     });
+
     const data = await res.json();
     return data;
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
-
     return { error: errorMessage };
   }
-}
+};
 
 // GET SINGLE DATA
-export async function getSingleData(endpoint: string, id: string) {
+export const getSingleData = async (endpoint: string, id: string) => {
   try {
-    const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, { cache: "no-store" });
     const data = await res.json();
-
     return data;
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
-
     return { error: errorMessage };
   }
-}
+};
 
 // CREATE DATA
-export async function createData(endpoint: string, data: any) {
+export const createData = async (endpoint: string, data: any) => {
   try {
     const res = await fetch(`${BASE_URL}/${endpoint}`, {
       method: "POST",
@@ -43,21 +43,23 @@ export async function createData(endpoint: string, data: any) {
       body: JSON.stringify(data),
     });
     const response = await res.json();
-
     return response;
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
-
     return { error: errorMessage };
   }
-}
+};
 
 // UPDATE DATA
-export async function updateData(endpoint: string, id: string, data: any) {
+export const updateData = async (endpoint: string, id: string, data: any, token?: string) => {
+  console.log(token, "token");
   try {
     const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { Authorization: `${token}` }),
+      },
       body: JSON.stringify(data),
     });
     const response = await res.json();
@@ -66,33 +68,28 @@ export async function updateData(endpoint: string, id: string, data: any) {
     const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
     return { error: errorMessage };
   }
-}
+};
 
 // DELETE DATA
-export async function deleteData(endpoint: string, id: string) {
+export const deleteData = async (endpoint: string, id: string) => {
   try {
-    const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
-      method: "DELETE",
-    });
+    const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, { method: "DELETE" });
     const response = await res.json();
-
     return response;
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
     return { error: errorMessage };
   }
-}
+};
 
-//GetSettings.......
-export async function getSettings() {
+// GET SETTINGS
+export const getSettings = async () => {
   try {
-    const res = await fetch(`${BASE_URL}/settings`, {
-      cache: "no-store",
-    });
+    const res = await fetch(`${BASE_URL}/settings`, { cache: "no-store" });
     const data = await res.json();
     return data?.data?.[0];
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
     return { error: errorMessage };
   }
-}
+};

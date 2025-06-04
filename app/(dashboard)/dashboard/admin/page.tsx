@@ -1,28 +1,21 @@
 "use client";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import CreateAdminButton from "@/components/dashboard/admin/CreateAdminButton";
 import Profile from "@/components/dashboard/admin/Profile";
 import AdminList from "@/components/dashboard/admin/AdminList";
 import { Modal } from "@/components/Shared/Modal";
 import CreateAdminForm from "@/components/dashboard/admin/AdminForms/CreateAdminForm";
 import { useAppSelector } from "@/redux/features/hooks";
-import { useCurrentUser } from "@/redux/features/auth/authSlice";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
+import { useState } from "react";
 
 
 export default function AdminDashboard() {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-
-
   const handleCreateAdmin = (data: any) => {
-    // Handle admin creation logic here
     console.log("Creating admin:", data);
     setIsCreateModalOpen(false);
   };
 
- 
-const userInfo = useAppSelector(useCurrentUser)
-console.log(userInfo)
   return (
     <div className="min-h-screen bg-gray-950 text-white p-0 md:p-4 lg:p-8">
       <div className="max-w-7xl mx-auto">
@@ -32,17 +25,13 @@ console.log(userInfo)
         </div>
 
         <Profile />
-        
+
         <div className="mt-8">
           <h2 className="text-2xl font-semibold mb-4">Admin List</h2>
-          <AdminList />
+           <AdminList  />
         </div>
 
-        <Modal
-          isOpen={isCreateModalOpen}
-          onClose={() => setIsCreateModalOpen(false)}
-          title="Create New Admin"
-        >
+        <Modal isOpen={isCreateModalOpen} onClose={() => setIsCreateModalOpen(false)} title="Create New Admin">
           <CreateAdminForm onSubmit={handleCreateAdmin} />
         </Modal>
       </div>

@@ -1,10 +1,9 @@
-"use client";
-import { Admin } from "@/components/types/Admin";
+import { TAdmin } from "@/components/types/Admin";
 import { FC, useState } from "react";
 
 interface AdminFormProps {
-  admin?: Admin | null;
-  onSubmit: (data: Partial<Admin>) => void;
+  admin?: TAdmin | null;
+  onSubmit: (data: Partial<TAdmin>) => void;
   onClose: () => void;
 }
 
@@ -17,11 +16,11 @@ const AdminForm: FC<AdminFormProps> = ({ admin, onSubmit, onClose }) => {
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
 
-    const data: Partial<Admin> = {
+    const data: Partial<TAdmin> = {
       name: formData.get("name") as string,
       email: formData.get("email") as string,
-      role: formData.get("role") as "admin" | "super_admin",
-      status: formData.get("status") as "active" | "inactive",
+      role: formData.get("role") as "admin" | "superadmin",
+      isActive: formData.get("status") === "active",
       location: formData.get("location") as string,
       phone: formData.get("phone") as string,
     };
@@ -32,53 +31,28 @@ const AdminForm: FC<AdminFormProps> = ({ admin, onSubmit, onClose }) => {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            defaultValue={admin?.name}
-            className="customInput"
-            required
-          />
+          <label className="block text-sm font-medium text-purple-400 mb-1">Name</label>
+          <input type="text" name="name" defaultValue={admin?.name} className="customInput" required />
         </div>
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Role
-          </label>
-          <select
-            name="role"
-            defaultValue={admin?.role}
-            className="customInput"
-            required
-          >
+          <label className="block text-sm font-medium text-purple-400 mb-1">Role</label>
+          <select name="role" defaultValue={admin?.role} className="customInput" required>
             <option value="admin">Admin</option>
-            <option value="super_admin">Super Admin</option>
+            <option value="superadmin">Super Admin</option>
           </select>
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            defaultValue={admin?.email}
-            className="customInput"
-            required
-          />
+          <label className="block text-sm font-medium text-purple-400 mb-1">Email</label>
+          <input type="email" name="email" defaultValue={admin?.email} className="customInput" required />
         </div>
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Status
-          </label>
+          <label className="block text-sm font-medium text-purple-400 mb-1">Status</label>
           <select
             name="status"
-            defaultValue={admin?.status}
+            defaultValue={admin?.isActive === true ? "active" : "inactive"}
             className="customInput"
             required
           >
@@ -90,28 +64,12 @@ const AdminForm: FC<AdminFormProps> = ({ admin, onSubmit, onClose }) => {
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Location
-          </label>
-          <input
-            type="text"
-            name="location"
-            defaultValue={admin?.location}
-            className="customInput"
-            required
-          />
+          <label className="block text-sm font-medium text-purple-400 mb-1">Location</label>
+          <input type="text" name="location" defaultValue={admin?.location} className="customInput" required />
         </div>
         <div>
-          <label className="block text-sm font-medium text-purple-400 mb-1">
-            Phonedzxf
-          </label>
-          <input
-            type="tel"
-            name="phone"
-            defaultValue={admin?.phone}
-            className="customInput"
-            required
-          />
+          <label className="block text-sm font-medium text-purple-400 mb-1">Phonedzxf</label>
+          <input type="tel" name="phone" defaultValue={admin?.phone} className="customInput" required />
         </div>
       </div>
 
@@ -123,11 +81,7 @@ const AdminForm: FC<AdminFormProps> = ({ admin, onSubmit, onClose }) => {
         >
           Cancel
         </button>
-        <button
-          type="submit"
-          className="primaryButton  flex justify-center items-center gap-2"
-          disabled={isLoading}
-        >
+        <button type="submit" className="primaryButton  flex justify-center items-center gap-2" disabled={isLoading}>
           {isLoading ? (
             <>
               <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>

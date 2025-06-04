@@ -1,46 +1,101 @@
 "use client";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import AdminTable from "./AdminTable";
-import { Admin } from "@/components/types/Admin";
-import { demoAdmins } from "@/lib/logIn_admin_superAdmin_utils/demo-data";
 import { Modal } from "@/components/Shared/Modal";
 import AdminForm from "./AdminForms/AdminForm";
-
+import { TAdmin } from "@/components/types/Admin";
+import { deleteData, getData, updateData } from "@/server/ServerActions";
+import { ErrorToast, SuccessToast } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/redux/features/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
+import LoadingState from "@/components/Shared/LoadingState";
+import { deleteToast } from "@/lib/deleteToast";
 
 export default function AdminList() {
-  const [selectedAdmin, setSelectedAdmin] = useState<Admin | null>(null);
+  const token = useAppSelector(useCurrentToken);
+  const router = useRouter();
+  const [adminData, setData] = useState<TAdmin[] | null>(null);
+  const [loading, setLoading] = useState(true); // For initial loading only
+  const [selectedAdmin, setSelectedAdmin] = useState<TAdmin | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [admins, setAdmins] = useState<Admin[]>(demoAdmins);
 
-  const handleEdit = (admin: Admin) => {
+  // Fetch admin data
+  const fetchAdmin = async (suppressLoading = false) => {
+    try {
+      if (!suppressLoading) setLoading(true);
+      const data = await getData("/auth/register/all", token as string);
+      setData(data.data);
+    } catch (error) {
+      ErrorToast("Failed to load admin data");
+    } finally {
+      if (!suppressLoading) setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchAdmin();
+  }, [token]);
+
+  // Handlers
+  const handleEdit = (admin: TAdmin) => {
     setSelectedAdmin(admin);
     setIsModalOpen(true);
   };
 
-  const handleDeleteAdmin = (admin: Admin) => {
-    console.log("Viewing details for:", admin);
+  const handleDeleteAdmin = async (id: string) => {
+    const handleDeleteService = async () => {
+      const result = await deleteData("auth/register/delete-user", id);
+      if (result?.success) {
+        router.refresh();
+        SuccessToast(result.message);
+      } else {
+        ErrorToast(result.message);
+      }
+    };
+
+    deleteToast(handleDeleteService, "Delete this service ?");
   };
 
-  const handleStatusChange = (updatedAdmin: Admin) => {
-    setAdmins(admins?.map(admin => 
-      admin.id === updatedAdmin.id ? updatedAdmin : admin
-    ));
-  };
+  const handleStatusChange = async (id: string, status: "active" | "inactive") => {
+    const isActive = status === "active";
+    const data = { isActive };
 
-  const handleSubmit = (data: Partial<Admin>) => {
-    if (selectedAdmin) {
-      setAdmins(admins?.map(admin =>
-        admin.id === selectedAdmin.id ? { ...admin, ...data } : admin
-      ));
+    const result = await updateData("auth/register/update-user", id, data, token as string);
+    if (result.success) {
+      SuccessToast("Status Updated Successfully!");
+      router.refresh();
+      await fetchAdmin(true);
+    } else {
+      ErrorToast(result?.message || "Something went wrong!");
     }
-    setIsModalOpen(false);
   };
+
+  const handleSubmit = async (data: Partial<TAdmin>) => {
+    const result = await updateData("auth/register/update-user", selectedAdmin?._id as string, data, token as string);
+    if (result?.success) {
+      SuccessToast(result?.message);
+      setSelectedAdmin(null);
+      setIsModalOpen(false);
+      await fetchAdmin(true);
+    } else {
+      ErrorToast(result?.message);
+    }
+  };
+
+  // Conditional UI
+  if (loading) {
+    return <LoadingState />;
+  }
+
+  if (!adminData || adminData.length === 0) {
+    return <div className="text-center py-8 text-gray-400">No admin users found.</div>;
+  }
 
   return (
     <>
       <AdminTable
-        admins={admins}
+        admins={adminData}
         onEdit={handleEdit}
         onDelete={handleDeleteAdmin}
         onStatusChange={handleStatusChange}
@@ -51,11 +106,7 @@ export default function AdminList() {
         onClose={() => setIsModalOpen(false)}
         title={selectedAdmin ? "Edit Admin" : "Add New Admin"}
       >
-        <AdminForm
-          admin={selectedAdmin}
-          onSubmit={handleSubmit}
-          onClose={() => setIsModalOpen(false)}
-        />
+        <AdminForm admin={selectedAdmin} onSubmit={handleSubmit} onClose={() => setIsModalOpen(false)} />
       </Modal>
     </>
   );
