@@ -12,7 +12,7 @@ import { useCurrentToken } from "@/redux/features/auth/authSlice";
 import LoadingState from "@/components/Shared/LoadingState";
 import { deleteToast } from "@/lib/deleteToast";
 
-export default function AdminList() {
+export default function AdminList({reRender}:{reRender:boolean}) {
   const token = useAppSelector(useCurrentToken);
   const router = useRouter();
   const [adminData, setData] = useState<TAdmin[] | null>(null);
@@ -22,6 +22,7 @@ export default function AdminList() {
 
   // Fetch admin data
   const fetchAdmin = async (suppressLoading = false) => {
+    console.log("FechAdmins")
     try {
       if (!suppressLoading) setLoading(true);
       const data = await getData("/auth/register/all", token as string);
@@ -35,8 +36,10 @@ export default function AdminList() {
 
   useEffect(() => {
     fetchAdmin();
-  }, [token]);
+  }, [token,reRender]);
 
+
+  
   // Handlers
   const handleEdit = (admin: TAdmin) => {
     setSelectedAdmin(admin);

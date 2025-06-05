@@ -12,11 +12,11 @@ export default function CreateAdminForm({ onSubmit }: CreateAdminFormProps) {
   const [openEye, setopenEye] = useState(false);
   const [imageError, setImageError] = useState<string>("");
   let [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
     email: "",
     password: "",
     role: "",
-    image: "",
+    img: "",
   });
 
   //hangle image show with file reader ..............
@@ -71,7 +71,10 @@ export default function CreateAdminForm({ onSubmit }: CreateAdminFormProps) {
     //cludinery ........
     const imgLink = await handleUploads(file);
     const img = imgLink.secure_url;
-    formData.image = img;
+
+    if (img) {
+      formData.img = img;
+    }
     onSubmit(formData);
     setIsloading(false);
   };
@@ -96,23 +99,18 @@ export default function CreateAdminForm({ onSubmit }: CreateAdminFormProps) {
             onChange={handleImageChange}
             name="image"
             accept=".jpeg,.png,.jpg"
+            required
             className="w-full text-sm cursor-pointer text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-400/40 file:text-white hover:file:bg-purple-400/50  transition-colors "
           />
-          {imageError && (
-            <p className="mt-1 text-sm text-red-400">{imageError}</p>
-          )}
+          {imageError && <p className="mt-1 text-sm text-red-400">{imageError}</p>}
         </div>
       </div>
       <div>
-        <label className="block text-sm font-medium text-gray-300">
-          Full Name
-        </label>
+        <label className="block text-sm font-medium text-gray-300">Full Name</label>
         <input
           type="text"
-          value={formData.fullName}
-          onChange={(e) =>
-            setFormData({ ...formData, fullName: e.target.value })
-          }
+          value={formData?.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           className="customInput"
           placeholder="Enter full name"
         />
@@ -121,37 +119,27 @@ export default function CreateAdminForm({ onSubmit }: CreateAdminFormProps) {
         <label className="block text-sm font-medium text-gray-300">Email</label>
         <input
           type="email"
-          value={formData.email}
+          value={formData?.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           className="customInput"
           placeholder="Enter email address"
         />
       </div>
       <div>
-        <label className="block text-sm font-medium text-gray-300">
-          Password
-        </label>
+        <label className="block text-sm font-medium text-gray-300">Password</label>
         <div className="relative">
           <input
             // type="password"
             type={openEye ? "text" : "password"}
-            value={formData.password}
-            onChange={(e) =>
-              setFormData({ ...formData, password: e.target.value })
-            }
+            value={formData?.password}
+            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             className="customInput"
             placeholder="Enter password"
           />
           {openEye ? (
-            <EyeOff
-              className="cursor-pointer absolute top-3 right-2 text-gray-500"
-              onClick={() => setopenEye(false)}
-            />
+            <EyeOff className="cursor-pointer absolute top-3 right-2 text-gray-500" onClick={() => setopenEye(false)} />
           ) : (
-            <Eye
-              className="absolute top-3 right-2 text-gray-500 cursor-pointer"
-              onClick={() => setopenEye(true)}
-            />
+            <Eye className="absolute top-3 right-2 text-gray-500 cursor-pointer" onClick={() => setopenEye(true)} />
           )}
         </div>
       </div>
@@ -159,7 +147,7 @@ export default function CreateAdminForm({ onSubmit }: CreateAdminFormProps) {
         <label className="block text-sm font-medium text-gray-300">Role</label>
         <select
           required
-          value={formData.role}
+          value={formData?.role}
           onChange={(e) => setFormData({ ...formData, role: e.target.value })}
           className="customInput"
         >
@@ -167,7 +155,7 @@ export default function CreateAdminForm({ onSubmit }: CreateAdminFormProps) {
             Select
           </option>
           <option value="admin">Admin</option>
-          <option value="super_admin">Super Admin</option>
+          <option value="superadmin">Super Admin</option>
         </select>
       </div>
       <div className="pt-4">

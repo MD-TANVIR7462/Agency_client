@@ -35,11 +35,11 @@ export const getSingleData = async (endpoint: string, id: string) => {
 };
 
 // CREATE DATA
-export const createData = async (endpoint: string, data: any) => {
+export const createData = async (endpoint: string, data: any, token?: string) => {
   try {
     const res = await fetch(`${BASE_URL}/${endpoint}`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...(token && { Authorization: `${token}` }) },
       body: JSON.stringify(data),
     });
     const response = await res.json();

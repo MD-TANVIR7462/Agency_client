@@ -42,7 +42,7 @@ export default function Profile() {
 
   useEffect(() => {
     currentUserData();
-  }, [token]);
+  }, []);
 
   // useEffect(() => {
   //   // if (profileData?.avatarUrl) {
