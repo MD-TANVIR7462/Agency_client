@@ -19,33 +19,34 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const token = useAppSelector(useCurrentToken);
   const user = useAppSelector(useCurrentUser);
   const disPatch = useDispatch();
-  useEffect(() => {
-    const checkAuthorization = async () => {
-      try {
-        if (!token || !user) {
+
+  const checkAuthorization = async () => {
+    try {
+      if (!token || !user) {
+        disPatch(logout());
+        router.replace("/login");
+        return;
+      } else {
+        const response = await getData("/auth/register/me", token);
+        if (!response.success) {
+          ErrorToast("Please Login First!");
           disPatch(logout());
           router.replace("/login");
-          return;
         } else {
-          const response = await getData("/auth/register/me", token);
-          if (!response.success) {
-            ErrorToast("Please Login First!");
-            disPatch(logout());
-            router.replace("/login");
-          } else {
-            setIsAuthorized(true);
-          }
+          setIsAuthorized(true);
         }
-      } catch (err: any) {
-        ErrorToast("Please Login Again!");
-        disPatch(logout());
-      } finally {
-        setIsMounted(true);
       }
-    };
+    } catch (err: any) {
+      ErrorToast("Please Login Again!");
+      disPatch(logout());
+    } finally {
+      setIsMounted(true);
+    }
+  };
 
+  useEffect(() => {
     checkAuthorization();
-  }, [token]);
+  }, []);
 
   if (!isMounted || !isAuthorized) {
     return <Loader />;
