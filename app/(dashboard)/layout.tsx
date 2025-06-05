@@ -6,8 +6,10 @@ import MotionWraper from "@/components/Shared/MotionWraper";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/Shared/Loader";
 import { useAppSelector } from "@/redux/features/hooks";
-import { useCurrentToken, useCurrentUser } from "@/redux/features/auth/authSlice";
+import { logout, useCurrentToken, useCurrentUser } from "@/redux/features/auth/authSlice";
 import { ErrorToast } from "@/lib/utils";
+import { getData } from "@/server/ServerActions";
+import { useDispatch } from "react-redux";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -16,21 +18,34 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   const token = useAppSelector(useCurrentToken);
   const user = useAppSelector(useCurrentUser);
-
+  const disPatch = useDispatch();
   useEffect(() => {
-    try {
-      if (!token || !user) {
-        router.push("/login");
-      } else {
-        setIsAuthorized(true);
+    const checkAuthorization = async () => {
+      try {
+        if (!token || !user) {
+          disPatch(logout());
+          router.replace("/login");
+          return;
+        } else {
+          const response = await getData("/auth/register/me", token);
+          if (!response.success) {
+            ErrorToast("Please Login First!");
+            disPatch(logout());
+            router.replace("/login");
+          } else {
+            setIsAuthorized(true);
+          }
+        }
+      } catch (err: any) {
+        ErrorToast("Please Login Again!");
+        disPatch(logout());
+      } finally {
+        setIsMounted(true);
       }
-      setIsMounted(true);
-    } catch (err) {
-      console.log(err)
-      ErrorToast("Something went wrong!");
-      router.push("/");
-    }
-  }, []);
+    };
+
+    checkAuthorization();
+  }, [token]);
 
   if (!isMounted || !isAuthorized) {
     return <Loader />;

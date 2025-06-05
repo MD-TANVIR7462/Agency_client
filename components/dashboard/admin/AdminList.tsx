@@ -27,7 +27,7 @@ export default function AdminList() {
       const data = await getData("/auth/register/all", token as string);
       setData(data.data);
     } catch (error) {
-      ErrorToast("Failed to load admin data");
+      ErrorToast("You are Unauthorized!");
     } finally {
       if (!suppressLoading) setLoading(false);
     }

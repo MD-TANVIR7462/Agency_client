@@ -5,9 +5,11 @@ import { useRouter } from "next/navigation";
 import LoginForm from "@/components/forms/LoginForm";
 import Loader from "@/components/Shared/Loader";
 
-import { useCurrentToken, useCurrentUser } from "@/redux/features/auth/authSlice";
+import { logout, useCurrentToken, useCurrentUser } from "@/redux/features/auth/authSlice";
 import { useAppSelector } from "@/redux/features/hooks";
 import { ErrorToast } from "@/lib/utils";
+import { getData } from "@/server/ServerActions";
+import { useDispatch } from "react-redux";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -15,20 +17,29 @@ export default function LoginPage() {
 
   const token = useAppSelector(useCurrentToken);
   const user = useAppSelector(useCurrentUser);
-
-  useEffect(() => {
+  const disPatch = useDispatch();
+  const checkUser = async () => {
     try {
       if (token && user) {
-        router.push("/dashboard");
+        const response = await getData("/auth/register/me", token);
+        if (!response.success) {
+          setIsChecking(false);
+          disPatch(logout());
+        } else {
+          router.replace("/dashboard");
+        }
       } else {
         setIsChecking(false);
       }
     } catch (err) {
-      console.log(err);
       ErrorToast("Something went wrong!");
       router.push("/");
     }
-  }, [router]);
+  };
+
+  useEffect(() => {
+    checkUser();
+  }, [router, token, user, disPatch]);
 
   if (isChecking) return <Loader />;
 

@@ -81,7 +81,7 @@ const AdminForm: FC<AdminFormProps> = ({ admin, onSubmit, onClose }) => {
         >
           Cancel
         </button>
-        <button type="submit" className="primaryButton  flex justify-center items-center gap-2" disabled={isLoading}>
+        <button type="submit" className="  flex justify-center items-center gap-2" disabled={isLoading}>
           {isLoading ? (
             <>
               <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
