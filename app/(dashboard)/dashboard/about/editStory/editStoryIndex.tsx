@@ -10,13 +10,22 @@ import { StoryFrom } from "@/components/dashboard/EditAbout/EditStory/EditStoryF
 import { updateData } from "@/server/ServerActions";
 import { ErrorToast, SuccessToast } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/redux/features/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
 
 const EditStoryIndex = ({ companyStory }: { companyStory: CompanyInfo }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
+  const token = useAppSelector(useCurrentToken);
 
   const handleSubmit = async (data: CompanyInfo, id: string) => {
-    const result = await updateData("story/update-story", id, data);
+    const result = await updateData(
+      "story/update-story",
+      id,
+      data,
+      token as string
+    );
+
     if (result?.success) {
       SuccessToast(result?.message);
       router.refresh();
@@ -31,8 +40,7 @@ const EditStoryIndex = ({ companyStory }: { companyStory: CompanyInfo }) => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-7xl mx-auto space-y-16"
-      >
+        className="max-w-7xl mx-auto space-y-16">
         <StoryFrom
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
@@ -46,8 +54,7 @@ const EditStoryIndex = ({ companyStory }: { companyStory: CompanyInfo }) => {
           onClick={() => setIsModalOpen(true)}
           className="fixed bottom-[4%] right-[3%] bg-purple-600 text-white p-3 rounded-full shadow-lg hover:bg-purple-700 transition-colors"
           whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
+          whileTap={{ scale: 0.9 }}>
           <Pencil className="w-5 h-5" />
         </motion.button>
       </motion.div>

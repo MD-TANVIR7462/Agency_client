@@ -42,26 +42,26 @@ export const baseAPi = createApi({
 // });
 
 
-// const baseQueryWithRefreshToken = async (args, api, extraOptions) => {
-//   const result = await baseQuery(args, api, extraOptions)
-  
-//   console.log(result?.data?.data,"error")
-//   if (result?.data?.error?.status === 403) {
+// const baseQueryWithRefreshToken = async (args: any, api: any, extraOptions: any) => {
+//   let result = await baseQuery(args, api, extraOptions)
+// console.log(result)
+//   if (result?.error?.status === 403) {
 //     console.log("refresh....")
 //     const res = await fetch(`${BASE_URL}/auth/login/refresh-token`, {
 //       method: "POST",
 //       credentials: "include"
 //     })
 //     const newData = await res.json()
-//     console.log(newData,"new")
-//     const user = (api.getstate() as RootState).auth.user;
+//     console.log(newData, "new")
+//     const user = (api.getState() as RootState).auth.user;
 //     api.dispatch(
 //       setUser({
-//         user, token: newData
-//     })
-//   )
-// }
-
+//         user, token: newData.data.accessToken
+//       })
+//     )
+//     result = await baseQuery(args, api, extraOptions)
+//   }
+//   return result
 // }
 
 

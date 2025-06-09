@@ -12,6 +12,8 @@ import { createData, deleteData, updateData } from "@/server/ServerActions";
 import { useRouter } from "next/navigation";
 import { ErrorToast, SuccessToast } from "@/lib/utils";
 import { deleteToast } from "@/lib/deleteToast";
+import { useAppSelector } from "@/redux/features/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
 
 export default function EditServiceIndex({
   serviceData,
@@ -21,7 +23,7 @@ export default function EditServiceIndex({
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
-
+  const token = useAppSelector(useCurrentToken);
   const router = useRouter();
 
   const handleStatusChange = async (
@@ -30,7 +32,7 @@ export default function EditServiceIndex({
   ) => {
     const isActive = status === "active";
     const data = { isActive };
-    const result = await updateData("service/update-service", id, data);
+    const result = await updateData("service/update-service", id, data,token as string);
     if (result?.success) {
       SuccessToast("Status updated successfully!");
       router.refresh();
@@ -56,7 +58,7 @@ export default function EditServiceIndex({
 
   const handleDelete = async (id: string) => {
     const handleDeleteService = async () => {
-      const result = await deleteData("service/delete-service", id);
+      const result = await deleteData("service/delete-service", id ,token as string);
       if (result?.success) {
         router.refresh();
         SuccessToast(result.message);
@@ -70,7 +72,7 @@ export default function EditServiceIndex({
 
   const handleSubmit = async (data: Partial<Service>, id?: string | any) => {
     if (selectedService) {
-      const result = await updateData("service/update-service", id, data);
+      const result = await updateData("service/update-service", id, data ,token as string);
       if (result?.success) {
         SuccessToast(result?.message);
         router.refresh();
@@ -79,7 +81,7 @@ export default function EditServiceIndex({
       }
     } else {
       const newService: Service = data as Service;
-      const result = await createData("service/create-service", newService);
+      const result = await createData("service/create-service", newService ,token as string);
       if (result?.success) {
         SuccessToast(result?.message);
         router.refresh();

@@ -35,6 +35,7 @@ export default function Profile() {
       setPreviewUrl(data?.data[0]?.img);
     } catch (error) {
       ErrorToast("Failed to load admin data");
+      
     } finally {
       if (!suppressLoading) setLoading(false);
     }

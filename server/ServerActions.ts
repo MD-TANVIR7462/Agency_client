@@ -52,7 +52,6 @@ export const createData = async (endpoint: string, data: any, token?: string) =>
 
 // UPDATE DATA
 export const updateData = async (endpoint: string, id: string, data: any, token?: string) => {
-  console.log(token, "token");
   try {
     const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
       method: "PATCH",

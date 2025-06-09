@@ -7,6 +7,8 @@ import handleUploads from "@/lib/handleImgUplods";
 import { updateData } from "@/server/ServerActions";
 import { useRouter } from "next/navigation";
 import { ErrorToast, SuccessToast } from "@/lib/utils";
+import { useAppSelector } from "@/redux/features/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
 
 interface BannerData {
   title1?: string;
@@ -32,7 +34,7 @@ export const EditBannerForm: FC<EditBannerFormProps> = ({ initialData }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-
+  const token = useAppSelector(useCurrentToken);
   const handleBannerUpdate = async (data: BannerData) => {
     const { title1, title2, subtext, img_url, _id } = data;
     const id = _id;
@@ -43,7 +45,7 @@ export const EditBannerForm: FC<EditBannerFormProps> = ({ initialData }) => {
       img_url,
       activeBanner: bannerActive,
     };
-    const result = await updateData("banner/update-banner", id as string, updatedData);
+    const result = await updateData("banner/update-banner", id as string, updatedData ,token as string);
     if (result.success) {
       router.refresh();
       SuccessToast(result?.message);

@@ -1,5 +1,5 @@
 "use client";
-import { FC, useState } from "react";
+import {  useState } from "react";
 import { Plus } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -11,16 +11,18 @@ import { createData, deleteData, updateData } from "@/server/ServerActions";
 import { ErrorToast, SuccessToast } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { deleteToast } from "@/lib/deleteToast";
+import { useAppSelector } from "@/redux/features/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
 
 const EditTechnologyIndex = ({ technologyData }: { technologyData: TechCardProps[] }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTechnology, setSelectedTechnology] = useState<TechCardProps | null>(null);
   const router = useRouter();
-
+  const token = useAppSelector(useCurrentToken);
   const handleStatusChange = async (id: string, status: "active" | "inactive") => {
     const isActive = status === "active";
     const data = { isActive };
-    const result = await updateData("technologies/update-technology", id, data);
+    const result = await updateData("technologies/update-technology", id, data ,token as string);
     if (result?.success) {
       SuccessToast("Status updated successfully!");
       router.refresh();
@@ -40,7 +42,7 @@ const EditTechnologyIndex = ({ technologyData }: { technologyData: TechCardProps
 
   const handleSubmit = async (data: Partial<TechCardProps>, id?: string | any) => {
     if (selectedTechnology) {
-      const result = await updateData("technologies/update-technology", id, data);
+      const result = await updateData("technologies/update-technology", id, data,token as string);
 
       if (result?.success) {
         SuccessToast(result?.message);
@@ -50,7 +52,7 @@ const EditTechnologyIndex = ({ technologyData }: { technologyData: TechCardProps
       }
     } else {
       const newTechnology = data as TechCardProps;
-      const result = await createData("technologies/create-technology", newTechnology);
+      const result = await createData("technologies/create-technology", newTechnology ,token as string);
       if (result?.success) {
         SuccessToast(result?.message);
         router.refresh();
@@ -63,7 +65,7 @@ const EditTechnologyIndex = ({ technologyData }: { technologyData: TechCardProps
 
   const handleDelete = async (id: string) => {
     const handleDeleteTechnology = async () => {
-      const result = await deleteData("technologies/delete-technology", id);
+      const result = await deleteData("technologies/delete-technology", id,token as string);
       if (result?.success) {
         router.refresh();
         SuccessToast(result.message);

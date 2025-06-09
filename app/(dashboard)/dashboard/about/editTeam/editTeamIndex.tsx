@@ -1,10 +1,7 @@
 "use client";
-
 import { useState } from "react";
-
 import { Plus } from "lucide-react";
 import { TeamMember } from "@/components/types/TeamMember";
-
 import { TeamMemberDetails } from "@/components/dashboard/EditAbout/EditTeam/TeamMemberDetails";
 import { TeamMembersTable } from "@/components/dashboard/EditAbout/EditTeam/TeamMembersTable";
 import { TeamMemberForm } from "@/components/dashboard/EditAbout/EditTeam/TeamMemberForm";
@@ -13,6 +10,8 @@ import { createData, deleteData, updateData } from "@/server/ServerActions";
 import { ErrorToast, SuccessToast } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { deleteToast } from "@/lib/deleteToast";
+import { useAppSelector } from "@/redux/features/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
 
 export default function EditTeamIndex({
   teamData: members,
@@ -22,6 +21,8 @@ export default function EditTeamIndex({
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const token = useAppSelector(useCurrentToken);
+
   const router = useRouter();
 
   const handleStatusChange = async (
@@ -30,7 +31,12 @@ export default function EditTeamIndex({
   ) => {
     const isActive = status === "active";
     const data = { isActive };
-    const result = await updateData("team/update-member", id, data);
+    const result = await updateData(
+      "team/update-member",
+      id,
+      data,
+      token as string
+    );
     if (result?.success) {
       SuccessToast("Status updated successfully!");
       router.refresh();
@@ -56,8 +62,12 @@ export default function EditTeamIndex({
 
   const handleSubmit = async (data: Partial<TeamMember>, id?: string) => {
     if (selectedMember) {
-      
-      const result = await updateData("team/update-member", id as string, data);
+      const result = await updateData(
+        "team/update-member",
+        id as string,
+        data,
+        token as string
+      );
       if (result?.success) {
         SuccessToast(result?.message);
         router.refresh();
@@ -65,8 +75,8 @@ export default function EditTeamIndex({
         ErrorToast(result?.message);
       }
     } else {
-      const newMember: TeamMember = data as TeamMember;
-      const result = await createData("team/create-member", newMember);
+      const newMember: TeamMember = data as TeamMember ;
+      const result = await createData("team/create-member", newMember,  token as string);
       if (result?.success) {
         SuccessToast(result?.message);
         router.refresh();
@@ -79,7 +89,11 @@ export default function EditTeamIndex({
 
   const handleDelete = async (id: string) => {
     const handleDeleteMember = async () => {
-      const result = await deleteData("team/delete-member", id);
+      const result = await deleteData(
+        "team/delete-member",
+        id,
+        token as string
+      );
       if (result?.success) {
         router.refresh();
         SuccessToast(result.message);

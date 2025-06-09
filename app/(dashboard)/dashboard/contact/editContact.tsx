@@ -4,6 +4,8 @@ import { EditContactButton } from "@/components/dashboard/EditContact/EditContac
 import { EditContactForm } from "@/components/dashboard/EditContact/EditContactFrom";
 import { Modal } from "@/components/Shared/Modal";
 import { ErrorToast, SuccessToast } from "@/lib/utils";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
+import { useAppSelector } from "@/redux/features/hooks";
 import { updateData } from "@/server/ServerActions";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -11,7 +13,7 @@ import { useState } from "react";
 const EditContactIndex = ({contactData}: {contactData: { email: string; phone: string; address: string; _id: string }}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
-
+  const token = useAppSelector(useCurrentToken);
   const handleSubmit = async (data: { _id: string; email: string; phone: string; address: string }) => {
     if (data) {
       const contactData = {
@@ -19,7 +21,7 @@ const EditContactIndex = ({contactData}: {contactData: { email: string; phone: s
         phone: data.phone,
         address: data.address,
       };
-      const result = await updateData("contact/update-contact", data._id as string, contactData);
+      const result = await updateData("contact/update-contact", data._id as string, contactData ,token as string);
       if (result?.success) {
         SuccessToast(result?.message);
         router.refresh();

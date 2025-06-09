@@ -3,19 +3,18 @@
 import { FormEvent, Suspense, useState } from "react";
 import { Plus } from "lucide-react";
 import { GalleryImage } from "@/components/types/Gallery";
-
 import { GalleryTable } from "@/components/dashboard/EditCareer/EditGallery/GalleryTable";
 import { Modal } from "@/components/Shared/Modal";
 import { GalleryForm } from "@/components/dashboard/EditCareer/EditGallery/GalleryForm";
-
 import DashSubTitle from "@/components/Shared/DashSubTitle";
 import LoadingState from "@/components/Shared/LoadingState";
 import handleUploads from "@/lib/handleImgUplods";
-
 import { GalleryModal } from "@/components/Career/Gallery/GalleryModal";
 import { createData, updateData } from "@/server/ServerActions";
 import { ErrorToast, SuccessToast } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/redux/features/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
 
 export default function EditeGalleryIndex({ galleryData: images }: { galleryData: GalleryImage[] }) {
   const [isFormModalOpen, setIsFormModalOpen] = useState(false);
@@ -24,7 +23,7 @@ export default function EditeGalleryIndex({ galleryData: images }: { galleryData
   const [editingImage, setEditingImage] = useState<GalleryImage | null>(null);
   const [isLoading, setIsloading] = useState(false);
   const router = useRouter();
-
+  const token = useAppSelector(useCurrentToken);
   const handleAdd = () => {
     setEditingImage(null);
     setIsFormModalOpen(true);
@@ -68,8 +67,8 @@ export default function EditeGalleryIndex({ galleryData: images }: { galleryData
       const payload = { url: imageUrl, caption };
 
       const result = editingImage?._id
-        ? await updateData("gallery/update-gallery", editingImage._id, payload)
-        : await createData("gallery/create-gallery", payload as GalleryImage);
+        ? await updateData("gallery/update-gallery", editingImage._id, payload ,token as string)
+        : await createData("gallery/create-gallery", payload as GalleryImage ,token as string);
       if (result?.success) {
         SuccessToast(result.message || "Operation successful.");
         router.refresh();
@@ -87,7 +86,7 @@ export default function EditeGalleryIndex({ galleryData: images }: { galleryData
   };
 
   const handleStatusChange = async (id: string, status: "active" | "inactive") => {
-    const result = await updateData("gallery/update-gallery", id, { isActive: status === "active" });
+    const result = await updateData("gallery/update-gallery", id, { isActive: status === "active" },token as string);
     if (result?.success) {
       SuccessToast("Status updated successfully!");
       router.refresh();

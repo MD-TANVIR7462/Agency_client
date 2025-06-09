@@ -7,8 +7,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { deleteToast } from "@/lib/deleteToast";
 import { useEffect, useState } from "react";
 import { PaginationControls } from "./PaginationControls";
-// import { Skeleton } from "@/components/ui/skeleton";
 import ApplicationRow from "./ApplicationRow";
+import { useAppSelector } from "@/redux/features/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
 
 interface ApplicationsTableProps {
   data: TPosition;
@@ -17,7 +18,7 @@ interface ApplicationsTableProps {
 const ApplicationsTable = ({ data: positionData }: ApplicationsTableProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-
+  const token = useAppSelector(useCurrentToken);
   const page = searchParams.get("page") ?? "1";
   const limit = searchParams.get("limit") ?? "25";
   const [position, setPosition] = useState(positionData);
@@ -63,7 +64,7 @@ const ApplicationsTable = ({ data: positionData }: ApplicationsTableProps) => {
 
   const handleSelectCandidate = async (id: string) => {
     try {
-      const result = await updateData("application/select", id, {});
+      const result = await updateData("application/select", id, {},token as string);
       if (result.success) {
         SuccessToast("Operation Successful");
         router.refresh();
@@ -77,7 +78,7 @@ const ApplicationsTable = ({ data: positionData }: ApplicationsTableProps) => {
 
   const handleRejectCandidate = async (id: string) => {
     try {
-      const result = await updateData("application/reject", id, {});
+      const result = await updateData("application/reject", id, {},token as string);
       if (result.success) {
         SuccessToast("Operation Successful");
         router.refresh();
@@ -91,7 +92,7 @@ const ApplicationsTable = ({ data: positionData }: ApplicationsTableProps) => {
 
   const handleDeleteCandidate = (id: string) => {
     const deleteCandidate = async () => {
-      const result = await deleteData("application/delete-application", id);
+      const result = await deleteData("application/delete-application", id,token as string);
       if (result?.success) {
         router.refresh();
         SuccessToast(result.message);

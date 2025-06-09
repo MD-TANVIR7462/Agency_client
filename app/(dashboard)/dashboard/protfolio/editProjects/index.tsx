@@ -8,19 +8,28 @@ import { CustomDropdown } from "@/components/dashboard/EditProtfolio/EditProject
 import { ProjectsTable } from "@/components/dashboard/EditProtfolio/EditProjects/ProjectTable";
 import { ProjectForm } from "@/components/dashboard/EditProtfolio/EditProjects/ProjectsForm";
 import DashSubTitle from "@/components/Shared/DashSubTitle";
-import { createData, deleteData, getData, updateData } from "@/server/ServerActions";
+import {
+  createData,
+  deleteData,
+  getData,
+  updateData,
+} from "@/server/ServerActions";
 import { ErrorToast, SuccessToast } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { deleteToast } from "@/lib/deleteToast";
+import { useAppSelector } from "@/redux/features/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
 
 const EditProjectIndex = ({ projectData }: { projectData: Project[] }) => {
   const router = useRouter();
-    const [projects, setProjects] = useState<Project[]>(projectData);
+  const [projects, setProjects] = useState<Project[]>(projectData);
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-const [filterStatus, setFilterStatus] = useState<"all" | "active" | "inactive">("all");
-
+  const [filterStatus, setFilterStatus] = useState<
+    "all" | "active" | "inactive"
+  >("all");
+  const token = useAppSelector(useCurrentToken);
   const handleView = (project: Project) => {
     window.open(project.link, "_blank");
   };
@@ -40,7 +49,8 @@ const [filterStatus, setFilterStatus] = useState<"all" | "active" | "inactive">(
       const result = await updateData(
         "project/update-project",
         id as string,
-        data
+        data,
+        token as string
       );
       if (result?.success) {
         SuccessToast(result?.message);
@@ -50,7 +60,11 @@ const [filterStatus, setFilterStatus] = useState<"all" | "active" | "inactive">(
       }
     } else {
       const newProject: Project = data as Project;
-      const result = await createData("project/create-project", newProject);
+      const result = await createData(
+        "project/create-project",
+        newProject,
+        token as string
+      );
       if (result?.success) {
         SuccessToast(result?.message);
         router.refresh();
@@ -67,7 +81,12 @@ const [filterStatus, setFilterStatus] = useState<"all" | "active" | "inactive">(
   ) => {
     const isActive = status === "active";
     const data = { isActive };
-    const result = await updateData("project/update-project", id, data);
+    const result = await updateData(
+      "project/update-project",
+      id,
+      data,
+      token as string
+    );
     if (result?.success) {
       SuccessToast("Status updated successfully!");
       router.refresh();
@@ -78,7 +97,11 @@ const [filterStatus, setFilterStatus] = useState<"all" | "active" | "inactive">(
 
   const handleDelete = async (id: string) => {
     const handleDeleteMember = async () => {
-      const result = await deleteData("project/delete-project", id);
+      const result = await deleteData(
+        "project/delete-project",
+        id,
+        token as string
+      );
       if (result?.success) {
         router.refresh();
         SuccessToast(result.message);
@@ -90,7 +113,7 @@ const [filterStatus, setFilterStatus] = useState<"all" | "active" | "inactive">(
     deleteToast(handleDeleteMember, "Delete the Member ?");
   };
   useEffect(() => {
-    const fetchFilteredTestimonials = async () => {
+    const fetchFilteredProjects = async () => {
       try {
         setLoading(true);
         if (filterStatus === "all") {
@@ -102,14 +125,14 @@ const [filterStatus, setFilterStatus] = useState<"all" | "active" | "inactive">(
           setProjects(filteredData || []);
         }
       } catch (error) {
-        console.error("Error fetching testimonials:", error);
+        console.error("Error fetching projects:", error);
         setProjects([]);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchFilteredTestimonials();
+    fetchFilteredProjects();
   }, [filterStatus, projectData]);
 
   return (
@@ -117,7 +140,10 @@ const [filterStatus, setFilterStatus] = useState<"all" | "active" | "inactive">(
       <div className="flex justify-between items-center mb-6">
         <DashSubTitle text="Projects" />
         <div className="flex gap-3">
-          <CustomDropdown currentFilter={filterStatus} onFilterChange={setFilterStatus} />
+          <CustomDropdown
+            currentFilter={filterStatus}
+            onFilterChange={setFilterStatus}
+          />
           <Button onClick={handleAddNew} className="primaryButton">
             <Plus className="w-4 h-4" />
             Add Project

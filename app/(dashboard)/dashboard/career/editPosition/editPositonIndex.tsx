@@ -26,17 +26,19 @@ import { createData, deleteData, updateData } from "@/server/ServerActions";
 import { ErrorToast, SuccessToast } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { deleteToast } from "@/lib/deleteToast";
+import { useAppSelector } from "@/redux/features/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
 
 export default function EditPositonIndex({ positions }: { positions: TPosition[] }) {
 
-
+  const token = useAppSelector(useCurrentToken);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingPosition, setEditingPosition] = useState<TPosition | null>(null);
   const router = useRouter();
 
   const handleAddPosition = async (newPosition: TPosition) => {
     const data = newPosition as TPosition;
-    const result = await createData("position/create-position", data);
+    const result = await createData("position/create-position", data,token as string);
 
     if (result?.success) {
       SuccessToast(result?.message);
@@ -76,7 +78,7 @@ export default function EditPositonIndex({ positions }: { positions: TPosition[]
       salary,
     };
 
-    const result = await updateData("position/update-position", _id as string, newUpdatedData);
+    const result = await updateData("position/update-position", _id as string, newUpdatedData ,token as string);
     if (result.success) {
       SuccessToast(result?.message);
       router.refresh();
@@ -87,7 +89,7 @@ export default function EditPositonIndex({ positions }: { positions: TPosition[]
 
   const handleDeletePosition = async (id: string) => {
     const handleDeleteTestimonial = async () => {
-      const result = await deleteData("position/delete-position", id);
+      const result = await deleteData("position/delete-position", id,token as string);
       if (result?.success) {
         router.refresh();
         SuccessToast(result.message);
@@ -104,7 +106,7 @@ export default function EditPositonIndex({ positions }: { positions: TPosition[]
       const status = {
         isActive: false,
       };
-      const result = await updateData("position/update-position", id as string, status);
+      const result = await updateData("position/update-position", id as string, status ,token as string);
       if (result.success) {
         SuccessToast("Deactivated successfully");
         router.refresh();
@@ -115,7 +117,7 @@ export default function EditPositonIndex({ positions }: { positions: TPosition[]
       const status = {
         isActive: true,
       };
-      const result = await updateData("position/update-position", id as string, status);
+      const result = await updateData("position/update-position", id as string, status ,token as string) ;
       if (result.success) {
         SuccessToast("Activated successfully.");
         router.refresh();
@@ -127,7 +129,7 @@ export default function EditPositonIndex({ positions }: { positions: TPosition[]
 
   const handleSelectCandidate = async (id: string) => {
     try {
-      const result = await updateData("application/select", id, {});
+      const result = await updateData("application/select", id, {},token as string);
       if (result.success) {
         SuccessToast("Operation Successful");
         router.refresh();
@@ -142,7 +144,7 @@ export default function EditPositonIndex({ positions }: { positions: TPosition[]
 
   const handleRejectCandidate = async (id: string) => {
     try {
-      const result = await updateData("application/reject", id, {});
+      const result = await updateData("application/reject", id, {},token as string);
       if (result.success) {
         SuccessToast("Operation Successful");
         router.refresh();
@@ -156,7 +158,7 @@ export default function EditPositonIndex({ positions }: { positions: TPosition[]
   };
   const handleDeleteCandidate = (id: string) => {
     const deleteCandidate = async () => {
-      const result = await deleteData("application/delete-application", id);
+      const result = await deleteData("application/delete-application", id,token as string);
       if (result?.success) {
         router.refresh();
         SuccessToast(result.message);

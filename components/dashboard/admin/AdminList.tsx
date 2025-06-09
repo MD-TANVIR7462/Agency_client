@@ -22,7 +22,7 @@ export default function AdminList({reRender}:{reRender:boolean}) {
 
   // Fetch admin data
   const fetchAdmin = async (suppressLoading = false) => {
-    console.log("FechAdmins")
+
     try {
       if (!suppressLoading) setLoading(true);
       const data = await getData("/auth/register/all", token as string);

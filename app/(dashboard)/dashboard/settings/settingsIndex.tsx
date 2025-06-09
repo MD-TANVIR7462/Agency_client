@@ -8,6 +8,8 @@ import Loader from "@/components/Shared/Loader";
 import { updateData } from "@/server/ServerActions";
 import { ErrorToast, SuccessToast } from "@/lib/utils";
 import { FormData } from "@/components/types/FormDta";
+import { useAppSelector } from "@/redux/features/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
 
 export default function SettingsIndex({ settings }: { settings: FormData }) {
   const [formData, setFormData] = useState<FormData>({
@@ -26,7 +28,7 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
   const [previewUrl, setPreviewUrl] = useState("");
   const [logoLoading, setLogoLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
+  const token = useAppSelector(useCurrentToken);
   // Initialize form data
   useEffect(() => {
     const fetchData = async () => {
@@ -117,7 +119,7 @@ export default function SettingsIndex({ settings }: { settings: FormData }) {
         
       };
 
-      const res = await updateData("settings/update-settings", settings?._id as string, dataToSend);
+      const res = await updateData("settings/update-settings", settings?._id as string, dataToSend ,token as string);
 
       if (!res.success) {
         ErrorToast("Failed to update settings");

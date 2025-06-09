@@ -7,15 +7,26 @@ import DashSubTitle from "@/components/Shared/DashSubTitle";
 import { Testimonial } from "@/components/types/Testimonial";
 import { deleteToast } from "@/lib/deleteToast";
 import { ErrorToast, SuccessToast } from "@/lib/utils";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
+import { useAppSelector } from "@/redux/features/hooks";
 import { deleteData, getData, updateData } from "@/server/ServerActions";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function EditTestimonialIndex({ data }: { data: Testimonial[] }) {
+export default function EditTestimonialIndex({
+  data,
+}: {
+  data: Testimonial[];
+}) {
   const [testimonials, setTestimonials] = useState<Testimonial[]>(data);
-  const [selectedTestimonial, setSelectedTestimonial] = useState<Testimonial | null>(null);
-  const [filterStatus, setFilterStatus] = useState<"all" | "active" | "inactive">("all");
+  const [selectedTestimonial, setSelectedTestimonial] =
+    useState<Testimonial | null>(null);
+  const [filterStatus, setFilterStatus] = useState<
+    "all" | "active" | "inactive"
+  >("all");
   const [loading, setLoading] = useState<boolean>(false);
+  const token = useAppSelector(useCurrentToken);
+
   const router = useRouter();
   useEffect(() => {
     const fetchFilteredTestimonials = async () => {
@@ -24,11 +35,14 @@ export default function EditTestimonialIndex({ data }: { data: Testimonial[] }) 
         if (filterStatus === "all") {
           setTestimonials(data);
         } else {
-          const { data: filteredData } = await getData(`testimonial?status=${filterStatus === "active"}`);
+          const { data: filteredData } = await getData(
+            `testimonial?status=${filterStatus === "active"}`,
+            token as string
+          );
           setTestimonials(filteredData || []);
         }
       } catch (error) {
-        console.error("Error fetching testimonials:", error);
+     ErrorToast("Testimonials: Something went wrong!")
         setTestimonials([]);
       } finally {
         setLoading(false);
@@ -39,9 +53,12 @@ export default function EditTestimonialIndex({ data }: { data: Testimonial[] }) 
   }, [filterStatus, data]);
 
   const handleDelete = async (id: string) => {
-
     const handleDeleteTestimonial = async () => {
-      const result = await deleteData("testimonial/delete-testimonial", id);
+      const result = await deleteData(
+        "testimonial/delete-testimonial",
+        id,
+        token as string
+      );
       if (result?.success) {
         router.refresh();
         SuccessToast(result.message);
@@ -53,10 +70,18 @@ export default function EditTestimonialIndex({ data }: { data: Testimonial[] }) 
     deleteToast(handleDeleteTestimonial, "Delete this Testimonial ?");
   };
 
-  const handleStatusChange = async (id: string, status: "active" | "inactive") => {
+  const handleStatusChange = async (
+    id: string,
+    status: "active" | "inactive"
+  ) => {
     const isActive = status === "active";
     const data = { isActive };
-    const result = await updateData("testimonial/update-testimonial", id, data);
+    const result = await updateData(
+      "testimonial/update-testimonial",
+      id,
+      data,
+      token as string
+    );
     if (result?.success) {
       SuccessToast("Status updated successfully!");
       router.refresh();
@@ -70,7 +95,10 @@ export default function EditTestimonialIndex({ data }: { data: Testimonial[] }) 
       <div className="max-w-[1900px] mx-auto space-y-6">
         <div className="flex justify-between items-center">
           <DashSubTitle text="Testimonials" />
-          <StatusFilter currentFilter={filterStatus} onFilterChange={setFilterStatus} />
+          <StatusFilter
+            currentFilter={filterStatus}
+            onFilterChange={setFilterStatus}
+          />
         </div>
 
         {loading ? (
@@ -86,7 +114,10 @@ export default function EditTestimonialIndex({ data }: { data: Testimonial[] }) 
           />
         )}
 
-        <TestimonialModal testimonial={selectedTestimonial} onClose={() => setSelectedTestimonial(null)} />
+        <TestimonialModal
+          testimonial={selectedTestimonial}
+          onClose={() => setSelectedTestimonial(null)}
+        />
       </div>
     </div>
   );

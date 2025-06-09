@@ -1,6 +1,5 @@
 "use client";
 import handleUploads from "@/lib/handleImgUplods";
-import { image } from "framer-motion/client";
 import { Eye, EyeOff } from "lucide-react";
 import { useRef, useState } from "react";
 

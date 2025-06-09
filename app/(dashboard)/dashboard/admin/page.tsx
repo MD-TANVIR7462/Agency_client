@@ -8,7 +8,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createData } from "@/server/ServerActions";
 import { useAppSelector } from "@/redux/features/hooks";
-import { useCurrentToken, useCurrentUser } from "@/redux/features/auth/authSlice";
+import {
+  useCurrentToken,
+  useCurrentUser,
+} from "@/redux/features/auth/authSlice";
 import { ErrorToast, SuccessToast } from "@/lib/utils";
 
 type Tuser = {
@@ -19,11 +22,11 @@ type Tuser = {
 };
 
 export default function AdminDashboard() {
-  const token = useAppSelector(useCurrentToken);
   const user = useAppSelector(useCurrentUser) as Tuser;
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [reRender, setRerender] = useState(false);
   const router = useRouter();
+  const token = useAppSelector(useCurrentToken);
   const handleCreateAdmin = async (data: any) => {
     try {
       const result = await createData("/auth/register", data, token as string);
@@ -41,7 +44,6 @@ export default function AdminDashboard() {
     }
 
     router.refresh();
-    console.log("refrsh", data);
   };
 
   return (
@@ -49,7 +51,9 @@ export default function AdminDashboard() {
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-2xl md:text-3xl font-bold">Admin Profile</h1>
-          {user && user?.role === "superadmin" && <CreateAdminButton onClick={() => setIsCreateModalOpen(true)} />}
+          {user && user?.role === "superadmin" && (
+            <CreateAdminButton onClick={() => setIsCreateModalOpen(true)} />
+          )}
         </div>
 
         <Profile />
@@ -58,7 +62,10 @@ export default function AdminDashboard() {
           <AdminList reRender={reRender} />
         </div>
 
-        <Modal isOpen={isCreateModalOpen} onClose={() => setIsCreateModalOpen(false)} title="Create New Admin">
+        <Modal
+          isOpen={isCreateModalOpen}
+          onClose={() => setIsCreateModalOpen(false)}
+          title="Create New Admin">
           <CreateAdminForm onSubmit={handleCreateAdmin} />
         </Modal>
       </div>

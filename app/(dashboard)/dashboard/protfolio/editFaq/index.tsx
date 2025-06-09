@@ -10,10 +10,13 @@ import { useRouter } from "next/navigation";
 import { createData, deleteData, updateData } from "@/server/ServerActions";
 import { deleteToast } from "@/lib/deleteToast";
 import { FAQForm } from "@/components/dashboard/EditProtfolio/EditFAQ/FAQFrom";
+import { useAppSelector } from "@/redux/features/hooks";
+import { useCurrentToken } from "@/redux/features/auth/authSlice";
 
 export default function EditFAQindex({ faqs }: { faqs: FAQ[] }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingFaq, setEditingFaq] = useState<FAQ | null>(null);
+    const token = useAppSelector(useCurrentToken);
   const router = useRouter();
   const handleEdit = (faq: FAQ) => {
     setEditingFaq(faq);
@@ -31,7 +34,8 @@ export default function EditFAQindex({ faqs }: { faqs: FAQ[] }) {
       const result = await updateData(
         "faq/update-faq",
         id as string,
-        data
+        data,
+        token as string
       );
       if (result?.success) {
         SuccessToast(result?.message);
@@ -41,7 +45,7 @@ export default function EditFAQindex({ faqs }: { faqs: FAQ[] }) {
       }
     } else {
       const newFAQ: FAQ = data as FAQ;
-      const result = await createData("faq/create-faq", newFAQ);
+      const result = await createData("faq/create-faq", newFAQ,token as string);
       if (result?.success) {
         SuccessToast(result?.message);
         router.refresh();
@@ -58,7 +62,7 @@ export default function EditFAQindex({ faqs }: { faqs: FAQ[] }) {
   ) => {
     const isActive = status === "active";
     const data = { isActive };
-    const result = await updateData("faq/update-faq", id, data);
+    const result = await updateData("faq/update-faq", id, data,token as string);
     if (result?.success) {
       SuccessToast("Status updated successfully!");
       router.refresh();
@@ -69,7 +73,7 @@ export default function EditFAQindex({ faqs }: { faqs: FAQ[] }) {
 
   const handleDelete = async (id: string) => {
     const handleDeleteFAQ = async () => {
-      const result = await deleteData("faq/delete-faq", id);
+      const result = await deleteData("faq/delete-faq", id,token as string);
       if (result?.success) {
         router.refresh();
         SuccessToast(result.message);

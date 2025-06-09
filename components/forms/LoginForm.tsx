@@ -2,15 +2,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
-import { varifyToken } from "@/services/auth.services";
-import { ErrorToast, SuccessToast } from "@/lib/utils";
+import { ErrorToast, SuccessToast, varifyToken } from "@/lib/utils";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { useAppDispatch } from "@/redux/features/hooks";
 import { setUser } from "@/redux/features/auth/authSlice";
 
 export default function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState(" tanvir.dev3@gmail.com");
+  const [password, setPassword] = useState("121212");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -48,6 +47,7 @@ export default function LoginForm() {
             id="email"
             name="email"
             type="email"
+            defaultValue={email}
             required
             className="customInput"
             placeholder="Email address"
@@ -61,6 +61,7 @@ export default function LoginForm() {
           <input
             id="password"
             name="password"
+            defaultValue={password}
             type={showPassword ? "text" : "password"}
             required
             className="customInput pr-10"
@@ -70,15 +71,17 @@ export default function LoginForm() {
           <button
             type="button"
             className="absolute right-3 top-3 text-gray-500"
-            onClick={() => setShowPassword((prev) => !prev)}
-          >
+            onClick={() => setShowPassword((prev) => !prev)}>
             {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
           </button>
         </div>
       </div>
 
       <div>
-        <button type="submit" className="primaryButton w-full flex items-center justify-center" disabled={loading}>
+        <button
+          type="submit"
+          className="primaryButton w-full flex items-center justify-center"
+          disabled={loading}>
           {loading ? "Signing in..." : "Sign in"}
         </button>
       </div>
