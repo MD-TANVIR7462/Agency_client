@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-import { Edit2 } from "lucide-react";
+import { Edit2, Pencil } from "lucide-react";
 import { Modal } from "@/components/Shared/Modal";
 import handleUploads from "@/lib/handleImgUplods";
 import { useAppSelector } from "@/redux/features/hooks";
@@ -35,7 +35,6 @@ export default function Profile() {
       setPreviewUrl(data?.data[0]?.img);
     } catch (error) {
       ErrorToast("Failed to load admin data");
-      
     } finally {
       if (!suppressLoading) setLoading(false);
     }
@@ -44,12 +43,6 @@ export default function Profile() {
   useEffect(() => {
     currentUserData();
   }, []);
-
-  // useEffect(() => {
-  //   // if (profileData?.avatarUrl) {
-  //   //   setPreviewUrl(profileData?.avatarUrl);
-  //   // }
-  // }, [profileData]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -94,10 +87,8 @@ export default function Profile() {
     } else {
       ErrorToast(result?.message);
     }
-
-    //close loading and close modal...
   };
-  // Conditional UI
+
   if (loading) {
     return <LoadingState />;
   }
@@ -130,6 +121,9 @@ export default function Profile() {
               {profileData?.email}
             </p>
           </div>
+        </div>
+        <div>
+          <button className="gap-1 px-2 py-2 md:gap-2 md:px-4 md:py-2 bg-purple-400/10 text-purple-400 rounded-md hover:bg-purple-400/20 transition-colors text-sm md:text-base flex items-center justify-center"><Pencil className="h-5 w-5"/> Change Password</button>
         </div>
       </div>
 
@@ -238,8 +232,3 @@ export default function Profile() {
     </div>
   );
 }
-
-
-
-
-

@@ -8,7 +8,7 @@ import Navindex from "@/components/Shared/navbar";
 
 export const metadata: Metadata = {
   title: "SiSCOTEK",
-  description: "Your IT soluation",
+  description: "Your next web destination",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
