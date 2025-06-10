@@ -1,12 +1,18 @@
-import { ErrorToast, SuccessToast } from "@/lib/utils";
-import { logout, useCurrentToken } from "@/redux/features/auth/authSlice";
-import { useAppSelector } from "@/redux/features/hooks";
+import { ErrorToast, SuccessToast, varifyToken } from "@/lib/utils";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
+import {
+  logout,
+  setUser,
+  useCurrentToken,
+  useCurrentUser,
+} from "@/redux/features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
 import { updatePassword } from "@/server/ServerActions";
 import { Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useDispatch } from "react-redux";
+
 type TPawsword = {
   old: boolean;
   new: boolean;
@@ -23,12 +29,20 @@ const PasswordForm = ({ onClose }: { onClose: () => void }) => {
     new: false,
     reTypeNew: false,
   });
+
+  const [login, { data, error: loginError }] = useLoginMutation();
+  const dispatch = useAppDispatch();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const disPatch = useDispatch();
   //Token...
   const token = useAppSelector(useCurrentToken);
+  const user = useAppSelector(useCurrentUser) as {
+    email: string;
+    role: string;
+    iat: string;
+    exp: string;
+  };
 
   //hook form intigration....
   const { register, handleSubmit } = useForm<inputs>();
@@ -45,7 +59,6 @@ const PasswordForm = ({ onClose }: { onClose: () => void }) => {
       return setError("New password and confirmation do not match.");
     }
     try {
-      console.log(data);
       setLoading(true);
       const res = await updatePassword(
         "auth/change-password",
@@ -60,12 +73,21 @@ const PasswordForm = ({ onClose }: { onClose: () => void }) => {
         return;
       }
 
+      const userInfo = {
+        email: user.email,
+        password: newpassword,
+      };
+
+      const result = await login(userInfo).unwrap();
+      const newLoginData = varifyToken(result?.data?.accessToken);
+      dispatch(
+        setUser({ user: newLoginData, token: result?.data?.accessToken })
+      );
       setLoading(false);
       setError("");
       onClose();
-      disPatch(logout());
-      SuccessToast(`${res.message}, Now login with new passrord!`);
-      router.replace("/login");
+      SuccessToast(`${res.message}`);
+      router.refresh();
     } catch (err: any) {
       ErrorToast(err?.message);
       setLoading(false);
@@ -164,8 +186,8 @@ const PasswordForm = ({ onClose }: { onClose: () => void }) => {
       {error && <p className="text-sm text-red-500">{error}</p>}
 
       <div className="text-center">
-        <button type="submit" className="primaryButton w-28 ">
-          {loading ? "Processing.." : "Submit"}
+        <button type="submit" className="primaryButton w-32 ">
+          {loading ? "Processing.. " : "Submit"}
         </button>
       </div>
     </form>
