@@ -186,8 +186,16 @@ const PasswordForm = ({ onClose }: { onClose: () => void }) => {
       {error && <p className="text-sm text-red-500">{error}</p>}
 
       <div className="text-center">
-        <button type="submit" className="primaryButton w-32 ">
-          {loading ? "Processing.. " : "Submit"}
+        <button type="submit" className="primaryButton w-40 "
+          disabled={loading}>
+              {loading ? (
+                <>
+                  <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+                  Updating
+                </>
+              ) : (
+                "Save Changes"
+              )}
         </button>
       </div>
     </form>
