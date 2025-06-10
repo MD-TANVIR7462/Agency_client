@@ -13,3 +13,6 @@ const Tittle = ({ tittle }: Tittle) => {
 };
 
 export default Tittle;
+
+
+

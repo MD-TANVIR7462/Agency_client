@@ -144,9 +144,7 @@ export default function Profile() {
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title="Edit Profile"
-        
-        >
+        title="Edit Profile">
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-200">

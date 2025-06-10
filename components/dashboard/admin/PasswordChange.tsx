@@ -8,7 +8,6 @@ import { useState } from "react";
 const PasswordChange = () => {
   const [isOpen, setisOpen] = useState(false);
 
-  console.log(isOpen);
   return (
     <div>
       <button
@@ -21,7 +20,7 @@ const PasswordChange = () => {
         onClose={() => setisOpen(false)}
         isOpen={isOpen}
         width="max-w-lg">
-        <PasswordForm />
+        <PasswordForm onClose={() => setisOpen(false)} />
       </Modal>
     </div>
   );

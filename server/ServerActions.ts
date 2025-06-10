@@ -97,3 +97,29 @@ export const getSettings = async () => {
     return { error: errorMessage };
   }
 };
+
+type TPassword = {
+  oldPassword: string;
+  newPassword: string;
+};
+
+export const updatePassword = async (endpoint: string, data: TPassword, token: string) => {
+  try {
+    console.log(data,`${BASE_URL}${endpoint}`);
+    const res = await fetch(`${BASE_URL}/${endpoint}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { Authorization: `${token}` }),
+      },
+      body: JSON.stringify(data),
+    });
+    const response = await res.json();
+    console.log(response)
+    return response;
+  } catch (error) {
+    console.log(error)
+    const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
+    return { error: errorMessage };
+  }
+};
