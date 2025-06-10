@@ -11,6 +11,7 @@ import { ErrorToast, SuccessToast } from "@/lib/utils";
 import { getData, updateData } from "@/server/ServerActions";
 import LoadingState from "@/components/Shared/LoadingState";
 import { TAdmin } from "@/components/types/Admin";
+import PasswordChange from "./PasswordChange";
 
 type ProfileProps = {
   email: string;
@@ -122,9 +123,7 @@ export default function Profile() {
             </p>
           </div>
         </div>
-        <div>
-          <button className="gap-1 px-2 py-2 md:gap-2 md:px-4 md:py-2 bg-purple-400/10 text-purple-400 rounded-md hover:bg-purple-400/20 transition-colors text-sm md:text-base flex items-center justify-center"><Pencil className="h-5 w-5"/> Change Password</button>
-        </div>
+        <PasswordChange />
       </div>
 
       <div className="mt-8 grid grid-cols-2 gap-4">
@@ -145,7 +144,9 @@ export default function Profile() {
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title="Edit Profile">
+        title="Edit Profile"
+        
+        >
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-200">
