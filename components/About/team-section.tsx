@@ -22,7 +22,7 @@ export const TeamSection = ({ teamMembers }: { teamMembers: TeamMember[] }) => {
   );
 
   return (
-    <section className="py-20 max-w-[85rem] mx-auto">
+    <section className="py-12 md:py-20 max-w-[85rem] mx-auto">
       <div className="container mx-auto px-4">
         <span className="text-center">
           <Tittle tittle={"Our Expert Team"} />

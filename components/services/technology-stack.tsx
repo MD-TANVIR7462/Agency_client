@@ -7,7 +7,7 @@ export const TechnologyStack = async () => {
   const technologyData = (await getData("technologies?isActive=true"))?.data;
 
   return (
-    <section className="relative overflow-hidden bg-gray-900 py-24">
+    <section className="relative overflow-hidden bg-gray-900 py-8 md:py-24">
       <div className="absolute left-1/3 top-1/2 -z-10 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-blue-500/20 blur-[100px]" />
 
       <div className="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">

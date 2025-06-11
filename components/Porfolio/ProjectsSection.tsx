@@ -66,7 +66,7 @@ export default function ProjectsSection({ data }: { data: Project[] }) {
   }, [fetchFilteredProjects]);
 
   return (
-    <section className="py-16 max-w-[85rem] mx-auto">
+    <section className="py-8 md:py-16 max-w-[85rem] mx-auto">
       <div className="container mx-auto px-4">
         <TabList activeTab={activeTab} onTabChange={handleTabChange} />
 

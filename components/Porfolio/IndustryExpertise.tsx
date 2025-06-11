@@ -43,7 +43,7 @@ const IndustryExpertise = () => {
   ];
 
   return (
-    <section className="py-24 max-w-[85rem] mx-auto">
+    <section className="py-8  md:py-24 max-w-[85rem] mx-auto">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <Tittle tittle='Industry Expertise'/>

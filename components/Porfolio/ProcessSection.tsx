@@ -74,7 +74,7 @@ const ProcessSection2 = () => {
   ];
 
   return (
-    <section className="relative py-16 md:py-20 px-4 sm:px-8">
+    <section className="relative py-12 md:py-20 px-4 sm:px-8">
       {/* Background gradients */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/30 via-black/30 to-black" />

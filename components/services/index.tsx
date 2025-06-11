@@ -10,7 +10,7 @@ import { ServiceModal } from "./ServiceModal";
 export const Services = ({serviceData}:{serviceData:Service[]}) => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   return (
-    <section className="relative overflow-hidden bg-gray-900 py-24">
+    <section className="relative overflow-hidden bg-gray-900 py-8  md:py-24">
       {/* Background Elements */}
       <div className="absolute left-1/2 top-0 -z-10 h-[800px] w-[800px] -translate-x-1/2 rounded-full bg-purple-500/20 blur-[120px]" />
       <div className="absolute right-0 top-1/2 -z-10 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-blue-500/20 blur-[100px]" />
@@ -35,7 +35,7 @@ export const Services = ({serviceData}:{serviceData:Service[]}) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-16"
+            // className="mt-16"
           >
             <span className="text-start">
               <ServicesGrid serviceData={serviceData} onServiceClick={setSelectedService} />

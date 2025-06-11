@@ -4,7 +4,7 @@ import { GalleryGrid } from "./gallery-grid";
 
 export const Gallery = () => {
   return (
-    <section className="relative overflow-hidden bg-gray-900 py-24">
+    <section className="relative overflow-hidden bg-gray-900 py-8 md:py-24">
       <div className="absolute left-1/2 top-1/4 -z-10 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-purple-500/20 blur-[100px]" />
 
       <div className="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">

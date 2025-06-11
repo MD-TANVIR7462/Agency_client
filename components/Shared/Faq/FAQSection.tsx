@@ -9,7 +9,7 @@ const FAQSection = async ({ hide }: { hide: boolean }) => {
   const faqs: FAQ[] = (await getData("faq"))?.data;
 
   return (
-    <section className="py-24 relative">
+    <section className="py-8  md:py-24 relative">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-16">

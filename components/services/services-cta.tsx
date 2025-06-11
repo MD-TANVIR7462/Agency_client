@@ -14,7 +14,7 @@ const benefits = [
 
 export const ServicesCTA = () => {
   return (
-    <section className="relative overflow-hidden bg-gray-900 py-24 ">
+    <section className="relative overflow-hidden bg-gray-900 pb-12 pt-8  md:py-24 ">
       <div className="absolute right-1/4 top-1/2 -z-10 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-purple-500/20 blur-[100px]" />
 
       <div className="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
@@ -29,10 +29,10 @@ export const ServicesCTA = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold text-white sm:text-4xl">
+              <h2 className="text-xl font-bold text-white sm:text-3xl">
                 Ready to Transform Your Business?
               </h2>
-              <p className="mt-4 text-lg text-gray-400">
+              <p className="mt-4 text-md sm:text-lg text-gray-400">
                 Let's discuss how our services can help you achieve your digital
                 goals. Schedule a free consultation with our experts today.
               </p>
