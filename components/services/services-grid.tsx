@@ -13,7 +13,7 @@ export const ServicesGrid = ({ onServiceClick, serviceData }: ServiceGridProps) 
     <section className="relative overflow-hidden bg-gray-900 py-24 ">
       <div className="absolute right-1/4 top-1/2 -z-10 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-purple-500/20 blur-[100px]" />
 
-      <div className="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[85rem]   lg:px-8">
         <ServiceHeadSection />
         <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {serviceData?.map((service) => {
