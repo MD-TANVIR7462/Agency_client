@@ -14,7 +14,7 @@ const ServicePage = async () => {
           "Comprehensive digital solutions tailored to transform your business and drive growth in the modern digital landscape."
         }
       ></SubHero>
-      {serviceData&& <ServiceGridWraper serviceData={serviceData?.data} />}
+     <span className="px-4"> {serviceData&& <ServiceGridWraper serviceData={serviceData?.data} />}</span>
       <TechnologyStack />
       <ServicesCTA />
     </>
