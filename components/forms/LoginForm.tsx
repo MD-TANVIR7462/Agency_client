@@ -6,6 +6,7 @@ import { ErrorToast, SuccessToast, varifyToken } from "@/lib/utils";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { useAppDispatch } from "@/redux/features/hooks";
 import { setUser } from "@/redux/features/auth/authSlice";
+import Link from "next/link";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -74,6 +75,13 @@ export default function LoginForm() {
             onClick={() => setShowPassword((prev) => !prev)}>
             {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
           </button>
+          <span className="flex justify-end">
+            <Link href={"/forgot-password"}>
+              <p className="w-max text-sm mt-1  underline text-purple-500/60 cursor-pointer hover:text-purple-500/90">
+                Forgot Password
+              </p>
+            </Link>
+          </span>
         </div>
       </div>
 
