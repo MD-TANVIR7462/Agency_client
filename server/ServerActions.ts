@@ -3,6 +3,7 @@
 import { envConfig } from "@/lib/env.config";
 
 const BASE_URL = envConfig.SERVER_BASE_URL; // Can be dynamic
+// const BASE_URL = envConfig.LOCAL_BASE_URL; // Can be dynamic
 
 // GET ALL DATA
 export const getData = async (endpoint: string, token?: string) => {
@@ -105,7 +106,7 @@ type TPassword = {
 
 export const updatePassword = async (endpoint: string, data: TPassword, token: string) => {
   try {
-    console.log(data,`${BASE_URL}${endpoint}`);
+    console.log(data, `${BASE_URL}${endpoint}`);
     const res = await fetch(`${BASE_URL}/${endpoint}`, {
       method: "POST",
       headers: {
@@ -115,10 +116,29 @@ export const updatePassword = async (endpoint: string, data: TPassword, token: s
       body: JSON.stringify(data),
     });
     const response = await res.json();
-    console.log(response)
+    console.log(response);
     return response;
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
+    return { error: errorMessage };
+  }
+};
+
+// UPDATE DATA
+export const resetPassword = async (endpoint: string, data: any, token: string) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${endpoint}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { Authorization: `${token}` }),
+      },
+      body: JSON.stringify(data),
+    });
+    const response = await res.json();
+    return response;
+  } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
     return { error: errorMessage };
   }
