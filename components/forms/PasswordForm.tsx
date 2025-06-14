@@ -8,7 +8,7 @@ import {
 } from "@/redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
 import { updatePassword } from "@/server/ServerActions";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -190,7 +190,7 @@ const PasswordForm = ({ onClose }: { onClose: () => void }) => {
           disabled={loading}>
               {loading ? (
                 <>
-                  <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
+                <Loader2 className="h-4 w-4 animate-spin" />
                   Updating
                 </>
               ) : (
