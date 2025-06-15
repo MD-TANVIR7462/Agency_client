@@ -8,8 +8,7 @@ const EmptyState = () => {
         No Open Positions
       </h3>
       <p className="text-gray-400 max-w-md">
-        There are currently no open positions. Click the "Add Position" button
-        above to create a new job posting.
+        There are currently no open positions. 
       </p>
     </div>
   );
