@@ -4,12 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import LoginForm from "@/components/forms/LoginForm";
 import Loader from "@/components/Shared/Loader";
-
-import {
-  logout,
-  useCurrentToken,
-  useCurrentUser,
-} from "@/redux/features/auth/authSlice";
+import { logout, useCurrentToken, useCurrentUser } from "@/redux/features/auth/authSlice";
 import { useAppSelector } from "@/redux/features/hooks";
 import { ErrorToast } from "@/lib/utils";
 import { getData } from "@/server/ServerActions";
@@ -20,10 +15,12 @@ import Link from "next/link";
 export default function LoginPage() {
   const router = useRouter();
   const [isChecking, setIsChecking] = useState(true);
+  const [fillAdminCreds, setFillAdminCreds] = useState(false);
 
   const token = useAppSelector(useCurrentToken);
   const user = useAppSelector(useCurrentUser);
   const disPatch = useDispatch();
+
   const checkUser = async () => {
     try {
       if (token && user) {
@@ -56,8 +53,7 @@ export default function LoginPage() {
           <Link href={"/"}>
             <p className="text-purple-500/60 hover:text-purple-500 cursor-pointer w-max flex justify-center items-center underline">
               <Undo2 width={20} />
-              {/* Tooltip text */}
-              <span className="w-24 text-center absolute  bottom-full mb-1  bg-black/60 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-xs">
+              <span className="w-24 text-center absolute bottom-full mb-1 bg-black/60 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-xs">
                 Back to Home
               </span>
             </p>
@@ -65,18 +61,19 @@ export default function LoginPage() {
         </span>
 
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
-            Login
-          </h2>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-white">Login</h2>
         </div>
-        <LoginForm />
-        <p className="mt-2 text-center text-sm text-gray-400">
-          <b>Admin Credentials (for demo purposes)</b>:
-          <br />
-          <b>Email:</b> tanvir.dev3@gmail.com
-          <br />
-          <b>Password:</b> 121212
-        </p>
+
+        <LoginForm fillAdminCreds={fillAdminCreds} />
+
+        <div className="text-center">
+          <button
+            onClick={() => setFillAdminCreds(true)}
+            className="mt-4 secondaryButton text-sm text-purple-400 hover:text-purple-300"
+          >
+            Autofill Admin Credentials
+          </button>
+        </div>
       </div>
     </div>
   );

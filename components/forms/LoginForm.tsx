@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
 import { ErrorToast, SuccessToast, varifyToken } from "@/lib/utils";
@@ -8,7 +9,11 @@ import { useAppDispatch } from "@/redux/features/hooks";
 import { setUser } from "@/redux/features/auth/authSlice";
 import Link from "next/link";
 
-export default function LoginForm() {
+interface LoginFormProps {
+  fillAdminCreds?: boolean;
+}
+
+export default function LoginForm({ fillAdminCreds }: LoginFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -17,15 +22,18 @@ export default function LoginForm() {
   const [login, { data, error }] = useLoginMutation();
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    if (fillAdminCreds) {
+      setEmail("tanvir.dev3@gmail.com");
+      setPassword("121212");
+    }
+  }, [fillAdminCreds]);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    const userInfo = {
-      email,
-      password,
-    };
     try {
-      const res = await login(userInfo).unwrap();
+      const res = await login({ email, password }).unwrap();
       const user = varifyToken(res?.data?.accessToken);
       dispatch(setUser({ user: user, token: res?.data?.accessToken }));
       router.push("/dashboard");
@@ -48,7 +56,7 @@ export default function LoginForm() {
             id="email"
             name="email"
             type="email"
-            defaultValue={email}
+            value={email}
             required
             className="customInput"
             placeholder="Email address"
@@ -62,8 +70,8 @@ export default function LoginForm() {
           <input
             id="password"
             name="password"
-            defaultValue={password}
             type={showPassword ? "text" : "password"}
+            value={password}
             required
             className="customInput pr-10"
             placeholder="Password"
@@ -72,12 +80,13 @@ export default function LoginForm() {
           <button
             type="button"
             className="absolute right-3 top-3 text-gray-500"
-            onClick={() => setShowPassword((prev) => !prev)}>
+            onClick={() => setShowPassword((prev) => !prev)}
+          >
             {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
           </button>
           <span className="flex justify-end">
             <Link href={"/forgot-password"}>
-              <p className="w-max text-sm mt-1  underline text-purple-500/60 cursor-pointer hover:text-purple-500/90">
+              <p className="w-max text-sm mt-1 underline text-purple-500/60 cursor-pointer hover:text-purple-500/90">
                 Forgot Password
               </p>
             </Link>
@@ -86,10 +95,7 @@ export default function LoginForm() {
       </div>
 
       <div>
-        <button
-          type="submit"
-          className="primaryButton w-full flex items-center justify-center"
-          disabled={loading}>
+        <button type="submit" className="primaryButton w-full flex items-center justify-center" disabled={loading}>
           {loading ? "Signing in..." : "Sign in"}
         </button>
       </div>
