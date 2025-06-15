@@ -1,7 +1,8 @@
 # 🚀 Agency Client — Full Stack Software Agency Website
 
 > ⚠️ **Note for Recruiters:**  
-> This project is currently **under active development** and will be **Development will completed within the next 5–10 days then it will be placed for SEO to the SEO team**. The foundational structure is already in place, with major modules nearly finalized. Feel free to explore the features, code structure, and UI — everything is progressing rapidly!
+> Admin:tanvir.dev3@gmail.com
+> pass:121212
 
 ---
 ## 📸 Project Links
@@ -100,7 +101,7 @@
 
 - 🔄 Current Status: **In Final Development Phase**
 - ✅ Core functionality and dashboard nearly complete
-- 🕒 Expected Completion: **Within 5–10 days**
+- 🕒 Expected Completion: **Completed**
 
 ---
 
