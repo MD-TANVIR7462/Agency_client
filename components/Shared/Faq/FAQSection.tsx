@@ -6,7 +6,7 @@ import { FAQ } from "@/components/types/Faq";
 import { getData } from "@/server/ServerActions";
 
 const FAQSection = async ({ hide }: { hide: boolean }) => {
-  const faqs: FAQ[] = (await getData("faq"))?.data;
+  const faqs: FAQ[] = (await getData("faq?isActive=true"))?.data;
 
   return (
     <section className="py-8  md:py-24 relative">
